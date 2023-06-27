@@ -14,7 +14,7 @@ jekyll build --source hello_umas --destination docs
 ```
 
 - raw代码
-{% raw }{% endraw %}
+{% raw %}{% endraw %}
 
 
 

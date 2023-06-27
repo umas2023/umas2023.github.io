@@ -1,30 +1,38 @@
-# hello electron
-electron项目基本操作
+---
+layout: post
+title:  "electron: hello_world"
+info: "从0开始搭建electron项目"
+date:   2023-06-27 23:00:00 +0800
+categories: electron
+toc: true
+---
 
-## hello world
-- 使用vue+electron创建一个简单的单窗口页面
-- 项目位置: 1_example/electron
 
-### 1. 一个简单的窗口
-- 参见 hello_vue.md 创建一个基于vue的 hello world 项目
+
+##  一个简单的窗口
+- 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目
 - 在项目中添加electron支持
 ```
 vue add electron-builder
-    (Electron Version ^13.0.0)
+(Electron Version ^13.0.0)
 ```
+
 - 在package.json中可以看到新增的命令
 ```
 npm run electron:serve
 npm run electron:build
 ```
+
 - 直接使用```npm run electron:serve```启动测试时background.ts可能会报错Object is of type 'unknown',需要手动给报错的变量定义类型:any
 ```
 catch (e) 改为 catch (e:any)
 ```
+
 - 还有可能报错TypeError: loaderContext.getOptions is not a function,需要降低ts-loader的版本到8.2.0
 ```
 npm install ts-loader@~8.2.0
 ```
+
 - 还有可能在src/router/index.ts中报错File 'xxx/src/views/HomeView.vue.ts' is not a module.,这是因为HomeView.vue缺少了export,简单的修改方法是添加setup参数
 ```html
 <script setup lang="ts">
@@ -34,8 +42,9 @@ export default {};
 </script>
 ```
 
-### 2. 常用的一些打包选项
-- vue.config.js
+## 常用的一些打包选项
+- 在vue.config.js中设置打包选项
+{% raw %}
 ```js
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
@@ -97,9 +106,10 @@ module.exports = defineConfig({
 });
 
 ```
+{% endraw %}
 
 
-### 3. 窗口的一些附加参数
+## 窗口的一些附加参数
 
 ```js
   const win = new BrowserWindow({
