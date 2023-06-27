@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-27T20:56:26+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>Here an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">jekyll: toc</title><link href="/jekyll/toc/" rel="alternate" type="text/html" title="jekyll: toc" /><published>2023-06-27T14:00:00+08:00</published><updated>2023-06-27T14:00:00+08:00</updated><id>/jekyll/toc</id><content type="html" xml:base="/jekyll/toc/"><![CDATA[<h2 id="参考">参考</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-27T22:18:03+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>Here an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">jekyll: toc</title><link href="/jekyll/toc/" rel="alternate" type="text/html" title="jekyll: toc" /><published>2023-06-27T14:00:00+08:00</published><updated>2023-06-27T14:00:00+08:00</updated><id>/jekyll/toc</id><content type="html" xml:base="/jekyll/toc/"><![CDATA[<h2 id="参考">参考</h2>
 <ul>
   <li>https://heymichellemac.com/table-of-contents-jekyll</li>
 </ul>
@@ -85,6 +85,7 @@
 <p><img src="/image/jekyll/2023-6-27-toc/image_1.jpg" alt="home" /></p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 https://heymichellemac.com/table-of-contents-jekyll]]></summary></entry><entry><title type="html">jekyll: categories</title><link href="/jekyll/categories/" rel="alternate" type="text/html" title="jekyll: categories" /><published>2023-06-27T13:00:00+08:00</published><updated>2023-06-27T13:00:00+08:00</updated><id>/jekyll/categories</id><content type="html" xml:base="/jekyll/categories/"><![CDATA[<h2 id="参考">参考</h2>
 <ul>
   <li><a href="https://zoharandroid.github.io/2019-08-02-Jekyll%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BBCategory%E5%8A%9F%E8%83%BD/">Jekyll个人博客添加分类Category功能</a></li>
+  <li><a href="https://blog.webjeda.com/jekyll-categories/">3 Simple steps to setup Jekyll Categories and Tags</a></li>
 </ul>
 
 <h2 id="实现">实现</h2>
@@ -122,24 +123,50 @@
     <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ---
  layout: page
  permalink: /categories/
- title: categories
+ title: Categories
  ---
+
+
  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"archives"</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;ul&gt;</span>
-         {% for category in site.categories %}
-         <span class="nt">&lt;li&gt;</span>
-             <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.baseurl }}/{{ category | first | slugify }}"</span><span class="nt">&gt;</span>{{ category | first }}<span class="nt">&lt;/a&gt;</span>
-         <span class="nt">&lt;/li&gt;</span>
-         {% endfor %}
-     <span class="nt">&lt;/ul&gt;</span>
+
+ {% for category in site.categories %}
+ <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"archive-group"</span><span class="nt">&gt;</span>
+     {% capture category_name %}{{ category | first }}{% endcapture %}
+     <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"#{{ category_name | slugize }}"</span><span class="nt">&gt;&lt;/div&gt;</span>
+     <span class="nt">&lt;p&gt;&lt;/p&gt;</span>
+
+     <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"category-head"</span><span class="nt">&gt;</span>{{ category_name }}<span class="nt">&lt;/h3&gt;</span>
+     <span class="nt">&lt;a</span> <span class="na">name=</span><span class="s">"{{ category_name | slugize }}"</span><span class="nt">&gt;&lt;/a&gt;</span>
+     {% for post in site.categories[category_name] %}
+     <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"archive-item"</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;h4&gt;&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.baseurl }}{{ post.url }}"</span><span class="nt">&gt;</span>{{post.title}}<span class="nt">&lt;/a&gt;&lt;/h4&gt;</span>
+     <span class="nt">&lt;/article&gt;</span>
+     {% endfor %}
  <span class="nt">&lt;/div&gt;</span>
+ {% endfor %}
+ <span class="nt">&lt;/div&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>上面的categories.html直接显示了所有的文章，当文章数量很多时很不友好，可以在顶部添加一个对category的导航</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">&lt;!-- 顶部导航 --&gt;</span>
+ <span class="nt">&lt;hr&gt;</span>
+ <span class="nt">&lt;nav</span> <span class="na">id=</span><span class="s">"category-toc"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;ul&gt;</span>
+     {% for category in site.categories %}
+     <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#{{ category | first | slugify }}"</span><span class="nt">&gt;</span>{{ category | first }}<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+     {% endfor %}
+ <span class="nt">&lt;/ul&gt;</span>
+ <span class="nt">&lt;/nav&gt;</span>
+ <span class="nt">&lt;hr&gt;</span>
 </code></pre></div>    </div>
   </li>
   <li>效果</li>
 </ol>
 
 <p><img src="/image/jekyll/2023-6-27-230627_categories/image_1.jpg" alt="home" />
-<img src="/image/jekyll/2023-6-27-230627_categories/image_2.jpg" alt="cate" /></p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 Jekyll个人博客添加分类Category功能]]></summary></entry><entry><title type="html">jekyll: hello_world</title><link href="/jekyll/hello_world/" rel="alternate" type="text/html" title="jekyll: hello_world" /><published>2023-06-27T12:00:00+08:00</published><updated>2023-06-27T12:00:00+08:00</updated><id>/jekyll/hello_world</id><content type="html" xml:base="/jekyll/hello_world/"><![CDATA[<h2 id="参考">参考</h2>
+<img src="/image/jekyll/2023-6-27-230627_categories/image_2.jpg" alt="cate" /></p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 Jekyll个人博客添加分类Category功能 3 Simple steps to setup Jekyll Categories and Tags]]></summary></entry><entry><title type="html">jekyll: hello_world</title><link href="/jekyll/hello_world/" rel="alternate" type="text/html" title="jekyll: hello_world" /><published>2023-06-27T12:00:00+08:00</published><updated>2023-06-27T12:00:00+08:00</updated><id>/jekyll/hello_world</id><content type="html" xml:base="/jekyll/hello_world/"><![CDATA[<h2 id="参考">参考</h2>
 <ul>
   <li><a href="https://www.jekyll.com.cn/docs/">官方</a></li>
 </ul>
@@ -198,6 +225,15 @@
 </code></pre></div>    </div>
     <ul>
       <li>这条命令将网页构建到_site文件夹中，之后可以托管在服务器上</li>
+    </ul>
+  </li>
+  <li>
+    <p>打包后可以先用python启动本地服务器看一下效果</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python -m http.server
+</code></pre></div>    </div>
+    <ul>
+      <li>访问：http://localhost:8000/</li>
     </ul>
   </li>
 </ol>

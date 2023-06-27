@@ -10,7 +10,7 @@ toc: true
 
 ## 参考
 - [Jekyll个人博客添加分类Category功能](https://zoharandroid.github.io/2019-08-02-Jekyll%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BBCategory%E5%8A%9F%E8%83%BD/)
-
+- [3 Simple steps to setup Jekyll Categories and Tags](https://blog.webjeda.com/jekyll-categories/)
 
 ## 实现
 
@@ -48,21 +48,48 @@ toc: true
     ---
     layout: page
     permalink: /categories/
-    title: categories
+    title: Categories
     ---
+
+
     <div id="archives">
-        <ul>
-            {% for category in site.categories %}
-            <li>
-                <a href="{{ site.baseurl }}/{{ category | first | slugify }}">{{ category | first }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+
+    {% for category in site.categories %}
+    <div class="archive-group">
+        {% capture category_name %}{{ category | first }}{% endcapture %}
+        <div id="#{{ category_name | slugize }}"></div>
+        <p></p>
+
+        <h3 class="category-head">{{ category_name }}</h3>
+        <a name="{{ category_name | slugize }}"></a>
+        {% for post in site.categories[category_name] %}
+        <article class="archive-item">
+        <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
+        </article>
+        {% endfor %}
+    </div>
+    {% endfor %}
     </div>
     ```
     {% endraw %}
 
-5. 效果
+5. 上面的categories.html直接显示了所有的文章，当文章数量很多时很不友好，可以在顶部添加一个对category的导航
+   {% raw %}
+    ```html
+    <!-- 顶部导航 -->
+    <hr>
+    <nav id="category-toc">
+    <ul>
+        {% for category in site.categories %}
+        <li><a href="#{{ category | first | slugify }}">{{ category | first }}</a></li>
+        {% endfor %}
+    </ul>
+    </nav>
+    <hr>
+    ```
+    {% endraw %}
+    
+6. 效果
 
 ![home]({{site.url}}/image/jekyll/2023-6-27-230627_categories/image_1.jpg)
 ![cate]({{site.url}}/image/jekyll/2023-6-27-230627_categories/image_2.jpg)
