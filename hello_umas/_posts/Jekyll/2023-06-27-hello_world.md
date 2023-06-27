@@ -36,7 +36,7 @@ toc: true
 5. 添加markdown文件
    - 在 Jekyll 项目的 _posts 目录下创建Markdown 文件，文件名必须遵循 YYYY-MM-DD-title.md 的格式，其中 YYYY-MM-DD 表示文章的发布日期，title 表示文章的标题，文件名中的单词必须用短横线 - 分隔
    - _posts支持多级目录，可以用文件夹管理md文件
-   - 注意md文件中的代码块可能被解析，如果发现和原文不一致需要用{% raw %}{% raw {% endraw %}{% raw %}}{% endraw %{% endraw %}{% raw %}}{% endraw %}来包裹代码块，比如下面引入图片的代码块如果不加raw的话就会直接显示图片。（这句话中的{% raw %}{% raw {% endraw %}{% raw %}}{% endraw %{% endraw %}{% raw %}}{% endraw %}也要用这个方法嵌套才能显示在页面中，而且必须以大括号为分隔进行三次嵌套才能显示）
+   - 注意md文件中的代码块可能被解析，如果发现和原文不一致需要用{% raw %}{% raw %{% endraw %}{% raw %}}{% endraw %{% endraw %}{% raw %}}{% endraw %}来包裹代码块，比如下面引入图片的代码块如果不加raw的话就会直接显示图片。（这句话中的{% raw %}{% raw {% endraw %}{% raw %}}{% endraw %{% endraw %}{% raw %}}{% endraw %}也要用这个方法嵌套才能显示在页面中，而且必须以大括号为分隔进行三次嵌套才能显示）
    - 添加图片的方法：项目根目录下新建文件夹存放图片，不要放在_posts文件夹下，比如/image/jekyll/image_1.jpg，然后在md文件引入图片：
     {% raw %}
     ```md

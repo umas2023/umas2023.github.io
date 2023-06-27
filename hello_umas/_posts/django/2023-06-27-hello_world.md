@@ -1,15 +1,21 @@
-# hello django
-django后端基本操作
+---
+layout: post
+title:  "django: hello_world"
+info: "土木工程都能看懂的django hello_world"
+date:   2023-06-27 22:25:00 +0800
+categories: django
+toc: true
+---
 
-## hello world
-- 使用django创建一个简单的后端服务器
-- 项目位置: 1_example/django
 
-### 1. 一个简单app
+
+## 一个简单app
+
 - 创建项目
 ```
 django-admin.exe startproject hello_world
 ```
+
 - 启动项目(migrate只需要运行一次)  
 ```
 python manage.py migrate
@@ -52,7 +58,7 @@ urlpatterns = [
 - 好了,现在可以用postman试着给localhost:4090/say_hello发送一个get请求,会收到"hello world"的回复
 
 
-### 2. 添加websocket应用
+## 添加websocket应用
 - 参考：[channels官方文档](https://channels.readthedocs.io/en/stable/tutorial/part_1.html)
 
 - 安装必备库
@@ -60,12 +66,13 @@ urlpatterns = [
 pip install channels
 pip install daphne
 ```
+
 - 创建app
 ```
 python manage.py startapp hello_ws
 ```
 
-- 添加设置: hello_world/settings.py,注意daphne要写在最上面,这一步配置完毕后启动服务器可以看到ASGI/Daphne版本号
+- 在hello_world/settings.py添加设置,注意daphne要写在最上面,这一步配置完毕后启动服务器可以看到终端输出ASGI/Daphne版本号
 ```python
 INSTALLED_APPS = [
     'daphne',
@@ -98,6 +105,7 @@ websocket_urlpatterns = [path("hello_ws",views.WebsocketTest.as_asgi())]
 ```
 
 - 全局添加asgi: hello_world/asgi.py
+
 ```python
 import os
 from channels.auth import AuthMiddlewareStack

@@ -13,9 +13,8 @@ jekyll serve
 jekyll build --source hello_umas --destination docs
 ```
 
-## 待办
-- P0
-  - Categories页点击具体类别404
+- raw代码
+{% raw }{% endraw %}
 
 
 
