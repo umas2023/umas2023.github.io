@@ -1,0 +1,22 @@
+---
+layout: base
+---
+<article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <h3>{{ page.info | escape }}</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  {% toc %}
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+</article>

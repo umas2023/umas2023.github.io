@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>jekyll: hello_world | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="jekyll: hello_world" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考 官方" />
+<meta property="og:description" content="参考 官方" />
+<link rel="canonical" href="/jekyll/hello_world/" />
+<meta property="og:url" content="/jekyll/hello_world/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-27T12:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="jekyll: hello_world" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T12:00:00+08:00","datePublished":"2023-06-27T12:00:00+08:00","description":"参考 官方","headline":"jekyll: hello_world","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/hello_world/"},"url":"/jekyll/hello_world/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">jekyll: hello_world</h1>
+    <h3>从0开始搭建Jekyll个人博客</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#参考">参考</a></li>
+<li class="toc-entry toc-h2"><a href="#创建hello_world">创建hello_world</a></li>
+<li class="toc-entry toc-h2"><a href="#套用主题">套用主题</a></li>
+<li class="toc-entry toc-h2"><a href="#可能的问题">可能的问题</a></li>
+<li class="toc-entry toc-h2"><a href="#其他">其他</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="参考">参考</h2>
+<ul>
+  <li><a href="https://www.jekyll.com.cn/docs/">官方</a></li>
+</ul>
+
+<h2 id="创建hello_world">创建hello_world</h2>
+
+<ol>
+  <li>安装Ruby
+    <ul>
+      <li>https://rubyinstaller.org/downloads/</li>
+      <li>查看安装：<code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>安装 Jekyll 和 bundler gems（要很久）</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gem install jekyll bundler
+</code></pre></div>    </div>
+  </li>
+  <li>创建并启动项目
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  jekyll new hello_umas
+  cd hello_umas
+  bundle exec jekyll serve
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>在浏览器中打开 http://localhost:4000 网址</p>
+  </li>
+  <li>添加markdown文件
+    <ul>
+      <li>在 Jekyll 项目的 _posts 目录下创建Markdown 文件，文件名必须遵循 YYYY-MM-DD-title.md 的格式，其中 YYYY-MM-DD 表示文章的发布日期，title 表示文章的标题，文件名中的单词必须用短横线 - 分隔</li>
+      <li>_posts支持多级目录，可以用文件夹管理md文件</li>
+      <li>注意md文件中的代码块可能被解析，如果发现和原文不一致需要用{% raw }{% endraw %}来包裹代码块，比如下面引入图片的代码块如果不加raw的话就会直接显示图片。（这句话中的{% raw }{% endraw %}也要用这个方法嵌套才能显示在页面中，而且必须以大括号为分隔进行三次嵌套才能显示）</li>
+      <li>添加图片的方法：项目根目录下新建文件夹存放图片，不要放在_posts文件夹下，比如/image/jekyll/image_1.jpg，然后在md文件引入图片：</li>
+    </ul>
+
+    <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code> !<span class="p">[</span><span class="nv">home</span><span class="p">](</span><span class="sx">{{site.url}}/image/jekyll/2023-6-27-230627_categories/image_1.jpg</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<ul>
+  <li>标题的日期优先级低于yaml前置格式的日期，如果一天内上传了多份md，可以通过前置格式的日期指定时间来排序
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">Welcome</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Jekyll!"</span>
+<span class="na">date</span><span class="pi">:</span>   <span class="s">2023-06-26 11:35:28 +0800</span>
+<span class="nn">---</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>打包
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> jekyll build --source hello_umas --destination docs
+</code></pre></div>    </div>
+    <ul>
+      <li>这条命令将网页构建到_site文件夹中，之后可以托管在服务器上</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="套用主题">套用主题</h2>
+
+<ul>
+  <li>官方主题：http://jekyllthemes.org/</li>
+  <li>选择主题点击demo可以查看</li>
+  <li>可以在github fork方便后续开发</li>
+  <li>download解压之后进入主题目录运行
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+jekyll serve
+</code></pre></div>    </div>
+  </li>
+  <li>具体部署方法可能因项目而异，最好点进GitHub看一下readme</li>
+  <li>项目默认主题minima就很好，深得我心，直接用默认了</li>
+  <li>注意直接新建的项目虽然使用了minima主题（可以在about页看到），但layout文件并没有在本地，需要到GitHub主页把layout文件内容复制到本地才可以进行二次开发（https://github.com/jekyll/minima）</li>
+</ul>
+
+<h2 id="可能的问题">可能的问题</h2>
+
+<ol>
+  <li>启动服务器时报错一个语法错误</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>244 │     padding: ($spacing-unit / 3) ($spacing-unit / 2);
+    │               ^^^^^^^^^^^^^^^^^
+</code></pre></div></div>
+
+<p>不影响服务器的启动，没找到解决办法</p>
+
+<h2 id="其他">其他</h2>
+
+<ul>
+  <li>以下是创建项目时gpt推荐的支持markdown的博客框架：</li>
+</ul>
+
+<p>Jekyll：Jekyll 是一个简单、易用、支持 Markdown 的静态网站生成器，它能够将 Markdown 文件转换成静态的 HTML 网页。Jekyll 的优点在于它易于安装和使用，并且支持 GitHub Pages，可以免费托管网站。</p>
+
+<p>Hexo：Hexo 是一个快速、简洁且高效的博客框架，它基于 Node.js 平台，支持 Markdown 语法，可以生成静态的 HTML 文件。Hexo 的优点在于它的速度非常快，而且支持插件扩展，可以实现更多的功能。</p>
+
+<p>Hugo：Hugo 是一个快速、灵活、易用的静态网站生成器，它支持 Markdown 语法，并且可以生成静态的 HTML 文件。Hugo 的优点在于它的速度非常快，而且支持多种主题和插件，可以满足不同的需求。</p>
+
+<p>Gatsby：Gatsby 是一个基于 React 的静态网站生成器，它支持 Markdown 语法，并且可以生成静态的 HTML 文件。Gatsby 的优点在于它支持多种数据源，可以从多种数据源中获取数据，而且支持多种插件和主题，可以实现更多的功能。</p>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/no_twitter"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">no_twitter</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Here an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

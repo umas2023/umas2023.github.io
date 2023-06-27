@@ -1,0 +1,72 @@
+# django操作mysql
+
+
+1. Django默认使用sqlite3，settings.py中修改为mysql
+```python
+DATABASES = { 
+    'default': 
+    { 
+        'ENGINE': 'django.db.backends.mysql',    # 数据库引擎
+        'NAME': 'iiir_fullstack', # 数据库名称
+        'HOST': '127.0.0.1', # 数据库地址，本机 ip 地址 127.0.0.1 
+        'PORT': 3306, # 端口 
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': '123456', # 数据库密码
+    }  
+}
+```
+
+2. 在settings.py同级的__init__.py中引入模块
+```python
+import pymysql
+pymysql.install_as_MySQLdb()
+```
+
+3. 创建APP
+```
+django-admin.py startapp TestModel
+```
+
+4. 在生成的 TestModel/models.py中添加模型
+类名代表了数据库表名，且继承了models.Model，类里面的字段代表数据表中的字段(name)
+```python
+class Test(models.Model):
+    name = models.CharField(max_length=20)
+```
+
+5. 在settings.py中添加这个模型
+```python
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'TestModel',               # 添加此项
+)
+```
+
+6. 在命令行中创建表
+可以看到一些OK什么的，说明成功了
+```
+python3 manage.py migrate   # 创建表结构
+python3 manage.py makemigrations TestModel  # 让 Django 知道我们在我们的模型有一些变更
+python3 manage.py migrate TestModel   # 创建表结构
+```
+
+7. 数据库操作，添加HelloWorld/testdb.py
+```python
+```
+- 修改urls.py
+```
+from . import testdb
+urlpatterns = [
+    path('testdb/', testdb.testdb),
+]
+```
+
+8. 网页访问可以看到数据添加成功的提示
+```
+http://127.0.0.1:8085/testdb/
+```

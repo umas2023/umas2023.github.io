@@ -1,0 +1,40 @@
+# 使用fs读取和修改本地文件
+
+- 在background.ts中启用node工具
+```js
+webPreferences: {
+      nodeIntegration: true, // 启用node工具require
+      contextIsolation: false, // 还要加上这个才能正确require
+      webSecurity: false // 允许加载本地图片
+    }
+```
+
+- 在vue脚本中调用读写的函数
+```js
+const path = window.require("path");
+const fs = window.require("fs");
+
+const local_file = path.join(process.cwd(), "public/static/test.txt")
+
+fs.readFile(local_file, 'utf-8',
+  (err: any, data: any) => {
+    if (err) {
+      console.log("load config err:", err);
+    } else {
+      console.log(data)
+    }
+  }
+);
+
+const testbutton = () => {
+  try {
+    fs.writeFileSync(local_file, "文件被写入了");
+  } catch (err) {
+    console.error("config write error : " + err);
+  }
+}
+```
+
+- 注意在vue页面里引用的方法是```window.require("fs")```,而在background.ts中引用的方法是```require("fs")```
+
+

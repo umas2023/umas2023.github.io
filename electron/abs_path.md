@@ -1,0 +1,40 @@
+# abs path 项目打包前后的静态资源路径
+
+- 首先要保证资源打包位置的正确,在vue.config.js中
+```js
+extraResources: [
+    // public静态资源拷贝目录,程序中用static/xxx可以直接访问
+    { from: 'public/static', to: 'static' }, 
+    ],
+```
+
+- process.env.NODE_ENV返回当前环境,可以结合三元表达式区分打包前后,例如在background.ts中设置窗口宽度
+```js
+width: process.env.NODE_ENV === "development" ? 1200 : 800
+```
+
+- process.cwd()函数返回当前程序的根目录位置,可以用来组合静态资源的绝对路径,打包后的静态资源都存储在resources路径下,例如在background.ts中设置图标
+```js
+const path = require("path");
+
+icon: process.env.NODE_ENV === "development" 
+      ? path.join(process.cwd(), "public/static/icon/mati_ei_256.ico")
+      : path.join(process.cwd(), "resources/static/icon/mati_ei_256.ico"),
+```
+
+- 在vue页面中可以更方便的定义一个获取绝对路径的函数,例如电脑配件的utils_path.js中有这样的函数
+```js
+export function static_path() {
+    const path = require("path");
+    const isDevelopment = process.env.NODE_ENV !== "production";
+    let get_path = isDevelopment
+        // 开发环境
+        ? path.join(process.cwd(), "public/static")
+        : path.basename(process.cwd()) == "py_server"
+            // 生产环境被后端启动,cwd()定位在\resources\static\py_server
+            ? path.dirname(path.dirname(process.cwd()))
+            // 生产环境直接启动
+            : path.join(process.cwd(), "resources/static")
+    return get_path
+}
+```
