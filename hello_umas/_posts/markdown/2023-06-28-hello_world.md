@@ -8,6 +8,15 @@ toc: true
 ---
 
 
+- 超链接  
+[哔哩哔哩](https://www.bilibili.com/)
+{% raw %}
+```md
+[哔哩哔哩](https://www.bilibili.com/)
+```
+{% endraw %}
+
+
 - 引入图片
 ![引入图片]({{site.url}}/image/markdown/2023-06-28-hello_world/image_1.jpg)
 {% raw %}
@@ -19,7 +28,15 @@ toc: true
 
 - 用html引入图片并控制格式
 
-<img src="https://github.com/umas2022/auto_trans/blob/main/readme/shot.jpg" width="50%" height="50%">
+
+<img src="{{site.url}}/image/markdown/2023-06-28-hello_world/image_1.jpg" width="50%" height="50%">
+{% raw %}
+```md
+<img src="{{site.url}}/image/markdown/2023-06-28-hello_world/image_1.jpg" width="50%" height="50%">
+```
+{% endraw %}
+
+
 - 两种分割线  
 
 ---  
@@ -45,6 +62,22 @@ toc: true
 ```
 {% endraw %}
 
+- 加粗  
+**加粗**
+{% raw %}
+```
+**加粗**
+```
+{% endraw %}
+
+
+- 斜体  
+*斜体*
+{% raw %}
+```
+*斜体*
+```
+{% endraw %}
 
 - 下划线  
 <u>带下划线文本</u>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>django: hello_world | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="django: hello_world" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一个简单app" />
+<meta property="og:description" content="一个简单app" />
+<link rel="canonical" href="/django/hello_world/" />
+<meta property="og:url" content="/django/hello_world/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-27T22:25:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="django: hello_world" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T22:25:00+08:00","datePublished":"2023-06-27T22:25:00+08:00","description":"一个简单app","headline":"django: hello_world","mainEntityOfPage":{"@type":"WebPage","@id":"/django/hello_world/"},"url":"/django/hello_world/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">django: hello_world</h1>
+    <h3>土木工程都能看懂的django hello_world</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#一个简单app">一个简单app</a></li>
+<li class="toc-entry toc-h2"><a href="#添加websocket应用">添加websocket应用</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="一个简单app">一个简单app</h2>
+
+<ul>
+  <li>创建项目
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin.exe startproject hello_world
+</code></pre></div>    </div>
+  </li>
+  <li>启动项目(migrate只需要运行一次)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py migrate
+python ./manage.py runserver 0.0.0.0:4090
+</code></pre></div>    </div>
+    <p>可以看到后端已经成功运行了</p>
+  </li>
+  <li>添加app
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp say_hello
+</code></pre></div>    </div>
+  </li>
+  <li>app添加views: say_hello/views.py
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+  <span class="sh">'''</span><span class="s">basic response test</span><span class="sh">'''</span>
+  <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">request:</span><span class="sh">"</span><span class="p">)</span>
+  <span class="nf">print</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">body</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">Hello world </span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>app添加urls: say_hello/urls.py
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="n">.</span> <span class="kn">import</span> <span class="n">views</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nf">path</span><span class="p">(</span><span class="sh">"</span><span class="s">say_hello</span><span class="sh">"</span><span class="p">,</span><span class="n">views</span><span class="p">.</span><span class="n">say_hello</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>全局添加urls: hello_world/urls.py
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.conf.urls</span> <span class="kn">import</span> <span class="n">include</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nf">path</span><span class="p">(</span><span class="sa">r</span><span class="sh">''</span><span class="p">,</span><span class="nf">include</span><span class="p">(</span><span class="sh">"</span><span class="s">say_hello.urls</span><span class="sh">"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>好了,现在可以用postman试着给localhost:4090/say_hello发送一个get请求,会收到”hello world”的回复</li>
+</ul>
+
+<h2 id="添加websocket应用">添加websocket应用</h2>
+<ul>
+  <li>
+    <p>参考：<a href="https://channels.readthedocs.io/en/stable/tutorial/part_1.html">channels官方文档</a></p>
+  </li>
+  <li>安装必备库
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">channels</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">daphne</span>
+</code></pre></div>    </div>
+  </li>
+  <li>创建app
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp hello_ws
+</code></pre></div>    </div>
+  </li>
+  <li>在hello_world/settings.py添加设置,注意daphne要写在最上面,这一步配置完毕后启动服务器可以看到终端输出ASGI/Daphne版本号
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="sh">'</span><span class="s">daphne</span><span class="sh">'</span><span class="p">,</span>
+  <span class="sh">'</span><span class="s">hello_ws</span><span class="sh">'</span><span class="p">,</span>
+  <span class="sh">'</span><span class="s">...</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ASGI_APPLICATION</span> <span class="o">=</span> <span class="sh">'</span><span class="s">hello_world.asgi.application</span><span class="sh">'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>app添加views: hello_ws/views.py
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">channels.generic.websocket</span> <span class="kn">import</span> <span class="n">WebsocketConsumer</span>
+<span class="k">class</span> <span class="nc">WebsocketTest</span><span class="p">(</span><span class="n">WebsocketConsumer</span><span class="p">):</span>
+  <span class="sh">'''</span><span class="s">websocket test</span><span class="sh">'''</span>
+  <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+      <span class="n">self</span><span class="p">.</span><span class="nf">accept</span><span class="p">()</span>
+  <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">close_code</span><span class="p">):</span>
+      <span class="k">pass</span>
+  <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">text_data</span><span class="p">):</span>
+      <span class="nf">print</span><span class="p">(</span><span class="n">text_data</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+          <span class="n">self</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </li>
+  <li>app添加urls: hello_ws/urls.py
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="n">.</span> <span class="kn">import</span> <span class="n">views</span>
+<span class="n">websocket_urlpatterns</span> <span class="o">=</span> <span class="p">[</span><span class="nf">path</span><span class="p">(</span><span class="sh">"</span><span class="s">hello_ws</span><span class="sh">"</span><span class="p">,</span><span class="n">views</span><span class="p">.</span><span class="n">WebsocketTest</span><span class="p">.</span><span class="nf">as_asgi</span><span class="p">())]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>全局添加asgi: hello_world/asgi.py</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">channels.auth</span> <span class="kn">import</span> <span class="n">AuthMiddlewareStack</span>
+<span class="kn">from</span> <span class="n">channels.routing</span> <span class="kn">import</span> <span class="n">ProtocolTypeRouter</span><span class="p">,</span> <span class="n">URLRouter</span>
+<span class="kn">from</span> <span class="n">channels.security.websocket</span> <span class="kn">import</span> <span class="n">AllowedHostsOriginValidator</span>
+<span class="kn">from</span> <span class="n">django.core.asgi</span> <span class="kn">import</span> <span class="n">get_asgi_application</span>
+
+<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">setdefault</span><span class="p">(</span><span class="sh">"</span><span class="s">DJANGO_SETTINGS_MODULE</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">hello_world.settings</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">django_asgi_app</span> <span class="o">=</span> <span class="nf">get_asgi_application</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="n">hello_ws.urls</span>
+
+<span class="n">application</span> <span class="o">=</span> <span class="nc">ProtocolTypeRouter</span><span class="p">({</span>
+    <span class="sh">'</span><span class="s">http</span><span class="sh">'</span><span class="p">:</span> <span class="nf">get_asgi_application</span><span class="p">(),</span>
+    <span class="sh">'</span><span class="s">websocket</span><span class="sh">'</span><span class="p">:</span> <span class="nc">AllowedHostsOriginValidator</span><span class="p">(</span><span class="nc">URLRouter</span><span class="p">(</span>
+        <span class="n">hello_ws</span><span class="p">.</span><span class="n">urls</span><span class="p">.</span><span class="n">websocket_urlpatterns</span>
+    <span class="p">))</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>好了,现在可以用postman试着给localhost:4090/hello_ws发送一个websocket请求;postman创建websocket请求需要点击左上角My Workspace右边的new;点击connect按钮后发送任意消息,可以收到后端返回的1~9</p>
+  </li>
+  <li>如果返回403说明请求被跨域拦截,可以在hello_world/settings.py中直接允许所有跨域请求：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALLOWED_HOSTS = ['*']
+</code></pre></div>    </div>
+  </li>
+  <li>如果路径或类名写错,可能会报错Cannot import ASGI_APPLICATION module,可以启用shell调试模式debug
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">shell</span> 
+<span class="kn">from</span> <span class="n">py_server.asgi</span> <span class="kn">import</span> <span class="n">application</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

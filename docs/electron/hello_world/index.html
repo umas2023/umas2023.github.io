@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>electron: hello_world | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="electron: hello_world" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一个简单的窗口 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目 在项目中添加electron支持 vue add electron-builder (Electron Version ^13.0.0)" />
+<meta property="og:description" content="一个简单的窗口 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目 在项目中添加electron支持 vue add electron-builder (Electron Version ^13.0.0)" />
+<link rel="canonical" href="/electron/hello_world/" />
+<meta property="og:url" content="/electron/hello_world/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-27T23:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="electron: hello_world" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T23:00:00+08:00","datePublished":"2023-06-27T23:00:00+08:00","description":"一个简单的窗口 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目 在项目中添加electron支持 vue add electron-builder (Electron Version ^13.0.0)","headline":"electron: hello_world","mainEntityOfPage":{"@type":"WebPage","@id":"/electron/hello_world/"},"url":"/electron/hello_world/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">electron: hello_world</h1>
+    <h3>从0开始搭建electron项目</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#一个简单的窗口">一个简单的窗口</a></li>
+<li class="toc-entry toc-h2"><a href="#常用的一些打包选项">常用的一些打包选项</a></li>
+<li class="toc-entry toc-h2"><a href="#窗口的一些附加参数">窗口的一些附加参数</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="一个简单的窗口">一个简单的窗口</h2>
+<ul>
+  <li>首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目</li>
+  <li>在项目中添加electron支持
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue add electron-builder
+(Electron Version ^13.0.0)
+</code></pre></div>    </div>
+  </li>
+  <li>在package.json中可以看到新增的命令
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run electron:serve
+npm run electron:build
+</code></pre></div>    </div>
+  </li>
+  <li>直接使用<code class="language-plaintext highlighter-rouge">npm run electron:serve</code>启动测试时background.ts可能会报错Object is of type ‘unknown’,需要手动给报错的变量定义类型:any
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>catch (e) 改为 catch (e:any)
+</code></pre></div>    </div>
+  </li>
+  <li>还有可能报错TypeError: loaderContext.getOptions is not a function,需要降低ts-loader的版本到8.2.0
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install ts-loader@~8.2.0
+</code></pre></div>    </div>
+  </li>
+  <li>还有可能在src/router/index.ts中报错File ‘xxx/src/views/HomeView.vue.ts’ is not a module.,这是因为HomeView.vue缺少了export,简单的修改方法是添加setup参数
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">setup</span> <span class="na">lang=</span><span class="s">"ts"</span><span class="nt">&gt;</span>
+<span class="nx">或者</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">lang</span><span class="o">=</span><span class="dl">"</span><span class="s2">ts</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{};</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="常用的一些打包选项">常用的一些打包选项</h2>
+<ul>
+  <li>在vue.config.js中设置打包选项</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@vue/cli-service</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">defineConfig</span><span class="p">({</span>
+  <span class="na">transpileDependencies</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="c1">// 静态资源打包目录</span>
+  <span class="na">assetsDir</span><span class="p">:</span> <span class="dl">"</span><span class="s2">static</span><span class="dl">"</span><span class="p">,</span>
+
+  <span class="c1">// electron打包选项</span>
+  <span class="na">pluginOptions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">electronBuilder</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">builderOptions</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">productName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">电脑配件</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 程序名</span>
+        <span class="dl">"</span><span class="s2">appId</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">toolbox</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 包名</span>
+        <span class="dl">"</span><span class="s2">copyright</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">umasnb</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 版权</span>
+        <span class="c1">// "asar": true, // asar打包的python无法运行</span>
+        <span class="dl">"</span><span class="s2">asar</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 不使用asar打包</span>
+
+        <span class="c1">// 复制到根目录/resources下</span>
+        <span class="na">extraResources</span><span class="p">:</span> <span class="p">[</span>
+          <span class="dl">"</span><span class="s2">src/assets</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 相当于{ from: 'src/assets', to: 'src/assets' }</span>
+          <span class="c1">// { from: 'src/assets', to: 'assets' }, // assets资源目录指定</span>
+          <span class="p">{</span> <span class="na">from</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/static</span><span class="dl">'</span><span class="p">,</span> <span class="na">to</span><span class="p">:</span> <span class="dl">'</span><span class="s1">static</span><span class="dl">'</span> <span class="p">},</span> <span class="c1">// public静态资源拷贝目录,程序中用static/xxx可以直接访问</span>
+          <span class="p">{</span> <span class="na">from</span><span class="p">:</span> <span class="dl">"</span><span class="s2">../0-docs/develop.md</span><span class="dl">"</span><span class="p">,</span> <span class="na">to</span><span class="p">:</span> <span class="dl">"</span><span class="s2">static/info/develop.md</span><span class="dl">"</span> <span class="p">}</span><span class="c1">//开发日志也打包进去</span>
+        <span class="p">],</span>
+
+        <span class="c1">// "directories": {</span>
+        <span class="c1">//   "output": "dist_hello" // 输出文件夹</span>
+        <span class="c1">// },</span>
+
+        <span class="dl">"</span><span class="s2">nsis</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="dl">"</span><span class="s2">oneClick</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 是否一键安装</span>
+          <span class="dl">"</span><span class="s2">allowElevation</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 允许请求提升。若为false, 则用户必须使用提升的权限重新启动安装程序。</span>
+          <span class="dl">"</span><span class="s2">allowToChangeInstallationDirectory</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//是否允许修改安装目录</span>
+          <span class="c1">// "installerIcon": "public/static/icon/mati_spa_128.ico",// 安装时图标</span>
+          <span class="c1">// "uninstallerIcon": "",//卸载时图标</span>
+          <span class="c1">// "installerHeaderIcon": "", // 安装时头部图标</span>
+          <span class="dl">"</span><span class="s2">createDesktopShortcut</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 是否创建桌面图标</span>
+          <span class="dl">"</span><span class="s2">createStartMenuShortcut</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span><span class="c1">// 是否创建开始菜单图标</span>
+          <span class="dl">"</span><span class="s2">shortcutName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">快速电脑配件</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 快捷方式名称</span>
+          <span class="dl">"</span><span class="s2">runAfterFinish</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span><span class="c1">//是否安装完成后运行</span>
+        <span class="p">},</span>
+        <span class="dl">"</span><span class="s2">win</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="c1">// "icon": "public/static/icon/mati_ei_256.ico", // 打包图标</span>
+          <span class="dl">"</span><span class="s2">target</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="dl">"</span><span class="s2">target</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">nsis</span><span class="dl">"</span><span class="p">,</span> <span class="c1">//利用nsis制作安装程序</span>
+              <span class="dl">"</span><span class="s2">arch</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="dl">"</span><span class="s2">x64</span><span class="dl">"</span><span class="p">,</span> <span class="c1">//64位</span>
+                <span class="c1">// "ia32" //32位</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="c1">// 附加包列表</span>
+      <span class="na">externals</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">image-size</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">js-cookie</span><span class="dl">'</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<h2 id="窗口的一些附加参数">窗口的一些附加参数</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">const</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BrowserWindow</span><span class="p">({</span>
+    <span class="na">width</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
+    <span class="na">frame</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="c1">// 隐藏默认窗口边框</span>
+    <span class="na">title</span><span class="p">:</span><span class="dl">"</span><span class="s2">hello_title</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 标题属性不能生效,真正的标题在public/index.html中</span>
+    <span class="na">resizable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>    <span class="c1">// 指定窗口是否可以被用户调整大小</span>
+    <span class="na">minimizable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>  <span class="c1">// 指定窗口是否可以被最小化或最大化</span>
+    <span class="na">maximizable</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> 
+    <span class="na">fullscreen</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>    <span class="c1">// 指定窗口是否全屏显示</span>
+    <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">red</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 背景颜色</span>
+    <span class="na">transparent</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 指定窗口是否为透明,如果设置为 true,则可以使用 setOpacity 方法来设置窗口的透明度</span>
+  <span class="p">})</span>
+
+  <span class="c1">// 设置窗口透明度,需要transparent: true</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nf">setOpacity</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -91,7 +91,7 @@
     <ul>
       <li>在 Jekyll 项目的 _posts 目录下创建Markdown 文件，文件名必须遵循 YYYY-MM-DD-title.md 的格式，其中 YYYY-MM-DD 表示文章的发布日期，title 表示文章的标题，文件名中的单词必须用短横线 - 分隔</li>
       <li>_posts支持多级目录，可以用文件夹管理md文件</li>
-      <li>注意md文件中的代码块可能被解析，如果发现和原文不一致需要用{% raw }{% endraw %}来包裹代码块，比如下面引入图片的代码块如果不加raw的话就会直接显示图片。（这句话中的{% raw }{% endraw %}也要用这个方法嵌套才能显示在页面中，而且必须以大括号为分隔进行三次嵌套才能显示）</li>
+      <li>注意md文件中的代码块可能被解析，如果发现和原文不一致需要用{% raw %}{% endraw %}来包裹代码块，比如下面引入图片的代码块如果不加raw的话就会直接显示图片。（这句话中的{% raw }{% endraw %}也要用这个方法嵌套才能显示在页面中，而且必须以大括号为分隔进行三次嵌套才能显示）</li>
       <li>添加图片的方法：项目根目录下新建文件夹存放图片，不要放在_posts文件夹下，比如/image/jekyll/image_1.jpg，然后在md文件引入图片：</li>
     </ul>
 
@@ -109,6 +109,7 @@
 <span class="nn">---</span>
 </code></pre></div>    </div>
   </li>
+  <li>注意代码块中如果包含空行，可能导致代码块缩进错误，尽量不要有空行</li>
 </ul>
 
 <ol>
@@ -189,11 +190,11 @@ jekyll serve
           <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/no_twitter"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">no_twitter</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Here an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
       </div>
     </div>
 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>docker: hello_world | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="docker: hello_world" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考 官方文档" />
+<meta property="og:description" content="参考 官方文档" />
+<link rel="canonical" href="/docker/hello_world/" />
+<meta property="og:url" content="/docker/hello_world/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-27T22:50:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="docker: hello_world" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T22:50:00+08:00","datePublished":"2023-06-27T22:50:00+08:00","description":"参考 官方文档","headline":"docker: hello_world","mainEntityOfPage":{"@type":"WebPage","@id":"/docker/hello_world/"},"url":"/docker/hello_world/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">docker: hello_world</h1>
+    <h3>docker基础操作</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#参考">参考</a></li>
+<li class="toc-entry toc-h2"><a href="#基本命令">基本命令</a></li>
+<li class="toc-entry toc-h2"><a href="#dockerfile">dockerfile</a></li>
+<li class="toc-entry toc-h2"><a href="#可能出现的问题">可能出现的问题</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="参考">参考</h2>
+<ul>
+  <li><a href="https://docs.docker.com/">官方文档</a></li>
+</ul>
+
+<h2 id="基本命令">基本命令</h2>
+
+<ul>
+  <li>下载镜像
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull ubuntu
+</code></pre></div>    </div>
+  </li>
+  <li>推送本地镜像
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker push
+</code></pre></div>    </div>
+  </li>
+  <li>检查镜像信息
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker image ls
+</code></pre></div>    </div>
+  </li>
+  <li>检查容器信息
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container ls (-a)
+docker ps (-a)
+</code></pre></div>    </div>
+  </li>
+  <li>启动新容器并进入shell
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --name my_ubuntu -it ubuntu /bin/bash
+exit退出
+</code></pre></div>    </div>
+  </li>
+  <li>docker run 参数
+    <ul>
+      <li>-i :  以交互模式运行容器，通常与 -t 同时使用</li>
+      <li>-t : 分配一个伪输入终端，一般与 -i 连用</li>
+      <li>-d : 后台运行容器，并返回容器ID</li>
+      <li>-p : 指定端口映射 -p 18080:80</li>
+      <li>-P : 随机端口映射，容器内部端口随机映射到主机的端口</li>
+      <li>–name=”nginx-lb” : 为容器指定一个名称</li>
+      <li>–dns 8.8.8.8 : 指定容器使用的DNS服务器，默认和宿主一致</li>
+      <li>-h “mars” : 指定容器的hostname</li>
+      <li>-e username=”ritchie” : 设置环境变量</li>
+      <li>–dns-search example.com : 指定容器DNS搜索域名，默认和宿主一致</li>
+      <li>-a stdin : 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项</li>
+      <li>–net=”bridge”: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型</li>
+      <li>-m : 设置容器使用内存最大值</li>
+    </ul>
+  </li>
+  <li>后台启动新容器
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo docker run --restart always --name openwrt -d sulinggg/openwrt /sbin/init
+</code></pre></div>    </div>
+  </li>
+  <li>启动已存在的容器
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo docker start openwrt
+</code></pre></div>    </div>
+  </li>
+  <li>进入后台容器（退出后容器停止）
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker attach [ID] 
+</code></pre></div>    </div>
+  </li>
+  <li>进入后台容器（退出后容器不停止）（常用）
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it [id/name] /bin/bash
+</code></pre></div>    </div>
+  </li>
+  <li>启动/重启/停止
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker start/restart/stop [contaierID]
+</code></pre></div>    </div>
+  </li>
+  <li>删除容器
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker rm [id/name]
+</code></pre></div>    </div>
+  </li>
+  <li>启动示例: iiir
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -p 13306:3306 --name mysql-iiir --restart=always \
+-v  /home/iiir/mysql/conf.d:/etc/mysql/conf.d \
+-v  /home/iiir/mysql/logs:/var/log/mysql \
+-v  /home/iiir/mysql/data:/var/lib/mysql  \
+-e MYSQL_ROOT_PASSWORD="iiirmysql" \
+-h mysql-iiir \
+--net mynet \
+-d biarms/mysql:5.7.30-linux-arm64v8
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="dockerfile">dockerfile</h2>
+
+<ul>
+  <li>一个例子</li>
+</ul>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> ubuntu:</span>
+<span class="k">MAINTAINER</span><span class="s"> umas 1970313791@qq.com</span>
+<span class="k">LABEL</span><span class="s"> version="1.0" description="umas个人测试镜像" by="umas "</span>
+
+<span class="k">RUN </span>apt-get update <span class="se">\
+</span><span class="o">&amp;&amp;</span> apt-get <span class="nb">install</span> <span class="nt">--no-install-recommends</span> <span class="nt">-y</span> <span class="se">\
+</span>make <span class="se">\
+</span>build-essential <span class="se">\
+</span>openssh-server <span class="se">\
+</span>vim <span class="se">\
+</span>net-tools
+
+<span class="k">RUN </span><span class="nb">echo</span> <span class="s2">"root:umas1970"</span> | chpasswd
+
+<span class="k">EXPOSE</span><span class="s"> 22 80 8080 8081 8082 8083 8084 8085</span>
+
+<span class="k">RUN </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span>        <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config <span class="se">\
+</span><span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config <span class="se">\
+</span><span class="o">&amp;&amp;</span> ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-P</span> <span class="s2">""</span> <span class="nt">-f</span> ~/.ssh/id_rsa <span class="se">\
+</span><span class="o">&amp;&amp;</span> /etc/init.d/ssh start 
+
+<span class="k">CMD</span><span class="s"> ["sh", "-c", "/etc/init.d/ssh start"]</span>
+</code></pre></div></div>
+
+<h2 id="可能出现的问题">可能出现的问题</h2>
+
+<ul>
+  <li>docker启动失败(2022.2.20)</li>
+  <li>报错：windows平台Docker Desktop failed to start…</li>
+  <li>原因：梯子和docker冲突</li>
+  <li>解决：
+    <ul>
+      <li>（检查wsl是否可以启动）</li>
+      <li>删除文件夹C:\Users\umas2017\AppData\Roaming\Docker</li>
+      <li>重新启动</li>
+    </ul>
+  </li>
+</ul>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

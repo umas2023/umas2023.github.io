@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>django: mysql | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="django: mysql" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="实现" />
+<meta property="og:description" content="实现" />
+<link rel="canonical" href="/django/mysql/" />
+<meta property="og:url" content="/django/mysql/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-27T22:30:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="django: mysql" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T22:30:00+08:00","datePublished":"2023-06-27T22:30:00+08:00","description":"实现","headline":"django: mysql","mainEntityOfPage":{"@type":"WebPage","@id":"/django/mysql/"},"url":"/django/mysql/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">django: mysql</h1>
+    <h3>django项目连接mysql数据库</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#实现">实现</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="实现">实现</h2>
+
+<ol>
+  <li>Django默认使用sqlite3，settings.py中修改为mysql
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span> 
+ <span class="sh">'</span><span class="s">default</span><span class="sh">'</span><span class="p">:</span> 
+ <span class="p">{</span> 
+     <span class="sh">'</span><span class="s">ENGINE</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">django.db.backends.mysql</span><span class="sh">'</span><span class="p">,</span>    <span class="c1"># 数据库引擎
+</span>     <span class="sh">'</span><span class="s">NAME</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">iiir_fullstack</span><span class="sh">'</span><span class="p">,</span> <span class="c1"># 数据库名称
+</span>     <span class="sh">'</span><span class="s">HOST</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">127.0.0.1</span><span class="sh">'</span><span class="p">,</span> <span class="c1"># 数据库地址，本机 ip 地址 127.0.0.1 
+</span>     <span class="sh">'</span><span class="s">PORT</span><span class="sh">'</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span> <span class="c1"># 端口 
+</span>     <span class="sh">'</span><span class="s">USER</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">root</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 数据库用户名
+</span>     <span class="sh">'</span><span class="s">PASSWORD</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">123456</span><span class="sh">'</span><span class="p">,</span> <span class="c1"># 数据库密码
+</span> <span class="p">}</span>  
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>在settings.py同级的__init__.py中引入模块
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pymysql</span>
+<span class="n">pymysql</span><span class="p">.</span><span class="nf">install_as_MySQLdb</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>创建APP
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>django-admin.py startapp TestModel
+</code></pre></div>    </div>
+  </li>
+  <li>在生成的 TestModel/models.py中添加模型，类名代表了数据库表名，且继承了models.Model，类里面的字段代表数据表中的字段(name)
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+ <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>在settings.py中添加这个模型
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+ <span class="sh">'</span><span class="s">django.contrib.admin</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">django.contrib.auth</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">django.contrib.contenttypes</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">django.contrib.sessions</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">django.contrib.messages</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">django.contrib.staticfiles</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">TestModel</span><span class="sh">'</span><span class="p">,</span>               <span class="c1"># 添加此项
+</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>在命令行中创建表，可以看到一些OK什么的，说明成功了
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 manage.py migrate   # 创建表结构
+python3 manage.py makemigrations TestModel  # 让 Django 知道我们在我们的模型有一些变更
+python3 manage.py migrate TestModel   # 创建表结构
+</code></pre></div>    </div>
+  </li>
+  <li>数据库操作，添加HelloWorld/testdb.py
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 没做
+</span></code></pre></div>    </div>
+  </li>
+  <li>修改urls.py
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from . import testdb
+urlpatterns = [
+ path('testdb/', testdb.testdb),
+]
+</code></pre></div>    </div>
+  </li>
+  <li>网页访问可以看到数据添加成功的提示
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://127.0.0.1:8085/testdb/
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

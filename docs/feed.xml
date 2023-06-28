@@ -1,461 +1,465 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-27T22:18:03+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>Here an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">jekyll: toc</title><link href="/jekyll/toc/" rel="alternate" type="text/html" title="jekyll: toc" /><published>2023-06-27T14:00:00+08:00</published><updated>2023-06-27T14:00:00+08:00</updated><id>/jekyll/toc</id><content type="html" xml:base="/jekyll/toc/"><![CDATA[<h2 id="参考">参考</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-28T10:33:28+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">pctools: video_compress</title><link href="/windows/video_compress/" rel="alternate" type="text/html" title="pctools: video_compress" /><published>2023-06-28T10:32:00+08:00</published><updated>2023-06-28T10:32:00+08:00</updated><id>/windows/video_compress</id><content type="html" xml:base="/windows/video_compress/"><![CDATA[<h3 id="使用moviepy">使用moviepy</h3>
 <ul>
-  <li>https://heymichellemac.com/table-of-contents-jekyll</li>
-</ul>
-
-<h2 id="实现">实现</h2>
-
-<ol>
-  <li>
-    <p>安装插件</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gem install jekyll-toc
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Gemfile添加：</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> source "https://rubygems.org"
- gem "jekyll-toc"
-</code></pre></div>    </div>
-
+  <li>官方：https://zulko.github.io/moviepy/</li>
+  <li>写入函数：write_videofile
     <ul>
-      <li>（或bundle install？）</li>
+      <li>https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html?highlight=write_videofile#moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip.write_videofile</li>
     </ul>
   </li>
-  <li>检查安装
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle show jekyll-toc
-</code></pre></div>    </div>
-  </li>
+  <li>测试可用，总比特率设定2k kbps时3分钟视频仅40MB（原片4.8w kbps，60fps，大小1G），但质量较差</li>
   <li>
-    <p>修改_config.yaml</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> plugins:
- - jekyll-toc
-
- # TOC Settings
- toc:
- min_level: 1
- max_level: 3
- list_class: toc
- list_class: toc__list
- sublist_class: toc__sublist
-</code></pre></div>    </div>
+    <p>总比特率1w kbps，结果203MB
+降至20fps，结果204MB，明显感觉帧数不够，帧数居然不影响视频大小</p>
   </li>
-  <li>
-    <p>md文件头添加</p>
-
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
-<span class="na">toc</span><span class="pi">:</span> <span class="kc">true</span>
-<span class="nn">---</span>
-</code></pre></div>    </div>
-  </li>
-  <li>修改默认的post.html添加{% toc %}
+  <li>安装ffmpg: https://www.gyan.dev/ffmpeg/builds/</li>
+  <li>将bin目录添加到环境变量</li>
+  <li>验证安装，控制台输入：ffmpeg.exe -version</li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[使用moviepy 官方：https://zulko.github.io/moviepy/ 写入函数：write_videofile https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html?highlight=write_videofile#moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip.write_videofile 测试可用，总比特率设定2k kbps时3分钟视频仅40MB（原片4.8w kbps，60fps，大小1G），但质量较差 总比特率1w kbps，结果203MB 降至20fps，结果204MB，明显感觉帧数不够，帧数居然不影响视频大小]]></summary></entry><entry><title type="html">pctools: hello_world</title><link href="/windows/hello_world/" rel="alternate" type="text/html" title="pctools: hello_world" /><published>2023-06-28T10:30:00+08:00</published><updated>2023-06-28T10:30:00+08:00</updated><id>/windows/hello_world</id><content type="html" xml:base="/windows/hello_world/"><![CDATA[<h1 id="因为时间久远已经无据可考了">因为时间久远已经无据可考了</h1>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[因为时间久远已经无据可考了]]></summary></entry><entry><title type="html">crawler: bookwalker</title><link href="/crawler/bookwalker/" rel="alternate" type="text/html" title="crawler: bookwalker" /><published>2023-06-28T10:20:00+08:00</published><updated>2023-06-28T10:20:00+08:00</updated><id>/crawler/bookwalker</id><content type="html" xml:base="/crawler/bookwalker/"><![CDATA[<ul>
+  <li>已经集成在电脑配件项目中
     <ul>
-      <li>注意直接新建的项目虽然使用主题minima，但主题文件并没有在本地，可以在about页找到主题项目https://github.com/jekyll/minima，把_layouts/post.html复制到本地即可进行二次开发</li>
-    </ul>
-
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ---
- layout: base
- ---
- <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"post"</span><span class="nt">&gt;</span>
-
- <span class="c">&lt;!-- 标题 --&gt;</span>
- <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">"post-header"</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"post-title"</span><span class="nt">&gt;</span>{{ page.title | escape }}<span class="nt">&lt;/h1&gt;</span>
-     <span class="nt">&lt;h3&gt;</span>{{ page.info | escape }}<span class="nt">&lt;/h3&gt;</span>
- <span class="nt">&lt;/header&gt;</span>
-
- <span class="c">&lt;!-- 目录 --&gt;</span>
- <span class="nt">&lt;hr&gt;</span>
- {% toc %}
- <span class="nt">&lt;hr&gt;</span>
-
- <span class="c">&lt;!-- 内容主体 --&gt;</span>
- <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"post-content"</span><span class="nt">&gt;</span>
-     {{ content }}
- <span class="nt">&lt;/div&gt;</span>
-
- <span class="nt">&lt;/article&gt;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>效果</li>
-</ol>
-
-<p><img src="/image/jekyll/2023-6-27-toc/image_1.jpg" alt="home" /></p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 https://heymichellemac.com/table-of-contents-jekyll]]></summary></entry><entry><title type="html">jekyll: categories</title><link href="/jekyll/categories/" rel="alternate" type="text/html" title="jekyll: categories" /><published>2023-06-27T13:00:00+08:00</published><updated>2023-06-27T13:00:00+08:00</updated><id>/jekyll/categories</id><content type="html" xml:base="/jekyll/categories/"><![CDATA[<h2 id="参考">参考</h2>
-<ul>
-  <li><a href="https://zoharandroid.github.io/2019-08-02-Jekyll%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BBCategory%E5%8A%9F%E8%83%BD/">Jekyll个人博客添加分类Category功能</a></li>
-  <li><a href="https://blog.webjeda.com/jekyll-categories/">3 Simple steps to setup Jekyll Categories and Tags</a></li>
-</ul>
-
-<h2 id="实现">实现</h2>
-
-<ol>
-  <li>
-    <p>首先md文件添加在yaml前置格式中添加分类</p>
-
-    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="s">---</span>
- <span class="s">layout</span><span class="err">:</span> <span class="s">post</span>
- <span class="s">title</span><span class="err">:</span> <span class="s">awesome title</span>
- <span class="s">categories</span><span class="err">:</span> <span class="s">Personal</span>
- <span class="s">---</span>
-</code></pre></div>    </div>
-    <ul>
-      <li>多个类别直接用空格隔开就可以</li>
+      <li>https://github.com/umas2022/pctools</li>
     </ul>
   </li>
-  <li>修改 config.yaml
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># 默认是通过日期做子目录的方式</span>
- <span class="c1"># permalink   : date</span>
- <span class="c1"># 改为使用category做子目录</span>
- <span class="na">permalink</span><span class="pi">:</span> <span class="s">/:categories/:title/</span>
-</code></pre></div>    </div>
-  </li>
-  <li>category需要一个单独的页面，决定放在右上角about旁边。使用默认主题时，只需要在根目录下新建md或是html，前置格式指定如下即可在右上角添加导航
-    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">layout</span><span class="pi">:</span> <span class="s">page</span>
- <span class="na">title</span><span class="pi">:</span> <span class="s">Help</span>
- <span class="na">permalink</span><span class="pi">:</span> <span class="s">/help/</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>根目录下创建categories.html，内容如下</p>
-
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ---
- layout: page
- permalink: /categories/
- title: Categories
- ---
-
-
- <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"archives"</span><span class="nt">&gt;</span>
-
- {% for category in site.categories %}
- <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"archive-group"</span><span class="nt">&gt;</span>
-     {% capture category_name %}{{ category | first }}{% endcapture %}
-     <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"#{{ category_name | slugize }}"</span><span class="nt">&gt;&lt;/div&gt;</span>
-     <span class="nt">&lt;p&gt;&lt;/p&gt;</span>
-
-     <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"category-head"</span><span class="nt">&gt;</span>{{ category_name }}<span class="nt">&lt;/h3&gt;</span>
-     <span class="nt">&lt;a</span> <span class="na">name=</span><span class="s">"{{ category_name | slugize }}"</span><span class="nt">&gt;&lt;/a&gt;</span>
-     {% for post in site.categories[category_name] %}
-     <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"archive-item"</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;h4&gt;&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.baseurl }}{{ post.url }}"</span><span class="nt">&gt;</span>{{post.title}}<span class="nt">&lt;/a&gt;&lt;/h4&gt;</span>
-     <span class="nt">&lt;/article&gt;</span>
-     {% endfor %}
- <span class="nt">&lt;/div&gt;</span>
- {% endfor %}
- <span class="nt">&lt;/div&gt;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>上面的categories.html直接显示了所有的文章，当文章数量很多时很不友好，可以在顶部添加一个对category的导航</p>
-
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">&lt;!-- 顶部导航 --&gt;</span>
- <span class="nt">&lt;hr&gt;</span>
- <span class="nt">&lt;nav</span> <span class="na">id=</span><span class="s">"category-toc"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;ul&gt;</span>
-     {% for category in site.categories %}
-     <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#{{ category | first | slugify }}"</span><span class="nt">&gt;</span>{{ category | first }}<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-     {% endfor %}
- <span class="nt">&lt;/ul&gt;</span>
- <span class="nt">&lt;/nav&gt;</span>
- <span class="nt">&lt;hr&gt;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>效果</li>
-</ol>
-
-<p><img src="/image/jekyll/2023-6-27-230627_categories/image_1.jpg" alt="home" />
-<img src="/image/jekyll/2023-6-27-230627_categories/image_2.jpg" alt="cate" /></p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 Jekyll个人博客添加分类Category功能 3 Simple steps to setup Jekyll Categories and Tags]]></summary></entry><entry><title type="html">jekyll: hello_world</title><link href="/jekyll/hello_world/" rel="alternate" type="text/html" title="jekyll: hello_world" /><published>2023-06-27T12:00:00+08:00</published><updated>2023-06-27T12:00:00+08:00</updated><id>/jekyll/hello_world</id><content type="html" xml:base="/jekyll/hello_world/"><![CDATA[<h2 id="参考">参考</h2>
-<ul>
-  <li><a href="https://www.jekyll.com.cn/docs/">官方</a></li>
+  <li>因为没能解析<code class="language-plaintext highlighter-rouge">&lt;canvas&gt;</code>标签,没能拿到图片的地址,所以改用屏幕截图的方法保存图片</li>
+  <li>登录次数过多会触发网站的真人验证,所以登录的步骤改为手动,代码仅执行截图</li>
+  <li>代码如下</li>
 </ul>
 
-<h2 id="创建hello_world">创建hello_world</h2>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">
+create: 2023.1.1
+bookwalker漫画爬虫
 
-<ol>
-  <li>安装Ruby
+思路:
+    1. 手动启动chrome打开debug端口,转交selenium
+    2. 代码截图,点击进入下一页,根据viewport0的显示状态判断点击是否成功
+    3. 图片锐化(+信息删除)和截图双线程同步进行(jpg节省空间)
+    4. 截图保存后检查文件大小,小于设定值的截图被判断为loading页,重新截图
+问题:
+    1.截图清晰度受屏幕分辨率影响,质量较低;网页截图比平板截屏质量差
+    2.对div.loading状态的判断不完全可靠,检查图片大小的方法也可能存在误判
+    3.保存截图会花费约0.5s,使用多线程并行运行时报错
+    4.ActionChains的点击动作会花费约0.5s,需要优化
+
+chrome.exe --remote-debugging-port=9222 --user-data-dir=</span><span class="sh">"</span><span class="s">D:</span><span class="se">\\</span><span class="s">p-data</span><span class="se">\\</span><span class="s">chrome_temp</span><span class="sh">"</span><span class="s">
+
+https://bookwalker.jp/bookshelf1/
+
+</span><span class="sh">'''</span>
+
+
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">threading</span>
+<span class="kn">from</span> <span class="n">utils_logger.log</span> <span class="kn">import</span> <span class="n">logger_re</span> <span class="k">as</span> <span class="n">logger</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">copy</span>
+<span class="c1"># 删除图片信息
+</span><span class="kn">import</span> <span class="n">piexif</span>  <span class="c1"># pip install piexif
+# 图片锐化
+</span><span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageEnhance</span>
+<span class="c1"># 爬虫主程序
+</span><span class="kn">from</span> <span class="n">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>  <span class="c1"># pip install selenium
+# 查找元素
+</span><span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="c1"># 添加反爬参数
+</span><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
+<span class="c1"># 鼠标动作
+</span><span class="kn">from</span> <span class="n">selenium.webdriver.common.action_chains</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+
+
+<span class="k">class</span> <span class="nc">CrawlerBookwalker</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">json_set</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">只有一个total_page是必须参数,其他都有预设值</span><span class="sh">'''</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># 截图总页数(设为1截取单页)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">total_page</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">total_page</span><span class="sh">"</span><span class="p">])</span>
+            <span class="c1"># 起始页码(截图保存命名用)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">current_page</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">current_page</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">current_page</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="c1"># 图片保存位置(路径下不要有其他图片)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">save_path</span> <span class="o">=</span> <span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">save_path</span><span class="sh">"</span><span class="p">]</span> <span class="k">if</span> <span class="sh">"</span><span class="s">save_path</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\s-workspace\crawler_save</span><span class="sh">"</span>
+            <span class="c1"># 图片锐化系数(1为原图,实测2效果还行)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">sharp_factor</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">sharp_factor</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">sharp_factor</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">2</span>
+            <span class="c1"># debug模式chrome数据位置(用于chrome的脚本启动)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">chrome_path</span> <span class="o">=</span> <span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">chrome_path</span><span class="sh">"</span><span class="p">]</span> <span class="k">if</span> <span class="sh">"</span><span class="s">chrome_path</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\\p-data\\chrome_temp</span><span class="sh">"</span>
+            <span class="c1"># chrome端口,一般不会被占用(用于chrome的脚本启动)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">chrome_port</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">chrome_port</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">chrome_port</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">9222</span>
+            <span class="c1"># chrome driver位置(注意要和chrome版本一致)
+</span>            <span class="c1"># https://chromedriver.chromium.org/downloads
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">driver_path</span> <span class="o">=</span> <span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">driver_path</span><span class="sh">"</span><span class="p">]</span> <span class="k">if</span> <span class="sh">"</span><span class="s">driver_path</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver108.exe</span><span class="sh">"</span>
+            <span class="c1"># 重新截图大小(KB)(不同截图环境loading页大小不相同)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">reshot_size</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">reshot_size</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">reshot_size</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">200</span>
+            <span class="c1"># 截图/点击,重试次数上限
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">retry_times</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">retry_times</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">8</span>
+            <span class="c1"># y轴翻页点击位置(单位:像素,顶部为0)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">click_point_y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">click_point_y</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">click_point_y</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">300</span>
+            <span class="c1"># x轴翻页点击位置(单位:像素,左边为0)
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">click_point_x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">click_point_x</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">click_point_x</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">100</span>
+
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">key error: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__init_chrome</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">'''</span><span class="s">实例化浏览器</span><span class="sh">'''</span>
+        <span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
+        <span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">debuggerAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">127.0.0.1:%d</span><span class="sh">'</span> <span class="o">%</span> <span class="n">self</span><span class="p">.</span><span class="n">chrome_port</span><span class="p">)</span>
+        <span class="c1"># 实例化谷歌
+</span>        <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">driver_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+        <span class="c1"># 窗口尺寸不能超过显示尺寸,只能考虑找一台高分辨率显示器或者多屏拼接
+</span>        <span class="c1"># driver.set_window_size(1080,1920)
+</span>        <span class="k">return</span> <span class="n">driver</span>
+
+    <span class="k">def</span> <span class="nf">__sharpen_main</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">shot_path</span><span class="p">):</span>
+        <span class="sh">'''</span><span class="s">子线程:图片锐化+删除信息主函数</span><span class="sh">'''</span>
+        <span class="n">shot_path_list</span> <span class="o">=</span> <span class="n">shot_path</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
+        <span class="n">enhancer</span> <span class="o">=</span> <span class="n">ImageEnhance</span><span class="p">.</span><span class="nc">Sharpness</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">im_s</span> <span class="o">=</span> <span class="n">enhancer</span><span class="p">.</span><span class="nf">enhance</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">sharp_factor</span><span class="p">)</span>
+        <span class="n">shot_path_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">shot_path_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">shot</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sharp</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">sharp_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">shot_path_list</span><span class="p">)</span>
+        <span class="c1"># jpg节省点空间
+</span>        <span class="n">im_s</span> <span class="o">=</span> <span class="n">im_s</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="sh">'</span><span class="s">RGB</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">sharp_path</span> <span class="o">=</span> <span class="n">sharp_path</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">.png</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">.jpg</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">im_s</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">sharp_path</span><span class="p">)</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
+        <span class="c1"># 删除信息(其实正常截图本来就不含信息)
+</span>        <span class="n">piexif</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">sharp_path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">open_chrome</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">'''</span><span class="s">启动debug模式chrome</span><span class="sh">'''</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">chrome.exe --remote-debugging-port=%d --user-data-dir=</span><span class="sh">"</span><span class="s">%s</span><span class="sh">"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chrome_port</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">chrome_path</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">'''</span><span class="s">开始处理</span><span class="sh">'''</span>
+        <span class="c1"># 实例化浏览器
+</span>        <span class="n">driver</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">__init_chrome</span><span class="p">()</span>
+
+        <span class="sh">'''</span><span class="s">进入漫画页并逐页截屏</span><span class="sh">'''</span>
+        <span class="n">time_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+        <span class="c1"># 当前激活标签页为0
+</span>        <span class="n">driver</span><span class="p">.</span><span class="n">switch_to</span><span class="p">.</span><span class="nf">window</span><span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">viewport_before</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[id=</span><span class="sh">"</span><span class="s">viewport0</span><span class="sh">"'</span><span class="p">).</span><span class="nf">is_displayed</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">total_page</span><span class="p">):</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">self</span><span class="p">.</span><span class="n">current_page</span>
+            <span class="c1"># 等待loading状态结束(对loading的判断并不完全可靠,建议翻页后的wait_time&gt;0.5s)
+</span>            <span class="n">div_loading</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[class=</span><span class="sh">"</span><span class="s">loading</span><span class="sh">"'</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">div_loading</span><span class="p">.</span><span class="nf">is_displayed</span><span class="p">():</span>
+                <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">loading ...</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># 浏览器全屏截图(截图动作占用约0.5s,并行报错暂未解决)
+</span>            <span class="n">time_cost</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_start</span><span class="p">)</span>
+            <span class="n">time_left</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">time_cost</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">total_page</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot : %d / %d , page : %d, remaining : %d s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">total_page</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">time_left</span><span class="p">))</span>
+            <span class="n">shot_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">save_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">shot_%d.png</span><span class="sh">"</span> <span class="o">%</span> <span class="n">num</span><span class="p">)</span>
+            <span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
+            <span class="c1"># 检查截图大小,小于设定值为loading页,重新截图
+</span>            <span class="n">shot_retry</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">shot_retry</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">shot_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>
+                <span class="k">if</span> <span class="n">shot_size</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">reshot_size</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">shot_retry</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">shot %d times retry! file: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">,</span> <span class="n">shot_path</span><span class="p">))</span>
+                    <span class="k">break</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot retry %d ...</span><span class="sh">"</span> <span class="o">%</span> <span class="n">shot_retry</span><span class="p">)</span>
+                <span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
+            <span class="c1"># 锐化程序并行进行
+</span>            <span class="n">th</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">__sharpen_main</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">shot_path</span><span class="p">],</span> <span class="n">daemon</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">th</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+            <span class="c1"># 点击进入下一页(即使设置了duration,这个动作仍然会占用约0.5s的时间)
+</span>            <span class="n">click_retry</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">click_retry</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="nc">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">10</span><span class="p">).</span><span class="nf">move_by_offset</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">click_point_x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">click_point_y</span><span class="p">).</span><span class="nf">click</span><span class="p">().</span><span class="nf">move_by_offset</span><span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">click_point_x</span><span class="p">,</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">click_point_y</span><span class="p">).</span><span class="nf">perform</span><span class="p">()</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="n">viewport_now</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[id=</span><span class="sh">"</span><span class="s">viewport0</span><span class="sh">"'</span><span class="p">).</span><span class="nf">is_displayed</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">viewport_now</span> <span class="o">!=</span> <span class="n">viewport_before</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">viewport_now</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[id=</span><span class="sh">"</span><span class="s">viewport0</span><span class="sh">"'</span><span class="p">).</span><span class="nf">is_displayed</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">viewport_now</span> <span class="o">!=</span> <span class="n">viewport_before</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">click retry %d ...</span><span class="sh">"</span> <span class="o">%</span> <span class="n">click_retry</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">click_retry</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">click %d times retry!</span><span class="sh">"</span> <span class="o">%</span> <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">)</span>
+                        <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">viewport_before</span> <span class="o">=</span> <span class="n">viewport_now</span>
+            <span class="c1"># wait_here = input("go &gt;&gt;")
+</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot-function finish</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">driver</span><span class="p">.</span><span class="nf">quit</span><span class="p">()</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[已经集成在电脑配件项目中 https://github.com/umas2022/pctools]]></summary></entry><entry><title type="html">crawler: selenium</title><link href="/crawler/selenium/" rel="alternate" type="text/html" title="crawler: selenium" /><published>2023-06-28T10:18:00+08:00</published><updated>2023-06-28T10:18:00+08:00</updated><id>/crawler/selenium</id><content type="html" xml:base="/crawler/selenium/"><![CDATA[<h3 id="安装chromedriver">安装chromedriver</h3>
+<ul>
+  <li>https://chromedriver.chromium.org/downloads
     <ul>
-      <li>https://rubyinstaller.org/downloads/</li>
-      <li>查看安装：<code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+      <li>注意版本要和已安装的chrome一样</li>
     </ul>
   </li>
+  <li>实测添加环境变量不好用，使用手动引入：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe"
+chrome = webdriver.Chrome(executable_path=chrome_driver)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="操作网页">操作网页</h3>
+
+<ul>
+  <li>一个输入用户名和密码的例子
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">input[name=</span><span class="sh">"</span><span class="s">j_username</span><span class="sh">"'</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">1970313791@qq.com</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">input[name=</span><span class="sh">"</span><span class="s">password</span><span class="sh">"'</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">xxxxxxxxxxx</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">button[class=</span><span class="sh">"</span><span class="s">g-recaptcha c-btn--forward</span><span class="sh">"'</span><span class="p">).</span><span class="nf">click</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>常用的功能键</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from selenium.webdriver.common.keys import Keys
+
+send_keys(Keys.BACK_SPACE) 删除键（BackSpace）
+send_keys(Keys.SPACE) 空格键(Space)
+send_keys(Keys.TAB) 制表键(Tab)
+send_keys(Keys.ESCAPE) 回退键（Esc）
+send_keys(Keys.ENTER) 回车键（Enter）
+send_keys(Keys.CONTROL,‘a’) 全选（Ctrl+A）
+send_keys(Keys.CONTROL,‘c’) 复制（Ctrl+C）
+send_keys(Keys.CONTROL,‘x’) 剪切（Ctrl+X）
+send_keys(Keys.CONTROL,‘v’) 粘贴（Ctrl+V）
+send_keys(Keys.F1) 键盘 F1
+……
+send_keys(Keys.F12) 键盘 F12
+
+Keys.BACK_SPACE：回退键（BackSpace）
+Keys.TAB：制表键（Tab）
+Keys.ENTER：回车键（Enter）
+Keys.SHIFT：大小写转换键（Shift）
+Keys.CONTROL：Control键（Ctrl）
+Keys.ALT：ALT键（Alt）
+Keys.ESCAPE：返回键（Esc）
+Keys.SPACE：空格键（Space）
+Keys.PAGE_UP：翻页键上（Page Up）
+Keys.PAGE_DOWN：翻页键下（Page Down）
+Keys.END：行尾键（End）
+Keys.HOME：行首键（Home）
+Keys.LEFT：方向键左（Left）
+Keys.UP：方向键上（Up）
+Keys.RIGHT：方向键右（Right）
+Keys.DOWN：方向键下（Down）
+Keys.INSERT：插入键（Insert）
+DELETE：删除键（Delete）
+NUMPAD0 ~ NUMPAD9：数字键1-9
+F1 ~ F12：F1 - F12键
+(Keys.CONTROL, ‘a’)：组合键Control+a，全选
+(Keys.CONTROL, ‘c’)：组合键Control+c，复制
+(Keys.CONTROL, ‘x’)：组合键Control+x，剪切
+(Keys.CONTROL, ‘v’)：组合键Control+v，粘贴
+</code></pre></div></div>
+
+<h3 id="切换标签页">切换标签页</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_tap</span> <span class="o">=</span> <span class="sh">"</span><span class="s">window.open(</span><span class="sh">'</span><span class="s">%s</span><span class="sh">'</span><span class="s">)</span><span class="sh">"</span> <span class="o">%</span> <span class="n">url_home</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">execute_script</span><span class="p">(</span><span class="n">new_tap</span><span class="p">)</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">switch_to</span><span class="p">.</span><span class="nf">window</span><span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="反扒1windownavigatorwebdriver">反扒1：window.navigator.webdriver</h3>
+
+<ul>
+  <li>window.navigator.webdriver参数在使用selenium时为true，需要消除这个参数</li>
+  <li>可以直接在console里敲这个参数查看</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
+
+<span class="sh">'''</span><span class="s">反爬：消除window.navigator.webdriver</span><span class="sh">'''</span>
+<span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
+<span class="c1"># 开启实验性功能
+</span><span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">excludeSwitches</span><span class="sh">'</span><span class="p">,[</span><span class="sh">'</span><span class="s">enable-automation</span><span class="sh">'</span><span class="p">])</span>
+<span class="c1"># 去除特征值
+</span><span class="n">option</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--disable-blink-features=AutomationControlled</span><span class="sh">"</span><span class="p">)</span>
+<span class="c1"># 实例化谷歌
+</span><span class="n">chrome_driver</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver106.exe</span><span class="sh">"</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">chrome_driver</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>实测对bookwalker有效</p>
+
+<h3 id="反扒2接管已有浏览器">反扒2：接管已有浏览器</h3>
+
+<ul>
   <li>
-    <p>安装 Jekyll 和 bundler gems（要很久）</p>
+    <p>这个效果非常好，属于物理外挂</p>
+  </li>
+  <li>命令行启动浏览器：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chrome.exe --remote-debugging-port=9222 --user-data-dir="D:\p-data\chrome_temp"
+</code></pre></div>    </div>
+  </li>
+  <li>代码示例：
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
+<span class="c1"># 反爬：接管已打开的浏览器
+</span><span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
+<span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">debuggerAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">127.0.0.1:9222</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># 实例化谷歌
+</span><span class="n">chrome_driver</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver106.exe</span><span class="sh">"</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">chrome_driver</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gem install jekyll bundler
+<h3 id="截屏">截屏</h3>
+
+<ul>
+  <li>截全屏
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_screen.png</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
-  <li>创建并启动项目
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  jekyll new hello_umas
-  cd hello_umas
-  bundle exec jekyll serve
+  <li>截元素
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[class=</span><span class="sh">"</span><span class="s">currentScreen</span><span class="sh">"'</span><span class="p">)</span>
+<span class="n">img</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_img.png</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
+</ul>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe" chrome = webdriver.Chrome(executable_path=chrome_driver)]]></summary></entry><entry><title type="html">crawler: request</title><link href="/crawler/request/" rel="alternate" type="text/html" title="crawler: request" /><published>2023-06-28T10:17:00+08:00</published><updated>2023-06-28T10:17:00+08:00</updated><id>/crawler/request</id><content type="html" xml:base="/crawler/request/"><![CDATA[<ul>
+  <li>request基本例子</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://bookwalker.jp/de57a21d74-d918-47df-b22f-b3a9454e59df/</span><span class="sh">"</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">access failed, error code : %d</span><span class="sh">"</span> <span class="o">%</span> <span class="n">res</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">./save.html</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">save_file</span><span class="p">:</span>
+    <span class="n">save_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[request基本例子]]></summary></entry><entry><title type="html">windows: clash</title><link href="/windows/clash/" rel="alternate" type="text/html" title="windows: clash" /><published>2023-06-28T10:14:00+08:00</published><updated>2023-06-28T10:14:00+08:00</updated><id>/windows/clash</id><content type="html" xml:base="/windows/clash/"><![CDATA[<h3 id="局域网">局域网</h3>
+<ul>
+  <li>clash主机（安卓）
+    <ul>
+      <li>设置-&gt;覆写-&gt;允许来自局域网的连接-&gt;启用</li>
+      <li>设备连接时填写主机ip，端口7890</li>
+      <li>（switch用代理不能上YouTube但是宝可梦可以联机（NAT A））</li>
+    </ul>
+  </li>
+  <li>clash主机（PC）
+    <ul>
+      <li>局域网的方法没有设置成功，可能和防火墙有关系</li>
+      <li>使用TUN模式+热点更方便</li>
+      <li>clash首先安装服务模式，等待重启小地球变绿</li>
+      <li><img src="/image/windows/2023-06-28-clash/clash_1.jpg" alt="clash_1" /></li>
+      <li>此时右下角网络连接显示为clash</li>
+      <li><img src="/image/windows/2023-06-28-clash/clash_2.jpg" alt="clash_2" /></li>
+      <li>打开电脑热点，进入更改适配器选项可以看到clash的网卡和热点的网卡（本地连接*2）</li>
+      <li><img src="/image/windows/2023-06-28-clash/clash_3.jpg" alt="clash_3" /></li>
+      <li>clash共享连接到热点</li>
+      <li><img src="/image/windows/2023-06-28-clash/clash_4.jpg" alt="clash_4" /></li>
+      <li>其他设备连接到热点就可以翻墙</li>
+      <li>（这种方法switch不能联机（NAT F））</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[局域网 clash主机（安卓） 设置-&gt;覆写-&gt;允许来自局域网的连接-&gt;启用 设备连接时填写主机ip，端口7890 （switch用代理不能上YouTube但是宝可梦可以联机（NAT A）） clash主机（PC） 局域网的方法没有设置成功，可能和防火墙有关系 使用TUN模式+热点更方便 clash首先安装服务模式，等待重启小地球变绿 此时右下角网络连接显示为clash 打开电脑热点，进入更改适配器选项可以看到clash的网卡和热点的网卡（本地连接*2） clash共享连接到热点 其他设备连接到热点就可以翻墙 （这种方法switch不能联机（NAT F））]]></summary></entry><entry><title type="html">windows: env_path</title><link href="/windows/env_path/" rel="alternate" type="text/html" title="windows: env_path" /><published>2023-06-28T10:11:00+08:00</published><updated>2023-06-28T10:11:00+08:00</updated><id>/windows/env_path</id><content type="html" xml:base="/windows/env_path/"><![CDATA[<p><img src="/image/windows/2023-06-28-env_path/image_1.png" alt="引入图片" /></p>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">windows: startup.vbs</title><link href="/windows/startup.vbs/" rel="alternate" type="text/html" title="windows: startup.vbs" /><published>2023-06-28T10:09:00+08:00</published><updated>2023-06-28T10:09:00+08:00</updated><id>/windows/startup.vbs</id><content type="html" xml:base="/windows/startup.vbs/"><![CDATA[<h3 id="vbs脚本">vbs脚本</h3>
+<ul>
+  <li>打开windows启动项文件夹：win+R, shell:startup</li>
   <li>
-    <p>在浏览器中打开 http://localhost:4000 网址</p>
+    <p>windows启动脚本：C:\Users\umas\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\startup.vbs</p>
   </li>
-  <li>添加markdown文件
+  <li>startup.vbs中启动wsl / 调用python
     <ul>
-      <li>在 Jekyll 项目的 _posts 目录下创建Markdown 文件，文件名必须遵循 YYYY-MM-DD-title.md 的格式，其中 YYYY-MM-DD 表示文章的发布日期，title 表示文章的标题，文件名中的单词必须用短横线 - 分隔</li>
-      <li>_posts支持多级目录，可以用文件夹管理md文件</li>
-      <li>注意md文件中的代码块可能被解析，如果发现和原文不一致需要用{% raw }{% endraw %}来包裹代码块，比如下面引入图片的代码块如果不加raw的话就会直接显示图片。（这句话中的{% raw }{% endraw %}也要用这个方法嵌套才能显示在页面中，而且必须以大括号为分隔进行三次嵌套才能显示）</li>
-      <li>添加图片的方法：项目根目录下新建文件夹存放图片，不要放在_posts文件夹下，比如/image/jekyll/image_1.jpg，然后在md文件引入图片：</li>
-    </ul>
-
-    <div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code> !<span class="p">[</span><span class="nv">home</span><span class="p">](</span><span class="sx">{{site.url}}/image/jekyll/2023-6-27-230627_categories/image_1.jpg</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<ul>
-  <li>标题的日期优先级低于yaml前置格式的日期，如果一天内上传了多份md，可以通过前置格式的日期指定时间来排序
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
-<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
-<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">Welcome</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Jekyll!"</span>
-<span class="na">date</span><span class="pi">:</span>   <span class="s">2023-06-26 11:35:28 +0800</span>
-<span class="nn">---</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<ol>
-  <li>打包
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> jekyll build --source hello_umas --destination docs
-</code></pre></div>    </div>
-    <ul>
-      <li>这条命令将网页构建到_site文件夹中，之后可以托管在服务器上</li>
+      <li>参数0表示后台运行
+        <div class="language-vb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Set</span> <span class="n">ws</span><span class="o">=</span><span class="n">WScript</span><span class="p">.</span><span class="n">CreateObject</span><span class="p">(</span><span class="s">"WScript.Shell"</span><span class="p">)</span> 
+<span class="c1">' ws.Run "wsl -d Ubuntu-20.04 -u root /bin/bash",0</span>
+<span class="n">ws</span><span class="p">.</span><span class="n">Run</span> <span class="s">"wsl -u root /bin/bash"</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">ws</span><span class="p">.</span><span class="n">Run</span> <span class="s">"python.exe D:\s-linux\project\onebox\run_backend.py"</span><span class="p">,</span><span class="mi">0</span>
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
-  <li>
-    <p>打包后可以先用python启动本地服务器看一下效果</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python -m http.server
-</code></pre></div>    </div>
-    <ul>
-      <li>访问：http://localhost:8000/</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="套用主题">套用主题</h2>
-
-<ul>
-  <li>官方主题：http://jekyllthemes.org/</li>
-  <li>选择主题点击demo可以查看</li>
-  <li>可以在github fork方便后续开发</li>
-  <li>download解压之后进入主题目录运行
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-jekyll serve
-</code></pre></div>    </div>
-  </li>
-  <li>具体部署方法可能因项目而异，最好点进GitHub看一下readme</li>
-  <li>项目默认主题minima就很好，深得我心，直接用默认了</li>
-  <li>注意直接新建的项目虽然使用了minima主题（可以在about页看到），但layout文件并没有在本地，需要到GitHub主页把layout文件内容复制到本地才可以进行二次开发（https://github.com/jekyll/minima）</li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[vbs脚本 打开windows启动项文件夹：win+R, shell:startup windows启动脚本：C:\Users\umas\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\startup.vbs]]></summary></entry><entry><title type="html">vue: v-bind css</title><link href="/vue/v-bind_css/" rel="alternate" type="text/html" title="vue: v-bind css" /><published>2023-06-28T10:07:00+08:00</published><updated>2023-06-28T10:07:00+08:00</updated><id>/vue/v-bind_css</id><content type="html" xml:base="/vue/v-bind_css/"><![CDATA[<ul>
+  <li>style中引用script变量：</li>
 </ul>
 
-<h2 id="可能的问题">可能的问题</h2>
-
-<ol>
-  <li>启动服务器时报错一个语法错误</li>
-</ol>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>244 │     padding: ($spacing-unit / 3) ($spacing-unit / 2);
-    │               ^^^^^^^^^^^^^^^^^
-</code></pre></div></div>
-
-<p>不影响服务器的启动，没找到解决办法</p>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-  <li>以下是创建项目时gpt推荐的支持markdown的博客框架：</li>
-</ul>
-
-<p>Jekyll：Jekyll 是一个简单、易用、支持 Markdown 的静态网站生成器，它能够将 Markdown 文件转换成静态的 HTML 网页。Jekyll 的优点在于它易于安装和使用，并且支持 GitHub Pages，可以免费托管网站。</p>
-
-<p>Hexo：Hexo 是一个快速、简洁且高效的博客框架，它基于 Node.js 平台，支持 Markdown 语法，可以生成静态的 HTML 文件。Hexo 的优点在于它的速度非常快，而且支持插件扩展，可以实现更多的功能。</p>
-
-<p>Hugo：Hugo 是一个快速、灵活、易用的静态网站生成器，它支持 Markdown 语法，并且可以生成静态的 HTML 文件。Hugo 的优点在于它的速度非常快，而且支持多种主题和插件，可以满足不同的需求。</p>
-
-<p>Gatsby：Gatsby 是一个基于 React 的静态网站生成器，它支持 Markdown 语法，并且可以生成静态的 HTML 文件。Gatsby 的优点在于它支持多种数据源，可以从多种数据源中获取数据，而且支持多种插件和主题，可以实现更多的功能。</p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 官方]]></summary></entry><entry><title type="html">cpp: hello_world</title><link href="/cpp/hello_world/" rel="alternate" type="text/html" title="cpp: hello_world" /><published>2023-06-27T11:00:00+08:00</published><updated>2023-06-27T11:00:00+08:00</updated><id>/cpp/hello_world</id><content type="html" xml:base="/cpp/hello_world/"><![CDATA[<ul>
-  <li>创建hello_world
-    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"Hello! This is a test prgoram.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-<span class="n">return0</span><span class="p">;</span>
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">setup</span><span class="o">&gt;</span>
+<span class="nt">const</span> <span class="nt">theme</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="s2">"red"</span><span class="o">,</span>
+<span class="p">};</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+    
+<span class="o">&lt;</span><span class="nt">template</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">hello</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">template</span><span class="o">&gt;</span>
+    
+<span class="o">&lt;</span><span class="nt">style</span> <span class="nt">scoped</span><span class="o">&gt;</span>
+<span class="nt">p</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="nf">v-bind</span><span class="p">(</span><span class="s2">"theme.color"</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>安装编译工具
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install build-essential manpages-dev
-</code></pre></div>    </div>
-  </li>
-  <li>编译
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc hello.cpp -o hello
-</code></pre></div>    </div>
-  </li>
-</ul>]]></content><author><name></name></author><category term="cpp" /><summary type="html"><![CDATA[创建hello_world #include&lt;stdio.h&gt; int main(void) { printf("Hello! This is a test prgoram.\n"); return0; }]]></summary></entry><entry><title type="html">css: hello_world</title><link href="/css/basic/" rel="alternate" type="text/html" title="css: hello_world" /><published>2023-06-27T11:00:00+08:00</published><updated>2023-06-27T11:00:00+08:00</updated><id>/css/basic</id><content type="html" xml:base="/css/basic/"><![CDATA[<h2 id="scss基本语法">scss基本语法</h2>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</code></pre></div></div>
 
-<h3 id="多class">多class</h3>
 <ul>
-  <li>多个class用空格叠加，可以赋予多个属性，结合动态class名可以实现动态样式</li>
+  <li>加上”px”后缀，除了computed添加之外，还可以：</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"padding10 inline"</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.inline</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">scoped</span><span class="o">&gt;</span>
+<span class="nt">p</span> <span class="p">{</span>
+ <span class="nl">font-size</span><span class="p">:</span> <span class="nf">calc</span><span class="p">(</span><span class="m">1px</span> <span class="o">*</span> <span class="nf">v-bind</span><span class="p">(</span><span class="n">size</span><span class="p">));</span>
 <span class="p">}</span>
-<span class="nc">.padding10</span> <span class="p">{</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>也可以设置多个style组</li>
+</ul>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">template</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="nt">p</span> <span class="nd">:class</span><span class="o">=</span><span class="s2">"classes1.red"</span><span class="o">&gt;</span><span class="nt">This</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">red</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">template</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nt">style</span> <span class="nt">module</span><span class="o">=</span><span class="s2">"classes1"</span><span class="o">&gt;</span>
+<span class="nc">.red</span> <span class="p">{</span>
+ <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
 
-<ul>
-  <li>class空格叠加时单独定义样式，此时css语句中点是连续的</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box rai"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box di"</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.box.rai</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="nt">div</span><span class="nc">.box.di</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>多级叠加时css用空格分开</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box di"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"select"</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.box.rai</span> <span class="nc">.select</span> <span class="p">{</span> <span class="err">…</span>
-</code></pre></div></div>
-
-<ul>
-  <li>上面的空格等价于多级嵌套</li>
-</ul>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.box.rai</span> <span class="p">{</span> <span class="err">…</span>
-  <span class="nc">.select</span> <span class="p">{</span> <span class="err">…</span> <span class="p">}</span>
+<span class="o">&lt;</span><span class="nt">style</span> <span class="nt">module</span><span class="o">=</span><span class="s2">"classes2"</span><span class="o">&gt;</span>
+<span class="nc">.red</span> <span class="p">{</span>
+ <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
 <span class="p">}</span>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[style中引用script变量：]]></summary></entry><entry><title type="html">vue: store</title><link href="/vue/store/" rel="alternate" type="text/html" title="vue: store" /><published>2023-06-28T10:05:00+08:00</published><updated>2023-06-28T10:05:00+08:00</updated><id>/vue/store</id><content type="html" xml:base="/vue/store/"><![CDATA[<h3 id="sotreindexts">sotre/index.ts:</h3>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nc">Store</span><span class="p">({</span>
+  <span class="na">state</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// 状态值</span>
+    <span class="na">config</span><span class="p">:</span> <span class="p">{}</span> <span class="k">as</span> <span class="p">{</span> <span class="p">[</span><span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">getters</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// 获取状态的方法</span>
+  <span class="p">},</span>
+  <span class="na">mutations</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// 修改状态的方法</span>
+    <span class="nf">set_config</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="na">payload</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span> <span class="p">})</span> <span class="p">{</span>
+      <span class="nx">state</span><span class="p">.</span><span class="nx">config</span><span class="p">[</span><span class="nx">payload</span><span class="p">.</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">value</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">actions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// 提交异步操作的方法</span>
+  <span class="p">},</span>
+  <span class="na">modules</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// 模块</span>
+  <span class="p">}</span>
+<span class="p">})</span>
 </code></pre></div></div>
 
-<h3 id="import导入外部样式">import导入外部样式</h3>
+<h3 id="vue中读取和修改">vue中读取和修改</h3>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useStore</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vuex</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nf">useStore</span><span class="p">();</span>
 
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">scoped</span> <span class="nt">lang</span><span class="o">=</span><span class="s2">"scss"</span><span class="o">&gt;</span>
-<span class="o">@</span><span class="nt">import</span> <span class="s1">'animate.css'</span><span class="p">;</span>
-</code></pre></div></div>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">config</span><span class="p">)</span>
 
-<h2 id="选择器">选择器</h2>
-
-<h3 id="兄弟选择器">兄弟选择器：”~”</h3>
-<ul>
-  <li>例子: 有两个并列的div,当鼠标悬停在div-1时它的宽度增加200,同时div-2的宽度减少200</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"div-1"</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"div-2"</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.div-1</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">0.3s</span> <span class="n">ease</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.div-2</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">0.3s</span> <span class="n">ease</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.div-1</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.div-1</span><span class="nd">:hover</span> <span class="o">~</span> <span class="nc">.div-2</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-
-<h3 id="父元素引用">父元素引用：”&amp;”</h3>
-<ul>
-  <li>&amp;用来引用父元素，例：</li>
-</ul>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.side-container</span> <span class="p">{</span>
-<span class="k">&amp;</span><span class="nc">.unfolded</span> <span class="p">{</span>
-<span class="nc">....</span>
-</code></pre></div></div>
-
-<ul>
-  <li>注意区分上面的语句和下面这个：</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.side-container {
-.unfolded {
-....
-</code></pre></div></div>
-
-<ul>
-  <li>编译成css之后
-    <ul>
-      <li>前者为.side-container.unfolded，是同级</li>
-      <li>后者为.side-container .unfolded，是父子级，去区别在于中间的空格</li>
-    </ul>
-  </li>
-  <li>另一个例子：</li>
-</ul>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.dashboard</span> <span class="p">{</span>
-<span class="k">&amp;</span><span class="nt">-container</span> <span class="p">{</span>
-<span class="k">&amp;</span><span class="nt">-text</span> <span class="p">{</span>
-</code></pre></div></div>
-
-<ul>
-  <li>编译之后嵌套结构会被展平</li>
-</ul>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.dashboard-container</span> <span class="p">{</span>
-<span class="nc">.dashboard-text</span> <span class="p">{</span>
-</code></pre></div></div>
-
-<h3 id="伪元素选择器before">伪元素选择器：before</h3>
-<ul>
-  <li>在每个指定标签之前之前插入内容和样式</li>
-</ul>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">p</span><span class="nd">:before</span> <span class="p">{</span>
-  <span class="nl">content</span><span class="p">:</span> <span class="s2">"Read this -"</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="css" /><summary type="html"><![CDATA[scss基本语法]]></summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/jekyll/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2023-06-26T11:35:28+08:00</published><updated>2023-06-26T11:35:28+08:00</updated><id>/jekyll/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/welcome-to-jekyll/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
-
-<p>Jekyll requires blog post files to be named according to the following format:</p>
-
-<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
-
-<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
-
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry></feed>
+<span class="nx">store</span><span class="p">.</span><span class="nf">commit</span><span class="p">(</span><span class="dl">"</span><span class="s2">set_config</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">key</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">111</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">222</span><span class="dl">"</span> <span class="p">})</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[sotre/index.ts: const store = new Vuex.Store({ state: { // 状态值 config: {} as { [key: string]: any } }, getters: { // 获取状态的方法 }, mutations: { // 修改状态的方法 set_config(state, payload: { [key: string]: any }) { state.config[payload.key] = payload.value }, }, actions: { // 提交异步操作的方法 }, modules: { // 模块 } })]]></summary></entry></feed>

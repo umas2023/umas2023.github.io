@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>crawler: selenium | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="crawler: selenium" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r&quot;C:\Program Files\Google\Chrome\Application\chromedriver.exe&quot; chrome = webdriver.Chrome(executable_path=chrome_driver)" />
+<meta property="og:description" content="安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r&quot;C:\Program Files\Google\Chrome\Application\chromedriver.exe&quot; chrome = webdriver.Chrome(executable_path=chrome_driver)" />
+<link rel="canonical" href="/crawler/selenium/" />
+<meta property="og:url" content="/crawler/selenium/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-28T10:18:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="crawler: selenium" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T10:18:00+08:00","datePublished":"2023-06-28T10:18:00+08:00","description":"安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r&quot;C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe&quot; chrome = webdriver.Chrome(executable_path=chrome_driver)","headline":"crawler: selenium","mainEntityOfPage":{"@type":"WebPage","@id":"/crawler/selenium/"},"url":"/crawler/selenium/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">crawler: selenium</h1>
+    <h3>selenium简单爬虫</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h3"><a href="#安装chromedriver">安装chromedriver</a></li>
+<li class="toc-entry toc-h3"><a href="#操作网页">操作网页</a></li>
+<li class="toc-entry toc-h3"><a href="#切换标签页">切换标签页</a></li>
+<li class="toc-entry toc-h3"><a href="#反扒1windownavigatorwebdriver">反扒1：window.navigator.webdriver</a></li>
+<li class="toc-entry toc-h3"><a href="#反扒2接管已有浏览器">反扒2：接管已有浏览器</a></li>
+<li class="toc-entry toc-h3"><a href="#截屏">截屏</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h3 id="安装chromedriver">安装chromedriver</h3>
+<ul>
+  <li>https://chromedriver.chromium.org/downloads
+    <ul>
+      <li>注意版本要和已安装的chrome一样</li>
+    </ul>
+  </li>
+  <li>实测添加环境变量不好用，使用手动引入：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe"
+chrome = webdriver.Chrome(executable_path=chrome_driver)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="操作网页">操作网页</h3>
+
+<ul>
+  <li>一个输入用户名和密码的例子
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">input[name=</span><span class="sh">"</span><span class="s">j_username</span><span class="sh">"'</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">1970313791@qq.com</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">input[name=</span><span class="sh">"</span><span class="s">password</span><span class="sh">"'</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">xxxxxxxxxxx</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">button[class=</span><span class="sh">"</span><span class="s">g-recaptcha c-btn--forward</span><span class="sh">"'</span><span class="p">).</span><span class="nf">click</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>常用的功能键</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from selenium.webdriver.common.keys import Keys
+
+send_keys(Keys.BACK_SPACE) 删除键（BackSpace）
+send_keys(Keys.SPACE) 空格键(Space)
+send_keys(Keys.TAB) 制表键(Tab)
+send_keys(Keys.ESCAPE) 回退键（Esc）
+send_keys(Keys.ENTER) 回车键（Enter）
+send_keys(Keys.CONTROL,‘a’) 全选（Ctrl+A）
+send_keys(Keys.CONTROL,‘c’) 复制（Ctrl+C）
+send_keys(Keys.CONTROL,‘x’) 剪切（Ctrl+X）
+send_keys(Keys.CONTROL,‘v’) 粘贴（Ctrl+V）
+send_keys(Keys.F1) 键盘 F1
+……
+send_keys(Keys.F12) 键盘 F12
+
+Keys.BACK_SPACE：回退键（BackSpace）
+Keys.TAB：制表键（Tab）
+Keys.ENTER：回车键（Enter）
+Keys.SHIFT：大小写转换键（Shift）
+Keys.CONTROL：Control键（Ctrl）
+Keys.ALT：ALT键（Alt）
+Keys.ESCAPE：返回键（Esc）
+Keys.SPACE：空格键（Space）
+Keys.PAGE_UP：翻页键上（Page Up）
+Keys.PAGE_DOWN：翻页键下（Page Down）
+Keys.END：行尾键（End）
+Keys.HOME：行首键（Home）
+Keys.LEFT：方向键左（Left）
+Keys.UP：方向键上（Up）
+Keys.RIGHT：方向键右（Right）
+Keys.DOWN：方向键下（Down）
+Keys.INSERT：插入键（Insert）
+DELETE：删除键（Delete）
+NUMPAD0 ~ NUMPAD9：数字键1-9
+F1 ~ F12：F1 - F12键
+(Keys.CONTROL, ‘a’)：组合键Control+a，全选
+(Keys.CONTROL, ‘c’)：组合键Control+c，复制
+(Keys.CONTROL, ‘x’)：组合键Control+x，剪切
+(Keys.CONTROL, ‘v’)：组合键Control+v，粘贴
+</code></pre></div></div>
+
+<h3 id="切换标签页">切换标签页</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_tap</span> <span class="o">=</span> <span class="sh">"</span><span class="s">window.open(</span><span class="sh">'</span><span class="s">%s</span><span class="sh">'</span><span class="s">)</span><span class="sh">"</span> <span class="o">%</span> <span class="n">url_home</span>
+<span class="n">driver</span><span class="p">.</span><span class="nf">execute_script</span><span class="p">(</span><span class="n">new_tap</span><span class="p">)</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">switch_to</span><span class="p">.</span><span class="nf">window</span><span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="反扒1windownavigatorwebdriver">反扒1：window.navigator.webdriver</h3>
+
+<ul>
+  <li>window.navigator.webdriver参数在使用selenium时为true，需要消除这个参数</li>
+  <li>可以直接在console里敲这个参数查看</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
+
+<span class="sh">'''</span><span class="s">反爬：消除window.navigator.webdriver</span><span class="sh">'''</span>
+<span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
+<span class="c1"># 开启实验性功能
+</span><span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">excludeSwitches</span><span class="sh">'</span><span class="p">,[</span><span class="sh">'</span><span class="s">enable-automation</span><span class="sh">'</span><span class="p">])</span>
+<span class="c1"># 去除特征值
+</span><span class="n">option</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--disable-blink-features=AutomationControlled</span><span class="sh">"</span><span class="p">)</span>
+<span class="c1"># 实例化谷歌
+</span><span class="n">chrome_driver</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver106.exe</span><span class="sh">"</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">chrome_driver</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>实测对bookwalker有效</p>
+
+<h3 id="反扒2接管已有浏览器">反扒2：接管已有浏览器</h3>
+
+<ul>
+  <li>
+    <p>这个效果非常好，属于物理外挂</p>
+  </li>
+  <li>命令行启动浏览器：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chrome.exe --remote-debugging-port=9222 --user-data-dir="D:\p-data\chrome_temp"
+</code></pre></div>    </div>
+  </li>
+  <li>代码示例：
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
+<span class="c1"># 反爬：接管已打开的浏览器
+</span><span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
+<span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">debuggerAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">127.0.0.1:9222</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># 实例化谷歌
+</span><span class="n">chrome_driver</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver106.exe</span><span class="sh">"</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">chrome_driver</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="截屏">截屏</h3>
+
+<ul>
+  <li>截全屏
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_screen.png</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>截元素
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[class=</span><span class="sh">"</span><span class="s">currentScreen</span><span class="sh">"'</span><span class="p">)</span>
+<span class="n">img</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_img.png</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
