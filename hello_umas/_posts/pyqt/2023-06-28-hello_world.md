@@ -1,10 +1,14 @@
-# hello qt
-python+QT 项目基本操作
+---
+layout: post
+title:  "pyqt: hello_world"
+info: "pyqt基本操作"
+date:   2023-06-28 09:17:00 +0800
+categories: pyqt
+toc: true
+---
 
-## hello world
-- 使用pyqt创建一个简单的单窗口页面
-- 项目位置: 1_example/pyqt
-### 1. 一个简单的窗口  
+
+## 1. 一个简单的窗口  
 ```python
 import sys
 
@@ -28,7 +32,7 @@ window.show()
 app.exec()
 ```
 
-### 2. 项目打包
+## 2. 项目打包
 - 打包使用pyinstaller工具,需要先安装
 ```
 pip install pyinstaller
@@ -61,7 +65,7 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 ```
 
-### 3. 窗口基本设置
+## 3. 窗口基本设置
 - 窗口名
 ```python
 self.setWindowTitle("My App")
@@ -76,7 +80,7 @@ self.setWindowIcon(QtGui.QIcon("./data/img/mati_ei_256.ico"))
 self.setFixedSize(QSize(800, 600))
 ```
 
-### 4. 常用组件,事件,布局
+## 4. 常用组件,事件,布局
 - 组件:文本
 ```python
 self.label = QLabel()

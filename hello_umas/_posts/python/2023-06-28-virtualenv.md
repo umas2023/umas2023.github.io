@@ -1,4 +1,14 @@
-# virtualenv 虚拟环境
+---
+layout: post
+title:  "python: virtualenv"
+info: "python虚拟环境管理工具virtualenv"
+date:   2023-06-28 09:25:00 +0800
+categories: python
+toc: true
+---
+
+
+
 - 在一台计算机上管理多个不同版本项目时使用虚拟环境非常有必要
 
 - python虚拟环境管理工具常用的有virtualenv和venv, 推荐使用virtualenv，可以指定python版本
