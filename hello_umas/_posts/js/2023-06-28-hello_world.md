@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "js: hello_world"
+title:  "js: hello_world JavaScript基础语法"
 info: "JavaScript基础语法"
 date:   2023-06-28 08:20:00 +0800
 categories: js

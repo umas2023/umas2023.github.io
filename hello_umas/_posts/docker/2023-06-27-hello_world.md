@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "docker: hello_world"
+title:  "docker: hello_world 基础操作"
 info: "docker基础操作"
 date:   2023-06-27 22:50:00 +0800
 categories: docker

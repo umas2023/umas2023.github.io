@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T00:04:30+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">backyard: duplicate_rm</title><link href="/backyard/duplicate_rm/" rel="alternate" type="text/html" title="backyard: duplicate_rm" /><published>2023-06-28T22:10:00+08:00</published><updated>2023-06-28T22:10:00+08:00</updated><id>/backyard/duplicate_rm</id><content type="html" xml:base="/backyard/duplicate_rm/"><![CDATA[<h2 id="about">about</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T00:28:24+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">backyard: duplicate_rm 弔图主页后端图片去重</title><link href="/backyard/duplicate_rm/" rel="alternate" type="text/html" title="backyard: duplicate_rm 弔图主页后端图片去重" /><published>2023-06-28T22:10:00+08:00</published><updated>2023-06-28T22:10:00+08:00</updated><id>/backyard/duplicate_rm</id><content type="html" xml:base="/backyard/duplicate_rm/"><![CDATA[<h2 id="about">about</h2>
 <ul>
   <li>项目脚本：
     <ul>
       <li>https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py</li>
     </ul>
   </li>
-  <li>由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）</li>
 </ul>
 
 <h2 id="准备">准备</h2>
@@ -379,7 +378,7 @@
         <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">delete: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">image</span><span class="p">)</span>
         <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="backyard" /><summary type="html"><![CDATA[about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py 由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）]]></summary></entry><entry><title type="html">backyard: hello_world</title><link href="/backyard/hello_world/" rel="alternate" type="text/html" title="backyard: hello_world" /><published>2023-06-28T22:00:00+08:00</published><updated>2023-06-28T22:00:00+08:00</updated><id>/backyard/hello_world</id><content type="html" xml:base="/backyard/hello_world/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name></name></author><category term="backyard" /><summary type="html"><![CDATA[about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py]]></summary></entry><entry><title type="html">backyard: hello_world github.io弔图主页</title><link href="/backyard/hello_world/" rel="alternate" type="text/html" title="backyard: hello_world github.io弔图主页" /><published>2023-06-28T22:00:00+08:00</published><updated>2023-06-28T22:00:00+08:00</updated><id>/backyard/hello_world</id><content type="html" xml:base="/backyard/hello_world/"><![CDATA[<ul>
   <li>目前托管在github.io
     <ul>
       <li>https://umas2022.github.io/</li>
@@ -391,8 +390,7 @@
       <li>图床：https://github.com/umas2022/backyard_store</li>
     </ul>
   </li>
-  <li>早期的开发记录已经找不到了</li>
-</ul>]]></content><author><name></name></author><category term="backyard" /><summary type="html"><![CDATA[目前托管在github.io https://umas2022.github.io/]]></summary></entry><entry><title type="html">vue: watch</title><link href="/vue/watch/" rel="alternate" type="text/html" title="vue: watch" /><published>2023-06-28T14:23:00+08:00</published><updated>2023-06-28T14:23:00+08:00</updated><id>/vue/watch</id><content type="html" xml:base="/vue/watch/"><![CDATA[<ul>
+</ul>]]></content><author><name></name></author><category term="backyard" /><summary type="html"><![CDATA[目前托管在github.io https://umas2022.github.io/]]></summary></entry><entry><title type="html">vue: watch 监听函数</title><link href="/vue/watch/" rel="alternate" type="text/html" title="vue: watch 监听函数" /><published>2023-06-28T14:23:00+08:00</published><updated>2023-06-28T14:23:00+08:00</updated><id>/vue/watch</id><content type="html" xml:base="/vue/watch/"><![CDATA[<ul>
   <li>深度监听，监听对象的属性
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch(
   getFlagCloud,
@@ -411,7 +409,7 @@
       console.log(props.data)
   }, { deep: true });</p>
   </li>
-</ul>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[深度监听，监听对象的属性 watch( getFlagCloud, () =&gt; { setSkeletonFlag(); }, { deep: true } );]]></summary></entry><entry><title type="html">windows: wsa</title><link href="/windows/wsa/" rel="alternate" type="text/html" title="windows: wsa" /><published>2023-06-28T14:15:00+08:00</published><updated>2023-06-28T14:15:00+08:00</updated><id>/windows/wsa</id><content type="html" xml:base="/windows/wsa/"><![CDATA[<h2 id="使用adb传输文件">使用adb传输文件</h2>
+</ul>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[深度监听，监听对象的属性 watch( getFlagCloud, () =&gt; { setSkeletonFlag(); }, { deep: true } );]]></summary></entry><entry><title type="html">windows: wsa 安卓子系统基本操作</title><link href="/windows/wsa/" rel="alternate" type="text/html" title="windows: wsa 安卓子系统基本操作" /><published>2023-06-28T14:15:00+08:00</published><updated>2023-06-28T14:15:00+08:00</updated><id>/windows/wsa</id><content type="html" xml:base="/windows/wsa/"><![CDATA[<h2 id="使用adb传输文件">使用adb传输文件</h2>
 <ul>
   <li>功能已经用python集成在了电脑配件项目，但电脑退回win10，所以没有继续更新了</li>
   <li>下载adb
@@ -463,7 +461,7 @@ D:\p-tools\platform-tools\adb.exe -s 127.0.0.1:58526 shell mkdir /sdcard/Downloa
   <li>这个命令比较恶心,路径中出现括号会报错，比如  “test(1)”  不合法</li>
   <li>如果没有空格，用反斜杠转义括号是可以的，比如  “test(1)”  合法
 -但是有空格的话还是会报错，比如  “test  (1)”  不合法，加引号也没有用</li>
-</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[使用adb传输文件 功能已经用python集成在了电脑配件项目，但电脑退回win10，所以没有继续更新了 下载adb 忘了当时哪里下的了]]></summary></entry><entry><title type="html">jekyll: search</title><link href="/jekyll/search/" rel="alternate" type="text/html" title="jekyll: search" /><published>2023-06-28T12:30:00+08:00</published><updated>2023-06-28T12:30:00+08:00</updated><id>/jekyll/search</id><content type="html" xml:base="/jekyll/search/"><![CDATA[<h2 id="参考">参考</h2>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[使用adb传输文件 功能已经用python集成在了电脑配件项目，但电脑退回win10，所以没有继续更新了 下载adb 忘了当时哪里下的了]]></summary></entry><entry><title type="html">jekyll: search 添加搜索功能</title><link href="/jekyll/search/" rel="alternate" type="text/html" title="jekyll: search 添加搜索功能" /><published>2023-06-28T12:30:00+08:00</published><updated>2023-06-28T12:30:00+08:00</updated><id>/jekyll/search</id><content type="html" xml:base="/jekyll/search/"><![CDATA[<h2 id="参考">参考</h2>
 <ul>
   <li>https://blog.webjeda.com/instant-jekyll-search/</li>
   <li>https://github.com/christian-fei/Simple-Jekyll-Search</li>
@@ -547,7 +545,7 @@ title: Search
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- or without installing anything --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 https://blog.webjeda.com/instant-jekyll-search/ https://github.com/christian-fei/Simple-Jekyll-Search]]></summary></entry><entry><title type="html">pctools: video_compress</title><link href="/zip_pctools/windows/video_compress/" rel="alternate" type="text/html" title="pctools: video_compress" /><published>2023-06-28T10:32:00+08:00</published><updated>2023-06-28T10:32:00+08:00</updated><id>/zip_pctools/windows/video_compress</id><content type="html" xml:base="/zip_pctools/windows/video_compress/"><![CDATA[<h3 id="使用moviepy">使用moviepy</h3>
+</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 https://blog.webjeda.com/instant-jekyll-search/ https://github.com/christian-fei/Simple-Jekyll-Search]]></summary></entry><entry><title type="html">pctools: video_compress 电脑配件功能:视频压缩</title><link href="/zip_pctools/windows/video_compress/" rel="alternate" type="text/html" title="pctools: video_compress 电脑配件功能:视频压缩" /><published>2023-06-28T10:32:00+08:00</published><updated>2023-06-28T10:32:00+08:00</updated><id>/zip_pctools/windows/video_compress</id><content type="html" xml:base="/zip_pctools/windows/video_compress/"><![CDATA[<h3 id="使用moviepy">使用moviepy</h3>
 <ul>
   <li>官方：https://zulko.github.io/moviepy/</li>
   <li>写入函数：write_videofile
@@ -563,11 +561,7 @@ title: Search
   <li>安装ffmpg: https://www.gyan.dev/ffmpeg/builds/</li>
   <li>将bin目录添加到环境变量</li>
   <li>验证安装，控制台输入：ffmpeg.exe -version</li>
-</ul>]]></content><author><name></name></author><category term="zip_pctools" /><category term="windows" /><summary type="html"><![CDATA[使用moviepy 官方：https://zulko.github.io/moviepy/ 写入函数：write_videofile https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html?highlight=write_videofile#moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip.write_videofile 测试可用，总比特率设定2k kbps时3分钟视频仅40MB（原片4.8w kbps，60fps，大小1G），但质量较差 总比特率1w kbps，结果203MB 降至20fps，结果204MB，明显感觉帧数不够，帧数居然不影响视频大小]]></summary></entry><entry><title type="html">pctools: hello_world</title><link href="/zip_pctools/windows/hello_world/" rel="alternate" type="text/html" title="pctools: hello_world" /><published>2023-06-28T10:30:00+08:00</published><updated>2023-06-28T10:30:00+08:00</updated><id>/zip_pctools/windows/hello_world</id><content type="html" xml:base="/zip_pctools/windows/hello_world/"><![CDATA[<h1 id="因为时间久远已经无据可考了">因为时间久远已经无据可考了</h1>
-
-<ul>
-  <li>项目给一些常用的python批处理程序做了electron+vue构建的前端，通过django后端调用</li>
-</ul>]]></content><author><name></name></author><category term="zip_pctools" /><category term="windows" /><summary type="html"><![CDATA[因为时间久远已经无据可考了]]></summary></entry><entry><title type="html">crawler: bookwalker</title><link href="/crawler/bookwalker/" rel="alternate" type="text/html" title="crawler: bookwalker" /><published>2023-06-28T10:20:00+08:00</published><updated>2023-06-28T10:20:00+08:00</updated><id>/crawler/bookwalker</id><content type="html" xml:base="/crawler/bookwalker/"><![CDATA[<ul>
+</ul>]]></content><author><name></name></author><category term="zip_pctools" /><category term="windows" /><summary type="html"><![CDATA[使用moviepy 官方：https://zulko.github.io/moviepy/ 写入函数：write_videofile https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html?highlight=write_videofile#moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip.write_videofile 测试可用，总比特率设定2k kbps时3分钟视频仅40MB（原片4.8w kbps，60fps，大小1G），但质量较差 总比特率1w kbps，结果203MB 降至20fps，结果204MB，明显感觉帧数不够，帧数居然不影响视频大小]]></summary></entry><entry><title type="html">pctools: hello_world 电脑配件项目创建</title><link href="/zip_pctools/windows/hello_world/" rel="alternate" type="text/html" title="pctools: hello_world 电脑配件项目创建" /><published>2023-06-28T10:30:00+08:00</published><updated>2023-06-28T10:30:00+08:00</updated><id>/zip_pctools/windows/hello_world</id><content type="html" xml:base="/zip_pctools/windows/hello_world/"><![CDATA[<h1 id="因为时间久远已经无据可考了">因为时间久远已经无据可考了</h1>]]></content><author><name></name></author><category term="zip_pctools" /><category term="windows" /><summary type="html"><![CDATA[因为时间久远已经无据可考了]]></summary></entry><entry><title type="html">crawler: bookwalker 漫画爬虫</title><link href="/crawler/bookwalker/" rel="alternate" type="text/html" title="crawler: bookwalker 漫画爬虫" /><published>2023-06-28T10:20:00+08:00</published><updated>2023-06-28T10:20:00+08:00</updated><id>/crawler/bookwalker</id><content type="html" xml:base="/crawler/bookwalker/"><![CDATA[<ul>
   <li>已经集成在电脑配件项目中
     <ul>
       <li>https://github.com/umas2022/pctools</li>
@@ -746,7 +740,7 @@ https://bookwalker.jp/bookshelf1/
         <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot-function finish</span><span class="sh">"</span><span class="p">)</span>
         <span class="n">driver</span><span class="p">.</span><span class="nf">quit</span><span class="p">()</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[已经集成在电脑配件项目中 https://github.com/umas2022/pctools]]></summary></entry><entry><title type="html">crawler: selenium</title><link href="/crawler/selenium/" rel="alternate" type="text/html" title="crawler: selenium" /><published>2023-06-28T10:18:00+08:00</published><updated>2023-06-28T10:18:00+08:00</updated><id>/crawler/selenium</id><content type="html" xml:base="/crawler/selenium/"><![CDATA[<h3 id="安装chromedriver">安装chromedriver</h3>
+</code></pre></div></div>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[已经集成在电脑配件项目中 https://github.com/umas2022/pctools]]></summary></entry><entry><title type="html">crawler: selenium 物理外挂爬虫</title><link href="/crawler/selenium/" rel="alternate" type="text/html" title="crawler: selenium 物理外挂爬虫" /><published>2023-06-28T10:18:00+08:00</published><updated>2023-06-28T10:18:00+08:00</updated><id>/crawler/selenium</id><content type="html" xml:base="/crawler/selenium/"><![CDATA[<h3 id="安装chromedriver">安装chromedriver</h3>
 <ul>
   <li>https://chromedriver.chromium.org/downloads
     <ul>
@@ -877,7 +871,7 @@ F1 ~ F12：F1 - F12键
 <span class="n">img</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_img.png</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe" chrome = webdriver.Chrome(executable_path=chrome_driver)]]></summary></entry><entry><title type="html">crawler: request</title><link href="/crawler/request/" rel="alternate" type="text/html" title="crawler: request" /><published>2023-06-28T10:17:00+08:00</published><updated>2023-06-28T10:17:00+08:00</updated><id>/crawler/request</id><content type="html" xml:base="/crawler/request/"><![CDATA[<ul>
+</ul>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe" chrome = webdriver.Chrome(executable_path=chrome_driver)]]></summary></entry><entry><title type="html">crawler: request 简单爬虫</title><link href="/crawler/request/" rel="alternate" type="text/html" title="crawler: request 简单爬虫" /><published>2023-06-28T10:17:00+08:00</published><updated>2023-06-28T10:17:00+08:00</updated><id>/crawler/request</id><content type="html" xml:base="/crawler/request/"><![CDATA[<ul>
   <li>request基本例子</li>
 </ul>
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "cpp: hello_world"
+title:  "cpp: hello_world 基础语法"
 info: "cpp基础语法"
 date:   2023-06-27 11:00:00 +0800
 categories: cpp

@@ -1,7 +1,7 @@
 [
   
     {
-      "title"    : "backyard: duplicate_rm",
+      "title"    : "backyard: duplicate_rm 弔图主页后端图片去重",
       "category" : "",
       "tags"     : "",
       "url"      : "/backyard/duplicate_rm/",
@@ -9,7 +9,7 @@
     } ,
   
     {
-      "title"    : "backyard: hello_world",
+      "title"    : "backyard: hello_world github.io弔图主页",
       "category" : "",
       "tags"     : "",
       "url"      : "/backyard/hello_world/",
@@ -17,7 +17,7 @@
     } ,
   
     {
-      "title"    : "vue: watch",
+      "title"    : "vue: watch 监听函数",
       "category" : "",
       "tags"     : "",
       "url"      : "/vue/watch/",
@@ -25,7 +25,7 @@
     } ,
   
     {
-      "title"    : "windows: wsa",
+      "title"    : "windows: wsa 安卓子系统基本操作",
       "category" : "",
       "tags"     : "",
       "url"      : "/windows/wsa/",
@@ -33,7 +33,7 @@
     } ,
   
     {
-      "title"    : "jekyll: search",
+      "title"    : "jekyll: search 添加搜索功能",
       "category" : "",
       "tags"     : "",
       "url"      : "/jekyll/search/",
@@ -41,7 +41,7 @@
     } ,
   
     {
-      "title"    : "pctools: video_compress",
+      "title"    : "pctools: video_compress 电脑配件功能:视频压缩",
       "category" : "",
       "tags"     : "",
       "url"      : "/zip_pctools/windows/video_compress/",
@@ -49,7 +49,7 @@
     } ,
   
     {
-      "title"    : "pctools: hello_world",
+      "title"    : "pctools: hello_world 电脑配件项目创建",
       "category" : "",
       "tags"     : "",
       "url"      : "/zip_pctools/windows/hello_world/",
@@ -57,7 +57,7 @@
     } ,
   
     {
-      "title"    : "crawler: bookwalker",
+      "title"    : "crawler: bookwalker 漫画爬虫",
       "category" : "",
       "tags"     : "",
       "url"      : "/crawler/bookwalker/",
@@ -65,7 +65,7 @@
     } ,
   
     {
-      "title"    : "crawler: selenium",
+      "title"    : "crawler: selenium 物理外挂爬虫",
       "category" : "",
       "tags"     : "",
       "url"      : "/crawler/selenium/",
@@ -73,7 +73,7 @@
     } ,
   
     {
-      "title"    : "crawler: request",
+      "title"    : "crawler: request 简单爬虫",
       "category" : "",
       "tags"     : "",
       "url"      : "/crawler/request/",
@@ -81,7 +81,7 @@
     } ,
   
     {
-      "title"    : "windows: clash",
+      "title"    : "windows: clash 局域网加速",
       "category" : "",
       "tags"     : "",
       "url"      : "/windows/clash/",
@@ -89,7 +89,7 @@
     } ,
   
     {
-      "title"    : "windows: env_path",
+      "title"    : "windows: env_path 管理环境变量",
       "category" : "",
       "tags"     : "",
       "url"      : "/windows/env_path/",
@@ -97,7 +97,7 @@
     } ,
   
     {
-      "title"    : "windows: startup.vbs",
+      "title"    : "windows: startup.vbs 创建开机自启的vbs脚本",
       "category" : "",
       "tags"     : "",
       "url"      : "/windows/startup.vbs/",
@@ -105,15 +105,15 @@
     } ,
   
     {
-      "title"    : "vue: v-bind css",
+      "title"    : "vue: v-bind css 通过v-bind在style中使用变量",
       "category" : "",
       "tags"     : "",
-      "url"      : "/vue/v-bind_css/",
+      "url"      : "/vue/css/v-bind_css/",
       "date"     : "2023-06-28 10:07:00 +0800"
     } ,
   
     {
-      "title"    : "vue: store",
+      "title"    : "vue: store 管理全局变量",
       "category" : "",
       "tags"     : "",
       "url"      : "/vue/store/",
@@ -121,7 +121,7 @@
     } ,
   
     {
-      "title"    : "vue: npm",
+      "title"    : "vue: npm 包管理工具基本操作",
       "category" : "",
       "tags"     : "",
       "url"      : "/vue/npm/",
@@ -129,7 +129,7 @@
     } ,
   
     {
-      "title"    : "vue: hello_world",
+      "title"    : "vue: hello_world 点亮第一个站点",
       "category" : "",
       "tags"     : "",
       "url"      : "/vue/hello_world/",
@@ -137,7 +137,7 @@
     } ,
   
     {
-      "title"    : "ts: hello_world",
+      "title"    : "ts: hello_world TypeScript基本语法",
       "category" : "",
       "tags"     : "",
       "url"      : "/ts/hello_world/",
@@ -145,7 +145,7 @@
     } ,
   
     {
-      "title"    : "windows: vscode",
+      "title"    : "windows: vscode 基本操作",
       "category" : "",
       "tags"     : "",
       "url"      : "/windows/vscode/",
@@ -153,7 +153,7 @@
     } ,
   
     {
-      "title"    : "raspberry_pi: clash",
+      "title"    : "raspberry_pi: clash 树莓派clash代理",
       "category" : "",
       "tags"     : "",
       "url"      : "/raspberry_pi/clash/",
@@ -161,7 +161,7 @@
     } ,
   
     {
-      "title"    : "raspberry_pi: docker",
+      "title"    : "raspberry_pi: docker 树莓派安装docker",
       "category" : "",
       "tags"     : "",
       "url"      : "/raspberry_pi/docker/",
@@ -169,7 +169,7 @@
     } ,
   
     {
-      "title"    : "raspberry_pi: hello_world",
+      "title"    : "raspberry_pi: hello_world 点亮你的树莓派",
       "category" : "",
       "tags"     : "",
       "url"      : "/raspberry_pi/hello_world/",
@@ -177,7 +177,7 @@
     } ,
   
     {
-      "title"    : "python: virtualenv",
+      "title"    : "python: virtualenv 虚拟环境管理工具",
       "category" : "",
       "tags"     : "",
       "url"      : "/python/virtualenv/",
@@ -185,7 +185,7 @@
     } ,
   
     {
-      "title"    : "python: subprocess",
+      "title"    : "python: subprocess 多线程函数",
       "category" : "",
       "tags"     : "",
       "url"      : "/python/subprocess/",
@@ -193,7 +193,7 @@
     } ,
   
     {
-      "title"    : "python: pip",
+      "title"    : "python: pip 包管理器",
       "category" : "",
       "tags"     : "",
       "url"      : "/python/pip/",
@@ -201,7 +201,7 @@
     } ,
   
     {
-      "title"    : "pyqt: hello_world",
+      "title"    : "pyqt: hello_world 点亮第一个pyqt桌面应用",
       "category" : "",
       "tags"     : "",
       "url"      : "/pyqt/hello_world/",
@@ -209,7 +209,7 @@
     } ,
   
     {
-      "title"    : "nginx: hello_world",
+      "title"    : "nginx: hello_world 点亮nginx服务器",
       "category" : "",
       "tags"     : "",
       "url"      : "/nginx/hello_world/",
@@ -217,7 +217,7 @@
     } ,
   
     {
-      "title"    : "mysql: hello_world",
+      "title"    : "mysql: hello_world 基本操作",
       "category" : "",
       "tags"     : "",
       "url"      : "/mysql/hello_world/",
@@ -225,7 +225,7 @@
     } ,
   
     {
-      "title"    : "markdown: hello_world",
+      "title"    : "markdown: hello_world 常用的一些语法",
       "category" : "",
       "tags"     : "",
       "url"      : "/markdown/hello_world/",
@@ -233,7 +233,7 @@
     } ,
   
     {
-      "title"    : "linux: dos2unix",
+      "title"    : "linux: dos2unix ^M换行格式转换工具",
       "category" : "",
       "tags"     : "",
       "url"      : "/linux/dos2unix/",
@@ -241,7 +241,7 @@
     } ,
   
     {
-      "title"    : "linux: ip",
+      "title"    : "linux: ip, 网络管理命令,ifconfig完全上位替代",
       "category" : "",
       "tags"     : "",
       "url"      : "/linux/ip/",
@@ -249,7 +249,7 @@
     } ,
   
     {
-      "title"    : "linux: sed",
+      "title"    : "linux: sed 流式编辑器，主要用来修改文件",
       "category" : "",
       "tags"     : "",
       "url"      : "/linux/sed/",
@@ -257,7 +257,7 @@
     } ,
   
     {
-      "title"    : "linux: hello_world",
+      "title"    : "linux: hello_world ",
       "category" : "",
       "tags"     : "",
       "url"      : "/linux/hello_world/",
@@ -265,7 +265,7 @@
     } ,
   
     {
-      "title"    : "js: hello_world",
+      "title"    : "js: hello_world JavaScript基础语法",
       "category" : "",
       "tags"     : "",
       "url"      : "/js/hello_world/",
@@ -273,7 +273,7 @@
     } ,
   
     {
-      "title"    : "electron: fs",
+      "title"    : "electron: fs 读取和修改本地文件",
       "category" : "",
       "tags"     : "",
       "url"      : "/electron/fs/",
@@ -281,7 +281,7 @@
     } ,
   
     {
-      "title"    : "electron: abs_path",
+      "title"    : "electron: abs_path 绝对路径",
       "category" : "",
       "tags"     : "",
       "url"      : "/electron/abs_path/",
@@ -289,7 +289,7 @@
     } ,
   
     {
-      "title"    : "electron: hello_world",
+      "title"    : "electron: hello_world 从0开始搭建electron项目",
       "category" : "",
       "tags"     : "",
       "url"      : "/electron/hello_world/",
@@ -297,7 +297,7 @@
     } ,
   
     {
-      "title"    : "docker: hello_world",
+      "title"    : "docker: hello_world 基础操作",
       "category" : "",
       "tags"     : "",
       "url"      : "/docker/hello_world/",
@@ -305,7 +305,7 @@
     } ,
   
     {
-      "title"    : "django: mysql",
+      "title"    : "django: mysql 连接mysql数据库",
       "category" : "",
       "tags"     : "",
       "url"      : "/django/mysql/",
@@ -313,7 +313,7 @@
     } ,
   
     {
-      "title"    : "django: hello_world",
+      "title"    : "django: hello_world 创建一个django后端（包含websocket）",
       "category" : "",
       "tags"     : "",
       "url"      : "/django/hello_world/",
@@ -321,7 +321,7 @@
     } ,
   
     {
-      "title"    : "css: bookmark",
+      "title"    : "css: bookmark 好用的开源库收集",
       "category" : "",
       "tags"     : "",
       "url"      : "/css/bookmark/",
@@ -329,7 +329,7 @@
     } ,
   
     {
-      "title"    : "jekyll: toc",
+      "title"    : "jekyll: toc 创建目录（Table of Contents）",
       "category" : "",
       "tags"     : "",
       "url"      : "/jekyll/toc/",
@@ -337,7 +337,7 @@
     } ,
   
     {
-      "title"    : "jekyll: categories",
+      "title"    : "jekyll: categories 添加分类",
       "category" : "",
       "tags"     : "",
       "url"      : "/jekyll/categories/",
@@ -345,7 +345,7 @@
     } ,
   
     {
-      "title"    : "jekyll: hello_world",
+      "title"    : "jekyll: hello_world 从0开始搭建Jekyll个人博客",
       "category" : "",
       "tags"     : "",
       "url"      : "/jekyll/hello_world/",
@@ -353,7 +353,7 @@
     } ,
   
     {
-      "title"    : "css: hello_world",
+      "title"    : "css: hello_world 基础语法",
       "category" : "",
       "tags"     : "",
       "url"      : "/css/basic/",
@@ -361,7 +361,7 @@
     } ,
   
     {
-      "title"    : "cpp: hello_world",
+      "title"    : "cpp: hello_world 基础语法",
       "category" : "",
       "tags"     : "",
       "url"      : "/cpp/hello_world/",

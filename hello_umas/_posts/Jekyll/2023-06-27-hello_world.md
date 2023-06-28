@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "jekyll: hello_world"
-info: "从0开始搭建Jekyll个人博客"
+title:  "jekyll: hello_world 从0开始搭建Jekyll个人博客"
+info: "还挺简单的"
 categories: jekyll
 date:   2023-06-27 12:00:00 +0800
 toc: true

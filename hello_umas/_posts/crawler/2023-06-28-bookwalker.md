@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "crawler: bookwalker"
-info: "bookwalker简单爬虫"
+title:  "crawler: bookwalker 漫画爬虫"
+info: "能力有限，采用了屏幕截图的办法获取图片（实在获取不到src）"
 date:   2023-06-28 10:20:00 +0800
 categories: crawler
 toc: true

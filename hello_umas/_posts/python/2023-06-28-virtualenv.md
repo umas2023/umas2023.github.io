@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "python: virtualenv"
+title:  "python: virtualenv 虚拟环境管理工具"
 info: "python虚拟环境管理工具virtualenv"
 date:   2023-06-28 09:25:00 +0800
 categories: python

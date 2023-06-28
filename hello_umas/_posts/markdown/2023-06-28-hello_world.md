@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "markdown: hello_world"
+title:  "markdown: hello_world 常用的一些语法"
 info: "markdown基本操作"
 date:   2023-06-28 09:00:00 +0800
 categories: markdown

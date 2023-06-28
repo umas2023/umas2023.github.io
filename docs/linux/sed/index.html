@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>linux: sed | umas’ awesome title</title>
+<title>linux: sed 流式编辑器，主要用来修改文件 | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="linux: sed" />
+<meta property="og:title" content="linux: sed 流式编辑器，主要用来修改文件" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="规则：sed [option] ‘command’ input_file 参数： -n 使用安静silent模式。在一般sed的用法中，所有来自stdin的内容一般都会被列出到屏幕上。但如果加上-n参数后，则只有经过sed特殊处理的那一行(或者动作)才会被列出来； -e 直接在指令列模式上进行 sed 的动作编辑； -f 直接将 sed 的动作写在一个文件内， -f filename 则可以执行filename内的sed命令； -r 让sed命令支持扩展的正则表达式(默认是基础正则表达式)； -i 直接修改读取的文件内容，而不是由屏幕输出。 命令： a \：追加n行append， a \的后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选择的行的后面都加上字符串s； c \：取代/替换行change，c \后面跟上字符串s(多行字符串可以用\n分隔)，则会将当前选中的行替换成字符串s； i \：插入行insert，i \后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选中的行的前面都插入字符串s； d：删除行delete，该命令会将当前选中的行删除； p：打印print，该命令会打印当前选择的行到屏幕上； s：替换字符串subs，通常s命令的用法是这样的：1,2s/old/new/g，将old字符串替换成new字符串" />
 <meta property="og:description" content="规则：sed [option] ‘command’ input_file 参数： -n 使用安静silent模式。在一般sed的用法中，所有来自stdin的内容一般都会被列出到屏幕上。但如果加上-n参数后，则只有经过sed特殊处理的那一行(或者动作)才会被列出来； -e 直接在指令列模式上进行 sed 的动作编辑； -f 直接将 sed 的动作写在一个文件内， -f filename 则可以执行filename内的sed命令； -r 让sed命令支持扩展的正则表达式(默认是基础正则表达式)； -i 直接修改读取的文件内容，而不是由屏幕输出。 命令： a \：追加n行append， a \的后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选择的行的后面都加上字符串s； c \：取代/替换行change，c \后面跟上字符串s(多行字符串可以用\n分隔)，则会将当前选中的行替换成字符串s； i \：插入行insert，i \后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选中的行的前面都插入字符串s； d：删除行delete，该命令会将当前选中的行删除； p：打印print，该命令会打印当前选择的行到屏幕上； s：替换字符串subs，通常s命令的用法是这样的：1,2s/old/new/g，将old字符串替换成new字符串" />
@@ -15,9 +15,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-06-28T08:26:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="linux: sed" />
+<meta property="twitter:title" content="linux: sed 流式编辑器，主要用来修改文件" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T08:26:00+08:00","datePublished":"2023-06-28T08:26:00+08:00","description":"规则：sed [option] ‘command’ input_file 参数： -n 使用安静silent模式。在一般sed的用法中，所有来自stdin的内容一般都会被列出到屏幕上。但如果加上-n参数后，则只有经过sed特殊处理的那一行(或者动作)才会被列出来； -e 直接在指令列模式上进行 sed 的动作编辑； -f 直接将 sed 的动作写在一个文件内， -f filename 则可以执行filename内的sed命令； -r 让sed命令支持扩展的正则表达式(默认是基础正则表达式)； -i 直接修改读取的文件内容，而不是由屏幕输出。 命令： a \\：追加n行append， a \\的后面跟上字符串s(多行字符串可以用\\n分隔)，则会在当前选择的行的后面都加上字符串s； c \\：取代/替换行change，c \\后面跟上字符串s(多行字符串可以用\\n分隔)，则会将当前选中的行替换成字符串s； i \\：插入行insert，i \\后面跟上字符串s(多行字符串可以用\\n分隔)，则会在当前选中的行的前面都插入字符串s； d：删除行delete，该命令会将当前选中的行删除； p：打印print，该命令会打印当前选择的行到屏幕上； s：替换字符串subs，通常s命令的用法是这样的：1,2s/old/new/g，将old字符串替换成new字符串","headline":"linux: sed","mainEntityOfPage":{"@type":"WebPage","@id":"/linux/sed/"},"url":"/linux/sed/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T08:26:00+08:00","datePublished":"2023-06-28T08:26:00+08:00","description":"规则：sed [option] ‘command’ input_file 参数： -n 使用安静silent模式。在一般sed的用法中，所有来自stdin的内容一般都会被列出到屏幕上。但如果加上-n参数后，则只有经过sed特殊处理的那一行(或者动作)才会被列出来； -e 直接在指令列模式上进行 sed 的动作编辑； -f 直接将 sed 的动作写在一个文件内， -f filename 则可以执行filename内的sed命令； -r 让sed命令支持扩展的正则表达式(默认是基础正则表达式)； -i 直接修改读取的文件内容，而不是由屏幕输出。 命令： a \\：追加n行append， a \\的后面跟上字符串s(多行字符串可以用\\n分隔)，则会在当前选择的行的后面都加上字符串s； c \\：取代/替换行change，c \\后面跟上字符串s(多行字符串可以用\\n分隔)，则会将当前选中的行替换成字符串s； i \\：插入行insert，i \\后面跟上字符串s(多行字符串可以用\\n分隔)，则会在当前选中的行的前面都插入字符串s； d：删除行delete，该命令会将当前选中的行删除； p：打印print，该命令会打印当前选择的行到屏幕上； s：替换字符串subs，通常s命令的用法是这样的：1,2s/old/new/g，将old字符串替换成new字符串","headline":"linux: sed 流式编辑器，主要用来修改文件","mainEntityOfPage":{"@type":"WebPage","@id":"/linux/sed/"},"url":"/linux/sed/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -41,7 +41,7 @@
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">linux: sed</h1>
+    <h1 class="post-title">linux: sed 流式编辑器，主要用来修改文件</h1>
     <h3>linux命令：sed（流式编辑器，主要用来修改文件）</h3>
   </header>
 

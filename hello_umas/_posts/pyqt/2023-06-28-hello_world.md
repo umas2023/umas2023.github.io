@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "pyqt: hello_world"
+title:  "pyqt: hello_world 点亮第一个pyqt桌面应用"
 info: "pyqt基本操作"
 date:   2023-06-28 09:17:00 +0800
 categories: pyqt

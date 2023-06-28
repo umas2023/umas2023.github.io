@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "python: subprocess"
+title:  "python: subprocess 多线程函数"
 info: "python多线程函数subprocess"
 date:   2023-06-28 09:22:00 +0800
 categories: python

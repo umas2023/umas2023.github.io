@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "nginx: hello_world"
+title:  "nginx: hello_world 点亮nginx服务器"
 info: "nginx基本操作"
 date:   2023-06-28 09:15:00 +0800
 categories: nginx

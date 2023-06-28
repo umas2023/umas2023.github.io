@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "backyard: duplicate_rm"
-info: "弔图主页后端图片去重"
+title:  "backyard: duplicate_rm 弔图主页后端图片去重"
+info: "由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）"
 date:   2023-06-28 22:10:00 +0800
 categories: backyard
 toc: true
@@ -11,7 +11,6 @@ toc: true
 ## about
 - 项目脚本：
   - https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py
-- 由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）
 
 
 

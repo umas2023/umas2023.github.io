@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jekyll: categories"
+title:  "jekyll: categories 添加分类"
 info: "jekyll博客添加分类"
 date:   2023-06-27 13:00:00 +0800
 categories: jekyll

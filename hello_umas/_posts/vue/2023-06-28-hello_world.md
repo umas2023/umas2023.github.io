@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "vue: hello_world"
+title:  "vue: hello_world 点亮第一个站点"
 info: "vue基本操作"
 date:   2023-06-28 09:55:00 +0800
 categories: vue
