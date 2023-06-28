@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>pctools: hello_world | umas’ awesome title</title>
+<title>vue: watch | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="pctools: hello_world" />
+<meta property="og:title" content="vue: watch" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="因为时间久远已经无据可考了" />
-<meta property="og:description" content="因为时间久远已经无据可考了" />
-<link rel="canonical" href="/windows/hello_world/" />
-<meta property="og:url" content="/windows/hello_world/" />
+<meta name="description" content="深度监听，监听对象的属性 watch( getFlagCloud, () =&gt; { setSkeletonFlag(); }, { deep: true } );" />
+<meta property="og:description" content="深度监听，监听对象的属性 watch( getFlagCloud, () =&gt; { setSkeletonFlag(); }, { deep: true } );" />
+<link rel="canonical" href="/vue/watch/" />
+<meta property="og:url" content="/vue/watch/" />
 <meta property="og:site_name" content="umas’ awesome title" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-06-28T10:30:00+08:00" />
+<meta property="article:published_time" content="2023-06-28T14:23:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="pctools: hello_world" />
+<meta property="twitter:title" content="vue: watch" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T10:30:00+08:00","datePublished":"2023-06-28T10:30:00+08:00","description":"因为时间久远已经无据可考了","headline":"pctools: hello_world","mainEntityOfPage":{"@type":"WebPage","@id":"/windows/hello_world/"},"url":"/windows/hello_world/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T14:23:00+08:00","datePublished":"2023-06-28T14:23:00+08:00","description":"深度监听，监听对象的属性 watch( getFlagCloud, () =&gt; { setSkeletonFlag(); }, { deep: true } );","headline":"vue: watch","mainEntityOfPage":{"@type":"WebPage","@id":"/vue/watch/"},"url":"/vue/watch/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -41,20 +41,38 @@
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">pctools: hello_world</h1>
-    <h3>电脑配件项目创建</h3>
+    <h1 class="post-title">vue: watch</h1>
+    <h3>vue监听函数：watch</h3>
   </header>
 
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h1"><a href="#因为时间久远已经无据可考了">因为时间久远已经无据可考了</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h1 id="因为时间久远已经无据可考了">因为时间久远已经无据可考了</h1>
+    <ul>
+  <li>深度监听，监听对象的属性
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch(
+  getFlagCloud,
+  () =&gt; {
+  setSkeletonFlag();
+  },
+  { deep: true }
+);
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>如果监听对象是props.data，会报错：A watch source can only be a getter/effect function, a ref, a reactive object, or an array of these types. 
+  ○ 使用箭头函数：</p>
+
+    <p>watch(()=&gt;props.data, () =&gt; {
+      console.log(props.data)
+  }, { deep: true });</p>
+  </li>
+</ul>
 
 
   </div>

@@ -1,6 +1,38 @@
 [
   
     {
+      "title"    : "backyard: duplicate_rm",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/backyard/duplicate_rm/",
+      "date"     : "2023-06-28 22:10:00 +0800"
+    } ,
+  
+    {
+      "title"    : "backyard: hello_world",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/backyard/hello_world/",
+      "date"     : "2023-06-28 22:00:00 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: watch",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/watch/",
+      "date"     : "2023-06-28 14:23:00 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: wsa",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/wsa/",
+      "date"     : "2023-06-28 14:15:00 +0800"
+    } ,
+  
+    {
       "title"    : "jekyll: search",
       "category" : "",
       "tags"     : "",
@@ -12,7 +44,7 @@
       "title"    : "pctools: video_compress",
       "category" : "",
       "tags"     : "",
-      "url"      : "/windows/video_compress/",
+      "url"      : "/zip_pctools/windows/video_compress/",
       "date"     : "2023-06-28 10:32:00 +0800"
     } ,
   
@@ -20,7 +52,7 @@
       "title"    : "pctools: hello_world",
       "category" : "",
       "tags"     : "",
-      "url"      : "/windows/hello_world/",
+      "url"      : "/zip_pctools/windows/hello_world/",
       "date"     : "2023-06-28 10:30:00 +0800"
     } ,
   

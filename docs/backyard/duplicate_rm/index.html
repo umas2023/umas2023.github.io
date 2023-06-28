@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>backyard: duplicate_rm | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="backyard: duplicate_rm" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py 由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）" />
+<meta property="og:description" content="about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py 由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）" />
+<link rel="canonical" href="/backyard/duplicate_rm/" />
+<meta property="og:url" content="/backyard/duplicate_rm/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-28T22:10:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="backyard: duplicate_rm" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T22:10:00+08:00","datePublished":"2023-06-28T22:10:00+08:00","description":"about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py 由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）","headline":"backyard: duplicate_rm","mainEntityOfPage":{"@type":"WebPage","@id":"/backyard/duplicate_rm/"},"url":"/backyard/duplicate_rm/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">backyard: duplicate_rm</h1>
+    <h3>弔图主页后端图片去重</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#about">about</a></li>
+<li class="toc-entry toc-h2"><a href="#准备">准备</a></li>
+<li class="toc-entry toc-h2"><a href="#hash过滤">hash过滤</a></li>
+<li class="toc-entry toc-h2"><a href="#仅判断尺寸">仅判断尺寸</a></li>
+<li class="toc-entry toc-h2"><a href="#仅判断体积">仅判断体积</a></li>
+<li class="toc-entry toc-h2"><a href="#整合">整合</a></li>
+<li class="toc-entry toc-h2"><a href="#完整代码">完整代码</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="about">about</h2>
+<ul>
+  <li>项目脚本：
+    <ul>
+      <li>https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py</li>
+    </ul>
+  </li>
+  <li>由于华为云同步问题，许多图片被重复上传，目标是找出并删除这些内容完全一致的文件（文件名可能不同）</li>
+</ul>
+
+<h2 id="准备">准备</h2>
+
+<ul>
+  <li>图片遍历</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">所有层级文件遍历</span><span class="sh">'''</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fileName</span> <span class="o">==</span> <span class="sh">"</span><span class="s">.gitkeep</span><span class="sh">"</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">fileName</span><span class="p">))</span>
+            <span class="k">yield</span> <span class="n">full_path</span>
+</code></pre></div></div>
+
+<ul>
+  <li>结果保存json</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 写入结果
+</span><span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">sticker</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_sticker_list</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">image</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_image_list</span>
+    <span class="p">}</span>
+<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">result_json</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">js_str</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">duplicate_list</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">js_str</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="hash过滤">hash过滤</h2>
+
+<ul>
+  <li>过滤函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">寻找相同图片(哈希)</span><span class="sh">'''</span>
+    <span class="n">image_hashes</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">image_hash</span> <span class="o">=</span> <span class="n">imagehash</span><span class="p">.</span><span class="nf">average_hash</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : </span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">duplicate_list</span>
+</code></pre></div></div>
+
+<ul>
+  <li>加入计时函数对表情包测试效果：</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
+</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
+<span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
+<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
+<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>结果9.671s，共输出7组重复，人工检查输出结果发现没有哈希冲突（误判）</li>
+  <li>表情包和沙雕图一起检查，用时104.542s，人工检查发现沙雕图区输出的结果有大量的冲突</li>
+</ul>
+
+<h2 id="仅判断尺寸">仅判断尺寸</h2>
+
+<ul>
+  <li>过滤函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">寻找相同图片(尺寸)</span><span class="sh">'''</span>
+    <span class="n">image_dims</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
+        <span class="n">image_dim</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">width</span><span class="p">)</span><span class="o">+</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : </span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">duplicate_list</span>
+</code></pre></div></div>
+
+<ul>
+  <li>加入计时函数对表情包测试效果：</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
+</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
+<span class="c1"># duplicate_sticker_list = hash_filter(sticker_list)
+</span><span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
+<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
+<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>结果0.990s，虽然很快但和预想一样，尺寸相同但内容不同的图片很多，共输出了34组结果</li>
+  <li>可以作为预筛选</li>
+</ul>
+
+<h2 id="仅判断体积">仅判断体积</h2>
+
+<ul>
+  <li>过滤函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">size_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">寻找相同图片(大小)</span><span class="sh">'''</span>
+    <span class="n">image_size_list</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
+        <span class="n">img_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">]))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : </span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">duplicate_list</span>
+</code></pre></div></div>
+
+<ul>
+  <li>加入计时函数对表情包测试效果：</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
+</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
+<span class="c1"># duplicate_sticker_list = hash_filter(sticker_list)
+# duplicate_sticker_list = dim_filter(sticker_list)
+</span><span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="nf">size_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
+<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
+<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">duplicate_sticker_list</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>结果0.480s，意料之外的是仅输出了5组结果</li>
+  <li>和hash结果对比发现确实存在体积不同但内容和分辨率相同的图片，检查发现体积较小的图片的水平和垂直分辨率都是1dpi，这类重复可能不是由华为云的错误同步导致的。（可能是qq群收的图片被压缩？尚待验证）</li>
+</ul>
+
+<h2 id="整合">整合</h2>
+
+<ul>
+  <li>由于体积判断存在漏判，所以暂不选用</li>
+  <li>用尺寸判断作为哈希判断的预筛选，代码如下</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
+</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
+<span class="n">duplicate_list_dim</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
+<span class="n">duplicate_list_hash</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">list_dim</span> <span class="ow">in</span> <span class="n">duplicate_list_dim</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">duplicate_list_hash</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> 
+<span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="n">duplicate_list_hash</span>
+<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
+<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">duplicate_sticker_list</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>用时2.047s，结果和单hash一致输出了7组，没有误判</li>
+  <li>加入沙雕图一起筛选，用时23.988s，沙雕图输出了21组结果，检查发现推特@meetissai的截图全都被判断为相同了</li>
+  <li>
+    <p>把hash过滤中的均值哈希average_hash()改为感知哈希phash()，沙雕图输出18组结果，检查没有发现错误</p>
+  </li>
+  <li>PIL库中支持的其他hash函数
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>均值哈希（Average Hash）：average_hash()
+感知哈希（Perceptual Hash）：phash()
+差异哈希（Difference Hash）：dhash()
+块哈希（Block Hash）：block_mean_hash()
+渐变哈希（Gradient Hash）：gradient_hash()
+</code></pre></div>    </div>
+  </li>
+  <li>区别
+    <ul>
+      <li>
+        <p>均值哈希（Average Hash）：将图像缩小为固定大小，计算图像的平均灰度值，并将每个像素与平均值进行比较，生成二进制哈希值。适用于图像整体相似度的比较。</p>
+      </li>
+      <li>
+        <p>感知哈希（Perceptual Hash）：基于离散余弦变换（DCT）来提取图像的频率特征。通过计算图像的DCT变换系数，并根据变换系数的高低生成二进制哈希值。适用于在不同尺度和旋转下仍具有相似感知的图像比较。</p>
+      </li>
+      <li>
+        <p>差异哈希（Difference Hash）：计算图像相邻像素之间的差异，并根据差异生成二进制哈希值。适用于检测图像的微小变化或图像剪裁的比较。</p>
+      </li>
+      <li>
+        <p>块哈希（Block Hash）：将图像划分为多个块，计算每个块的平均灰度值，并将每个块的灰度与整体平均灰度进行比较，生成二进制哈希值。适用于在局部区域内比较图像相似度。</p>
+      </li>
+      <li>
+        <p>渐变哈希（Gradient Hash）：基于图像梯度的方向和强度来生成哈希值。通过计算图像的梯度信息，并根据梯度的方向和强度生成二进制哈希值。适用于检测图像的边缘和纹理的比较。</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="完整代码">完整代码</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">
+图片去重
+对比图片哈希, 只能找出像素完全相同的图片
+</span><span class="sh">'''</span>
+
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="n">imagehash</span>  <span class="c1"># pip install imagehash
+</span><span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="n">cv2</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">skimage.metrics</span>
+<span class="kn">import</span> <span class="n">skimage.measure</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="n">script_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+
+
+<span class="c1"># auto_rm = False
+</span><span class="n">result_json</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">output/duplicate.json</span><span class="sh">"</span><span class="p">))</span>
+<span class="n">sticker_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">storage/sticker</span><span class="sh">"</span><span class="p">))</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">storage/image</span><span class="sh">"</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">所有层级文件遍历</span><span class="sh">'''</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fileName</span> <span class="o">==</span> <span class="sh">"</span><span class="s">.gitkeep</span><span class="sh">"</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">fileName</span><span class="p">))</span>
+            <span class="k">yield</span> <span class="n">full_path</span>
+
+
+<span class="k">def</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">寻找相同图片(哈希)</span><span class="sh">'''</span>
+    <span class="n">image_hashes</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="c1"># image_hash = imagehash.average_hash(image)
+</span>        <span class="n">image_hash</span> <span class="o">=</span> <span class="n">imagehash</span><span class="p">.</span><span class="nf">phash</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : (hash)</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">duplicate_list</span>
+
+
+<span class="k">def</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">寻找相同图片(尺寸)</span><span class="sh">'''</span>
+    <span class="n">image_dims</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
+        <span class="n">image_dim</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate (dimension): </span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">duplicate_list</span>
+
+
+<span class="k">def</span> <span class="nf">size_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">寻找相同图片(大小)</span><span class="sh">'''</span>
+    <span class="sh">'''</span><span class="s">实际测试发现了一些分辨率和尺寸都相同但大小不同的图片，因此不采用这个方法</span><span class="sh">'''</span>
+    <span class="n">image_size_list</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
+        <span class="n">img_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">]))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate (size): </span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
+
+    <span class="k">return</span> <span class="n">duplicate_list</span>
+
+
+<span class="c1"># 表情包查重
+</span><span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
+<span class="n">duplicate_list_dim</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
+<span class="n">duplicate_list_hash</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">list_dim</span> <span class="ow">in</span> <span class="n">duplicate_list_dim</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">duplicate_list_hash</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="n">duplicate_list_hash</span>
+
+
+<span class="c1"># 图片查重
+</span><span class="n">image_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">image_path</span><span class="p">)]</span>
+<span class="n">duplicate_list_dim</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">image_list</span><span class="p">)</span>
+<span class="n">duplicate_list_hash</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">list_dim</span> <span class="ow">in</span> <span class="n">duplicate_list_dim</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">duplicate_list_hash</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">duplicate_image_list</span> <span class="o">=</span> <span class="n">duplicate_list_hash</span>
+
+
+<span class="c1"># 写入结果
+</span><span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">sticker</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_sticker_list</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">image</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_image_list</span>
+<span class="p">}</span>
+<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">result_json</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">js_str</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">duplicate_list</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">js_str</span><span class="p">)</span>
+
+
+<span class="n">del_list</span> <span class="o">=</span> <span class="n">duplicate_sticker_list</span> <span class="o">+</span> <span class="n">duplicate_image_list</span>
+
+<span class="n">wait_here</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="se">\n\n</span><span class="s">Find Find %d sets of duplicate images.</span><span class="se">\n\
+</span><span class="s">Press Enter to delete duplicate images. Press Ctrl+C to exit.</span><span class="se">\n\
+</span><span class="s">It is recommended to check </span><span class="sh">'</span><span class="s">./output/duplicate.json</span><span class="sh">'</span><span class="s"> before deleting ...</span><span class="sh">"</span> <span class="o">%</span><span class="nf">len</span><span class="p">(</span><span class="n">del_list</span><span class="p">))</span>
+
+
+
+<span class="k">for</span> <span class="n">dp_list</span> <span class="ow">in</span> <span class="n">del_list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">dp_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">delete: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">image</span><span class="p">)</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ layout: post
 title:  "pctools: video_compress"
 info: "电脑配件功能:视频压缩"
 date:   2023-06-28 10:32:00 +0800
-categories: windows
+categories: zip_pctools windows
 toc: true
 ---
 

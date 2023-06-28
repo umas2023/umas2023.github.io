@@ -16,11 +16,16 @@ jekyll build --source hello_umas --destination docs
 - raw代码
 {% raw %}{% endraw %}
 
-
+{% raw %}
+```
+```
+{% endraw %}
 
 ## 待办
 
 - 返回顶部按钮
+- 进categories的时候右上角search没了
+- categories没有按照字母顺序排序
 
 
 
