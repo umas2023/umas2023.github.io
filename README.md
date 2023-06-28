@@ -3,12 +3,12 @@
 
 
 ## 常用命令
-- 启动
+- 启动（hello_umas目录下）
 ```
 jekyll serve
 ```
 
-- 打包
+- 打包（hello_umas同级目录）
 ```
 jekyll build --source hello_umas --destination docs
 ```
