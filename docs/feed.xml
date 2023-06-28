@@ -1,4 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T00:28:24+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">backyard: duplicate_rm 弔图主页后端图片去重</title><link href="/backyard/duplicate_rm/" rel="alternate" type="text/html" title="backyard: duplicate_rm 弔图主页后端图片去重" /><published>2023-06-28T22:10:00+08:00</published><updated>2023-06-28T22:10:00+08:00</updated><id>/backyard/duplicate_rm</id><content type="html" xml:base="/backyard/duplicate_rm/"><![CDATA[<h2 id="about">about</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T01:28:12+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">tampermonkey: next_page 键盘下一页</title><link href="/tampermonkey/next_page/" rel="alternate" type="text/html" title="tampermonkey: next_page 键盘下一页" /><published>2023-06-29T00:50:00+08:00</published><updated>2023-06-29T00:50:00+08:00</updated><id>/tampermonkey/next_page</id><content type="html" xml:base="/tampermonkey/next_page/"><![CDATA[<ul>
+  <li>页面
+    <ul>
+      <li>https://www.101weiqi.cn/qday/2023/6/29/1/</li>
+    </ul>
+  </li>
+  <li>查看元素发现这个按钮的实现方法还挺出乎意料的，是一个a标签</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;span&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">href=</span><span class="s">"/qday/2023/6/29/2/"</span><span class="nt">&gt;</span>下一题<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/span&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>页面的url简单易懂，每日八题就是在日期后面拼接数字1~8，所以在油猴脚本里获取到当前页面url，拼接字符串就可以实现这个按钮的功能了</p>
+  </li>
+  <li>获取url
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var url = window.location.href
+</code></pre></div>    </div>
+  </li>
+  <li>获取末尾数字（字符串倒数第二项）
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var page_num = url.charAt(url.length - 2);
+</code></pre></div>    </div>
+  </li>
+  <li>按键监听</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">keydown</span><span class="dl">"</span><span class="p">,</span> <span class="nf">function </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+  <span class="kd">var</span> <span class="nx">page_num</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="c1">// 方向左键的键盘码是37</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">37</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">上一页</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// 方向右键的键盘码是39</span>
+  <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">39</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">下一页</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li>拼接新url：把url字符串的倒数第二位替换为新的页码
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//倒数第二个字符之前的子字符串</span>
+<span class="kd">var</span> <span class="nx">url_date</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">// 拼接新页码（最后的斜杠可以不加）</span>
+<span class="kd">var</span> <span class="nx">url_new</span> <span class="o">=</span> <span class="nx">url_date</span> <span class="o">+</span> <span class="nx">page_num</span>
+</code></pre></div>    </div>
+  </li>
+  <li>跳转到新链接
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">url_new</span>
+</code></pre></div>    </div>
+  </li>
+  <li>脚本的图标在这里</li>
+</ul>
+
+<p><img src="/image/tampermonkey/2023-6-29-next_page/image_1.jpg" alt="home" /></p>
+
+<ul>
+  <li>脚本完整代码</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         键盘下一题</span>
+<span class="c1">// @namespace    http://tampermonkey.net/</span>
+<span class="c1">// @version      0.1</span>
+<span class="c1">// @description  用键盘方向键来触发下一题按钮</span>
+<span class="c1">// @author       umas</span>
+<span class="c1">// @match        https://www.101weiqi.cn/qday/*</span>
+<span class="c1">// @icon         https://static2.101weiqi.com/static/images/apple_1442.png</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+
+<span class="nb">document</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">keydown</span><span class="dl">"</span><span class="p">,</span> <span class="nf">function </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+  <span class="kd">var</span> <span class="nx">page_num</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="c1">// 方向左键的键盘码是37</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">37</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">上一页</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// 方向右键的键盘码是39</span>
+  <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">39</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">下一页</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">page_num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">page_num</span> <span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="nx">page_num</span> <span class="o">==</span> <span class="mi">9</span><span class="p">){</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">url_date</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">url_new</span> <span class="o">=</span> <span class="nx">url_date</span> <span class="o">+</span> <span class="nx">page_num</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">url_new</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="tampermonkey" /><summary type="html"><![CDATA[页面 https://www.101weiqi.cn/qday/2023/6/29/1/]]></summary></entry><entry><title type="html">zip_backyard: duplicate_rm 弔图主页后端图片去重</title><link href="/zip_backyard/duplicate_rm/" rel="alternate" type="text/html" title="zip_backyard: duplicate_rm 弔图主页后端图片去重" /><published>2023-06-28T22:10:00+08:00</published><updated>2023-06-28T22:10:00+08:00</updated><id>/zip_backyard/duplicate_rm</id><content type="html" xml:base="/zip_backyard/duplicate_rm/"><![CDATA[<h2 id="about">about</h2>
 <ul>
   <li>项目脚本：
     <ul>
@@ -378,7 +479,7 @@
         <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">delete: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">image</span><span class="p">)</span>
         <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="backyard" /><summary type="html"><![CDATA[about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py]]></summary></entry><entry><title type="html">backyard: hello_world github.io弔图主页</title><link href="/backyard/hello_world/" rel="alternate" type="text/html" title="backyard: hello_world github.io弔图主页" /><published>2023-06-28T22:00:00+08:00</published><updated>2023-06-28T22:00:00+08:00</updated><id>/backyard/hello_world</id><content type="html" xml:base="/backyard/hello_world/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name></name></author><category term="zip_backyard" /><summary type="html"><![CDATA[about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py]]></summary></entry><entry><title type="html">zip_backyard: hello_world github.io弔图主页</title><link href="/zip_backyard/hello_world/" rel="alternate" type="text/html" title="zip_backyard: hello_world github.io弔图主页" /><published>2023-06-28T22:00:00+08:00</published><updated>2023-06-28T22:00:00+08:00</updated><id>/zip_backyard/hello_world</id><content type="html" xml:base="/zip_backyard/hello_world/"><![CDATA[<ul>
   <li>目前托管在github.io
     <ul>
       <li>https://umas2022.github.io/</li>
@@ -390,7 +491,7 @@
       <li>图床：https://github.com/umas2022/backyard_store</li>
     </ul>
   </li>
-</ul>]]></content><author><name></name></author><category term="backyard" /><summary type="html"><![CDATA[目前托管在github.io https://umas2022.github.io/]]></summary></entry><entry><title type="html">vue: watch 监听函数</title><link href="/vue/watch/" rel="alternate" type="text/html" title="vue: watch 监听函数" /><published>2023-06-28T14:23:00+08:00</published><updated>2023-06-28T14:23:00+08:00</updated><id>/vue/watch</id><content type="html" xml:base="/vue/watch/"><![CDATA[<ul>
+</ul>]]></content><author><name></name></author><category term="zip_backyard" /><summary type="html"><![CDATA[目前托管在github.io https://umas2022.github.io/]]></summary></entry><entry><title type="html">vue: watch 监听函数</title><link href="/vue/watch/" rel="alternate" type="text/html" title="vue: watch 监听函数" /><published>2023-06-28T14:23:00+08:00</published><updated>2023-06-28T14:23:00+08:00</updated><id>/vue/watch</id><content type="html" xml:base="/vue/watch/"><![CDATA[<ul>
   <li>深度监听，监听对象的属性
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch(
   getFlagCloud,
@@ -871,18 +972,4 @@ F1 ~ F12：F1 - F12键
 <span class="n">img</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_img.png</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe" chrome = webdriver.Chrome(executable_path=chrome_driver)]]></summary></entry><entry><title type="html">crawler: request 简单爬虫</title><link href="/crawler/request/" rel="alternate" type="text/html" title="crawler: request 简单爬虫" /><published>2023-06-28T10:17:00+08:00</published><updated>2023-06-28T10:17:00+08:00</updated><id>/crawler/request</id><content type="html" xml:base="/crawler/request/"><![CDATA[<ul>
-  <li>request基本例子</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://bookwalker.jp/de57a21d74-d918-47df-b22f-b3a9454e59df/</span><span class="sh">"</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">access failed, error code : %d</span><span class="sh">"</span> <span class="o">%</span> <span class="n">res</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
-    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">./save.html</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">save_file</span><span class="p">:</span>
-    <span class="n">save_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[request基本例子]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe" chrome = webdriver.Chrome(executable_path=chrome_driver)]]></summary></entry></feed>
