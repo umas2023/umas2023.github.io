@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "backyard: hello_world github.io弔图主页"
+title:  "zip_backyard: hello_world github.io弔图主页"
 info: "早期的开发记录已经找不到了"
 date:   2023-06-28 22:00:00 +0800
-categories: backyard
+categories: zip_backyard
 toc: true
 ---
 
