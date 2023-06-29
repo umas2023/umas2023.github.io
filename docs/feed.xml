@@ -1,4 +1,1145 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T01:28:12+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">tampermonkey: next_page 键盘下一页</title><link href="/tampermonkey/next_page/" rel="alternate" type="text/html" title="tampermonkey: next_page 键盘下一页" /><published>2023-06-29T00:50:00+08:00</published><updated>2023-06-29T00:50:00+08:00</updated><id>/tampermonkey/next_page</id><content type="html" xml:base="/tampermonkey/next_page/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T14:53:14+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">bash: rpi_status 树莓派状态监控脚本</title><link href="/bash/init_rpi_status/" rel="alternate" type="text/html" title="bash: rpi_status 树莓派状态监控脚本" /><published>2023-06-29T14:45:00+08:00</published><updated>2023-06-29T14:45:00+08:00</updated><id>/bash/init_rpi_status</id><content type="html" xml:base="/bash/init_rpi_status/"><![CDATA[<ul>
+  <li>简单介绍项目需求
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>sh脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="c"># ### - rpi_status.sh [显示树莓派状态：温度]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./show.sh```</span>
+
+
+<span class="k">while</span> <span class="o">[</span> <span class="nb">true</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+
+    <span class="c"># 输出时间</span>
+    <span class="nb">date</span>
+
+    <span class="c"># cpu温度</span>
+    <span class="nv">get_temp</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> /sys/class/thermal/thermal_zone0/temp<span class="sb">`</span>
+    <span class="nv">temprature</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">"scale=3; </span><span class="nv">$get_temp</span><span class="s2">/1000"</span> | bc<span class="sb">`</span>
+    <span class="nb">echo</span> <span class="s2">"temperature: </span><span class="nv">$temprature</span><span class="s2"> C"</span>
+
+    <span class="c"># 网络监控</span>
+    <span class="nb">cat</span> /proc/net/dev
+
+    <span class="c"># cpu占用</span>
+    
+
+    <span class="c"># 内存占用</span>
+
+
+    <span class="c"># 睡眠1秒，清屏</span>
+    /bin/sleep 1
+    clear
+<span class="k">done</span>
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_samba 一键部署samba局域网文件共享</title><link href="/bash/init_samba/" rel="alternate" type="text/html" title="bash: init_samba 一键部署samba局域网文件共享" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_samba</id><content type="html" xml:base="/bash/init_samba/"><![CDATA[<ul>
+  <li>简单介绍项目需求
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>sh脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="c"># ### - init_samba [samba局域网文件共享]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./setup.sh```</span>
+<span class="c"># - 参数修改</span>
+<span class="c">#     - 系统适配(ubuntu/raspbian)：/init_samba/setup.sh - 选择conf文件(line9)</span>
+<span class="c">#     - 共享文件夹参数：/init_samba/smb.conf - [public] (line243)</span>
+
+
+<span class="c"># 切换工作目录</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+
+
+<span class="nv">package</span><span class="o">=</span><span class="s2">"samba"</span>
+<span class="k">if  </span><span class="nb">type</span> <span class="nv">$package</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1<span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$package</span><span class="s2"> already installed"</span>
+<span class="k">else
+    </span>apt update
+    apt <span class="nb">install</span> <span class="nv">$package</span> <span class="nt">-y</span>
+<span class="k">fi
+
+
+</span><span class="nb">cp</span> /etc/samba/smb.conf /etc/samba/smb.conf.bk
+<span class="c"># cp smb_ubuntu.conf /etc/samba/smb.conf</span>
+<span class="nb">cp </span>smb_raspbian.conf /etc/samba/smb.conf
+<span class="nb">printf</span> <span class="s2">"umas1970</span><span class="se">\n</span><span class="s2">umas1970"</span> | smbpasswd <span class="nt">-a</span> root
+samba restart
+
+</code></pre></div></div>
+
+<ul>
+  <li>准备了两个版本的conf文件，分别用于树莓派和ubuntu系统，虽然内容很多但实际只有最后面[public]部分是smb的设置</li>
+  <li>smb_raspbian.conf</li>
+</ul>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#
+# Sample configuration file for the Samba suite for Debian GNU/Linux.
+#
+#
+# This is the main Samba configuration file. You should read the
+# smb.conf(5) manual page in order to understand the options listed
+# here. Samba has a huge number of configurable options most of which 
+# are not shown in this example
+#
+# Some options that are often worth tuning have been included as
+# commented-out examples in this file.
+#  - When such options are commented with ";", the proposed setting
+#    differs from the default Samba behaviour
+#  - When commented with "#", the proposed setting is the default
+#    behaviour of Samba but the option is considered important
+#    enough to be mentioned here
+#
+# NOTE: Whenever you modify this file you should run the command
+# "testparm" to check that you have not made any basic syntactic 
+# errors. 
+</span>
+<span class="c">#======================= Global Settings =======================
+</span>
+[<span class="n">global</span>]
+
+<span class="c">## Browsing/Identification ###
+</span>
+<span class="c"># Change this to the workgroup/NT-domain name your Samba server will part of
+</span>   <span class="n">workgroup</span> = <span class="n">WORKGROUP</span>
+
+<span class="c">#### Networking ####
+</span>
+<span class="c"># The specific set of interfaces / networks to bind to
+# This can be either the interface name or an IP address/netmask;
+# interface names are normally preferred
+</span>;   <span class="n">interfaces</span> = <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">0</span>/<span class="m">8</span> <span class="n">eth0</span>
+
+<span class="c"># Only bind to the named interfaces and/or networks; you must use the
+# 'interfaces' option above to use this.
+# It is recommended that you enable this feature if your Samba machine is
+# not protected by a firewall or is a firewall itself.  However, this
+# option cannot handle dynamic or non-broadcast interfaces correctly.
+</span>;   <span class="n">bind</span> <span class="n">interfaces</span> <span class="n">only</span> = <span class="n">yes</span>
+
+
+
+<span class="c">#### Debugging/Accounting ####
+</span>
+<span class="c"># This tells Samba to use a separate log file for each machine
+# that connects
+</span>   <span class="n">log</span> <span class="n">file</span> = /<span class="n">var</span>/<span class="n">log</span>/<span class="n">samba</span>/<span class="n">log</span>.%<span class="n">m</span>
+
+<span class="c"># Cap the size of the individual log files (in KiB).
+</span>   <span class="n">max</span> <span class="n">log</span> <span class="n">size</span> = <span class="m">1000</span>
+
+<span class="c"># We want Samba to only log to /var/log/samba/log.{smbd,nmbd}.
+# Append syslog@1 if you want important messages to be sent to syslog too.
+</span>   <span class="n">logging</span> = <span class="n">file</span>
+
+<span class="c"># Do something sensible when Samba crashes: mail the admin a backtrace
+</span>   <span class="n">panic</span> <span class="n">action</span> = /<span class="n">usr</span>/<span class="n">share</span>/<span class="n">samba</span>/<span class="n">panic</span>-<span class="n">action</span> %<span class="n">d</span>
+
+
+<span class="c">####### Authentication #######
+</span>
+<span class="c"># Server role. Defines in which mode Samba will operate. Possible
+# values are "standalone server", "member server", "classic primary
+# domain controller", "classic backup domain controller", "active
+# directory domain controller". 
+#
+# Most people will want "standalone server" or "member server".
+# Running as "active directory domain controller" will require first
+# running "samba-tool domain provision" to wipe databases and create a
+# new domain.
+</span>   <span class="n">server</span> <span class="n">role</span> = <span class="n">standalone</span> <span class="n">server</span>
+
+   <span class="n">obey</span> <span class="n">pam</span> <span class="n">restrictions</span> = <span class="n">yes</span>
+
+<span class="c"># This boolean parameter controls whether Samba attempts to sync the Unix
+# password with the SMB password when the encrypted SMB password in the
+# passdb is changed.
+</span>   <span class="n">unix</span> <span class="n">password</span> <span class="n">sync</span> = <span class="n">yes</span>
+
+<span class="c"># For Unix password sync to work on a Debian GNU/Linux system, the following
+# parameters must be set (thanks to Ian Kahan &lt;&lt;kahan@informatik.tu-muenchen.de&gt; for
+# sending the correct chat script for the passwd program in Debian Sarge).
+</span>   <span class="n">passwd</span> <span class="n">program</span> = /<span class="n">usr</span>/<span class="n">bin</span>/<span class="n">passwd</span> %<span class="n">u</span>
+   <span class="n">passwd</span> <span class="n">chat</span> = *<span class="n">Enter</span>\<span class="n">snew</span>\<span class="n">s</span>*\<span class="n">spassword</span>:* %<span class="n">n</span>\<span class="n">n</span> *<span class="n">Retype</span>\<span class="n">snew</span>\<span class="n">s</span>*\<span class="n">spassword</span>:* %<span class="n">n</span>\<span class="n">n</span> *<span class="n">password</span>\<span class="n">supdated</span>\<span class="n">ssuccessfully</span>* .
+
+<span class="c"># This boolean controls whether PAM will be used for password changes
+# when requested by an SMB client instead of the program listed in
+# 'passwd program'. The default is 'no'.
+</span>   <span class="n">pam</span> <span class="n">password</span> <span class="n">change</span> = <span class="n">yes</span>
+
+<span class="c"># This option controls how unsuccessful authentication attempts are mapped
+# to anonymous connections
+</span>   <span class="n">map</span> <span class="n">to</span> <span class="n">guest</span> = <span class="n">bad</span> <span class="n">user</span>
+
+<span class="c">########## Domains ###########
+</span>
+<span class="c">#
+# The following settings only takes effect if 'server role = classic
+# primary domain controller', 'server role = classic backup domain controller'
+# or 'domain logons' is set 
+#
+</span>
+<span class="c"># It specifies the location of the user's
+# profile directory from the client point of view) The following
+# required a [profiles] share to be setup on the samba server (see
+# below)
+</span>;   <span class="n">logon</span> <span class="n">path</span> = \\%<span class="n">N</span>\<span class="n">profiles</span>\%<span class="n">U</span>
+<span class="c"># Another common choice is storing the profile in the user's home directory
+# (this is Samba's default)
+#   logon path = \\%N\%U\profile
+</span>
+<span class="c"># The following setting only takes effect if 'domain logons' is set
+# It specifies the location of a user's home directory (from the client
+# point of view)
+</span>;   <span class="n">logon</span> <span class="n">drive</span> = <span class="n">H</span>:
+<span class="c">#   logon home = \\%N\%U
+</span>
+<span class="c"># The following setting only takes effect if 'domain logons' is set
+# It specifies the script to run during logon. The script must be stored
+# in the [netlogon] share
+# NOTE: Must be store in 'DOS' file format convention
+</span>;   <span class="n">logon</span> <span class="n">script</span> = <span class="n">logon</span>.<span class="n">cmd</span>
+
+<span class="c"># This allows Unix users to be created on the domain controller via the SAMR
+# RPC pipe.  The example command creates a user account with a disabled Unix
+# password; please adapt to your needs
+</span>; <span class="n">add</span> <span class="n">user</span> <span class="n">script</span> = /<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">adduser</span> --<span class="n">quiet</span> --<span class="n">disabled</span>-<span class="n">password</span> --<span class="n">gecos</span> <span class="s2">""</span> %<span class="n">u</span>
+
+<span class="c"># This allows machine accounts to be created on the domain controller via the 
+# SAMR RPC pipe.  
+# The following assumes a "machines" group exists on the system
+</span>; <span class="n">add</span> <span class="n">machine</span> <span class="n">script</span>  = /<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">useradd</span> -<span class="n">g</span> <span class="n">machines</span> -<span class="n">c</span> <span class="s2">"%u machine account"</span> -<span class="n">d</span> /<span class="n">var</span>/<span class="n">lib</span>/<span class="n">samba</span> -<span class="n">s</span> /<span class="n">bin</span>/<span class="n">false</span> %<span class="n">u</span>
+
+<span class="c"># This allows Unix groups to be created on the domain controller via the SAMR
+# RPC pipe.  
+</span>; <span class="n">add</span> <span class="n">group</span> <span class="n">script</span> = /<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">addgroup</span> --<span class="n">force</span>-<span class="n">badname</span> %<span class="n">g</span>
+
+<span class="c">############ Misc ############
+</span>
+<span class="c"># Using the following line enables you to customise your configuration
+# on a per machine basis. The %m gets replaced with the netbios name
+# of the machine that is connecting
+</span>;   <span class="n">include</span> = /<span class="n">home</span>/<span class="n">samba</span>/<span class="n">etc</span>/<span class="n">smb</span>.<span class="n">conf</span>.%<span class="n">m</span>
+
+<span class="c"># Some defaults for winbind (make sure you're not using the ranges
+# for something else.)
+</span>;   <span class="n">idmap</span> <span class="n">config</span> * :              <span class="n">backend</span> = <span class="n">tdb</span>
+;   <span class="n">idmap</span> <span class="n">config</span> * :              <span class="n">range</span>   = <span class="m">3000</span>-<span class="m">7999</span>
+;   <span class="n">idmap</span> <span class="n">config</span> <span class="n">YOURDOMAINHERE</span> : <span class="n">backend</span> = <span class="n">tdb</span>
+;   <span class="n">idmap</span> <span class="n">config</span> <span class="n">YOURDOMAINHERE</span> : <span class="n">range</span>   = <span class="m">100000</span>-<span class="m">999999</span>
+;   <span class="n">template</span> <span class="n">shell</span> = /<span class="n">bin</span>/<span class="n">bash</span>
+
+<span class="c"># Setup usershare options to enable non-root users to share folders
+# with the net usershare command.
+</span>
+<span class="c"># Maximum number of usershare. 0 means that usershare is disabled.
+#   usershare max shares = 100
+</span>
+<span class="c"># Allow users who've been granted usershare privileges to create
+# public shares, not just authenticated ones
+</span>   <span class="n">usershare</span> <span class="n">allow</span> <span class="n">guests</span> = <span class="n">yes</span>
+
+<span class="c">#======================= Share Definitions =======================
+</span>
+[<span class="n">homes</span>]
+   <span class="n">comment</span> = <span class="n">Home</span> <span class="n">Directories</span>
+   <span class="n">browseable</span> = <span class="n">no</span>
+
+<span class="c"># By default, the home directories are exported read-only. Change the
+# next parameter to 'no' if you want to be able to write to them.
+</span>   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+
+<span class="c"># File creation mask is set to 0700 for security reasons. If you want to
+# create files with group=rw permissions, set next parameter to 0775.
+</span>   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+<span class="c"># Directory creation mask is set to 0700 for security reasons. If you want to
+# create dirs. with group=rw permissions, set next parameter to 0775.
+</span>   <span class="n">directory</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+<span class="c"># By default, \\server\username shares can be connected to by anyone
+# with access to the samba server.
+# The following parameter makes sure that only "username" can connect
+# to \\server\username
+# This might need tweaking when using external authentication schemes
+</span>   <span class="n">valid</span> <span class="n">users</span> = %<span class="n">S</span>
+
+<span class="c"># Un-comment the following and create the netlogon directory for Domain Logons
+# (you need to configure Samba to act as a domain controller too.)
+</span>;[<span class="n">netlogon</span>]
+;   <span class="n">comment</span> = <span class="n">Network</span> <span class="n">Logon</span> <span class="n">Service</span>
+;   <span class="n">path</span> = /<span class="n">home</span>/<span class="n">samba</span>/<span class="n">netlogon</span>
+;   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">yes</span>
+;   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+
+<span class="c"># Un-comment the following and create the profiles directory to store
+# users profiles (see the "logon path" option above)
+# (you need to configure Samba to act as a domain controller too.)
+# The path below should be writable by all users so that their
+# profile directory may be created the first time they log on
+</span>;[<span class="n">profiles</span>]
+;   <span class="n">comment</span> = <span class="n">Users</span> <span class="n">profiles</span>
+;   <span class="n">path</span> = /<span class="n">home</span>/<span class="n">samba</span>/<span class="n">profiles</span>
+;   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>
+;   <span class="n">browseable</span> = <span class="n">no</span>
+;   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0600</span>
+;   <span class="n">directory</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+[<span class="n">printers</span>]
+   <span class="n">comment</span> = <span class="n">All</span> <span class="n">Printers</span>
+   <span class="n">browseable</span> = <span class="n">no</span>
+   <span class="n">path</span> = /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">samba</span>
+   <span class="n">printable</span> = <span class="n">yes</span>
+   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>
+   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+<span class="c"># Windows clients look for this share name as a source of downloadable
+# printer drivers
+</span>[<span class="n">print</span>$]
+   <span class="n">comment</span> = <span class="n">Printer</span> <span class="n">Drivers</span>
+   <span class="n">path</span> = /<span class="n">var</span>/<span class="n">lib</span>/<span class="n">samba</span>/<span class="n">printers</span>
+   <span class="n">browseable</span> = <span class="n">yes</span>
+   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>
+<span class="c"># Uncomment to allow remote administration of Windows print drivers.
+# You may need to replace 'lpadmin' with the name of the group your
+# admin users are members of.
+# Please note that you also need to set appropriate Unix permissions
+# to the drivers directory for these users to have write rights in it
+</span>;   <span class="n">write</span> <span class="n">list</span> = <span class="n">root</span>, @<span class="n">lpadmin</span>
+
+[<span class="n">public</span>]
+<span class="c"># boolean值参数注释写在后面会报错
+</span>   <span class="c"># 说明文本
+</span>   <span class="n">comment</span> = <span class="n">umasbox</span>       
+   <span class="c"># 共享路径
+</span>   <span class="n">path</span> = /<span class="n">root</span>/<span class="n">share</span>/     
+   <span class="c"># 有效用户
+</span>   <span class="n">valid</span> <span class="n">users</span> = <span class="n">root</span>      
+   <span class="c"># 只读
+</span>   <span class="n">read</span> <span class="n">only</span> = <span class="n">no</span>
+   <span class="c"># 创建文件的权限
+</span>   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0777</span>      
+   <span class="c"># 创建文件夹的权限
+</span>   <span class="n">directory</span> <span class="n">mask</span> = <span class="m">0777</span>   
+   <span class="c"># 允许访客 
+</span>   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>  
+   <span class="c"># 可见            
+</span>   <span class="n">browseable</span> = <span class="n">yes</span>        
+   
+</code></pre></div></div>
+
+<ul>
+  <li>smb_ubuntu.conf</li>
+</ul>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#
+# Sample configuration file for the Samba suite for Debian GNU/Linux.
+#
+#
+# This is the main Samba configuration file. You should read the
+# smb.conf(5) manual page in order to understand the options listed
+# here. Samba has a huge number of configurable options most of which 
+# are not shown in this example
+#
+# Some options that are often worth tuning have been included as
+# commented-out examples in this file.
+#  - When such options are commented with ";", the proposed setting
+#    differs from the default Samba behaviour
+#  - When commented with "#", the proposed setting is the default
+#    behaviour of Samba but the option is considered important
+#    enough to be mentioned here
+#
+# NOTE: Whenever you modify this file you should run the command
+# "testparm" to check that you have not made any basic syntactic 
+# errors. 
+</span>
+<span class="c">#======================= Global Settings =======================
+</span>
+[<span class="n">global</span>]
+
+<span class="c">## Browsing/Identification ###
+</span>
+<span class="c"># Change this to the workgroup/NT-domain name your Samba server will part of
+</span>   <span class="n">workgroup</span> = <span class="n">WORKGROUP</span>
+
+<span class="c"># server string is the equivalent of the NT Description field
+</span>   <span class="n">server</span> <span class="n">string</span> = %<span class="n">h</span> <span class="n">server</span> (<span class="n">Samba</span>, <span class="n">Ubuntu</span>)
+
+<span class="c">#### Networking ####
+</span>
+<span class="c"># The specific set of interfaces / networks to bind to
+# This can be either the interface name or an IP address/netmask;
+# interface names are normally preferred
+</span>;   <span class="n">interfaces</span> = <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">0</span>/<span class="m">8</span> <span class="n">eth0</span>
+
+<span class="c"># Only bind to the named interfaces and/or networks; you must use the
+# 'interfaces' option above to use this.
+# It is recommended that you enable this feature if your Samba machine is
+# not protected by a firewall or is a firewall itself.  However, this
+# option cannot handle dynamic or non-broadcast interfaces correctly.
+</span>;   <span class="n">bind</span> <span class="n">interfaces</span> <span class="n">only</span> = <span class="n">yes</span>
+
+
+
+<span class="c">#### Debugging/Accounting ####
+</span>
+<span class="c"># This tells Samba to use a separate log file for each machine
+# that connects
+</span>   <span class="n">log</span> <span class="n">file</span> = /<span class="n">var</span>/<span class="n">log</span>/<span class="n">samba</span>/<span class="n">log</span>.%<span class="n">m</span>
+
+<span class="c"># Cap the size of the individual log files (in KiB).
+</span>   <span class="n">max</span> <span class="n">log</span> <span class="n">size</span> = <span class="m">1000</span>
+
+<span class="c"># We want Samba to only log to /var/log/samba/log.{smbd,nmbd}.
+# Append syslog@1 if you want important messages to be sent to syslog too.
+</span>   <span class="n">logging</span> = <span class="n">file</span>
+
+<span class="c"># Do something sensible when Samba crashes: mail the admin a backtrace
+</span>   <span class="n">panic</span> <span class="n">action</span> = /<span class="n">usr</span>/<span class="n">share</span>/<span class="n">samba</span>/<span class="n">panic</span>-<span class="n">action</span> %<span class="n">d</span>
+
+
+<span class="c">####### Authentication #######
+</span>
+<span class="c"># Server role. Defines in which mode Samba will operate. Possible
+# values are "standalone server", "member server", "classic primary
+# domain controller", "classic backup domain controller", "active
+# directory domain controller". 
+#
+# Most people will want "standalone server" or "member server".
+# Running as "active directory domain controller" will require first
+# running "samba-tool domain provision" to wipe databases and create a
+# new domain.
+</span>   <span class="n">server</span> <span class="n">role</span> = <span class="n">standalone</span> <span class="n">server</span>
+
+   <span class="n">obey</span> <span class="n">pam</span> <span class="n">restrictions</span> = <span class="n">yes</span>
+
+<span class="c"># This boolean parameter controls whether Samba attempts to sync the Unix
+# password with the SMB password when the encrypted SMB password in the
+# passdb is changed.
+</span>   <span class="n">unix</span> <span class="n">password</span> <span class="n">sync</span> = <span class="n">yes</span>
+
+<span class="c"># For Unix password sync to work on a Debian GNU/Linux system, the following
+# parameters must be set (thanks to Ian Kahan &lt;&lt;kahan@informatik.tu-muenchen.de&gt; for
+# sending the correct chat script for the passwd program in Debian Sarge).
+</span>   <span class="n">passwd</span> <span class="n">program</span> = /<span class="n">usr</span>/<span class="n">bin</span>/<span class="n">passwd</span> %<span class="n">u</span>
+   <span class="n">passwd</span> <span class="n">chat</span> = *<span class="n">Enter</span>\<span class="n">snew</span>\<span class="n">s</span>*\<span class="n">spassword</span>:* %<span class="n">n</span>\<span class="n">n</span> *<span class="n">Retype</span>\<span class="n">snew</span>\<span class="n">s</span>*\<span class="n">spassword</span>:* %<span class="n">n</span>\<span class="n">n</span> *<span class="n">password</span>\<span class="n">supdated</span>\<span class="n">ssuccessfully</span>* .
+
+<span class="c"># This boolean controls whether PAM will be used for password changes
+# when requested by an SMB client instead of the program listed in
+# 'passwd program'. The default is 'no'.
+</span>   <span class="n">pam</span> <span class="n">password</span> <span class="n">change</span> = <span class="n">yes</span>
+
+<span class="c"># This option controls how unsuccessful authentication attempts are mapped
+# to anonymous connections
+</span>   <span class="n">map</span> <span class="n">to</span> <span class="n">guest</span> = <span class="n">bad</span> <span class="n">user</span>
+
+<span class="c">########## Domains ###########
+</span>
+<span class="c">#
+# The following settings only takes effect if 'server role = primary
+# classic domain controller', 'server role = backup domain controller'
+# or 'domain logons' is set 
+#
+</span>
+<span class="c"># It specifies the location of the user's
+# profile directory from the client point of view) The following
+# required a [profiles] share to be setup on the samba server (see
+# below)
+</span>;   <span class="n">logon</span> <span class="n">path</span> = \\%<span class="n">N</span>\<span class="n">profiles</span>\%<span class="n">U</span>
+<span class="c"># Another common choice is storing the profile in the user's home directory
+# (this is Samba's default)
+#   logon path = \\%N\%U\profile
+</span>
+<span class="c"># The following setting only takes effect if 'domain logons' is set
+# It specifies the location of a user's home directory (from the client
+# point of view)
+</span>;   <span class="n">logon</span> <span class="n">drive</span> = <span class="n">H</span>:
+<span class="c">#   logon home = \\%N\%U
+</span>
+<span class="c"># The following setting only takes effect if 'domain logons' is set
+# It specifies the script to run during logon. The script must be stored
+# in the [netlogon] share
+# NOTE: Must be store in 'DOS' file format convention
+</span>;   <span class="n">logon</span> <span class="n">script</span> = <span class="n">logon</span>.<span class="n">cmd</span>
+
+<span class="c"># This allows Unix users to be created on the domain controller via the SAMR
+# RPC pipe.  The example command creates a user account with a disabled Unix
+# password; please adapt to your needs
+</span>; <span class="n">add</span> <span class="n">user</span> <span class="n">script</span> = /<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">adduser</span> --<span class="n">quiet</span> --<span class="n">disabled</span>-<span class="n">password</span> --<span class="n">gecos</span> <span class="s2">""</span> %<span class="n">u</span>
+
+<span class="c"># This allows machine accounts to be created on the domain controller via the 
+# SAMR RPC pipe.  
+# The following assumes a "machines" group exists on the system
+</span>; <span class="n">add</span> <span class="n">machine</span> <span class="n">script</span>  = /<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">useradd</span> -<span class="n">g</span> <span class="n">machines</span> -<span class="n">c</span> <span class="s2">"%u machine account"</span> -<span class="n">d</span> /<span class="n">var</span>/<span class="n">lib</span>/<span class="n">samba</span> -<span class="n">s</span> /<span class="n">bin</span>/<span class="n">false</span> %<span class="n">u</span>
+
+<span class="c"># This allows Unix groups to be created on the domain controller via the SAMR
+# RPC pipe.  
+</span>; <span class="n">add</span> <span class="n">group</span> <span class="n">script</span> = /<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">addgroup</span> --<span class="n">force</span>-<span class="n">badname</span> %<span class="n">g</span>
+
+<span class="c">############ Misc ############
+</span>
+<span class="c"># Using the following line enables you to customise your configuration
+# on a per machine basis. The %m gets replaced with the netbios name
+# of the machine that is connecting
+</span>;   <span class="n">include</span> = /<span class="n">home</span>/<span class="n">samba</span>/<span class="n">etc</span>/<span class="n">smb</span>.<span class="n">conf</span>.%<span class="n">m</span>
+
+<span class="c"># Some defaults for winbind (make sure you're not using the ranges
+# for something else.)
+</span>;   <span class="n">idmap</span> <span class="n">config</span> * :              <span class="n">backend</span> = <span class="n">tdb</span>
+;   <span class="n">idmap</span> <span class="n">config</span> * :              <span class="n">range</span>   = <span class="m">3000</span>-<span class="m">7999</span>
+;   <span class="n">idmap</span> <span class="n">config</span> <span class="n">YOURDOMAINHERE</span> : <span class="n">backend</span> = <span class="n">tdb</span>
+;   <span class="n">idmap</span> <span class="n">config</span> <span class="n">YOURDOMAINHERE</span> : <span class="n">range</span>   = <span class="m">100000</span>-<span class="m">999999</span>
+;   <span class="n">template</span> <span class="n">shell</span> = /<span class="n">bin</span>/<span class="n">bash</span>
+
+<span class="c"># Setup usershare options to enable non-root users to share folders
+# with the net usershare command.
+</span>
+<span class="c"># Maximum number of usershare. 0 means that usershare is disabled.
+#   usershare max shares = 100
+</span>
+<span class="c"># Allow users who've been granted usershare privileges to create
+# public shares, not just authenticated ones
+</span>   <span class="n">usershare</span> <span class="n">allow</span> <span class="n">guests</span> = <span class="n">yes</span>
+
+<span class="c">#======================= Share Definitions =======================
+</span>
+<span class="c"># Un-comment the following (and tweak the other settings below to suit)
+# to enable the default home directory shares. This will share each
+# user's home directory as \\server\username
+</span>;[<span class="n">homes</span>]
+;   <span class="n">comment</span> = <span class="n">Home</span> <span class="n">Directories</span>
+;   <span class="n">browseable</span> = <span class="n">no</span>
+
+<span class="c"># By default, the home directories are exported read-only. Change the
+# next parameter to 'no' if you want to be able to write to them.
+</span>;   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+
+<span class="c"># File creation mask is set to 0700 for security reasons. If you want to
+# create files with group=rw permissions, set next parameter to 0775.
+</span>;   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+<span class="c"># Directory creation mask is set to 0700 for security reasons. If you want to
+# create dirs. with group=rw permissions, set next parameter to 0775.
+</span>;   <span class="n">directory</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+<span class="c"># By default, \\server\username shares can be connected to by anyone
+# with access to the samba server.
+# Un-comment the following parameter to make sure that only "username"
+# can connect to \\server\username
+# This might need tweaking when using external authentication schemes
+</span>;   <span class="n">valid</span> <span class="n">users</span> = %<span class="n">S</span>
+
+<span class="c"># Un-comment the following and create the netlogon directory for Domain Logons
+# (you need to configure Samba to act as a domain controller too.)
+</span>;[<span class="n">netlogon</span>]
+;   <span class="n">comment</span> = <span class="n">Network</span> <span class="n">Logon</span> <span class="n">Service</span>
+;   <span class="n">path</span> = /<span class="n">home</span>/<span class="n">samba</span>/<span class="n">netlogon</span>
+;   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">yes</span>
+;   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+
+<span class="c"># Un-comment the following and create the profiles directory to store
+# users profiles (see the "logon path" option above)
+# (you need to configure Samba to act as a domain controller too.)
+# The path below should be writable by all users so that their
+# profile directory may be created the first time they log on
+</span>;[<span class="n">profiles</span>]
+;   <span class="n">comment</span> = <span class="n">Users</span> <span class="n">profiles</span>
+;   <span class="n">path</span> = /<span class="n">home</span>/<span class="n">samba</span>/<span class="n">profiles</span>
+;   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>
+;   <span class="n">browseable</span> = <span class="n">no</span>
+;   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0600</span>
+;   <span class="n">directory</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+[<span class="n">printers</span>]
+   <span class="n">comment</span> = <span class="n">All</span> <span class="n">Printers</span>
+   <span class="n">browseable</span> = <span class="n">no</span>
+   <span class="n">path</span> = /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">samba</span>
+   <span class="n">printable</span> = <span class="n">yes</span>
+   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>
+   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0700</span>
+
+<span class="c"># Windows clients look for this share name as a source of downloadable
+# printer drivers
+</span>[<span class="n">print</span>$]
+   <span class="n">comment</span> = <span class="n">Printer</span> <span class="n">Drivers</span>
+   <span class="n">path</span> = /<span class="n">var</span>/<span class="n">lib</span>/<span class="n">samba</span>/<span class="n">printers</span>
+   <span class="n">browseable</span> = <span class="n">yes</span>
+   <span class="n">read</span> <span class="n">only</span> = <span class="n">yes</span>
+   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>
+<span class="c"># Uncomment to allow remote administration of Windows print drivers.
+# You may need to replace 'lpadmin' with the name of the group your
+# admin users are members of.
+# Please note that you also need to set appropriate Unix permissions
+# to the drivers directory for these users to have write rights in it
+</span>;   <span class="n">write</span> <span class="n">list</span> = <span class="n">root</span>, @<span class="n">lpadmin</span>
+
+[<span class="n">public</span>]
+   <span class="c"># 说明文本
+</span>   <span class="n">comment</span> = <span class="n">umasbox</span>       
+   <span class="c"># 共享路径
+</span>   <span class="n">path</span> = /<span class="n">root</span>/<span class="n">share</span>/     
+   <span class="c"># 有效用户
+</span>   <span class="n">valid</span> <span class="n">users</span> = <span class="n">root</span>      
+   <span class="c"># 只读
+</span>   <span class="n">read</span> <span class="n">only</span> = <span class="n">no</span>
+   <span class="c"># 创建文件的权限
+</span>   <span class="n">create</span> <span class="n">mask</span> = <span class="m">0777</span>      
+   <span class="c"># 创建文件夹的权限
+</span>   <span class="n">directory</span> <span class="n">mask</span> = <span class="m">0777</span>   
+   <span class="c"># 允许访客 
+</span>   <span class="n">guest</span> <span class="n">ok</span> = <span class="n">no</span>  
+   <span class="c"># 可见            
+</span>   <span class="n">browseable</span> = <span class="n">yes</span>  
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_ssh 一键部署linux主机的ssh环境</title><link href="/bash/init_ssh/" rel="alternate" type="text/html" title="bash: init_ssh 一键部署linux主机的ssh环境" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_ssh</id><content type="html" xml:base="/bash/init_ssh/"><![CDATA[<ul>
+  <li>简单介绍项目需求
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>sh脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+
+<span class="c"># ### - init_ssh [ssh登录和gitee公钥设置]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./setup.sh```</span>
+<span class="c"># - 参数修改</span>
+<span class="c">#     - 启动命令及端口</span>
+
+
+<span class="c"># 参数：端口</span>
+<span class="nv">port</span><span class="o">=</span>64822
+
+
+<span class="c"># 参数：启动命令</span>
+<span class="nv">ssh_cmd</span><span class="o">=</span><span class="s2">"service ssh start"</span>      <span class="c"># common ssh, 大多数环境适用</span>
+<span class="c"># ssh_cmd="/sbin/sshd -p $port"    # termux ssh, 目前已知wsl环境不可用</span>
+
+
+<span class="c"># 确认启动命令</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh command select: </span><span class="nv">$ssh_cmd</span><span class="se">\n</span><span class="s2">port: </span><span class="nv">$port</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
+
+<span class="c"># 切换工作目录</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+
+apt update 
+apt <span class="nb">install </span>ssh
+
+<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">touch</span> ~/.user_profile
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
+<span class="k">fi
+if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
+<span class="k">fi</span>
+
+<span class="c"># ssh 连接配置</span>
+<span class="c"># /etc/ssh/sshd_config允许root登录</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== ssh config ========== </span><span class="se">\n</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"root:umas1970"</span> | chpasswd 
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PermitRootLogin"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PermitRootLogin*/cPermitRootLogin yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi
+if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PasswordAuthentication"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PasswordAuthentication*/cPasswordAuthentication yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+<span class="c"># 修改默认端口64822</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^Port"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^Port*/Port </span><span class="nv">$port</span><span class="s2">"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"Port </span><span class="nv">$port</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+
+
+<span class="c"># 加入.user_profile启动项</span>
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.user_profile | <span class="nb">grep</span> <span class="s2">"user profile: ssh"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"# user profile: ssh"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"echo ' * ssh: </span><span class="nv">$ssh_cmd</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ssh_cmd</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"ip addr show | grep 192"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+<span class="k">fi</span>
+
+<span class="c"># 要求windows公钥</span>
+<span class="nb">yes</span> | ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-P</span> <span class="s2">""</span> <span class="nt">-f</span> ~/.ssh/id_rsa
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"create ssh public key in windows :</span><span class="se">\n\n\t</span><span class="s2">ssh-keygen -t rsa -b 4096</span><span class="se">\n\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+then copy C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\u</span><span class="s2">mas2017</span><span class="se">\.</span><span class="s2">ssh</span><span class="se">\i</span><span class="s2">d_rsa.pub here:</span><span class="se">\n</span><span class="s2">id_rsa.pub (press enter to skip): "</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$input</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
+    if</span> <span class="o">[</span> <span class="nt">-f</span> ~/.ssh/authorized_keys <span class="o">]</span><span class="p">;</span><span class="k">then
+        if </span><span class="nb">cat</span> ~/.ssh/authorized_keys | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$input</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+            </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">公钥已存在</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="k">fi
+    else 
+        </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys 
+    <span class="k">fi
+fi</span>
+
+<span class="c"># load一次bashrc作为启动</span>
+<span class="nb">source</span> ~/.bashrc
+
+
+
+<span class="c"># gitee 公钥设置</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== gitee config ========== </span><span class="se">\n</span><span class="s2">"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"1970313791@qq.com"</span>
+git config <span class="nt">--global</span> user.name <span class="s2">"umas"</span>
+<span class="nb">printf</span> <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2">"</span> | ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"1970313791@qq.com"</span> 
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+<span class="nb">cat</span> ~/.ssh/id_ed25519.pub
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">ssh public key above, fill in gitee:</span><span class="se">\n\n\t</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+https://gitee.com/profile/sshkeys</span><span class="se">\n\n</span><span class="s2">press enter to continue"</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+ssh <span class="nt">-T</span> git@gitee.com
+
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">process finish, The following command can change http-git to ssh-git</span><span class="se">\n\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git remote rm origin</span><span class="se">\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git remote add origin git@gitee.com:umas/umasbox.git</span><span class="se">\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git push --set-upstream origin master</span><span class="se">\n\n</span><span class="s2">"</span>
+
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh setup finish</span><span class="se">\n</span><span class="s2">"</span>
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_node 一键部署nodejs+vue开发环境在ubuntu主机上</title><link href="/bash/init_node/" rel="alternate" type="text/html" title="bash: init_node 一键部署nodejs+vue开发环境在ubuntu主机上" /><published>2023-06-29T14:25:00+08:00</published><updated>2023-06-29T14:25:00+08:00</updated><id>/bash/init_node</id><content type="html" xml:base="/bash/init_node/"><![CDATA[<ul>
+  <li>简单介绍项目需求
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>sh脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="c"># ### - init_node [node.js+vue前端开发环境配置]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./setup.sh```</span>
+<span class="c"># - 参数修改</span>
+<span class="c">#     - 前端目录：/init_node/setup.sh - project_path (line4)</span>
+
+
+<span class="c"># 参数：前端项目路径</span>
+<span class="nv">project_path</span><span class="o">=</span><span class="s2">"/root/onebox/server_frontend"</span>
+<span class="c">#project_path="/root/onebox/intf_electron_vue/intf_electron"</span>
+
+<span class="c"># 切换工作目录</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+
+<span class="c"># 确认路径</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">frontend project path: </span><span class="nv">$project_path</span><span class="se">\n</span><span class="s2">press enter to continue ..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
+<span class="c"># nvm需要安装git</span>
+apt update
+apt <span class="nb">install </span>git
+
+<span class="c"># 安装nvm并用国内源安装nodejs，使用gitee，该三方源稳定性不能保证</span>
+<span class="nb">cd</span> ~
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">========== node: install node ==========</span><span class="se">\n</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/root/.nvm"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[[</span> <span class="sb">`</span><span class="nb">ls</span> <span class="nt">-A</span> /root/.nvm<span class="sb">`</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"nvm already exist"</span>
+<span class="k">else
+    </span>git clone https://gitee.com/Annlix/nvm-sh_nvm.git
+    bash ./nvm-sh_nvm/install.sh
+    <span class="nb">export </span><span class="nv">NVM_NODEJS_ORG_MIRROR</span><span class="o">=</span>https://npm.taobao.org/mirrors/node
+    <span class="nb">source</span> ~/.bashrc
+<span class="k">fi
+</span><span class="nb">source</span> ~/.nvm/nvm.sh
+nvm <span class="nb">install </span>16.14.0
+<span class="nb">source</span> ~/.bashrc
+
+
+<span class="c"># 进入项目目录安装node modules</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">========== node: install modules ==========</span><span class="se">\n</span><span class="s2">"</span>
+npm <span class="nb">install</span> <span class="nt">-g</span> nrm
+nrm use taobao
+<span class="nb">cd</span> <span class="nv">$project_path</span>
+npm i
+
+
+<span class="c"># 以防万一打包一遍</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">========== node: run build ==========</span><span class="se">\n</span><span class="s2">"</span>
+npm run build
+
+
+
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_nginx 一键部署nginx在ubuntu主机上</title><link href="/bash/init_nginx/" rel="alternate" type="text/html" title="bash: init_nginx 一键部署nginx在ubuntu主机上" /><published>2023-06-29T14:15:00+08:00</published><updated>2023-06-29T14:15:00+08:00</updated><id>/bash/init_nginx</id><content type="html" xml:base="/bash/init_nginx/"><![CDATA[<ul>
+  <li>简单介绍nginx
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>sh脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+
+<span class="c"># ### - init_nginx [nginx静态页面服务器]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./setup.sh```</span>
+<span class="c"># - 参数修改</span>
+<span class="c">#     - index.html文件位置：init_nginx/frontend.conf - server.root (line 12)</span>
+<span class="c">#     - 登录用户名：init_nginx.nginx.conf - user (line 1)</span>
+<span class="c"># - 注意</span>
+<span class="c">#     - 默认端口8080</span>
+
+
+<span class="c"># 切换工作目录</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+
+<span class="c"># 参数：端口</span>
+<span class="nv">port</span><span class="o">=</span>4080
+<span class="c"># 参数：dist文件路径</span>
+<span class="c"># dist_path="/root/umasbox/frontend/dist"</span>
+<span class="nv">dist_path</span><span class="o">=</span><span class="s2">"/mnt/d/s-linux/project/onebox/server_frontend/dist"</span>
+
+<span class="c"># 确认参数</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">nginx port: </span><span class="nv">$port</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"dist path: </span><span class="nv">$dist_path</span><span class="se">\n\n</span><span class="s2">press enter to continue..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
+<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">touch</span> ~/.user_profile
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
+<span class="k">fi
+if</span> <span class="o">!(</span> <span class="nb">cat</span> ~/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
+<span class="k">fi</span>
+
+<span class="c"># 参数写入conf</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'./frontend.conf'</span> | <span class="nb">grep</span> <span class="s2">"listen"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/listen*/c</span><span class="se">\ \t</span><span class="s2">listen </span><span class="nv">$port</span><span class="s2">;"</span> ./frontend.conf
+<span class="k">fi
+if </span><span class="nb">cat</span> <span class="s1">'./frontend.conf'</span> | <span class="nb">grep</span> <span class="s2">"root"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/root*/c</span><span class="se">\ \t</span><span class="s2">root </span><span class="nv">$dist_path</span><span class="s2">;"</span> ./frontend.conf
+<span class="k">fi
+
+</span>apt update
+apt <span class="nb">install </span>nginx <span class="nt">-y</span>
+
+<span class="nb">cp </span>frontend.conf /etc/nginx/conf.d/frontend.conf
+<span class="nb">cp </span>nginx.conf /etc/nginx/nginx.conf
+
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> <span class="s1">'~/.user_profile'</span> | <span class="nb">grep</span> <span class="s2">"^service nginx start"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"# user profile: nginx"</span> <span class="o">&gt;&gt;</span> ~/.user_profile
+    <span class="nb">echo</span> <span class="s2">"echo ' * nginx port </span><span class="nv">$port</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> ~/.user_profile
+    <span class="nb">echo</span> <span class="s2">"service nginx start"</span> <span class="o">&gt;&gt;</span> ~/.user_profile
+<span class="k">fi
+
+</span>service nginx stop
+nginx <span class="nt">-c</span> /etc/nginx/nginx.conf
+nginx <span class="nt">-s</span> reload
+
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">nginx setup finish</span><span class="se">\n</span><span class="s2">"</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>考虑到版本区别，没有直接用脚本修改conf文件，而是用现有的conf文件直接覆盖</li>
+  <li>nginx.conf</li>
+</ul>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span>  <span class="n">root</span>;
+<span class="n">worker_processes</span>  <span class="n">auto</span>;
+
+<span class="n">error_log</span>  /<span class="n">var</span>/<span class="n">log</span>/<span class="n">nginx</span>/<span class="n">error</span>.<span class="n">log</span> <span class="n">notice</span>;
+<span class="n">pid</span>        /<span class="n">var</span>/<span class="n">run</span>/<span class="n">nginx</span>.<span class="n">pid</span>;
+
+
+<span class="n">events</span> {
+    <span class="n">worker_connections</span>  <span class="m">1024</span>;
+}
+
+
+<span class="n">http</span> {
+    <span class="n">include</span>       /<span class="n">etc</span>/<span class="n">nginx</span>/<span class="n">mime</span>.<span class="n">types</span>;
+    <span class="n">default_type</span>  <span class="n">application</span>/<span class="n">octet</span>-<span class="n">stream</span>;
+
+    <span class="n">log_format</span>  <span class="n">main</span>  <span class="s1">'$remote_addr - $remote_user [$time_local] "$request" '</span>
+                      <span class="s1">'$status $body_bytes_sent "$http_referer" '</span>
+                      <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span>;
+
+    <span class="n">access_log</span>  /<span class="n">var</span>/<span class="n">log</span>/<span class="n">nginx</span>/<span class="n">access</span>.<span class="n">log</span>  <span class="n">main</span>;
+
+    <span class="n">sendfile</span>        <span class="n">on</span>;
+    <span class="c">#tcp_nopush     on;
+</span>
+    <span class="n">keepalive_timeout</span>  <span class="m">65</span>;
+
+    <span class="c">#gzip  on;
+</span>
+    <span class="n">include</span> /<span class="n">etc</span>/<span class="n">nginx</span>/<span class="n">conf</span>.<span class="n">d</span>/*.<span class="n">conf</span>;
+}
+</code></pre></div></div>
+
+<ul>
+  <li>frontend.conf</li>
+</ul>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># # 负载均衡（以后再研究）
+# upstream test {
+#     server localhost:8080;
+#     server localhost:8081;
+#     ip_hash; # 同一ip请求定向到同一后端
+# }
+</span>
+<span class="c"># 静态网页
+</span><span class="n">server</span> {
+    <span class="n">listen</span> <span class="m">4080</span>;
+    <span class="n">server_name</span> <span class="n">box_server</span>; <span class="c"># 这个名字不知道干啥用的
+</span>    <span class="n">root</span> /<span class="n">mnt</span>/<span class="n">d</span>/<span class="n">s</span>-<span class="n">linux</span>/<span class="n">project</span>/<span class="n">onebox</span>/<span class="n">server_frontend</span>/<span class="n">dist</span>;
+    <span class="n">index</span> <span class="n">index</span>.<span class="n">html</span>;
+
+    
+    <span class="c"># 跨域转发
+</span>    
+    <span class="c"># location ~ /cloudapi/ {
+</span>    <span class="c">#     # proxy_pass http://47.100.209.58:18080/api/; # 没加api也能访问成功？
+</span>    <span class="c">#     proxy_pass http://47.100.209.58:18080;
+</span>    <span class="c"># }
+</span>
+    <span class="n">location</span> /<span class="n">cloudapi</span>/ {
+        <span class="n">proxy_pass</span> <span class="n">http</span>://<span class="m">47</span>.<span class="m">100</span>.<span class="m">209</span>.<span class="m">58</span>:<span class="m">18080</span>/<span class="n">api</span>/;
+    }
+    <span class="n">location</span> /<span class="n">isesol</span>/ {
+        <span class="n">proxy_pass</span> <span class="n">http</span>://<span class="n">idis</span>.<span class="n">isesol</span>.<span class="n">com</span>/;
+    }
+}
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍nginx 略]]></summary></entry><entry><title type="html">bash: init_codeserver 一键部署codeserver在ubuntu主机上</title><link href="/bash/init_codeserver/" rel="alternate" type="text/html" title="bash: init_codeserver 一键部署codeserver在ubuntu主机上" /><published>2023-06-29T14:10:00+08:00</published><updated>2023-06-29T14:10:00+08:00</updated><id>/bash/init_codeserver</id><content type="html" xml:base="/bash/init_codeserver/"><![CDATA[<ul>
+  <li>简单介绍codeserver
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="c"># ### - init_codeserver [code_server网页版vscode服务器]</span>
+<span class="c"># - 脚本调用</span>
+<span class="c"># ```setup.sh```</span>
+<span class="c"># - 参数修改</span>
+<span class="c">#     - 登录密码：/init_codeserver/setup.sh - sed (line27)</span>
+<span class="c">#     - 默认端口：/init_codeserver/setup.sh - sed (line28)</span>
+<span class="c">#     - 安装版本：/init_codeserver/setup.sh - version (line6)</span>
+<span class="c"># - 注意</span>
+<span class="c">#     - curl直接从github下载，可能无法访问</span>
+<span class="c">#     - 默认下载amd64版本，在脚本中按需修改</span>
+<span class="c">#     - 默认使用端口8081</span>
+<span class="c">#     - code-server不能在vscode中启动，报错error Please specify at least one file or folder</span>
+
+<span class="c"># # github官方仓库</span>
+<span class="c"># https://github.com/coder/code-server/releases</span>
+
+
+<span class="nv">version</span><span class="o">=</span><span class="s2">"4.6.0"</span> <span class="c"># 2022.8.21</span>
+<span class="nv">package</span><span class="o">=</span><span class="s2">"code-server-</span><span class="nv">$version</span><span class="s2">-amd64.rpm"</span> <span class="c"># for wsl</span>
+<span class="c"># package="code-server-$version-arm64.rpm" # for android termux / linux</span>
+<span class="c"># package="code-server-$version-armhfp.rpm" # for raspberry pi (?)</span>
+<span class="nv">port</span><span class="o">=</span>8081
+<span class="nv">user</span><span class="o">=</span><span class="s2">"root"</span>
+
+<span class="c"># 确认参数</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">package select: </span><span class="nv">$package</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"user: </span><span class="nv">$user</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"port : </span><span class="nv">$port</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
+
+
+<span class="c"># 检查是否已经安装</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/</span><span class="nv">$user</span><span class="s2">/.config/code-server"</span> <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"code-server already installed"</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">touch</span> ~/.user_profile
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
+<span class="k">fi
+if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
+<span class="k">fi</span>
+
+<span class="c"># 下载rpm包并安装</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> <span class="nv">$package</span> <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span>curl <span class="nt">-OL</span> https://github.com/coder/code-server/releases/download/v<span class="nv">$version</span>/<span class="nv">$package</span>
+<span class="k">fi
+</span>rpm <span class="nt">-ivh</span> <span class="nv">$package</span>
+<span class="nb">rm</span> <span class="nv">$package</span>
+
+<span class="c"># 首次运行生成config文件</span>
+code-server <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">sleep 5s, waiting for the end of the first operation ...</span><span class="se">\n\n</span><span class="s2">"</span>
+<span class="nb">sleep </span>5
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">maybe done</span><span class="se">\n</span><span class="s2">"</span>
+<span class="c"># 配置密码和端口，0.0.0.0代表本机所有ip地址</span>
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^password:*/cpassword: umas1970"</span> ~/.config/code-server/config.yaml
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^bind-addr:*/cbind-addr: 0.0.0.0:</span><span class="nv">$port</span><span class="s2">"</span> ~/.config/code-server/config.yaml
+
+
+
+<span class="c"># 加入.user_profile启动项</span>
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.user_profile | <span class="nb">grep</span> <span class="s2">"user profile: code-server"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"# user profile: code-server"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
+    <span class="nb">echo</span> <span class="s2">"echo ' * code-server port </span><span class="nv">$port</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
+    <span class="nb">echo</span> <span class="s2">"code-server &gt; /dev/null 2&gt;&amp;1 &amp;"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
+    <span class="c"># echo "nohup code-server &amp;" &gt;&gt; /$user/.user_profile</span>
+<span class="k">fi
+
+</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">code-server setup finish</span><span class="se">\n</span><span class="s2">"</span>
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍codeserver 略]]></summary></entry><entry><title type="html">bash: init_apt 安装必备包，仿照py的requirements</title><link href="/bash/init_apt/" rel="alternate" type="text/html" title="bash: init_apt 安装必备包，仿照py的requirements" /><published>2023-06-29T14:04:00+08:00</published><updated>2023-06-29T14:04:00+08:00</updated><id>/bash/init_apt</id><content type="html" xml:base="/bash/init_apt/"><![CDATA[<ul>
+  <li>仿照pip的requirements.txt创建apt_requirements.txt</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 通过 apt install 安装的包
+# 文档支持井号注释和空行，注释不要与包名放在同一行，结尾需要保留一行空行
+
+python3
+python3-pip
+git
+ssh
+vim
+curl
+rpm
+
+# systemctl安装报错使用aptitude install systemctl, aptitude需要额外安装
+# aptitude
+systemctl
+</code></pre></div></div>
+
+<ul>
+  <li>脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="c"># ### - init_apt [apt软件包安装]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./setup.sh```  </span>
+<span class="c"># - 参数修改  </span>
+<span class="c">#     - 添加新的包：/init_apt/apt_requirements.txt</span>
+
+<span class="c"># 切换工作目录</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+
+<span class="c"># apt 软件包安装</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== update ========== </span><span class="se">\n</span><span class="s2">"</span>
+apt update
+<span class="nb">cat</span> <span class="s1">'apt_requirements.txt'</span> | <span class="k">while </span><span class="nb">read </span>line
+<span class="k">do
+    if</span> <span class="o">[[</span> <span class="nv">$line</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then 
+        if</span> <span class="o">[[</span> <span class="nv">$line</span> <span class="o">!=</span> <span class="k">*</span><span class="s2">"#"</span><span class="k">*</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
+            </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== install </span><span class="nv">$line</span><span class="s2"> ========== </span><span class="se">\n</span><span class="s2">"</span>
+            apt <span class="nb">install</span> <span class="nv">$line</span> <span class="nt">-y</span>
+        <span class="k">fi
+    fi
+done</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[仿照pip的requirements.txt创建apt_requirements.txt ``` 通过 apt install 安装的包 文档支持井号注释和空行，注释不要与包名放在同一行，结尾需要保留一行空行]]></summary></entry><entry><title type="html">bash: init_alias 设置别名，加入.user_profile启动脚本</title><link href="/bash/init_alias/" rel="alternate" type="text/html" title="bash: init_alias 设置别名，加入.user_profile启动脚本" /><published>2023-06-29T14:00:00+08:00</published><updated>2023-06-29T14:00:00+08:00</updated><id>/bash/init_alias</id><content type="html" xml:base="/bash/init_alias/"><![CDATA[<ul>
+  <li>alias基本语法示例（ubuntu）
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">cdbox</span><span class="o">=</span><span class="s1">'cd /mnt/d/s-linux/project/onebox'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="nv">user</span><span class="o">=</span><span class="s2">"root"</span>
+
+
+<span class="c"># 确认参数</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">user: </span><span class="nv">$user</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
+
+<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> /<span class="nv">$user</span>/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">touch</span> /<span class="nv">$user</span>/.user_profile
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
+<span class="k">fi
+if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : /</span><span class="nv">$user</span><span class="s2">/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f /</span><span class="nv">$user</span><span class="s2">/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. /</span><span class="nv">$user</span><span class="s2">/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
+<span class="k">fi</span>
+
+<span class="c"># user_profile写入alias</span>
+<span class="nv">cmd_arr</span><span class="o">=(</span><span class="s2">"alias cdbox='cd /mnt/d/s-linux/project/onebox'"</span> <span class="se">\</span>
+        <span class="s2">"alias boxback='python3 run_backend.py'"</span> <span class="se">\</span>
+        <span class="s2">""</span><span class="o">)</span>
+
+<span class="k">for </span>cmd <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">cmd_arr</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span><span class="k">do
+    </span><span class="nb">echo</span> <span class="nv">$cmd</span>
+    <span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.user_profile | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$cmd</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"# alias"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
+        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$cmd</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
+    <span class="k">fi
+done
+
+</span><span class="nb">source</span> /<span class="nv">$user</span>/.bashrc
+
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">all done</span><span class="se">\n</span><span class="s2">"</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[alias基本语法示例（ubuntu） alias cdbox='cd /mnt/d/s-linux/project/onebox']]></summary></entry><entry><title type="html">windows: huaweicloud hello_world 华为云服务器基本操作</title><link href="/windows/huaweicloud/" rel="alternate" type="text/html" title="windows: huaweicloud hello_world 华为云服务器基本操作" /><published>2023-06-29T11:00:00+08:00</published><updated>2023-06-29T11:00:00+08:00</updated><id>/windows/huaweicloud</id><content type="html" xml:base="/windows/huaweicloud/"><![CDATA[<ul>
+  <li>启动nginx之后访问不到，telnet端口不同。</li>
+  <li>需要在网站控制台上- 安全组 - 配置规则 - 添加出入方向规则</li>
+</ul>
+
+<p><img src="/image/windows/2023-06-29-huaweicloud/1.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>改完要reboot一下</li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[启动nginx之后访问不到，telnet端口不同。 需要在网站控制台上- 安全组 - 配置规则 - 添加出入方向规则]]></summary></entry><entry><title type="html">tampermonkey: next_page 键盘下一页</title><link href="/tampermonkey/next_page/" rel="alternate" type="text/html" title="tampermonkey: next_page 键盘下一页" /><published>2023-06-29T00:50:00+08:00</published><updated>2023-06-29T00:50:00+08:00</updated><id>/tampermonkey/next_page</id><content type="html" xml:base="/tampermonkey/next_page/"><![CDATA[<ul>
   <li>页面
     <ul>
       <li>https://www.101weiqi.cn/qday/2023/6/29/1/</li>
@@ -14,7 +1155,7 @@
 
 <ul>
   <li>
-    <p>页面的url简单易懂，每日八题就是在日期后面拼接数字1~8，所以在油猴脚本里获取到当前页面url，拼接字符串就可以实现这个按钮的功能了</p>
+    <p>页面url简单易懂，每日八题就是在日期后面拼接数字1~8，所以在油猴脚本里获取到当前页面url，拼接字符串再跳转就可以实现这个按钮的功能了</p>
   </li>
   <li>获取url
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var url = window.location.href
@@ -99,877 +1240,4 @@
     <span class="kd">var</span> <span class="nx">url_new</span> <span class="o">=</span> <span class="nx">url_date</span> <span class="o">+</span> <span class="nx">page_num</span>
     <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">url_new</span>
 <span class="p">}</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="tampermonkey" /><summary type="html"><![CDATA[页面 https://www.101weiqi.cn/qday/2023/6/29/1/]]></summary></entry><entry><title type="html">zip_backyard: duplicate_rm 弔图主页后端图片去重</title><link href="/zip_backyard/duplicate_rm/" rel="alternate" type="text/html" title="zip_backyard: duplicate_rm 弔图主页后端图片去重" /><published>2023-06-28T22:10:00+08:00</published><updated>2023-06-28T22:10:00+08:00</updated><id>/zip_backyard/duplicate_rm</id><content type="html" xml:base="/zip_backyard/duplicate_rm/"><![CDATA[<h2 id="about">about</h2>
-<ul>
-  <li>项目脚本：
-    <ul>
-      <li>https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="准备">准备</h2>
-
-<ul>
-  <li>图片遍历</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">所有层级文件遍历</span><span class="sh">'''</span>
-    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">fileName</span> <span class="o">==</span> <span class="sh">"</span><span class="s">.gitkeep</span><span class="sh">"</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">fileName</span><span class="p">))</span>
-            <span class="k">yield</span> <span class="n">full_path</span>
-</code></pre></div></div>
-
-<ul>
-  <li>结果保存json</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 写入结果
-</span><span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">sticker</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_sticker_list</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">image</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_image_list</span>
-    <span class="p">}</span>
-<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">result_json</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-    <span class="n">js_str</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">duplicate_list</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">js_str</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="hash过滤">hash过滤</h2>
-
-<ul>
-  <li>过滤函数</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">寻找相同图片(哈希)</span><span class="sh">'''</span>
-    <span class="n">image_hashes</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">image_hash</span> <span class="o">=</span> <span class="n">imagehash</span><span class="p">.</span><span class="nf">average_hash</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-        <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]))</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : </span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
-
-    <span class="k">return</span> <span class="n">duplicate_list</span>
-</code></pre></div></div>
-
-<ul>
-  <li>加入计时函数对表情包测试效果：</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
-</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
-<span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
-<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
-<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>结果9.671s，共输出7组重复，人工检查输出结果发现没有哈希冲突（误判）</li>
-  <li>表情包和沙雕图一起检查，用时104.542s，人工检查发现沙雕图区输出的结果有大量的冲突</li>
-</ul>
-
-<h2 id="仅判断尺寸">仅判断尺寸</h2>
-
-<ul>
-  <li>过滤函数</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">寻找相同图片(尺寸)</span><span class="sh">'''</span>
-    <span class="n">image_dims</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
-        <span class="n">image_dim</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">width</span><span class="p">)</span><span class="o">+</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
-        <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]))</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : </span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
-
-    <span class="k">return</span> <span class="n">duplicate_list</span>
-</code></pre></div></div>
-
-<ul>
-  <li>加入计时函数对表情包测试效果：</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
-</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
-<span class="c1"># duplicate_sticker_list = hash_filter(sticker_list)
-</span><span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
-<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
-<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>结果0.990s，虽然很快但和预想一样，尺寸相同但内容不同的图片很多，共输出了34组结果</li>
-  <li>可以作为预筛选</li>
-</ul>
-
-<h2 id="仅判断体积">仅判断体积</h2>
-
-<ul>
-  <li>过滤函数</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">size_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">寻找相同图片(大小)</span><span class="sh">'''</span>
-    <span class="n">image_size_list</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
-        <span class="n">img_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">]))</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : </span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
-
-    <span class="k">return</span> <span class="n">duplicate_list</span>
-</code></pre></div></div>
-
-<ul>
-  <li>加入计时函数对表情包测试效果：</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
-</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
-<span class="c1"># duplicate_sticker_list = hash_filter(sticker_list)
-# duplicate_sticker_list = dim_filter(sticker_list)
-</span><span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="nf">size_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
-<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
-<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">duplicate_sticker_list</span><span class="p">))</span>
-</code></pre></div></div>
-
-<ul>
-  <li>结果0.480s，意料之外的是仅输出了5组结果</li>
-  <li>和hash结果对比发现确实存在体积不同但内容和分辨率相同的图片，检查发现体积较小的图片的水平和垂直分辨率都是1dpi，这类重复可能不是由华为云的错误同步导致的。（可能是qq群收的图片被压缩？尚待验证）</li>
-</ul>
-
-<h2 id="整合">整合</h2>
-
-<ul>
-  <li>由于体积判断存在漏判，所以暂不选用</li>
-  <li>用尺寸判断作为哈希判断的预筛选，代码如下</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 表情包查重
-</span><span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-<span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
-<span class="n">duplicate_list_dim</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
-<span class="n">duplicate_list_hash</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">list_dim</span> <span class="ow">in</span> <span class="n">duplicate_list_dim</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
-        <span class="n">duplicate_list_hash</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> 
-<span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="n">duplicate_list_hash</span>
-<span class="n">time_spent_ms</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">now</span><span class="p">))</span>
-<span class="n">time_spent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">s</span><span class="sh">"</span> <span class="k">if</span> <span class="n">time_spent_ms</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="nf">str</span><span class="p">(</span><span class="n">time_spent_ms</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">ms</span><span class="sh">"</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">time_spent</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">duplicate_sticker_list</span><span class="p">))</span>
-</code></pre></div></div>
-
-<ul>
-  <li>用时2.047s，结果和单hash一致输出了7组，没有误判</li>
-  <li>加入沙雕图一起筛选，用时23.988s，沙雕图输出了21组结果，检查发现推特@meetissai的截图全都被判断为相同了</li>
-  <li>
-    <p>把hash过滤中的均值哈希average_hash()改为感知哈希phash()，沙雕图输出18组结果，检查没有发现错误</p>
-  </li>
-  <li>PIL库中支持的其他hash函数
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>均值哈希（Average Hash）：average_hash()
-感知哈希（Perceptual Hash）：phash()
-差异哈希（Difference Hash）：dhash()
-块哈希（Block Hash）：block_mean_hash()
-渐变哈希（Gradient Hash）：gradient_hash()
-</code></pre></div>    </div>
-  </li>
-  <li>区别
-    <ul>
-      <li>
-        <p>均值哈希（Average Hash）：将图像缩小为固定大小，计算图像的平均灰度值，并将每个像素与平均值进行比较，生成二进制哈希值。适用于图像整体相似度的比较。</p>
-      </li>
-      <li>
-        <p>感知哈希（Perceptual Hash）：基于离散余弦变换（DCT）来提取图像的频率特征。通过计算图像的DCT变换系数，并根据变换系数的高低生成二进制哈希值。适用于在不同尺度和旋转下仍具有相似感知的图像比较。</p>
-      </li>
-      <li>
-        <p>差异哈希（Difference Hash）：计算图像相邻像素之间的差异，并根据差异生成二进制哈希值。适用于检测图像的微小变化或图像剪裁的比较。</p>
-      </li>
-      <li>
-        <p>块哈希（Block Hash）：将图像划分为多个块，计算每个块的平均灰度值，并将每个块的灰度与整体平均灰度进行比较，生成二进制哈希值。适用于在局部区域内比较图像相似度。</p>
-      </li>
-      <li>
-        <p>渐变哈希（Gradient Hash）：基于图像梯度的方向和强度来生成哈希值。通过计算图像的梯度信息，并根据梯度的方向和强度生成二进制哈希值。适用于检测图像的边缘和纹理的比较。</p>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="完整代码">完整代码</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">
-图片去重
-对比图片哈希, 只能找出像素完全相同的图片
-</span><span class="sh">'''</span>
-
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="n">imagehash</span>  <span class="c1"># pip install imagehash
-</span><span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">import</span> <span class="n">cv2</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="n">skimage.metrics</span>
-<span class="kn">import</span> <span class="n">skimage.measure</span>
-<span class="kn">import</span> <span class="n">time</span>
-
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="n">script_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
-<span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
-
-
-<span class="c1"># auto_rm = False
-</span><span class="n">result_json</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">output/duplicate.json</span><span class="sh">"</span><span class="p">))</span>
-<span class="n">sticker_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">storage/sticker</span><span class="sh">"</span><span class="p">))</span>
-<span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">storage/image</span><span class="sh">"</span><span class="p">))</span>
-
-
-<span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">所有层级文件遍历</span><span class="sh">'''</span>
-    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">fileName</span> <span class="o">==</span> <span class="sh">"</span><span class="s">.gitkeep</span><span class="sh">"</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">fileName</span><span class="p">))</span>
-            <span class="k">yield</span> <span class="n">full_path</span>
-
-
-<span class="k">def</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">寻找相同图片(哈希)</span><span class="sh">'''</span>
-    <span class="n">image_hashes</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="c1"># image_hash = imagehash.average_hash(image)
-</span>        <span class="n">image_hash</span> <span class="o">=</span> <span class="n">imagehash</span><span class="p">.</span><span class="nf">phash</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-        <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_hashes</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]))</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate : (hash)</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_hash</span><span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
-
-    <span class="k">return</span> <span class="n">duplicate_list</span>
-
-
-<span class="k">def</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">寻找相同图片(尺寸)</span><span class="sh">'''</span>
-    <span class="n">image_dims</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
-        <span class="n">image_dim</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
-        <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_dims</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]))</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate (dimension): </span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">image_dim</span><span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
-
-    <span class="k">return</span> <span class="n">duplicate_list</span>
-
-
-<span class="k">def</span> <span class="nf">size_filter</span><span class="p">(</span><span class="n">image_paths</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">寻找相同图片(大小)</span><span class="sh">'''</span>
-    <span class="sh">'''</span><span class="s">实际测试发现了一些分辨率和尺寸都相同但大小不同的图片，因此不采用这个方法</span><span class="sh">'''</span>
-    <span class="n">image_size_list</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
-        <span class="n">img_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">]))</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">find duplicate (size): </span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">[</span><span class="n">img_size</span><span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-    <span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_list</span> <span class="k">for</span> <span class="n">image_list</span> <span class="ow">in</span> <span class="n">duplicate_dict</span><span class="p">.</span><span class="nf">values</span><span class="p">()]</span>
-
-    <span class="k">return</span> <span class="n">duplicate_list</span>
-
-
-<span class="c1"># 表情包查重
-</span><span class="n">sticker_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">sticker_path</span><span class="p">)]</span>
-<span class="n">duplicate_list_dim</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">sticker_list</span><span class="p">)</span>
-<span class="n">duplicate_list_hash</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">list_dim</span> <span class="ow">in</span> <span class="n">duplicate_list_dim</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
-        <span class="n">duplicate_list_hash</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">duplicate_sticker_list</span> <span class="o">=</span> <span class="n">duplicate_list_hash</span>
-
-
-<span class="c1"># 图片查重
-</span><span class="n">image_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">image_path</span><span class="p">)]</span>
-<span class="n">duplicate_list_dim</span> <span class="o">=</span> <span class="nf">dim_filter</span><span class="p">(</span><span class="n">image_list</span><span class="p">)</span>
-<span class="n">duplicate_list_hash</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">list_dim</span> <span class="ow">in</span> <span class="n">duplicate_list_dim</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]:</span>
-        <span class="n">duplicate_list_hash</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">hash_filter</span><span class="p">(</span><span class="n">list_dim</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">duplicate_image_list</span> <span class="o">=</span> <span class="n">duplicate_list_hash</span>
-
-
-<span class="c1"># 写入结果
-</span><span class="n">duplicate_list</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sh">"</span><span class="s">sticker</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_sticker_list</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">image</span><span class="sh">"</span><span class="p">:</span> <span class="n">duplicate_image_list</span>
-<span class="p">}</span>
-<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">result_json</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-    <span class="n">js_str</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">duplicate_list</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">js_str</span><span class="p">)</span>
-
-
-<span class="n">del_list</span> <span class="o">=</span> <span class="n">duplicate_sticker_list</span> <span class="o">+</span> <span class="n">duplicate_image_list</span>
-
-<span class="n">wait_here</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="se">\n\n</span><span class="s">Find Find %d sets of duplicate images.</span><span class="se">\n\
-</span><span class="s">Press Enter to delete duplicate images. Press Ctrl+C to exit.</span><span class="se">\n\
-</span><span class="s">It is recommended to check </span><span class="sh">'</span><span class="s">./output/duplicate.json</span><span class="sh">'</span><span class="s"> before deleting ...</span><span class="sh">"</span> <span class="o">%</span><span class="nf">len</span><span class="p">(</span><span class="n">del_list</span><span class="p">))</span>
-
-
-
-<span class="k">for</span> <span class="n">dp_list</span> <span class="ow">in</span> <span class="n">del_list</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">dp_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">delete: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">image</span><span class="p">)</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="zip_backyard" /><summary type="html"><![CDATA[about 项目脚本： https://github.com/umas2022/backyard_store/blob/main/duplicate_rm.py]]></summary></entry><entry><title type="html">zip_backyard: hello_world github.io弔图主页</title><link href="/zip_backyard/hello_world/" rel="alternate" type="text/html" title="zip_backyard: hello_world github.io弔图主页" /><published>2023-06-28T22:00:00+08:00</published><updated>2023-06-28T22:00:00+08:00</updated><id>/zip_backyard/hello_world</id><content type="html" xml:base="/zip_backyard/hello_world/"><![CDATA[<ul>
-  <li>目前托管在github.io
-    <ul>
-      <li>https://umas2022.github.io/</li>
-    </ul>
-  </li>
-  <li>项目分两部分
-    <ul>
-      <li>页面：https://github.com/umas2022/umas2022.github.io</li>
-      <li>图床：https://github.com/umas2022/backyard_store</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name></name></author><category term="zip_backyard" /><summary type="html"><![CDATA[目前托管在github.io https://umas2022.github.io/]]></summary></entry><entry><title type="html">vue: watch 监听函数</title><link href="/vue/watch/" rel="alternate" type="text/html" title="vue: watch 监听函数" /><published>2023-06-28T14:23:00+08:00</published><updated>2023-06-28T14:23:00+08:00</updated><id>/vue/watch</id><content type="html" xml:base="/vue/watch/"><![CDATA[<ul>
-  <li>深度监听，监听对象的属性
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch(
-  getFlagCloud,
-  () =&gt; {
-  setSkeletonFlag();
-  },
-  { deep: true }
-);
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>如果监听对象是props.data，会报错：A watch source can only be a getter/effect function, a ref, a reactive object, or an array of these types. 
-  ○ 使用箭头函数：</p>
-
-    <p>watch(()=&gt;props.data, () =&gt; {
-      console.log(props.data)
-  }, { deep: true });</p>
-  </li>
-</ul>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[深度监听，监听对象的属性 watch( getFlagCloud, () =&gt; { setSkeletonFlag(); }, { deep: true } );]]></summary></entry><entry><title type="html">windows: wsa 安卓子系统基本操作</title><link href="/windows/wsa/" rel="alternate" type="text/html" title="windows: wsa 安卓子系统基本操作" /><published>2023-06-28T14:15:00+08:00</published><updated>2023-06-28T14:15:00+08:00</updated><id>/windows/wsa</id><content type="html" xml:base="/windows/wsa/"><![CDATA[<h2 id="使用adb传输文件">使用adb传输文件</h2>
-<ul>
-  <li>功能已经用python集成在了电脑配件项目，但电脑退回win10，所以没有继续更新了</li>
-  <li>下载adb
-    <ul>
-      <li>忘了当时哪里下的了</li>
-    </ul>
-  </li>
-  <li>adb放到这里了：
-    <ul>
-      <li>D:\p-tools\platform-tools\adb.exe</li>
-    </ul>
-  </li>
-  <li>adb命令参考：
-    <ul>
-      <li>https://adbshell.com/commands/adb-push</li>
-    </ul>
-  </li>
-  <li>首先adb连接
-    <ul>
-      <li>D:\p-tools\platform-tools\adb.exe connect 127.0.0.1:58526</li>
-    </ul>
-  </li>
-  <li>push
-    <ul>
-      <li>目标可以是文件或文件夹</li>
-      <li>前后目标要一致
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$target = "D:/s-linux/project/test_file/test_in"
-D:\p-tools\platform-tools\adb.exe -s 127.0.0.1:58526 push $target /sdcard/Download/test_in
-</code></pre></div>        </div>
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>D:\p-tools\platform-tools\adb.exe -s 127.0.0.1:58526 push D:/s-linux/project/test_file/test_in /sdcard/Download/test_in
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>pull
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>D:\p-tools\platform-tools\adb.exe -s 127.0.0.1:58526 pull /sdcard/Download/Tachiyomi D:\s-workspace\Tachiyomi
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="新建文件夹">新建文件夹</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>D:\p-tools\platform-tools\adb.exe connect 127.0.0.1:58526
-D:\p-tools\platform-tools\adb.exe -s 127.0.0.1:58526 shell mkdir /sdcard/Download/test
-</code></pre></div></div>
-
-<p>mkdir -p 参数，根据需要自动创建父文件夹</p>
-
-<ul>
-  <li>这个命令比较恶心,路径中出现括号会报错，比如  “test(1)”  不合法</li>
-  <li>如果没有空格，用反斜杠转义括号是可以的，比如  “test(1)”  合法
--但是有空格的话还是会报错，比如  “test  (1)”  不合法，加引号也没有用</li>
-</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[使用adb传输文件 功能已经用python集成在了电脑配件项目，但电脑退回win10，所以没有继续更新了 下载adb 忘了当时哪里下的了]]></summary></entry><entry><title type="html">jekyll: search 添加搜索功能</title><link href="/jekyll/search/" rel="alternate" type="text/html" title="jekyll: search 添加搜索功能" /><published>2023-06-28T12:30:00+08:00</published><updated>2023-06-28T12:30:00+08:00</updated><id>/jekyll/search</id><content type="html" xml:base="/jekyll/search/"><![CDATA[<h2 id="参考">参考</h2>
-<ul>
-  <li>https://blog.webjeda.com/instant-jekyll-search/</li>
-  <li>https://github.com/christian-fei/Simple-Jekyll-Search</li>
-</ul>
-
-<h2 id="实现">实现</h2>
-
-<ul>
-  <li>根目录创建search.json</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: none
----
-[
-  {% for post in site.posts %}
-    {
-      "title"    : "{{ post.title | escape }}",
-      "category" : "{{ post.category }}",
-      "tags"     : "{{ post.tags | join: ', ' }}",
-      "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "date"     : "{{ post.date }}"
-    } {% unless forloop.last %},{% endunless %}
-  {% endfor %}
-]
-</code></pre></div></div>
-
-<ul>
-  <li>创建/js/search-script.js</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*!
-  * Simple-Jekyll-Search
-  * Copyright 2015-2020, Christian Fei
-  * Licensed under the MIT License.
-  */
-!function () { "use strict"; var f = { compile: function (r) { return i.template.replace(i.pattern, function (t, e) { var n = i.middleware(e, r[e], i.template); return void 0 !== n ? n : r[e] || t }) }, setOptions: function (t) { i.pattern = t.pattern || i.pattern, i.template = t.template || i.template, "function" == typeof t.middleware &amp;&amp; (i.middleware = t.middleware) } }; const i = { pattern: /\{(.*?)\}/g, template: "", middleware: function () { } }; var n = function (t, e) { var n = e.length, r = t.length; if (n &lt; r) return !1; if (r === n) return t === e; t: for (var i = 0, o = 0; i &lt; r; i++) { for (var u = t.charCodeAt(i); o &lt; n;)if (e.charCodeAt(o++) === u) continue t; return !1 } return !0 }, e = new function () { this.matches = function (t, e) { return n(e.toLowerCase(), t.toLowerCase()) } }, r = new function () { this.matches = function (e, t) { return !!e &amp;&amp; (e = e.trim().toLowerCase(), (t = t.trim().toLowerCase()).split(" ").filter(function (t) { return 0 &lt;= e.indexOf(t) }).length === t.split(" ").length) } }, d = { put: function (t) { if (l(t)) return a(t); if (function (t) { return Boolean(t) &amp;&amp; "[object Array]" === Object.prototype.toString.call(t) }(t)) return function (n) { const r = []; s(); for (let t = 0, e = n.length; t &lt; e; t++)l(n[t]) &amp;&amp; r.push(a(n[t])); return r }(t); return undefined }, clear: s, search: function (t) { return t ? function (e, n, r, i) { const o = []; for (let t = 0; t &lt; e.length &amp;&amp; o.length &lt; i.limit; t++) { var u = function (t, e, n, r) { for (const i in t) if (!function (n, r) { for (let t = 0, e = r.length; t &lt; e; t++) { var i = r[t]; if (new RegExp(i).test(n)) return !0 } return !1 }(t[i], r.exclude) &amp;&amp; n.matches(t[i], e)) return t }(e[t], n, r, i); u &amp;&amp; o.push(u) } return o }(u, t, c.searchStrategy, c).sort(c.sort) : [] }, setOptions: function (t) { c = t || {}, c.fuzzy = t.fuzzy || !1, c.limit = t.limit || 10, c.searchStrategy = t.fuzzy ? e : r, c.sort = t.sort || o, c.exclude = t.exclude || [] } }; function o() { return 0 } const u = []; let c = {}; function s() { return u.length = 0, u } function l(t) { return Boolean(t) &amp;&amp; "[object Object]" === Object.prototype.toString.call(t) } function a(t) { return u.push(t), u } c.fuzzy = !1, c.limit = 10, c.searchStrategy = c.fuzzy ? e : r, c.sort = o, c.exclude = []; var p = { load: function (t, e) { const n = window.XMLHttpRequest ? new window.XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP"); n.open("GET", t, !0), n.onreadystatechange = h(n, e), n.send() } }; function h(e, n) { return function () { if (4 === e.readyState &amp;&amp; 200 === e.status) try { n(null, JSON.parse(e.responseText)) } catch (t) { n(t, null) } } } var m = function y(t) { if (!(e = t) || !("undefined" != typeof e.required &amp;&amp; e.required instanceof Array)) throw new Error("-- OptionsValidator: required options missing"); var e; if (!(this instanceof y)) return new y(t); const r = t.required; this.getRequiredOptions = function () { return r }, this.validate = function (e) { const n = []; return r.forEach(function (t) { "undefined" == typeof e[t] &amp;&amp; n.push(t) }), n } }, w = { merge: function (t, e) { const n = {}; for (const r in t) n[r] = t[r], "undefined" != typeof e[r] &amp;&amp; (n[r] = e[r]); return n }, isJSON: function (t) { try { return t instanceof Object &amp;&amp; JSON.parse(JSON.stringify(t)) ? !0 : !1 } catch (e) { return !1 } } }; !function (t) { let i = { searchInput: null, resultsContainer: null, json: [], success: Function.prototype, searchResultTemplate: '&lt;li&gt;&lt;a href="{url}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;', templateMiddleware: Function.prototype, sortMiddleware: function () { return 0 }, noResultsText: "No results found", limit: 10, fuzzy: !1, debounceTime: null, exclude: [] }, n; const e = function (t, e) { e ? (clearTimeout(n), n = setTimeout(t, e)) : t.call() }; var r = ["searchInput", "resultsContainer", "json"]; const o = m({ required: r }); function u(t) { d.put(t), i.searchInput.addEventListener("input", function (t) { -1 === [13, 16, 20, 37, 38, 39, 40, 91].indexOf(t.which) &amp;&amp; (c(), e(function () { l(t.target.value) }, i.debounceTime)) }) } function c() { i.resultsContainer.innerHTML = "" } function s(t) { i.resultsContainer.innerHTML += t } function l(t) { var e; (e = t) &amp;&amp; 0 &lt; e.length &amp;&amp; (c(), function (e, n) { var r = e.length; if (0 === r) return s(i.noResultsText); for (let t = 0; t &lt; r; t++)e[t].query = n, s(f.compile(e[t])) }(d.search(t), t)) } function a(t) { throw new Error("SimpleJekyllSearch --- " + t) } t.SimpleJekyllSearch = function (t) { var n; 0 &lt; o.validate(t).length &amp;&amp; a("You must specify the following required options: " + r), i = w.merge(i, t), f.setOptions({ template: i.searchResultTemplate, middleware: i.templateMiddleware }), d.setOptions({ fuzzy: i.fuzzy, limit: i.limit, sort: i.sortMiddleware, exclude: i.exclude }), w.isJSON(i.json) ? u(i.json) : (n = i.json, p.load(n, function (t, e) { t &amp;&amp; a("failed to get JSON (" + n + ")"), u(e) })); t = { search: l }; return "function" == typeof i.success &amp;&amp; i.success.call(t), t } }(window) }();
-</code></pre></div></div>
-
-<ul>
-  <li>根目录创建search.html</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: page
-permalink: /search/
-title: Search
----
-
-<span class="c">&lt;!-- Html Elements for Search --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"search-container"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"search-input"</span> <span class="na">placeholder=</span><span class="s">"search..."</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"results-container"</span><span class="nt">&gt;&lt;/ul&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-<span class="c">&lt;!-- Script pointing to search-script.js --&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/search-script.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-<span class="c">&lt;!-- Configuration --&gt;</span>
-<span class="nt">&lt;script&gt;</span>
-    <span class="nc">SimpleJekyllSearch</span><span class="p">({</span>
-        <span class="na">searchInput</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">search-input</span><span class="dl">'</span><span class="p">),</span>
-        <span class="na">resultsContainer</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">results-container</span><span class="dl">'</span><span class="p">),</span>
-        <span class="na">json</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/search.json</span><span class="dl">'</span>
-    <span class="p">})</span>
-<span class="nt">&lt;/script&gt;</span>
-
-<span class="nt">&lt;style </span><span class="na">scoped</span><span class="nt">&gt;</span>
-    <span class="nt">input</span><span class="p">{</span>
-        <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-        <span class="nl">font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
-        <span class="nl">height</span><span class="p">:</span> <span class="m">30px</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>也可以不创建js，直接cdn引入</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- or without installing anything --&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[参考 https://blog.webjeda.com/instant-jekyll-search/ https://github.com/christian-fei/Simple-Jekyll-Search]]></summary></entry><entry><title type="html">pctools: video_compress 电脑配件功能:视频压缩</title><link href="/zip_pctools/windows/video_compress/" rel="alternate" type="text/html" title="pctools: video_compress 电脑配件功能:视频压缩" /><published>2023-06-28T10:32:00+08:00</published><updated>2023-06-28T10:32:00+08:00</updated><id>/zip_pctools/windows/video_compress</id><content type="html" xml:base="/zip_pctools/windows/video_compress/"><![CDATA[<h3 id="使用moviepy">使用moviepy</h3>
-<ul>
-  <li>官方：https://zulko.github.io/moviepy/</li>
-  <li>写入函数：write_videofile
-    <ul>
-      <li>https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html?highlight=write_videofile#moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip.write_videofile</li>
-    </ul>
-  </li>
-  <li>测试可用，总比特率设定2k kbps时3分钟视频仅40MB（原片4.8w kbps，60fps，大小1G），但质量较差</li>
-  <li>
-    <p>总比特率1w kbps，结果203MB
-降至20fps，结果204MB，明显感觉帧数不够，帧数居然不影响视频大小</p>
-  </li>
-  <li>安装ffmpg: https://www.gyan.dev/ffmpeg/builds/</li>
-  <li>将bin目录添加到环境变量</li>
-  <li>验证安装，控制台输入：ffmpeg.exe -version</li>
-</ul>]]></content><author><name></name></author><category term="zip_pctools" /><category term="windows" /><summary type="html"><![CDATA[使用moviepy 官方：https://zulko.github.io/moviepy/ 写入函数：write_videofile https://zulko.github.io/moviepy/ref/VideoClip/VideoClip.html?highlight=write_videofile#moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip.write_videofile 测试可用，总比特率设定2k kbps时3分钟视频仅40MB（原片4.8w kbps，60fps，大小1G），但质量较差 总比特率1w kbps，结果203MB 降至20fps，结果204MB，明显感觉帧数不够，帧数居然不影响视频大小]]></summary></entry><entry><title type="html">pctools: hello_world 电脑配件项目创建</title><link href="/zip_pctools/windows/hello_world/" rel="alternate" type="text/html" title="pctools: hello_world 电脑配件项目创建" /><published>2023-06-28T10:30:00+08:00</published><updated>2023-06-28T10:30:00+08:00</updated><id>/zip_pctools/windows/hello_world</id><content type="html" xml:base="/zip_pctools/windows/hello_world/"><![CDATA[<h1 id="因为时间久远已经无据可考了">因为时间久远已经无据可考了</h1>]]></content><author><name></name></author><category term="zip_pctools" /><category term="windows" /><summary type="html"><![CDATA[因为时间久远已经无据可考了]]></summary></entry><entry><title type="html">crawler: bookwalker 漫画爬虫</title><link href="/crawler/bookwalker/" rel="alternate" type="text/html" title="crawler: bookwalker 漫画爬虫" /><published>2023-06-28T10:20:00+08:00</published><updated>2023-06-28T10:20:00+08:00</updated><id>/crawler/bookwalker</id><content type="html" xml:base="/crawler/bookwalker/"><![CDATA[<ul>
-  <li>已经集成在电脑配件项目中
-    <ul>
-      <li>https://github.com/umas2022/pctools</li>
-    </ul>
-  </li>
-  <li>因为没能解析<code class="language-plaintext highlighter-rouge">&lt;canvas&gt;</code>标签,没能拿到图片的地址,所以改用屏幕截图的方法保存图片</li>
-  <li>登录次数过多会触发网站的真人验证,所以登录的步骤改为手动,代码仅执行截图</li>
-  <li>代码如下</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">
-create: 2023.1.1
-bookwalker漫画爬虫
-
-思路:
-    1. 手动启动chrome打开debug端口,转交selenium
-    2. 代码截图,点击进入下一页,根据viewport0的显示状态判断点击是否成功
-    3. 图片锐化(+信息删除)和截图双线程同步进行(jpg节省空间)
-    4. 截图保存后检查文件大小,小于设定值的截图被判断为loading页,重新截图
-问题:
-    1.截图清晰度受屏幕分辨率影响,质量较低;网页截图比平板截屏质量差
-    2.对div.loading状态的判断不完全可靠,检查图片大小的方法也可能存在误判
-    3.保存截图会花费约0.5s,使用多线程并行运行时报错
-    4.ActionChains的点击动作会花费约0.5s,需要优化
-
-chrome.exe --remote-debugging-port=9222 --user-data-dir=</span><span class="sh">"</span><span class="s">D:</span><span class="se">\\</span><span class="s">p-data</span><span class="se">\\</span><span class="s">chrome_temp</span><span class="sh">"</span><span class="s">
-
-https://bookwalker.jp/bookshelf1/
-
-</span><span class="sh">'''</span>
-
-
-<span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">threading</span>
-<span class="kn">from</span> <span class="n">utils_logger.log</span> <span class="kn">import</span> <span class="n">logger_re</span> <span class="k">as</span> <span class="n">logger</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">copy</span>
-<span class="c1"># 删除图片信息
-</span><span class="kn">import</span> <span class="n">piexif</span>  <span class="c1"># pip install piexif
-# 图片锐化
-</span><span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageEnhance</span>
-<span class="c1"># 爬虫主程序
-</span><span class="kn">from</span> <span class="n">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>  <span class="c1"># pip install selenium
-# 查找元素
-</span><span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
-<span class="c1"># 添加反爬参数
-</span><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
-<span class="c1"># 鼠标动作
-</span><span class="kn">from</span> <span class="n">selenium.webdriver.common.action_chains</span> <span class="kn">import</span> <span class="n">ActionChains</span>
-
-
-<span class="k">class</span> <span class="nc">CrawlerBookwalker</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">json_set</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="sh">'''</span><span class="s">只有一个total_page是必须参数,其他都有预设值</span><span class="sh">'''</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># 截图总页数(设为1截取单页)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">total_page</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">total_page</span><span class="sh">"</span><span class="p">])</span>
-            <span class="c1"># 起始页码(截图保存命名用)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">current_page</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">current_page</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">current_page</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">1</span>
-            <span class="c1"># 图片保存位置(路径下不要有其他图片)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">save_path</span> <span class="o">=</span> <span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">save_path</span><span class="sh">"</span><span class="p">]</span> <span class="k">if</span> <span class="sh">"</span><span class="s">save_path</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\s-workspace\crawler_save</span><span class="sh">"</span>
-            <span class="c1"># 图片锐化系数(1为原图,实测2效果还行)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">sharp_factor</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">sharp_factor</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">sharp_factor</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">2</span>
-            <span class="c1"># debug模式chrome数据位置(用于chrome的脚本启动)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">chrome_path</span> <span class="o">=</span> <span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">chrome_path</span><span class="sh">"</span><span class="p">]</span> <span class="k">if</span> <span class="sh">"</span><span class="s">chrome_path</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\\p-data\\chrome_temp</span><span class="sh">"</span>
-            <span class="c1"># chrome端口,一般不会被占用(用于chrome的脚本启动)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">chrome_port</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">chrome_port</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">chrome_port</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">9222</span>
-            <span class="c1"># chrome driver位置(注意要和chrome版本一致)
-</span>            <span class="c1"># https://chromedriver.chromium.org/downloads
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">driver_path</span> <span class="o">=</span> <span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">driver_path</span><span class="sh">"</span><span class="p">]</span> <span class="k">if</span> <span class="sh">"</span><span class="s">driver_path</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver108.exe</span><span class="sh">"</span>
-            <span class="c1"># 重新截图大小(KB)(不同截图环境loading页大小不相同)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">reshot_size</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">reshot_size</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">reshot_size</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">200</span>
-            <span class="c1"># 截图/点击,重试次数上限
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">retry_times</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">retry_times</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">8</span>
-            <span class="c1"># y轴翻页点击位置(单位:像素,顶部为0)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">click_point_y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">click_point_y</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">click_point_y</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">300</span>
-            <span class="c1"># x轴翻页点击位置(单位:像素,左边为0)
-</span>            <span class="n">self</span><span class="p">.</span><span class="n">click_point_x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">json_set</span><span class="p">[</span><span class="sh">"</span><span class="s">click_point_x</span><span class="sh">"</span><span class="p">])</span> <span class="k">if</span> <span class="sh">"</span><span class="s">click_point_x</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">json_set</span> <span class="k">else</span> <span class="mi">100</span>
-
-        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">key error: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
-            <span class="k">return</span>
-
-    <span class="k">def</span> <span class="nf">__init_chrome</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="sh">'''</span><span class="s">实例化浏览器</span><span class="sh">'''</span>
-        <span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
-        <span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">debuggerAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">127.0.0.1:%d</span><span class="sh">'</span> <span class="o">%</span> <span class="n">self</span><span class="p">.</span><span class="n">chrome_port</span><span class="p">)</span>
-        <span class="c1"># 实例化谷歌
-</span>        <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">driver_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
-        <span class="c1"># 窗口尺寸不能超过显示尺寸,只能考虑找一台高分辨率显示器或者多屏拼接
-</span>        <span class="c1"># driver.set_window_size(1080,1920)
-</span>        <span class="k">return</span> <span class="n">driver</span>
-
-    <span class="k">def</span> <span class="nf">__sharpen_main</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">shot_path</span><span class="p">):</span>
-        <span class="sh">'''</span><span class="s">子线程:图片锐化+删除信息主函数</span><span class="sh">'''</span>
-        <span class="n">shot_path_list</span> <span class="o">=</span> <span class="n">shot_path</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
-        <span class="n">enhancer</span> <span class="o">=</span> <span class="n">ImageEnhance</span><span class="p">.</span><span class="nc">Sharpness</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-        <span class="n">im_s</span> <span class="o">=</span> <span class="n">enhancer</span><span class="p">.</span><span class="nf">enhance</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">sharp_factor</span><span class="p">)</span>
-        <span class="n">shot_path_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">shot_path_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">shot</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sharp</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sharp_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">shot_path_list</span><span class="p">)</span>
-        <span class="c1"># jpg节省点空间
-</span>        <span class="n">im_s</span> <span class="o">=</span> <span class="n">im_s</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="sh">'</span><span class="s">RGB</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">sharp_path</span> <span class="o">=</span> <span class="n">sharp_path</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">.png</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">.jpg</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">im_s</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">sharp_path</span><span class="p">)</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
-        <span class="c1"># 删除信息(其实正常截图本来就不含信息)
-</span>        <span class="n">piexif</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">sharp_path</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">open_chrome</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="sh">'''</span><span class="s">启动debug模式chrome</span><span class="sh">'''</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">chrome.exe --remote-debugging-port=%d --user-data-dir=</span><span class="sh">"</span><span class="s">%s</span><span class="sh">"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chrome_port</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">chrome_path</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="sh">'''</span><span class="s">开始处理</span><span class="sh">'''</span>
-        <span class="c1"># 实例化浏览器
-</span>        <span class="n">driver</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">__init_chrome</span><span class="p">()</span>
-
-        <span class="sh">'''</span><span class="s">进入漫画页并逐页截屏</span><span class="sh">'''</span>
-        <span class="n">time_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-        <span class="c1"># 当前激活标签页为0
-</span>        <span class="n">driver</span><span class="p">.</span><span class="n">switch_to</span><span class="p">.</span><span class="nf">window</span><span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">viewport_before</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[id=</span><span class="sh">"</span><span class="s">viewport0</span><span class="sh">"'</span><span class="p">).</span><span class="nf">is_displayed</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">total_page</span><span class="p">):</span>
-            <span class="n">num</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">self</span><span class="p">.</span><span class="n">current_page</span>
-            <span class="c1"># 等待loading状态结束(对loading的判断并不完全可靠,建议翻页后的wait_time&gt;0.5s)
-</span>            <span class="n">div_loading</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[class=</span><span class="sh">"</span><span class="s">loading</span><span class="sh">"'</span><span class="p">)</span>
-            <span class="k">while</span> <span class="n">div_loading</span><span class="p">.</span><span class="nf">is_displayed</span><span class="p">():</span>
-                <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">loading ...</span><span class="sh">"</span><span class="p">)</span>
-                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="c1"># 浏览器全屏截图(截图动作占用约0.5s,并行报错暂未解决)
-</span>            <span class="n">time_cost</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_start</span><span class="p">)</span>
-            <span class="n">time_left</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">time_cost</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">total_page</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-            <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot : %d / %d , page : %d, remaining : %d s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">total_page</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">time_left</span><span class="p">))</span>
-            <span class="n">shot_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">save_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">shot_%d.png</span><span class="sh">"</span> <span class="o">%</span> <span class="n">num</span><span class="p">)</span>
-            <span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
-            <span class="c1"># 检查截图大小,小于设定值为loading页,重新截图
-</span>            <span class="n">shot_retry</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="n">shot_retry</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">shot_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>
-                <span class="k">if</span> <span class="n">shot_size</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">reshot_size</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="k">if</span> <span class="n">shot_retry</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">shot %d times retry! file: %s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">,</span> <span class="n">shot_path</span><span class="p">))</span>
-                    <span class="k">break</span>
-                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot retry %d ...</span><span class="sh">"</span> <span class="o">%</span> <span class="n">shot_retry</span><span class="p">)</span>
-                <span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="n">shot_path</span><span class="p">)</span>
-            <span class="c1"># 锐化程序并行进行
-</span>            <span class="n">th</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">__sharpen_main</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">shot_path</span><span class="p">],</span> <span class="n">daemon</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">th</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
-            <span class="c1"># 点击进入下一页(即使设置了duration,这个动作仍然会占用约0.5s的时间)
-</span>            <span class="n">click_retry</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="n">click_retry</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="nc">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">10</span><span class="p">).</span><span class="nf">move_by_offset</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">click_point_x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">click_point_y</span><span class="p">).</span><span class="nf">click</span><span class="p">().</span><span class="nf">move_by_offset</span><span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">click_point_x</span><span class="p">,</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">click_point_y</span><span class="p">).</span><span class="nf">perform</span><span class="p">()</span>
-                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-                <span class="n">viewport_now</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[id=</span><span class="sh">"</span><span class="s">viewport0</span><span class="sh">"'</span><span class="p">).</span><span class="nf">is_displayed</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">viewport_now</span> <span class="o">!=</span> <span class="n">viewport_before</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="n">viewport_now</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[id=</span><span class="sh">"</span><span class="s">viewport0</span><span class="sh">"'</span><span class="p">).</span><span class="nf">is_displayed</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">viewport_now</span> <span class="o">!=</span> <span class="n">viewport_before</span><span class="p">:</span>
-                        <span class="k">break</span>
-                    <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">click retry %d ...</span><span class="sh">"</span> <span class="o">%</span> <span class="n">click_retry</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">click_retry</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">:</span>
-                        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">click %d times retry!</span><span class="sh">"</span> <span class="o">%</span> <span class="n">self</span><span class="p">.</span><span class="n">retry_times</span><span class="p">)</span>
-                        <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-            <span class="n">viewport_before</span> <span class="o">=</span> <span class="n">viewport_now</span>
-            <span class="c1"># wait_here = input("go &gt;&gt;")
-</span>
-        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">shot-function finish</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">driver</span><span class="p">.</span><span class="nf">quit</span><span class="p">()</span>
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[已经集成在电脑配件项目中 https://github.com/umas2022/pctools]]></summary></entry><entry><title type="html">crawler: selenium 物理外挂爬虫</title><link href="/crawler/selenium/" rel="alternate" type="text/html" title="crawler: selenium 物理外挂爬虫" /><published>2023-06-28T10:18:00+08:00</published><updated>2023-06-28T10:18:00+08:00</updated><id>/crawler/selenium</id><content type="html" xml:base="/crawler/selenium/"><![CDATA[<h3 id="安装chromedriver">安装chromedriver</h3>
-<ul>
-  <li>https://chromedriver.chromium.org/downloads
-    <ul>
-      <li>注意版本要和已安装的chrome一样</li>
-    </ul>
-  </li>
-  <li>实测添加环境变量不好用，使用手动引入：
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe"
-chrome = webdriver.Chrome(executable_path=chrome_driver)
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="操作网页">操作网页</h3>
-
-<ul>
-  <li>一个输入用户名和密码的例子
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
-<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">input[name=</span><span class="sh">"</span><span class="s">j_username</span><span class="sh">"'</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">1970313791@qq.com</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">input[name=</span><span class="sh">"</span><span class="s">password</span><span class="sh">"'</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">xxxxxxxxxxx</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">button[class=</span><span class="sh">"</span><span class="s">g-recaptcha c-btn--forward</span><span class="sh">"'</span><span class="p">).</span><span class="nf">click</span><span class="p">()</span>
-</code></pre></div>    </div>
-  </li>
-  <li>常用的功能键</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from selenium.webdriver.common.keys import Keys
-
-send_keys(Keys.BACK_SPACE) 删除键（BackSpace）
-send_keys(Keys.SPACE) 空格键(Space)
-send_keys(Keys.TAB) 制表键(Tab)
-send_keys(Keys.ESCAPE) 回退键（Esc）
-send_keys(Keys.ENTER) 回车键（Enter）
-send_keys(Keys.CONTROL,‘a’) 全选（Ctrl+A）
-send_keys(Keys.CONTROL,‘c’) 复制（Ctrl+C）
-send_keys(Keys.CONTROL,‘x’) 剪切（Ctrl+X）
-send_keys(Keys.CONTROL,‘v’) 粘贴（Ctrl+V）
-send_keys(Keys.F1) 键盘 F1
-……
-send_keys(Keys.F12) 键盘 F12
-
-Keys.BACK_SPACE：回退键（BackSpace）
-Keys.TAB：制表键（Tab）
-Keys.ENTER：回车键（Enter）
-Keys.SHIFT：大小写转换键（Shift）
-Keys.CONTROL：Control键（Ctrl）
-Keys.ALT：ALT键（Alt）
-Keys.ESCAPE：返回键（Esc）
-Keys.SPACE：空格键（Space）
-Keys.PAGE_UP：翻页键上（Page Up）
-Keys.PAGE_DOWN：翻页键下（Page Down）
-Keys.END：行尾键（End）
-Keys.HOME：行首键（Home）
-Keys.LEFT：方向键左（Left）
-Keys.UP：方向键上（Up）
-Keys.RIGHT：方向键右（Right）
-Keys.DOWN：方向键下（Down）
-Keys.INSERT：插入键（Insert）
-DELETE：删除键（Delete）
-NUMPAD0 ~ NUMPAD9：数字键1-9
-F1 ~ F12：F1 - F12键
-(Keys.CONTROL, ‘a’)：组合键Control+a，全选
-(Keys.CONTROL, ‘c’)：组合键Control+c，复制
-(Keys.CONTROL, ‘x’)：组合键Control+x，剪切
-(Keys.CONTROL, ‘v’)：组合键Control+v，粘贴
-</code></pre></div></div>
-
-<h3 id="切换标签页">切换标签页</h3>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_tap</span> <span class="o">=</span> <span class="sh">"</span><span class="s">window.open(</span><span class="sh">'</span><span class="s">%s</span><span class="sh">'</span><span class="s">)</span><span class="sh">"</span> <span class="o">%</span> <span class="n">url_home</span>
-<span class="n">driver</span><span class="p">.</span><span class="nf">execute_script</span><span class="p">(</span><span class="n">new_tap</span><span class="p">)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">switch_to</span><span class="p">.</span><span class="nf">window</span><span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</code></pre></div></div>
-
-<h3 id="反扒1windownavigatorwebdriver">反扒1：window.navigator.webdriver</h3>
-
-<ul>
-  <li>window.navigator.webdriver参数在使用selenium时为true，需要消除这个参数</li>
-  <li>可以直接在console里敲这个参数查看</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
-
-<span class="sh">'''</span><span class="s">反爬：消除window.navigator.webdriver</span><span class="sh">'''</span>
-<span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
-<span class="c1"># 开启实验性功能
-</span><span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">excludeSwitches</span><span class="sh">'</span><span class="p">,[</span><span class="sh">'</span><span class="s">enable-automation</span><span class="sh">'</span><span class="p">])</span>
-<span class="c1"># 去除特征值
-</span><span class="n">option</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--disable-blink-features=AutomationControlled</span><span class="sh">"</span><span class="p">)</span>
-<span class="c1"># 实例化谷歌
-</span><span class="n">chrome_driver</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver106.exe</span><span class="sh">"</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">chrome_driver</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>实测对bookwalker有效</p>
-
-<h3 id="反扒2接管已有浏览器">反扒2：接管已有浏览器</h3>
-
-<ul>
-  <li>
-    <p>这个效果非常好，属于物理外挂</p>
-  </li>
-  <li>命令行启动浏览器：
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chrome.exe --remote-debugging-port=9222 --user-data-dir="D:\p-data\chrome_temp"
-</code></pre></div>    </div>
-  </li>
-  <li>代码示例：
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span>
-<span class="c1"># 反爬：接管已打开的浏览器
-</span><span class="n">option</span> <span class="o">=</span> <span class="nc">ChromeOptions</span><span class="p">()</span>
-<span class="n">option</span><span class="p">.</span><span class="nf">add_experimental_option</span><span class="p">(</span><span class="sh">'</span><span class="s">debuggerAddress</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">127.0.0.1:9222</span><span class="sh">'</span><span class="p">)</span>
-<span class="c1"># 实例化谷歌
-</span><span class="n">chrome_driver</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">D:\p-tools\chromedriver\chromedriver106.exe</span><span class="sh">"</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="n">chrome_driver</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="截屏">截屏</h3>
-
-<ul>
-  <li>截全屏
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">driver</span><span class="p">.</span><span class="nf">save_screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_screen.png</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li>截元素
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">'</span><span class="s">div[class=</span><span class="sh">"</span><span class="s">currentScreen</span><span class="sh">"'</span><span class="p">)</span>
-<span class="n">img</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sh">"</span><span class="s">shot_img.png</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-</ul>]]></content><author><name></name></author><category term="crawler" /><summary type="html"><![CDATA[安装chromedriver https://chromedriver.chromium.org/downloads 注意版本要和已安装的chrome一样 实测添加环境变量不好用，使用手动引入： chrome_driver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe" chrome = webdriver.Chrome(executable_path=chrome_driver)]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="tampermonkey" /><summary type="html"><![CDATA[页面 https://www.101weiqi.cn/qday/2023/6/29/1/]]></summary></entry></feed>

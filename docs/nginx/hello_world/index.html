@@ -60,6 +60,7 @@
 <ul>
   <li>安装
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt install nginx
+nginx -v
 </code></pre></div>    </div>
   </li>
   <li>配置
@@ -71,18 +72,29 @@
       </li>
       <li>添加配置 /etc/nginx/conf.d/xxxx.conf
         <ul>
-          <li>此时需要在nginx.conf中http添加include，包含这个conf</li>
-          <li>可以看到下面默认包含了</li>
+          <li>此时需要在nginx.conf中http添加include，包含这个conf
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 一个简单的frontend.conf
+server {
+listen 4080;
+server_name box_server; # 这个名字不知道干啥用的
+root /mnt/d/s-linux/project/onebox/server_frontend/dist;
+index index.html;
+}
+</code></pre></div>            </div>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>启动服务
+  <li>启动服务（sudo）
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service nginx start
 或：
 nginx -s reload
+查看状态：
+service nginx status
 </code></pre></div>    </div>
   </li>
+  <li>默认端口80</li>
 </ul>
 
 <h2 id="可能出现的问题">可能出现的问题</h2>

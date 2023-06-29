@@ -6,11 +6,13 @@
 - 启动（hello_umas目录下）
 ```
 jekyll serve
+或运行 serve.py
 ```
 
 - 打包（hello_umas同级目录）
 ```
 jekyll build --source hello_umas --destination docs
+或运行build.py
 ```
 
 - raw代码
@@ -20,6 +22,9 @@ jekyll build --source hello_umas --destination docs
 ```
 ```
 {% endraw %}
+
+- 图片
+![引入图片]({{site.url}}/image/windows/2023-06-28-env_path/image_1.png)
 
 ## 待办
 

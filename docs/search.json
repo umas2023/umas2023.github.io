@@ -1,6 +1,78 @@
 [
   
     {
+      "title"    : "bash: rpi_status 树莓派状态监控脚本",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_rpi_status/",
+      "date"     : "2023-06-29 14:45:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_ssh 一键部署linux主机的ssh环境",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_ssh/",
+      "date"     : "2023-06-29 14:35:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_samba 一键部署samba局域网文件共享",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_samba/",
+      "date"     : "2023-06-29 14:35:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_node 一键部署nodejs+vue开发环境在ubuntu主机上",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_node/",
+      "date"     : "2023-06-29 14:25:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_nginx 一键部署nginx在ubuntu主机上",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_nginx/",
+      "date"     : "2023-06-29 14:15:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_codeserver 一键部署codeserver在ubuntu主机上",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_codeserver/",
+      "date"     : "2023-06-29 14:10:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_apt 安装必备包，仿照py的requirements",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_apt/",
+      "date"     : "2023-06-29 14:04:00 +0800"
+    } ,
+  
+    {
+      "title"    : "bash: init_alias 设置别名，加入.user_profile启动脚本",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/bash/init_alias/",
+      "date"     : "2023-06-29 14:00:00 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: huaweicloud hello_world 华为云服务器基本操作",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/huaweicloud/",
+      "date"     : "2023-06-29 11:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "tampermonkey: next_page 键盘下一页",
       "category" : "",
       "tags"     : "",

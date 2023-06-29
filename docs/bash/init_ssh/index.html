@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>bash: init_ssh 一键部署linux主机的ssh环境 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="bash: init_ssh 一键部署linux主机的ssh环境" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="简单介绍项目需求 略" />
+<meta property="og:description" content="简单介绍项目需求 略" />
+<link rel="canonical" href="/bash/init_ssh/" />
+<meta property="og:url" content="/bash/init_ssh/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-29T14:35:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="bash: init_ssh 一键部署linux主机的ssh环境" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-29T14:35:00+08:00","datePublished":"2023-06-29T14:35:00+08:00","description":"简单介绍项目需求 略","headline":"bash: init_ssh 一键部署linux主机的ssh环境","mainEntityOfPage":{"@type":"WebPage","@id":"/bash/init_ssh/"},"url":"/bash/init_ssh/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">bash: init_ssh 一键部署linux主机的ssh环境</h1>
+    <h3>写入user_profile文件，包含ssh远程连接和gitee公钥</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>简单介绍项目需求
+    <ul>
+      <li>略</li>
+    </ul>
+  </li>
+  <li>sh脚本</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+
+<span class="c"># ### - init_ssh [ssh登录和gitee公钥设置]</span>
+<span class="c"># - 脚本调用  </span>
+<span class="c"># ```./setup.sh```</span>
+<span class="c"># - 参数修改</span>
+<span class="c">#     - 启动命令及端口</span>
+
+
+<span class="c"># 参数：端口</span>
+<span class="nv">port</span><span class="o">=</span>64822
+
+
+<span class="c"># 参数：启动命令</span>
+<span class="nv">ssh_cmd</span><span class="o">=</span><span class="s2">"service ssh start"</span>      <span class="c"># common ssh, 大多数环境适用</span>
+<span class="c"># ssh_cmd="/sbin/sshd -p $port"    # termux ssh, 目前已知wsl环境不可用</span>
+
+
+<span class="c"># 确认启动命令</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh command select: </span><span class="nv">$ssh_cmd</span><span class="se">\n</span><span class="s2">port: </span><span class="nv">$port</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
+
+<span class="c"># 切换工作目录</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+
+apt update 
+apt <span class="nb">install </span>ssh
+
+<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">touch</span> ~/.user_profile
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
+<span class="k">fi
+if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
+<span class="k">fi</span>
+
+<span class="c"># ssh 连接配置</span>
+<span class="c"># /etc/ssh/sshd_config允许root登录</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== ssh config ========== </span><span class="se">\n</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"root:umas1970"</span> | chpasswd 
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PermitRootLogin"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PermitRootLogin*/cPermitRootLogin yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi
+if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PasswordAuthentication"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PasswordAuthentication*/cPasswordAuthentication yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+<span class="c"># 修改默认端口64822</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^Port"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^Port*/Port </span><span class="nv">$port</span><span class="s2">"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"Port </span><span class="nv">$port</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+
+
+<span class="c"># 加入.user_profile启动项</span>
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.user_profile | <span class="nb">grep</span> <span class="s2">"user profile: ssh"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"# user profile: ssh"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"echo ' * ssh: </span><span class="nv">$ssh_cmd</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ssh_cmd</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"ip addr show | grep 192"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+<span class="k">fi</span>
+
+<span class="c"># 要求windows公钥</span>
+<span class="nb">yes</span> | ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-P</span> <span class="s2">""</span> <span class="nt">-f</span> ~/.ssh/id_rsa
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"create ssh public key in windows :</span><span class="se">\n\n\t</span><span class="s2">ssh-keygen -t rsa -b 4096</span><span class="se">\n\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+then copy C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\u</span><span class="s2">mas2017</span><span class="se">\.</span><span class="s2">ssh</span><span class="se">\i</span><span class="s2">d_rsa.pub here:</span><span class="se">\n</span><span class="s2">id_rsa.pub (press enter to skip): "</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$input</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
+    if</span> <span class="o">[</span> <span class="nt">-f</span> ~/.ssh/authorized_keys <span class="o">]</span><span class="p">;</span><span class="k">then
+        if </span><span class="nb">cat</span> ~/.ssh/authorized_keys | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$input</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+            </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">公钥已存在</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="k">fi
+    else 
+        </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys 
+    <span class="k">fi
+fi</span>
+
+<span class="c"># load一次bashrc作为启动</span>
+<span class="nb">source</span> ~/.bashrc
+
+
+
+<span class="c"># gitee 公钥设置</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== gitee config ========== </span><span class="se">\n</span><span class="s2">"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"1970313791@qq.com"</span>
+git config <span class="nt">--global</span> user.name <span class="s2">"umas"</span>
+<span class="nb">printf</span> <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2">"</span> | ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"1970313791@qq.com"</span> 
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+<span class="nb">cat</span> ~/.ssh/id_ed25519.pub
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">ssh public key above, fill in gitee:</span><span class="se">\n\n\t</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+https://gitee.com/profile/sshkeys</span><span class="se">\n\n</span><span class="s2">press enter to continue"</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+ssh <span class="nt">-T</span> git@gitee.com
+
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">process finish, The following command can change http-git to ssh-git</span><span class="se">\n\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git remote rm origin</span><span class="se">\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git remote add origin git@gitee.com:umas/umasbox.git</span><span class="se">\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git push --set-upstream origin master</span><span class="se">\n\n</span><span class="s2">"</span>
+
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh setup finish</span><span class="se">\n</span><span class="s2">"</span>
+
+
+</code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
