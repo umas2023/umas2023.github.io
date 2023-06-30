@@ -1,4 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-29T14:53:14+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">bash: rpi_status 树莓派状态监控脚本</title><link href="/bash/init_rpi_status/" rel="alternate" type="text/html" title="bash: rpi_status 树莓派状态监控脚本" /><published>2023-06-29T14:45:00+08:00</published><updated>2023-06-29T14:45:00+08:00</updated><id>/bash/init_rpi_status</id><content type="html" xml:base="/bash/init_rpi_status/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-06-30T16:02:47+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">windows: redmi-ax6000路由器刷openwrt固件</title><link href="/windows/Redmi_openwrt/" rel="alternate" type="text/html" title="windows: redmi-ax6000路由器刷openwrt固件" /><published>2023-06-30T09:48:00+08:00</published><updated>2023-06-30T09:48:00+08:00</updated><id>/windows/Redmi_openwrt</id><content type="html" xml:base="/windows/Redmi_openwrt/"><![CDATA[<ul>
+  <li>参考：
+    <ul>
+      <li>https://blog.csdn.net/sxf1061700625/article/details/130328437</li>
+    </ul>
+  </li>
+  <li>路由器初始管理页面192.168.31.1</li>
+  <li>
+    <p>常用设置 - 系统设置 - 手动升级，选中刚才下载的redmi-ax6000-1.2.8.bin</p>
+  </li>
+  <li>管理页url可以看到stoc</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://192.168.31.1/cgi-bin/luci/;stok=2d884ca60cc3e0b7d0976cd02a662e41/web/setting/upgrade
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stok=2d884ca60cc3e0b7d0976cd02a662e41
+</code></pre></div></div>
+
+<ul>
+  <li>开启调试模式：替换下面代码的stock，浏览器打开这个链接，返回{code:0}</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://192.168.31.1/cgi-bin/luci/;stok=2d884ca60cc3e0b7d0976cd02a662e41/api/misystem/set_sys_time?timezone=%20%27%20%3B%20zz%3D%24%28dd%20if%3D%2Fdev%2Fzero%20bs%3D1%20count%3D2%202%3E%2Fdev%2Fnull%29%20%3B%20printf%20%27%A5%5A%25c%25c%27%20%24zz%20%24zz%20%7C%20mtd%20write%20-%20crash%20%3B%20
+</code></pre></div></div>
+
+<ul>
+  <li>请求重启</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://192.168.31.1/cgi-bin/luci/;stok=2d884ca60cc3e0b7d0976cd02a662e41/api/misystem/set_sys_time?timezone=%20%27%20%3b%20reboot%20%3b%20
+</code></pre></div></div>
+
+<ul>
+  <li>开启telnet</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://192.168.31.1/cgi-bin/luci/;stok=05f781c1c50e025342246e4c9a4765e3/api/misystem/set_sys_time?timezone=%20%27%20%3B%20bdata%20set%20telnet_en%3D1%20%3B%20bdata%20set%20ssh_en%3D1%20%3B%20bdata%20set%20uart_en%3D1%20%3B%20bdata%20commit%20%3B%20
+</code></pre></div></div>
+
+<ul>
+  <li>重启，等待白灯亮起</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://192.168.31.1/cgi-bin/luci/;stok=05f781c1c50e025342246e4c9a4765e3/api/misystem/set_sys_time?timezone=%20%27%20%3b%20reboot%20%3b%20
+</code></pre></div></div>
+
+<ul>
+  <li>打开终端用telnet连接（windows默认没这个命令，可以用wsl）</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet 192.168.31.1
+</code></pre></div></div>
+
+<ul>
+  <li>连接后用下面的命令解锁ssh</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /tmp &amp;&amp; curl --silent -O https://fastly.jsdelivr.net/gh/miaoermua/unlock-redmi-ax6000@main/setup.sh &amp;&amp; chmod +x setup.sh &amp;&amp; ./setup.sh
+</code></pre></div></div>
+
+<ul>
+  <li>通过ssh进入路由器，密码admin</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh root@192.168.31.1
+</code></pre></div></div>
+
+<ul>
+  <li>下载uboot</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /tmp &amp;&amp; curl --silent -O https://fastly.jsdelivr.net/gh/miaoermua/unlock-redmi-ax6000@main/uboot.sh &amp;&amp; chmod +x uboot.sh &amp;&amp; ./uboot.sh
+</code></pre></div></div>
+
+<ul>
+  <li>备份原系统</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp root@192.168.31.1:/tmp/mtd4_Factory.bin D:\s-workspace\ax6000\backup\
+scp root@192.168.31.1:/tmp/mtd5_FIP.bin D:\s-workspace\ax6000\backup\
+</code></pre></div></div>
+
+<ul>
+  <li>刷入uboot</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mtd erase FIP
+mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
+mtd verify /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
+</code></pre></div></div>
+
+<ul>
+  <li>网线插入，网络和共享中心里修改以太网属性，ipv4</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IP 地址：192.168.31.2
+子网掩码：255.255.255.0
+网关地址：192.168.31.1
+</code></pre></div></div>
+
+<ul>
+  <li>断电，按住reset后通电，至少按住15秒</li>
+  <li>
+    <p>访问http://192.168.31.1/可以看到固件升级页面</p>
+  </li>
+  <li>下载固件
+    <ul>
+      <li>https://github.com/miaoermua/CatWrt/releases/tag/v23.2-Wireless-mt7986a</li>
+    </ul>
+  </li>
+  <li>
+    <p>在固件升级页面中上传，点击update，等待complete或者白灯亮起，progess页面需要刷新才能显示complete，如果显示failed就再上传刷写一次</p>
+  </li>
+  <li>
+    <p>之后记得把电脑的ipv4改为自动</p>
+  </li>
+  <li>
+    <p>刷完之后从192.168.1.4进入openwrt管理页，账号root，密码password</p>
+  </li>
+  <li>openwrt设置：</li>
+  <li>
+    <p>网络 - 接口 - lan，修改ipv4网关192.168.1.4，ipv4广播192.168.1.0</p>
+  </li>
+  <li>
+    <p>wan口里设置pppoe拨号</p>
+  </li>
+  <li>
+    <p>wifi名和密码在 [网络 - 无线 - 接口配置] 里面修改</p>
+  </li>
+  <li>clash没有内核，需要手动下载然后scp</li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[参考： https://blog.csdn.net/sxf1061700625/article/details/130328437]]></summary></entry><entry><title type="html">ts: import TypeScript导入文件</title><link href="/ts/import/" rel="alternate" type="text/html" title="ts: import TypeScript导入文件" /><published>2023-06-29T15:20:00+08:00</published><updated>2023-06-29T15:20:00+08:00</updated><id>/ts/import</id><content type="html" xml:base="/ts/import/"><![CDATA[<ul>
+  <li>
+    <p>传统方法直接引入报错：无法找到模块“@/utils/api_config.js”的声明文件</p>
+  </li>
+  <li>
+    <p>法1，使用require</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">get_wsurl</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@/utils/api_config.js</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>法2，添加声明文件xxx.d.ts</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">@/utils/api_axios.js</span><span class="dl">"</span>
+<span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">@/utils/api_config.js</span><span class="dl">"</span>
+<span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">@/utils/api_usage.js</span><span class="dl">"</span>
+<span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">@/utils/utils_tools.js</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>法3，js改为ts，这时可能会报错An import path can only end with a ‘.ts’ extension when ‘allowImportingTsExtensions’ is enabled.</li>
+  <li>修改tsconfig.json，根据提示添加：</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">compilerOptions</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">allowImportingTsExtensions</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">noEmit</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</code></pre></div></div>
+
+<ul>
+  <li>这个方法有可能报错Unknown compiler option ‘allowImportingTsExtensions’.</li>
+</ul>]]></content><author><name></name></author><category term="ts" /><summary type="html"><![CDATA[传统方法直接引入报错：无法找到模块“@/utils/api_config.js”的声明文件]]></summary></entry><entry><title type="html">jekyll: count 文章和类别计数</title><link href="/jekyll/count/" rel="alternate" type="text/html" title="jekyll: count 文章和类别计数" /><published>2023-06-29T15:10:00+08:00</published><updated>2023-06-29T15:10:00+08:00</updated><id>/jekyll/count</id><content type="html" xml:base="/jekyll/count/"><![CDATA[<h2 id="实现">实现</h2>
+
+<ul>
+  <li>这一行添加在了home.html里，显示在所有文章前面第一行</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;h3&gt;</span>Articles: {{ site.posts.size }} , Categories: {{ site.categories | size }}<span class="nt">&lt;/h3&gt;</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[实现]]></summary></entry><entry><title type="html">bash: rpi_status 树莓派状态监控脚本</title><link href="/bash/raspberry_pi/rpi_status/" rel="alternate" type="text/html" title="bash: rpi_status 树莓派状态监控脚本" /><published>2023-06-29T14:45:00+08:00</published><updated>2023-06-29T14:45:00+08:00</updated><id>/bash/raspberry_pi/rpi_status</id><content type="html" xml:base="/bash/raspberry_pi/rpi_status/"><![CDATA[<ul>
   <li>简单介绍项目需求
     <ul>
       <li>略</li>
@@ -39,7 +210,7 @@
 <span class="k">done</span>
 
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_samba 一键部署samba局域网文件共享</title><link href="/bash/init_samba/" rel="alternate" type="text/html" title="bash: init_samba 一键部署samba局域网文件共享" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_samba</id><content type="html" xml:base="/bash/init_samba/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><category term="raspberry_pi" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_samba 一键部署samba局域网文件共享</title><link href="/bash/init_samba/" rel="alternate" type="text/html" title="bash: init_samba 一键部署samba局域网文件共享" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_samba</id><content type="html" xml:base="/bash/init_samba/"><![CDATA[<ul>
   <li>简单介绍项目需求
     <ul>
       <li>略</li>
@@ -1082,162 +1253,4 @@ apt update
     fi
 done</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[仿照pip的requirements.txt创建apt_requirements.txt ``` 通过 apt install 安装的包 文档支持井号注释和空行，注释不要与包名放在同一行，结尾需要保留一行空行]]></summary></entry><entry><title type="html">bash: init_alias 设置别名，加入.user_profile启动脚本</title><link href="/bash/init_alias/" rel="alternate" type="text/html" title="bash: init_alias 设置别名，加入.user_profile启动脚本" /><published>2023-06-29T14:00:00+08:00</published><updated>2023-06-29T14:00:00+08:00</updated><id>/bash/init_alias</id><content type="html" xml:base="/bash/init_alias/"><![CDATA[<ul>
-  <li>alias基本语法示例（ubuntu）
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">cdbox</span><span class="o">=</span><span class="s1">'cd /mnt/d/s-linux/project/onebox'</span>
-</code></pre></div>    </div>
-  </li>
-  <li>脚本</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
-
-<span class="nv">user</span><span class="o">=</span><span class="s2">"root"</span>
-
-
-<span class="c"># 确认参数</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">user: </span><span class="nv">$user</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
-
-
-<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
-<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> /<span class="nv">$user</span>/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">touch</span> /<span class="nv">$user</span>/.user_profile
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
-<span class="k">fi
-if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : /</span><span class="nv">$user</span><span class="s2">/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
-    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f /</span><span class="nv">$user</span><span class="s2">/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. /</span><span class="nv">$user</span><span class="s2">/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
-<span class="k">fi</span>
-
-<span class="c"># user_profile写入alias</span>
-<span class="nv">cmd_arr</span><span class="o">=(</span><span class="s2">"alias cdbox='cd /mnt/d/s-linux/project/onebox'"</span> <span class="se">\</span>
-        <span class="s2">"alias boxback='python3 run_backend.py'"</span> <span class="se">\</span>
-        <span class="s2">""</span><span class="o">)</span>
-
-<span class="k">for </span>cmd <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">cmd_arr</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span><span class="k">do
-    </span><span class="nb">echo</span> <span class="nv">$cmd</span>
-    <span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.user_profile | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$cmd</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"# alias"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
-        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$cmd</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
-    <span class="k">fi
-done
-
-</span><span class="nb">source</span> /<span class="nv">$user</span>/.bashrc
-
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">all done</span><span class="se">\n</span><span class="s2">"</span>
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[alias基本语法示例（ubuntu） alias cdbox='cd /mnt/d/s-linux/project/onebox']]></summary></entry><entry><title type="html">windows: huaweicloud hello_world 华为云服务器基本操作</title><link href="/windows/huaweicloud/" rel="alternate" type="text/html" title="windows: huaweicloud hello_world 华为云服务器基本操作" /><published>2023-06-29T11:00:00+08:00</published><updated>2023-06-29T11:00:00+08:00</updated><id>/windows/huaweicloud</id><content type="html" xml:base="/windows/huaweicloud/"><![CDATA[<ul>
-  <li>启动nginx之后访问不到，telnet端口不同。</li>
-  <li>需要在网站控制台上- 安全组 - 配置规则 - 添加出入方向规则</li>
-</ul>
-
-<p><img src="/image/windows/2023-06-29-huaweicloud/1.jpg" alt="引入图片" /></p>
-
-<ul>
-  <li>改完要reboot一下</li>
-</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[启动nginx之后访问不到，telnet端口不同。 需要在网站控制台上- 安全组 - 配置规则 - 添加出入方向规则]]></summary></entry><entry><title type="html">tampermonkey: next_page 键盘下一页</title><link href="/tampermonkey/next_page/" rel="alternate" type="text/html" title="tampermonkey: next_page 键盘下一页" /><published>2023-06-29T00:50:00+08:00</published><updated>2023-06-29T00:50:00+08:00</updated><id>/tampermonkey/next_page</id><content type="html" xml:base="/tampermonkey/next_page/"><![CDATA[<ul>
-  <li>页面
-    <ul>
-      <li>https://www.101weiqi.cn/qday/2023/6/29/1/</li>
-    </ul>
-  </li>
-  <li>查看元素发现这个按钮的实现方法还挺出乎意料的，是一个a标签</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;span&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">href=</span><span class="s">"/qday/2023/6/29/2/"</span><span class="nt">&gt;</span>下一题<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;/span&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>页面url简单易懂，每日八题就是在日期后面拼接数字1~8，所以在油猴脚本里获取到当前页面url，拼接字符串再跳转就可以实现这个按钮的功能了</p>
-  </li>
-  <li>获取url
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var url = window.location.href
-</code></pre></div>    </div>
-  </li>
-  <li>获取末尾数字（字符串倒数第二项）
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var page_num = url.charAt(url.length - 2);
-</code></pre></div>    </div>
-  </li>
-  <li>按键监听</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">keydown</span><span class="dl">"</span><span class="p">,</span> <span class="nf">function </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
-  <span class="kd">var</span> <span class="nx">page_num</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="c1">// 方向左键的键盘码是37</span>
-  <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">37</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">上一页</span><span class="dl">"</span><span class="p">);</span>
-    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="c1">// 方向右键的键盘码是39</span>
-  <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">39</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">下一页</span><span class="dl">"</span><span class="p">);</span>
-    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<ul>
-  <li>拼接新url：把url字符串的倒数第二位替换为新的页码
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//倒数第二个字符之前的子字符串</span>
-<span class="kd">var</span> <span class="nx">url_date</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-<span class="c1">// 拼接新页码（最后的斜杠可以不加）</span>
-<span class="kd">var</span> <span class="nx">url_new</span> <span class="o">=</span> <span class="nx">url_date</span> <span class="o">+</span> <span class="nx">page_num</span>
-</code></pre></div>    </div>
-  </li>
-  <li>跳转到新链接
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">url_new</span>
-</code></pre></div>    </div>
-  </li>
-  <li>脚本的图标在这里</li>
-</ul>
-
-<p><img src="/image/tampermonkey/2023-6-29-next_page/image_1.jpg" alt="home" /></p>
-
-<ul>
-  <li>脚本完整代码</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ==UserScript==</span>
-<span class="c1">// @name         键盘下一题</span>
-<span class="c1">// @namespace    http://tampermonkey.net/</span>
-<span class="c1">// @version      0.1</span>
-<span class="c1">// @description  用键盘方向键来触发下一题按钮</span>
-<span class="c1">// @author       umas</span>
-<span class="c1">// @match        https://www.101weiqi.cn/qday/*</span>
-<span class="c1">// @icon         https://static2.101weiqi.com/static/images/apple_1442.png</span>
-<span class="c1">// @grant        none</span>
-<span class="c1">// ==/UserScript==</span>
-
-
-<span class="nb">document</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">keydown</span><span class="dl">"</span><span class="p">,</span> <span class="nf">function </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
-  <span class="kd">var</span> <span class="nx">page_num</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="c1">// 方向左键的键盘码是37</span>
-  <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">37</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">上一页</span><span class="dl">"</span><span class="p">);</span>
-    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="c1">// 方向右键的键盘码是39</span>
-  <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">39</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">下一页</span><span class="dl">"</span><span class="p">);</span>
-    <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">page_num</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="kd">function</span> <span class="nf">change_page</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="nx">page_num</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">page_num</span> <span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="nx">page_num</span> <span class="o">==</span> <span class="mi">9</span><span class="p">){</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">url_date</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nf">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">url_new</span> <span class="o">=</span> <span class="nx">url_date</span> <span class="o">+</span> <span class="nx">page_num</span>
-    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">url_new</span>
-<span class="p">}</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="tampermonkey" /><summary type="html"><![CDATA[页面 https://www.101weiqi.cn/qday/2023/6/29/1/]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[仿照pip的requirements.txt创建apt_requirements.txt ``` 通过 apt install 安装的包 文档支持井号注释和空行，注释不要与包名放在同一行，结尾需要保留一行空行]]></summary></entry></feed>

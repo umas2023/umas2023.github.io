@@ -3,7 +3,7 @@ layout: post
 title:  "bash: rpi_status 树莓派状态监控脚本"
 info: "输出一些基本信息"
 date:   2023-06-29 14:45:00 +0800
-categories: bash
+categories: bash raspberry_pi
 toc: true
 ---
 

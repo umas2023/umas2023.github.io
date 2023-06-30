@@ -49,12 +49,69 @@
   <hr>
   <ul id="toc" class="toc__list">
 <li class="toc-entry toc-h2"><a href="#类型定义">类型定义</a></li>
+<li class="toc-entry toc-h2"><a href="#报错及解决">报错及解决</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
     <h2 id="类型定义">类型定义</h2>
+
+<ul>
+  <li>基本类型定义</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">title</span><span class="p">:</span><span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span>
+<span class="kd">let</span> <span class="nx">total</span><span class="p">:</span><span class="kc">undefined</span> <span class="o">=</span> <span class="kc">undefined</span>
+<span class="kd">let</span> <span class="nx">arr</span><span class="p">:</span><span class="kr">number</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">arr</span><span class="p">:</span><span class="nb">Array</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">arr</span><span class="p">:</span> <span class="p">[</span><span class="kr">string</span><span class="p">,</span> <span class="kr">number</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span><span class="p">,</span> <span class="mi">18</span><span class="p">]</span>
+
+<span class="kd">type</span> <span class="nx">Gender</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">boy</span><span class="p">:</span><span class="nx">Gender</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">girl</span><span class="p">:</span><span class="nx">Gender</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">Props</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="nx">age</span><span class="p">:</span> <span class="kr">number</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">obj</span><span class="p">:</span> <span class="nx">Props</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">张三</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">18</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>vue的ref类型</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="kd">type</span> <span class="p">{</span><span class="nx">Ref</span><span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue</span><span class="dl">"</span>
+<span class="nx">flag</span><span class="p">:</span> <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">boolean</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>定义函数返回值</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">todo</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nf">todo</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nf">demo</span><span class="p">():</span> <span class="nx">never</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">出错了</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>类型断言</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span><span class="p">:</span><span class="kr">number</span><span class="o">|</span><span class="kr">string</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="nx">a</span> <span class="k">as</span> <span class="kr">number</span><span class="p">).</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="nx">a</span><span class="p">).</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
 
 <ul>
   <li>键值对类型定义</li>
@@ -71,6 +128,108 @@
 </code></pre></div>    </div>
   </li>
 </ul>
+
+<h2 id="报错及解决">报错及解决</h2>
+
+<hr />
+<blockquote>
+  <p>元素隐式具有 “any” 类型，因为类型为 “string” 的表达式不能用于索引类型 “{}”。</p>
+</blockquote>
+
+<ul>
+  <li>直接定义一个对象，[item]索引具有any属性</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">store_config</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">({})</span>
+
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">item</span> <span class="k">in</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">store_config</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">item</span><span class="p">][</span><span class="dl">"</span><span class="s2">value</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>添加这样的定义</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">store_config</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">({})</span>
+</code></pre></div></div>
+
+<hr />
+<blockquote>
+  <p>TS 对象可能为“未定义”，不能将类型“ XXXX | undefined “分配给类型{ xxxx }</p>
+</blockquote>
+
+<ul>
+  <li>使用感叹号表示这个元素不会为undefined</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">props</span><span class="p">.</span><span class="nx">setting_index</span><span class="o">!</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">animate__backOutRight</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>父组件定义是这样的</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">main_index</span> <span class="o">=</span> <span class="nx">ref</span><span class="o">&lt;</span><span class="nx">HTMLDivElement</span><span class="o">&gt;</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>使用问号表示是可选属性，也可能为undefined</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="o">&lt;</span><span class="p">{</span>
+    <span class="nx">main_index</span><span class="p">?:</span> <span class="nx">HTMLDivElement</span><span class="p">,</span>
+    <span class="nx">setting_index</span><span class="p">?:</span> <span class="nx">HTMLDivElement</span>
+<span class="p">}</span><span class="o">&gt;</span><span class="p">();</span>
+</code></pre></div></div>
+
+<hr />
+<blockquote>
+  <p>类型为 “string” 的表达式不能用于索引类型xxx</p>
+</blockquote>
+
+<ul>
+  <li>报错在page_list[label_select.value]</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">page_list</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">BrowserIndex</span><span class="p">:</span> <span class="nf">defineAsyncComponent</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">"</span><span class="s2">./components/app_img_browser/BrowserIndex.vue</span><span class="dl">"</span><span class="p">)),</span>
+    <span class="na">AutoIndex</span><span class="p">:</span> <span class="nf">defineAsyncComponent</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">"</span><span class="s2">./components/app_auto_click/AutoIndex.vue</span><span class="dl">"</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">go_page</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">page_select</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">page_list</span><span class="p">[</span><span class="nx">label_select</span><span class="p">.</span><span class="nx">value</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>修改为</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">go_page</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">label_select</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+    <span class="nx">page_select</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">page_list</span><span class="p">[</span><span class="nx">label_select</span><span class="p">.</span><span class="nx">value</span> <span class="k">as</span> <span class="nx">keyof</span> <span class="k">typeof</span> <span class="nx">page_list</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+<blockquote>
+  <p>类型“Element”上不存在属性“style</p>
+</blockquote>
+
+<ul>
+  <li>问题出现</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">.show-log-body</span><span class="dl">"</span><span class="p">)</span><span class="o">!</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2"> transition: 0s</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>因为querySelector返回值类型是Element，应该改成HTMLElement</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">body_div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="o">&lt;</span><span class="nx">HTMLElement</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">"</span><span class="s2">.show-log-body</span><span class="dl">"</span><span class="p">)</span><span class="o">!</span>
+</code></pre></div></div>
 
 
   </div>

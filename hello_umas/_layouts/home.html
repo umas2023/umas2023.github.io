@@ -9,6 +9,9 @@ layout: base
 
   {{ content }}
 
+  <h3>Articles: {{ site.posts.size }} , Categories: {{ site.categories | size }}</h3>
+    
+    <hr>
 
   {% if site.paginate %}
     {% assign posts = paginator.posts %}

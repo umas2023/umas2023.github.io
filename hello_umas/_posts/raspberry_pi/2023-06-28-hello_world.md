@@ -12,6 +12,12 @@ toc: true
 
 
 ##  vnc
-  - sudo raspi-config #找到vnc开启
-  - 远程端口5900
-  - pc端比较好的软件：https://vnc-viewer.en.softonic.com/
+- （桌面右上角settings->sharing->screen sharing 开启自带vnc）
+- sudo raspi-config #找到vnc开启
+- 远程端口5900
+- pc端比较好的软件：https://vnc-viewer.en.softonic.com/
+
+
+
+
+

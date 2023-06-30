@@ -1,10 +1,34 @@
 [
   
     {
+      "title"    : "windows: redmi-ax6000路由器刷openwrt固件",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/Redmi_openwrt/",
+      "date"     : "2023-06-30 09:48:00 +0800"
+    } ,
+  
+    {
+      "title"    : "ts: import TypeScript导入文件",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/ts/import/",
+      "date"     : "2023-06-29 15:20:00 +0800"
+    } ,
+  
+    {
+      "title"    : "jekyll: count 文章和类别计数",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/jekyll/count/",
+      "date"     : "2023-06-29 15:10:00 +0800"
+    } ,
+  
+    {
       "title"    : "bash: rpi_status 树莓派状态监控脚本",
       "category" : "",
       "tags"     : "",
-      "url"      : "/bash/init_rpi_status/",
+      "url"      : "/bash/raspberry_pi/rpi_status/",
       "date"     : "2023-06-29 14:45:00 +0800"
     } ,
   
