@@ -15,7 +15,6 @@ toc: True
 ```py
 # 打包并上传Jekyll项目
 
-
 commit_txt = "add new"
 
 import os
@@ -36,3 +35,4 @@ subprocess.run(["git", "push"], cwd=".", shell=True)
 
 
 - 好的，现在只需要一个脚本就可以打包上传修改了
+- 至于为什么前面用os.system后面用subprocess，因为两段代码分别是从不同的脚本里拷过来的（所以只用了3分钟），两个命令在这里没什么区别

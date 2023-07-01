@@ -4,19 +4,25 @@
 - 每次新建文章都要手动按时间命名，还要添加yaml头，挺麻烦的
 - 添加图片创建目录也很麻烦
 - 所以做了这个
+
+- 分类快捷copy
+
+css
+
+knowhow
 '''
 
 
-# 修改这里：md文件名
-file_name = "build_upload"
+# 修改这里：md文件名后面会跟时间拼接起来
+file_name = "ip"
 # 修改这里：md放在哪个目录下
-dir = "jekyll"
+dir = "knowhow"
 # 修改这里：文章标题
-title = "'jekyll: build_upload 打包上传脚本'"
+title = "'knowhow: ip地址基础知识'"
 # 修改这里：文章介绍
-info = "'用python写的，把build，commit，push放在一个脚本里，节省了3秒的生命'"
+info = "'持续更新'"
 # 修改这里：文章分类
-categories = ["jekyll","python"]
+categories = ["knowhow"]
 
 
 import os
@@ -66,3 +72,5 @@ if not os.path.exists(image_path):
     os.makedirs(image_path)
 with open(gitkeep,"w+") as keep:
     pass
+
+

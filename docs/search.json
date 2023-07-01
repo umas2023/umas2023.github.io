@@ -1,10 +1,26 @@
 [
   
     {
+      "title"    : "knowhow: ip地址基础知识",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/knowhow/ip/",
+      "date"     : "2023-07-01 12:41:49 +0800"
+    } ,
+  
+    {
+      "title"    : "jekyll: build_upload 打包上传脚本",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/jekyll/python/build_upload/",
+      "date"     : "2023-07-01 12:13:20 +0800"
+    } ,
+  
+    {
       "title"    : "jekyll: add_new 添加新文章",
       "category" : "",
       "tags"     : "",
-      "url"      : "/jekyll/add_new/",
+      "url"      : "/jekyll/python/add_new/",
       "date"     : "2023-07-01 10:00:00 +0800"
     } ,
   

@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-01T12:02:11+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">jekyll: add_new 添加新文章</title><link href="/jekyll/add_new/" rel="alternate" type="text/html" title="jekyll: add_new 添加新文章" /><published>2023-07-01T10:00:00+08:00</published><updated>2023-07-01T10:00:00+08:00</updated><id>/jekyll/add_new</id><content type="html" xml:base="/jekyll/add_new/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-01T13:03:35+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">knowhow: ip地址基础知识</title><link href="/knowhow/ip/" rel="alternate" type="text/html" title="knowhow: ip地址基础知识" /><published>2023-07-01T12:41:49+08:00</published><updated>2023-07-01T12:41:49+08:00</updated><id>/knowhow/ip</id><content type="html" xml:base="/knowhow/ip/"><![CDATA[<h2 id="什么是ip地址">什么是ip地址</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://blog.csdn.net/hzhsan/article/details/44100215
+</code></pre></div></div>
+
+<ul>
+  <li>xx.xx.xx.0/24 表示一个网段，并且24告诉了当前具体的子网掩码</li>
+  <li>斜杠后面的数字就表示子网掩码，数字具体代表32位子网掩码（二进制形式）中前面的“1”的个数</li>
+  <li>192.168.0.0/24”表示，这个网段的IP地址从192.168.0.1开始，到192.168.0.254结束，子网掩码是255.255.255.0</li>
+  <li>IP地址是四个十进制数组成的，相当于32位二进制，子网掩码24表示32位中的前24位用”1”表示，后面8位用0表示，即11111111 11111111 11111111 00000000。将其转化为十进制，就是：255.255.255.0</li>
+  <li>同理192.168.1.0/28表示的意思是网段是192.168.1.0，子网掩码为：255.255.255.240，虽然子网掩码不同，但网段与24相同</li>
+  <li>24位说明网络位是24位，那么主机位就是32-24=8位了，则子网的IP个数是254个，即是从00000001到11111110，而28位说明网络位是28位，那么主机位4位，则子网的IP个数是14个，即是从00000001到00001110</li>
+</ul>]]></content><author><name></name></author><category term="knowhow" /><summary type="html"><![CDATA[什么是ip地址]]></summary></entry><entry><title type="html">jekyll: build_upload 打包上传脚本</title><link href="/jekyll/python/build_upload/" rel="alternate" type="text/html" title="jekyll: build_upload 打包上传脚本" /><published>2023-07-01T12:13:20+08:00</published><updated>2023-07-01T12:13:20+08:00</updated><id>/jekyll/python/build_upload</id><content type="html" xml:base="/jekyll/python/build_upload/"><![CDATA[<ul>
+  <li>写代码用了3分钟</li>
+  <li>就是说这个脚本得至少跑60次才能回本</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 打包并上传Jekyll项目
+</span>
+<span class="n">commit_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="s">add new</span><span class="sh">"</span>
+
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">subprocess</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="n">script_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">script_path</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== jekyll build =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">"</span><span class="s">jekyll build --source hello_umas --destination docs</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== push source =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">add</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">commit</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-m</span><span class="sh">"</span><span class="p">,</span> <span class="n">commit_txt</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">push</span><span class="sh">"</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>好的，现在只需要一个脚本就可以打包上传修改了</li>
+  <li>至于为什么前面用os.system后面用subprocess，因为两段代码分别是从不同的脚本里拷过来的（所以只用了3分钟），两个命令在这里没什么区别</li>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="python" /><summary type="html"><![CDATA[写代码用了3分钟 就是说这个脚本得至少跑60次才能回本]]></summary></entry><entry><title type="html">jekyll: add_new 添加新文章</title><link href="/jekyll/python/add_new/" rel="alternate" type="text/html" title="jekyll: add_new 添加新文章" /><published>2023-07-01T10:00:00+08:00</published><updated>2023-07-01T10:00:00+08:00</updated><id>/jekyll/python/add_new</id><content type="html" xml:base="/jekyll/python/add_new/"><![CDATA[<ul>
   <li>首先安装 jekyll-post插件
     <ul>
       <li>tmd根本没有这个插件，GPT就知道胡诌</li>
@@ -17,6 +56,7 @@
   <li>代码如下
     <ul>
       <li>注意因为代码里包含了{% raw %}{% endraw %}字符串，为了在页面展示所以原始md文件中使用了双大括号转义符，<strong><em>这段代码复制使用时需要替换raw和endraw部分</em></strong>（很奇怪为什么不转义会报错，但转移后的字符串在代码中并没有被解析）</li>
+      <li>注意info和title的文本比较复杂，最好用双层引号，保证不会被转义</li>
     </ul>
   </li>
 </ul>
@@ -34,9 +74,9 @@
 <span class="c1"># 修改这里：md放在哪个目录下
 </span><span class="nb">dir</span> <span class="o">=</span> <span class="sh">"</span><span class="s">jekyll</span><span class="sh">"</span>
 <span class="c1"># 修改这里：文章标题
-</span><span class="n">title</span> <span class="o">=</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span>
+</span><span class="n">title</span> <span class="o">=</span> <span class="sh">"'</span><span class="s">title</span><span class="sh">'"</span>
 <span class="c1"># 修改这里：文章介绍
-</span><span class="n">info</span> <span class="o">=</span> <span class="sh">"</span><span class="s">info</span><span class="sh">"</span>
+</span><span class="n">info</span> <span class="o">=</span> <span class="sh">"'</span><span class="s">info</span><span class="sh">'"</span>
 <span class="c1"># 修改这里：文章分类
 </span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">jekyll</span><span class="sh">"</span><span class="p">]</span>
 
@@ -79,13 +119,15 @@
 <span class="c1"># 创建图片目录
 </span><span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span><span class="sh">"</span><span class="s">hello_umas/image</span><span class="sh">"</span><span class="p">,</span><span class="nb">dir</span><span class="p">,</span><span class="n">file_name</span><span class="p">))</span>
 <span class="n">gitkeep</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">normpath</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span><span class="sh">"</span><span class="s">.gitkeep</span><span class="sh">"</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+    <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
 <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">gitkeep</span><span class="p">,</span><span class="sh">"</span><span class="s">w+</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">keep</span><span class="p">:</span>
     <span class="k">pass</span>
 </code></pre></div></div>
 
 <ul>
   <li>放在项目下add.py，使用前在代码里修改头部信息</li>
-</ul>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[首先安装 jekyll-post插件 tmd根本没有这个插件，GPT就知道胡诌]]></summary></entry><entry><title type="html">windows: redmi-ax6000路由器刷openwrt固件</title><link href="/windows/Redmi_openwrt/" rel="alternate" type="text/html" title="windows: redmi-ax6000路由器刷openwrt固件" /><published>2023-06-30T09:48:00+08:00</published><updated>2023-06-30T09:48:00+08:00</updated><id>/windows/Redmi_openwrt</id><content type="html" xml:base="/windows/Redmi_openwrt/"><![CDATA[<ul>
+</ul>]]></content><author><name></name></author><category term="jekyll" /><category term="python" /><summary type="html"><![CDATA[首先安装 jekyll-post插件 tmd根本没有这个插件，GPT就知道胡诌]]></summary></entry><entry><title type="html">windows: redmi-ax6000路由器刷openwrt固件</title><link href="/windows/Redmi_openwrt/" rel="alternate" type="text/html" title="windows: redmi-ax6000路由器刷openwrt固件" /><published>2023-06-30T09:48:00+08:00</published><updated>2023-06-30T09:48:00+08:00</updated><id>/windows/Redmi_openwrt</id><content type="html" xml:base="/windows/Redmi_openwrt/"><![CDATA[<ul>
   <li>参考：
     <ul>
       <li>https://blog.csdn.net/sxf1061700625/article/details/130328437</li>
@@ -1052,244 +1094,4 @@ npm run build
 
 
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_nginx 一键部署nginx在ubuntu主机上</title><link href="/bash/init_nginx/" rel="alternate" type="text/html" title="bash: init_nginx 一键部署nginx在ubuntu主机上" /><published>2023-06-29T14:15:00+08:00</published><updated>2023-06-29T14:15:00+08:00</updated><id>/bash/init_nginx</id><content type="html" xml:base="/bash/init_nginx/"><![CDATA[<ul>
-  <li>简单介绍nginx
-    <ul>
-      <li>略</li>
-    </ul>
-  </li>
-  <li>sh脚本</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
-
-
-<span class="c"># ### - init_nginx [nginx静态页面服务器]</span>
-<span class="c"># - 脚本调用  </span>
-<span class="c"># ```./setup.sh```</span>
-<span class="c"># - 参数修改</span>
-<span class="c">#     - index.html文件位置：init_nginx/frontend.conf - server.root (line 12)</span>
-<span class="c">#     - 登录用户名：init_nginx.nginx.conf - user (line 1)</span>
-<span class="c"># - 注意</span>
-<span class="c">#     - 默认端口8080</span>
-
-
-<span class="c"># 切换工作目录</span>
-<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
-
-<span class="c"># 参数：端口</span>
-<span class="nv">port</span><span class="o">=</span>4080
-<span class="c"># 参数：dist文件路径</span>
-<span class="c"># dist_path="/root/umasbox/frontend/dist"</span>
-<span class="nv">dist_path</span><span class="o">=</span><span class="s2">"/mnt/d/s-linux/project/onebox/server_frontend/dist"</span>
-
-<span class="c"># 确认参数</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">nginx port: </span><span class="nv">$port</span><span class="s2">"</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"dist path: </span><span class="nv">$dist_path</span><span class="se">\n\n</span><span class="s2">press enter to continue..."</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
-
-<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
-<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">touch</span> ~/.user_profile
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
-<span class="k">fi
-if</span> <span class="o">!(</span> <span class="nb">cat</span> ~/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
-    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
-<span class="k">fi</span>
-
-<span class="c"># 参数写入conf</span>
-<span class="k">if </span><span class="nb">cat</span> <span class="s1">'./frontend.conf'</span> | <span class="nb">grep</span> <span class="s2">"listen"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
-    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/listen*/c</span><span class="se">\ \t</span><span class="s2">listen </span><span class="nv">$port</span><span class="s2">;"</span> ./frontend.conf
-<span class="k">fi
-if </span><span class="nb">cat</span> <span class="s1">'./frontend.conf'</span> | <span class="nb">grep</span> <span class="s2">"root"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
-    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/root*/c</span><span class="se">\ \t</span><span class="s2">root </span><span class="nv">$dist_path</span><span class="s2">;"</span> ./frontend.conf
-<span class="k">fi
-
-</span>apt update
-apt <span class="nb">install </span>nginx <span class="nt">-y</span>
-
-<span class="nb">cp </span>frontend.conf /etc/nginx/conf.d/frontend.conf
-<span class="nb">cp </span>nginx.conf /etc/nginx/nginx.conf
-
-<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> <span class="s1">'~/.user_profile'</span> | <span class="nb">grep</span> <span class="s2">"^service nginx start"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"# user profile: nginx"</span> <span class="o">&gt;&gt;</span> ~/.user_profile
-    <span class="nb">echo</span> <span class="s2">"echo ' * nginx port </span><span class="nv">$port</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> ~/.user_profile
-    <span class="nb">echo</span> <span class="s2">"service nginx start"</span> <span class="o">&gt;&gt;</span> ~/.user_profile
-<span class="k">fi
-
-</span>service nginx stop
-nginx <span class="nt">-c</span> /etc/nginx/nginx.conf
-nginx <span class="nt">-s</span> reload
-
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">nginx setup finish</span><span class="se">\n</span><span class="s2">"</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>考虑到版本区别，没有直接用脚本修改conf文件，而是用现有的conf文件直接覆盖</li>
-  <li>nginx.conf</li>
-</ul>
-
-<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span>  <span class="n">root</span>;
-<span class="n">worker_processes</span>  <span class="n">auto</span>;
-
-<span class="n">error_log</span>  /<span class="n">var</span>/<span class="n">log</span>/<span class="n">nginx</span>/<span class="n">error</span>.<span class="n">log</span> <span class="n">notice</span>;
-<span class="n">pid</span>        /<span class="n">var</span>/<span class="n">run</span>/<span class="n">nginx</span>.<span class="n">pid</span>;
-
-
-<span class="n">events</span> {
-    <span class="n">worker_connections</span>  <span class="m">1024</span>;
-}
-
-
-<span class="n">http</span> {
-    <span class="n">include</span>       /<span class="n">etc</span>/<span class="n">nginx</span>/<span class="n">mime</span>.<span class="n">types</span>;
-    <span class="n">default_type</span>  <span class="n">application</span>/<span class="n">octet</span>-<span class="n">stream</span>;
-
-    <span class="n">log_format</span>  <span class="n">main</span>  <span class="s1">'$remote_addr - $remote_user [$time_local] "$request" '</span>
-                      <span class="s1">'$status $body_bytes_sent "$http_referer" '</span>
-                      <span class="s1">'"$http_user_agent" "$http_x_forwarded_for"'</span>;
-
-    <span class="n">access_log</span>  /<span class="n">var</span>/<span class="n">log</span>/<span class="n">nginx</span>/<span class="n">access</span>.<span class="n">log</span>  <span class="n">main</span>;
-
-    <span class="n">sendfile</span>        <span class="n">on</span>;
-    <span class="c">#tcp_nopush     on;
-</span>
-    <span class="n">keepalive_timeout</span>  <span class="m">65</span>;
-
-    <span class="c">#gzip  on;
-</span>
-    <span class="n">include</span> /<span class="n">etc</span>/<span class="n">nginx</span>/<span class="n">conf</span>.<span class="n">d</span>/*.<span class="n">conf</span>;
-}
-</code></pre></div></div>
-
-<ul>
-  <li>frontend.conf</li>
-</ul>
-
-<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># # 负载均衡（以后再研究）
-# upstream test {
-#     server localhost:8080;
-#     server localhost:8081;
-#     ip_hash; # 同一ip请求定向到同一后端
-# }
-</span>
-<span class="c"># 静态网页
-</span><span class="n">server</span> {
-    <span class="n">listen</span> <span class="m">4080</span>;
-    <span class="n">server_name</span> <span class="n">box_server</span>; <span class="c"># 这个名字不知道干啥用的
-</span>    <span class="n">root</span> /<span class="n">mnt</span>/<span class="n">d</span>/<span class="n">s</span>-<span class="n">linux</span>/<span class="n">project</span>/<span class="n">onebox</span>/<span class="n">server_frontend</span>/<span class="n">dist</span>;
-    <span class="n">index</span> <span class="n">index</span>.<span class="n">html</span>;
-
-    
-    <span class="c"># 跨域转发
-</span>    
-    <span class="c"># location ~ /cloudapi/ {
-</span>    <span class="c">#     # proxy_pass http://47.100.209.58:18080/api/; # 没加api也能访问成功？
-</span>    <span class="c">#     proxy_pass http://47.100.209.58:18080;
-</span>    <span class="c"># }
-</span>
-    <span class="n">location</span> /<span class="n">cloudapi</span>/ {
-        <span class="n">proxy_pass</span> <span class="n">http</span>://<span class="m">47</span>.<span class="m">100</span>.<span class="m">209</span>.<span class="m">58</span>:<span class="m">18080</span>/<span class="n">api</span>/;
-    }
-    <span class="n">location</span> /<span class="n">isesol</span>/ {
-        <span class="n">proxy_pass</span> <span class="n">http</span>://<span class="n">idis</span>.<span class="n">isesol</span>.<span class="n">com</span>/;
-    }
-}
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍nginx 略]]></summary></entry><entry><title type="html">bash: init_codeserver 一键部署codeserver在ubuntu主机上</title><link href="/bash/init_codeserver/" rel="alternate" type="text/html" title="bash: init_codeserver 一键部署codeserver在ubuntu主机上" /><published>2023-06-29T14:10:00+08:00</published><updated>2023-06-29T14:10:00+08:00</updated><id>/bash/init_codeserver</id><content type="html" xml:base="/bash/init_codeserver/"><![CDATA[<ul>
-  <li>简单介绍codeserver
-    <ul>
-      <li>略</li>
-    </ul>
-  </li>
-  <li>脚本</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
-
-<span class="c"># ### - init_codeserver [code_server网页版vscode服务器]</span>
-<span class="c"># - 脚本调用</span>
-<span class="c"># ```setup.sh```</span>
-<span class="c"># - 参数修改</span>
-<span class="c">#     - 登录密码：/init_codeserver/setup.sh - sed (line27)</span>
-<span class="c">#     - 默认端口：/init_codeserver/setup.sh - sed (line28)</span>
-<span class="c">#     - 安装版本：/init_codeserver/setup.sh - version (line6)</span>
-<span class="c"># - 注意</span>
-<span class="c">#     - curl直接从github下载，可能无法访问</span>
-<span class="c">#     - 默认下载amd64版本，在脚本中按需修改</span>
-<span class="c">#     - 默认使用端口8081</span>
-<span class="c">#     - code-server不能在vscode中启动，报错error Please specify at least one file or folder</span>
-
-<span class="c"># # github官方仓库</span>
-<span class="c"># https://github.com/coder/code-server/releases</span>
-
-
-<span class="nv">version</span><span class="o">=</span><span class="s2">"4.6.0"</span> <span class="c"># 2022.8.21</span>
-<span class="nv">package</span><span class="o">=</span><span class="s2">"code-server-</span><span class="nv">$version</span><span class="s2">-amd64.rpm"</span> <span class="c"># for wsl</span>
-<span class="c"># package="code-server-$version-arm64.rpm" # for android termux / linux</span>
-<span class="c"># package="code-server-$version-armhfp.rpm" # for raspberry pi (?)</span>
-<span class="nv">port</span><span class="o">=</span>8081
-<span class="nv">user</span><span class="o">=</span><span class="s2">"root"</span>
-
-<span class="c"># 确认参数</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">package select: </span><span class="nv">$package</span><span class="s2">"</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"user: </span><span class="nv">$user</span><span class="s2">"</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"port : </span><span class="nv">$port</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
-
-
-
-<span class="c"># 检查是否已经安装</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/</span><span class="nv">$user</span><span class="s2">/.config/code-server"</span> <span class="o">]</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"code-server already installed"</span>
-    <span class="nb">exit </span>1
-<span class="k">fi</span>
-
-<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
-<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">touch</span> ~/.user_profile
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
-<span class="k">fi
-if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
-    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.bashrc
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
-<span class="k">fi</span>
-
-<span class="c"># 下载rpm包并安装</span>
-<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> <span class="nv">$package</span> <span class="o">]</span><span class="p">;</span><span class="k">then
-    </span>curl <span class="nt">-OL</span> https://github.com/coder/code-server/releases/download/v<span class="nv">$version</span>/<span class="nv">$package</span>
-<span class="k">fi
-</span>rpm <span class="nt">-ivh</span> <span class="nv">$package</span>
-<span class="nb">rm</span> <span class="nv">$package</span>
-
-<span class="c"># 首次运行生成config文件</span>
-code-server <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">sleep 5s, waiting for the end of the first operation ...</span><span class="se">\n\n</span><span class="s2">"</span>
-<span class="nb">sleep </span>5
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">maybe done</span><span class="se">\n</span><span class="s2">"</span>
-<span class="c"># 配置密码和端口，0.0.0.0代表本机所有ip地址</span>
-<span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^password:*/cpassword: umas1970"</span> ~/.config/code-server/config.yaml
-<span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^bind-addr:*/cbind-addr: 0.0.0.0:</span><span class="nv">$port</span><span class="s2">"</span> ~/.config/code-server/config.yaml
-
-
-
-<span class="c"># 加入.user_profile启动项</span>
-<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /<span class="nv">$user</span>/.user_profile | <span class="nb">grep</span> <span class="s2">"user profile: code-server"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"# user profile: code-server"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
-    <span class="nb">echo</span> <span class="s2">"echo ' * code-server port </span><span class="nv">$port</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
-    <span class="nb">echo</span> <span class="s2">"code-server &gt; /dev/null 2&gt;&amp;1 &amp;"</span> <span class="o">&gt;&gt;</span> /<span class="nv">$user</span>/.user_profile
-    <span class="c"># echo "nohup code-server &amp;" &gt;&gt; /$user/.user_profile</span>
-<span class="k">fi
-
-</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">code-server setup finish</span><span class="se">\n</span><span class="s2">"</span>
-
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍codeserver 略]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry></feed>
