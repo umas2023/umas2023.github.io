@@ -101,7 +101,7 @@
 </ol>
 
 <ul>
-  <li>标题的日期优先级低于yaml前置格式的日期，如果一天内上传了多份md，可以通过前置格式的日期指定时间来排序
+  <li>标题的日期优先级低于yaml前置格式的日期，如果一天内上传了多份md，可以通过前置格式的日期指定时间来排序，注意日期不要超过当前时间，否则不会实时显示，要等到时间才能解锁
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
 <span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
 <span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">Welcome</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Jekyll!"</span>
@@ -110,6 +110,8 @@
 </code></pre></div>    </div>
   </li>
   <li>注意代码块中如果包含空行，可能导致代码块缩进错误，尽量不要有空行</li>
+  <li>代码如果太长需要横向滚动的话，大多数浏览器都支持shift+滚轮</li>
+  <li>草稿可以放在_drafts文件夹下</li>
 </ul>
 
 <ol>

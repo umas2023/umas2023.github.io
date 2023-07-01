@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "jekyll: add_new 添加新文章",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/jekyll/add_new/",
+      "date"     : "2023-07-01 10:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "windows: redmi-ax6000路由器刷openwrt固件",
       "category" : "",
       "tags"     : "",
