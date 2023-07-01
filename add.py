@@ -8,15 +8,15 @@
 
 
 # 修改这里：md文件名
-file_name = "add_new_test"
+file_name = "build_upload"
 # 修改这里：md放在哪个目录下
 dir = "jekyll"
 # 修改这里：文章标题
-title = "title"
+title = "'jekyll: build_upload 打包上传脚本'"
 # 修改这里：文章介绍
-info = "info"
+info = "'用python写的，把build，commit，push放在一个脚本里，节省了3秒的生命'"
 # 修改这里：文章分类
-categories = ["jekyll"]
+categories = ["jekyll","python"]
 
 
 import os
@@ -62,5 +62,7 @@ with open(file_path, "w+", encoding="utf-8") as md:
 # 创建图片目录
 image_path = os.path.normpath(os.path.join(script_path,"hello_umas/image",dir,file_name))
 gitkeep = os.path.normpath(os.path.join(image_path,".gitkeep"))
+if not os.path.exists(image_path):
+    os.makedirs(image_path)
 with open(gitkeep,"w+") as keep:
     pass
