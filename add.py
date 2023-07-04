@@ -10,19 +10,23 @@
 css
 
 knowhow
+
+python
+
+zip_pctools
 '''
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "ip"
+file_name = "pytesseract"
 # 修改这里：md放在哪个目录下
-dir = "knowhow"
+dir = "python"
 # 修改这里：文章标题
-title = "'knowhow: ip地址基础知识'"
+title = "'python: pytesseract 配置'"
 # 修改这里：文章介绍
-info = "'持续更新'"
+info = "'免费ocr:tesseract.exe'"
 # 修改这里：文章分类
-categories = ["knowhow"]
+categories = ["python","zip_pctools"]
 
 
 import os
@@ -56,7 +60,7 @@ with open(file_path, "w+", encoding="utf-8") as md:
         md.write("\n")
     md.write("---\n")
     # 写入一张图片
-    md.write("\n\n![引入图片]({{site.url}}/image/%s/%s/image_1.png)" % (dir, file_name))
+    md.write("\n\n![引入图片]({{site.url}}/image/%s/%s/image_1.jpg)" % (dir, file_name))
     # 写入raw代码
     md.write("\n\n{% raw %}\n")
     md.write("```\n")

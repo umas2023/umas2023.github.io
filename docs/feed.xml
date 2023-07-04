@@ -1,4 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-01T13:03:35+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">knowhow: ip地址基础知识</title><link href="/knowhow/ip/" rel="alternate" type="text/html" title="knowhow: ip地址基础知识" /><published>2023-07-01T12:41:49+08:00</published><updated>2023-07-01T12:41:49+08:00</updated><id>/knowhow/ip</id><content type="html" xml:base="/knowhow/ip/"><![CDATA[<h2 id="什么是ip地址">什么是ip地址</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-04T15:07:42+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">python: pytesseract 配置</title><link href="/python/zip_pctools/pytesseract/" rel="alternate" type="text/html" title="python: pytesseract 配置" /><published>2023-07-04T11:25:22+08:00</published><updated>2023-07-04T11:25:22+08:00</updated><id>/python/zip_pctools/pytesseract</id><content type="html" xml:base="/python/zip_pctools/pytesseract/"><![CDATA[<h2 id="安装tesseract">安装tesseract</h2>
+<ul>
+  <li>https://github.com/tesseract-ocr/tesseract</li>
+</ul>
+
+<h2 id="加入环境变量">加入环境变量</h2>
+
+<p><img src="/image/python/2023-07-04-pytesseract/image_1.jpg" alt="引入图片" /></p>
+
+<h2 id="直接添加路径">直接添加路径</h2>
+<ul>
+  <li>实际使用发现添加环境变量不一定好用，依然会报错tesseract not installed</li>
+  <li>这时候需要手动在pytesseract.py里添加tesseract安装路径</li>
+  <li>我的包安装位置：</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>d:/p-program/pctools_venv/venv/Lib/site-packages/pytesseract/pytesseract.py
+</code></pre></div></div>
+
+<ul>
+  <li>打开pytesseract.py，搜索tesseract_cmd，替换为tesseract安装路径</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+</code></pre></div></div>
+
+<h2 id="下面是写在电脑配件里的实例">下面是写在电脑配件里的实例</h2>
+
+<ul>
+  <li>截图函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">startShot</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">开始截图</span><span class="sh">'''</span>
+    <span class="c1"># 获取屏幕截图
+</span>    <span class="n">screenshot</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">pyautogui</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">())</span>
+    <span class="c1"># 将RGB模式的屏幕截图转换为BGR模式
+</span>    <span class="n">screenshot</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">screenshot</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">)</span>
+
+    <span class="c1"># 创建全屏窗口
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">namedWindow</span><span class="p">(</span><span class="sh">"</span><span class="s">Screenshot</span><span class="sh">"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">setWindowProperty</span><span class="p">(</span><span class="sh">"</span><span class="s">Screenshot</span><span class="sh">"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WND_PROP_FULLSCREEN</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_FULLSCREEN</span><span class="p">)</span>
+
+    <span class="c1"># 显示屏幕截图
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Screenshot</span><span class="sh">"</span><span class="p">,</span> <span class="n">screenshot</span><span class="p">)</span>
+
+    <span class="c1"># 等待用户选择区域
+</span>    <span class="n">region</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">selectROI</span><span class="p">(</span><span class="sh">"</span><span class="s">Screenshot</span><span class="sh">"</span><span class="p">,</span> <span class="n">screenshot</span><span class="p">,</span> <span class="n">fromCenter</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">showCrosshair</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
+
+    <span class="c1"># 获取用户选择的区域
+</span>    <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">region</span>
+
+    <span class="c1"># 截取用户选择的区域
+</span>    <span class="n">screenshot</span> <span class="o">=</span> <span class="n">screenshot</span><span class="p">[</span><span class="n">top</span><span class="p">:</span><span class="n">top</span> <span class="o">+</span> <span class="n">height</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span><span class="n">left</span> <span class="o">+</span> <span class="n">width</span><span class="p">]</span>
+
+    <span class="c1"># 保存截图
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imwrite</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">jpg_path</span><span class="p">,</span> <span class="n">screenshot</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>ocr函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytesseract</span>  <span class="c1"># pip install pytesseract # 需要配置pytesseract路径
+</span>
+<span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">jpg_path</span><span class="p">,</span><span class="n">target</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+    <span class="sh">'''</span><span class="s">识别图片中的文字,返回去除空格和换行符的字符串</span><span class="sh">'''</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">pytesseract</span><span class="p">.</span><span class="nf">image_to_string</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">text</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s"> </span><span class="sh">"</span><span class="p">,</span> <span class="sh">""</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">,</span> <span class="sh">""</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span>
+</code></pre></div></div>
+
+<ul>
+  <li>谷歌翻译函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">deep_translator</span> <span class="kn">import</span> <span class="n">GoogleTranslator</span>  <span class="c1"># pip install deep-translator
+</span>
+<span class="k">def</span> <span class="nf">get_translate</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="n">source</span><span class="p">,</span><span class="n">translate</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+    <span class="sh">'''</span><span class="s">调用谷歌接口翻译文本</span><span class="se">\n</span><span class="s">
+    source = [</span><span class="sh">'</span><span class="s">ja</span><span class="sh">'</span><span class="s">]</span><span class="se">\n</span><span class="s">
+    translate = [</span><span class="sh">'</span><span class="s">zh-CN</span><span class="sh">'</span><span class="s">]</span><span class="sh">'''</span>
+    <span class="n">translated</span> <span class="o">=</span> <span class="nc">GoogleTranslator</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">translate</span><span class="p">).</span><span class="nf">translate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># Chinese translation
+</span>    <span class="k">return</span> <span class="n">translated</span>
+</code></pre></div></div>
+
+<ul>
+  <li>日文注音函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pykakasi</span>  <span class="c1"># pip install Cython # pip install pykakasi
+</span>
+<span class="k">def</span> <span class="nf">get_romaji</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">text_jp</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sh">'''</span><span class="s">将输入的日文转换为罗马音输出</span><span class="sh">'''</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text_jp</span>
+    <span class="n">kks</span> <span class="o">=</span> <span class="n">pykakasi</span><span class="p">.</span><span class="nf">kakasi</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">kks</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">sentence</span> <span class="o">=</span> <span class="sh">""</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">orig</span><span class="sh">'</span><span class="p">]</span><span class="o">+</span><span class="sh">"</span><span class="s">(%s)</span><span class="sh">"</span><span class="o">%</span><span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">hira</span><span class="sh">'</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">orig</span><span class="sh">'</span><span class="p">]</span><span class="o">==</span>  <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">hira</span><span class="sh">'</span><span class="p">]</span> <span class="k">else</span> <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">orig</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">sentence</span><span class="o">+=</span><span class="n">word</span>
+    <span class="k">return</span> <span class="n">sentence</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="python" /><category term="zip_pctools" /><summary type="html"><![CDATA[安装tesseract https://github.com/tesseract-ocr/tesseract]]></summary></entry><entry><title type="html">knowhow: ip地址基础知识</title><link href="/knowhow/ip/" rel="alternate" type="text/html" title="knowhow: ip地址基础知识" /><published>2023-07-01T12:41:49+08:00</published><updated>2023-07-01T12:41:49+08:00</updated><id>/knowhow/ip</id><content type="html" xml:base="/knowhow/ip/"><![CDATA[<h2 id="什么是ip地址">什么是ip地址</h2>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://blog.csdn.net/hzhsan/article/details/44100215
 </code></pre></div></div>
@@ -339,131 +444,7 @@ mtd verify /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
 <span class="k">done</span>
 
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><category term="raspberry_pi" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_ssh 一键部署linux主机的ssh环境</title><link href="/bash/init_ssh/" rel="alternate" type="text/html" title="bash: init_ssh 一键部署linux主机的ssh环境" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_ssh</id><content type="html" xml:base="/bash/init_ssh/"><![CDATA[<ul>
-  <li>简单介绍项目需求
-    <ul>
-      <li>略</li>
-    </ul>
-  </li>
-  <li>sh脚本</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
-
-
-<span class="c"># ### - init_ssh [ssh登录和gitee公钥设置]</span>
-<span class="c"># - 脚本调用  </span>
-<span class="c"># ```./setup.sh```</span>
-<span class="c"># - 参数修改</span>
-<span class="c">#     - 启动命令及端口</span>
-
-
-<span class="c"># 参数：端口</span>
-<span class="nv">port</span><span class="o">=</span>64822
-
-
-<span class="c"># 参数：启动命令</span>
-<span class="nv">ssh_cmd</span><span class="o">=</span><span class="s2">"service ssh start"</span>      <span class="c"># common ssh, 大多数环境适用</span>
-<span class="c"># ssh_cmd="/sbin/sshd -p $port"    # termux ssh, 目前已知wsl环境不可用</span>
-
-
-<span class="c"># 确认启动命令</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh command select: </span><span class="nv">$ssh_cmd</span><span class="se">\n</span><span class="s2">port: </span><span class="nv">$port</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
-
-
-<span class="c"># 切换工作目录</span>
-<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
-
-apt update 
-apt <span class="nb">install </span>ssh
-
-<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
-<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">touch</span> ~/.user_profile
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
-<span class="k">fi
-if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
-    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
-<span class="k">fi</span>
-
-<span class="c"># ssh 连接配置</span>
-<span class="c"># /etc/ssh/sshd_config允许root登录</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== ssh config ========== </span><span class="se">\n</span><span class="s2">"</span>
-<span class="nb">echo</span> <span class="s2">"root:umas1970"</span> | chpasswd 
-<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PermitRootLogin"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
-    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PermitRootLogin*/cPermitRootLogin yes"</span> /etc/ssh/sshd_config
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
-<span class="k">fi
-if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PasswordAuthentication"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
-    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PasswordAuthentication*/cPasswordAuthentication yes"</span> /etc/ssh/sshd_config
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
-<span class="k">fi</span>
-<span class="c"># 修改默认端口64822</span>
-<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^Port"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
-    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^Port*/Port </span><span class="nv">$port</span><span class="s2">"</span> /etc/ssh/sshd_config
-<span class="k">else
-    </span><span class="nb">echo</span> <span class="s2">"Port </span><span class="nv">$port</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
-<span class="k">fi</span>
-
-
-<span class="c"># 加入.user_profile启动项</span>
-<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.user_profile | <span class="nb">grep</span> <span class="s2">"user profile: ssh"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"# user profile: ssh"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
-    <span class="nb">echo</span> <span class="s2">"echo ' * ssh: </span><span class="nv">$ssh_cmd</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
-    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ssh_cmd</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
-    <span class="nb">echo</span> <span class="s2">"ip addr show | grep 192"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
-<span class="k">fi</span>
-
-<span class="c"># 要求windows公钥</span>
-<span class="nb">yes</span> | ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-P</span> <span class="s2">""</span> <span class="nt">-f</span> ~/.ssh/id_rsa
-<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"create ssh public key in windows :</span><span class="se">\n\n\t</span><span class="s2">ssh-keygen -t rsa -b 4096</span><span class="se">\n\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
-then copy C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\u</span><span class="s2">mas2017</span><span class="se">\.</span><span class="s2">ssh</span><span class="se">\i</span><span class="s2">d_rsa.pub here:</span><span class="se">\n</span><span class="s2">id_rsa.pub (press enter to skip): "</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$input</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
-    if</span> <span class="o">[</span> <span class="nt">-f</span> ~/.ssh/authorized_keys <span class="o">]</span><span class="p">;</span><span class="k">then
-        if </span><span class="nb">cat</span> ~/.ssh/authorized_keys | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$input</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
-            </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys
-        <span class="k">else
-            </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">公钥已存在</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="k">fi
-    else 
-        </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys 
-    <span class="k">fi
-fi</span>
-
-<span class="c"># load一次bashrc作为启动</span>
-<span class="nb">source</span> ~/.bashrc
-
-
-
-<span class="c"># gitee 公钥设置</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== gitee config ========== </span><span class="se">\n</span><span class="s2">"</span>
-git config <span class="nt">--global</span> user.email <span class="s2">"1970313791@qq.com"</span>
-git config <span class="nt">--global</span> user.name <span class="s2">"umas"</span>
-<span class="nb">printf</span> <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2">"</span> | ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"1970313791@qq.com"</span> 
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
-<span class="nb">cat</span> ~/.ssh/id_ed25519.pub
-<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">ssh public key above, fill in gitee:</span><span class="se">\n\n\t</span><span class="s2"> </span><span class="se">\</span><span class="s2">
-https://gitee.com/profile/sshkeys</span><span class="se">\n\n</span><span class="s2">press enter to continue"</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
-ssh <span class="nt">-T</span> git@gitee.com
-
-<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">process finish, The following command can change http-git to ssh-git</span><span class="se">\n\n\</span><span class="s2">
-</span><span class="se">\t</span><span class="s2">git remote rm origin</span><span class="se">\n\</span><span class="s2">
-</span><span class="se">\t</span><span class="s2">git remote add origin git@gitee.com:umas/umasbox.git</span><span class="se">\n\</span><span class="s2">
-</span><span class="se">\t</span><span class="s2">git push --set-upstream origin master</span><span class="se">\n\n</span><span class="s2">"</span>
-
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh setup finish</span><span class="se">\n</span><span class="s2">"</span>
-
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_samba 一键部署samba局域网文件共享</title><link href="/bash/init_samba/" rel="alternate" type="text/html" title="bash: init_samba 一键部署samba局域网文件共享" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_samba</id><content type="html" xml:base="/bash/init_samba/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><category term="raspberry_pi" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_samba 一键部署samba局域网文件共享</title><link href="/bash/init_samba/" rel="alternate" type="text/html" title="bash: init_samba 一键部署samba局域网文件共享" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_samba</id><content type="html" xml:base="/bash/init_samba/"><![CDATA[<ul>
   <li>简单介绍项目需求
     <ul>
       <li>略</li>
@@ -1029,7 +1010,7 @@ samba restart
    <span class="c"># 可见            
 </span>   <span class="n">browseable</span> = <span class="n">yes</span>  
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_node 一键部署nodejs+vue开发环境在ubuntu主机上</title><link href="/bash/init_node/" rel="alternate" type="text/html" title="bash: init_node 一键部署nodejs+vue开发环境在ubuntu主机上" /><published>2023-06-29T14:25:00+08:00</published><updated>2023-06-29T14:25:00+08:00</updated><id>/bash/init_node</id><content type="html" xml:base="/bash/init_node/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry><entry><title type="html">bash: init_ssh 一键部署linux主机的ssh环境</title><link href="/bash/init_ssh/" rel="alternate" type="text/html" title="bash: init_ssh 一键部署linux主机的ssh环境" /><published>2023-06-29T14:35:00+08:00</published><updated>2023-06-29T14:35:00+08:00</updated><id>/bash/init_ssh</id><content type="html" xml:base="/bash/init_ssh/"><![CDATA[<ul>
   <li>简单介绍项目需求
     <ul>
       <li>略</li>
@@ -1040,58 +1021,117 @@ samba restart
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
 
-<span class="c"># ### - init_node [node.js+vue前端开发环境配置]</span>
+
+<span class="c"># ### - init_ssh [ssh登录和gitee公钥设置]</span>
 <span class="c"># - 脚本调用  </span>
 <span class="c"># ```./setup.sh```</span>
 <span class="c"># - 参数修改</span>
-<span class="c">#     - 前端目录：/init_node/setup.sh - project_path (line4)</span>
+<span class="c">#     - 启动命令及端口</span>
 
 
-<span class="c"># 参数：前端项目路径</span>
-<span class="nv">project_path</span><span class="o">=</span><span class="s2">"/root/onebox/server_frontend"</span>
-<span class="c">#project_path="/root/onebox/intf_electron_vue/intf_electron"</span>
+<span class="c"># 参数：端口</span>
+<span class="nv">port</span><span class="o">=</span>64822
+
+
+<span class="c"># 参数：启动命令</span>
+<span class="nv">ssh_cmd</span><span class="o">=</span><span class="s2">"service ssh start"</span>      <span class="c"># common ssh, 大多数环境适用</span>
+<span class="c"># ssh_cmd="/sbin/sshd -p $port"    # termux ssh, 目前已知wsl环境不可用</span>
+
+
+<span class="c"># 确认启动命令</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh command select: </span><span class="nv">$ssh_cmd</span><span class="se">\n</span><span class="s2">port: </span><span class="nv">$port</span><span class="se">\n</span><span class="s2">press enter to continue..."</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+
 
 <span class="c"># 切换工作目录</span>
 <span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
 
-<span class="c"># 确认路径</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">frontend project path: </span><span class="nv">$project_path</span><span class="se">\n</span><span class="s2">press enter to continue ..."</span>
-<span class="nb">read</span> <span class="nt">-r</span> input
+apt update 
+apt <span class="nb">install </span>ssh
 
-<span class="c"># nvm需要安装git</span>
-apt update
-apt <span class="nb">install </span>git
-
-<span class="c"># 安装nvm并用国内源安装nodejs，使用gitee，该三方源稳定性不能保证</span>
-<span class="nb">cd</span> ~
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">========== node: install node ==========</span><span class="se">\n</span><span class="s2">"</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/root/.nvm"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[[</span> <span class="sb">`</span><span class="nb">ls</span> <span class="nt">-A</span> /root/.nvm<span class="sb">`</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
-    </span><span class="nb">echo</span> <span class="s2">"nvm already exist"</span>
+<span class="c"># 创建.user_profile文件并写入.bashrc启动项</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> ~/.user_profile <span class="o">]</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">touch</span> ~/.user_profile
 <span class="k">else
-    </span>git clone https://gitee.com/Annlix/nvm-sh_nvm.git
-    bash ./nvm-sh_nvm/install.sh
-    <span class="nb">export </span><span class="nv">NVM_NODEJS_ORG_MIRROR</span><span class="o">=</span>https://npm.taobao.org/mirrors/node
-    <span class="nb">source</span> ~/.bashrc
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already exist"</span>
 <span class="k">fi
-</span><span class="nb">source</span> ~/.nvm/nvm.sh
-nvm <span class="nb">install </span>16.14.0
+if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.bashrc | <span class="nb">grep</span> <span class="s2">"user_profile"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'setup command : ~/.user_profile'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.user_profile ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.user_profile</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"user_profile already loaded in bashrc"</span>
+<span class="k">fi</span>
+
+<span class="c"># ssh 连接配置</span>
+<span class="c"># /etc/ssh/sshd_config允许root登录</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== ssh config ========== </span><span class="se">\n</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"root:umas1970"</span> | chpasswd 
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PermitRootLogin"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PermitRootLogin*/cPermitRootLogin yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi
+if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PasswordAuthentication"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PasswordAuthentication*/cPasswordAuthentication yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+<span class="c"># 修改默认端口64822</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^Port"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^Port*/Port </span><span class="nv">$port</span><span class="s2">"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"Port </span><span class="nv">$port</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+
+
+<span class="c"># 加入.user_profile启动项</span>
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> /root/.user_profile | <span class="nb">grep</span> <span class="s2">"user profile: ssh"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"# user profile: ssh"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"echo ' * ssh: </span><span class="nv">$ssh_cmd</span><span class="s2"> starting ...'"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ssh_cmd</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+    <span class="nb">echo</span> <span class="s2">"ip addr show | grep 192"</span> <span class="o">&gt;&gt;</span> /root/.user_profile
+<span class="k">fi</span>
+
+<span class="c"># 要求windows公钥</span>
+<span class="nb">yes</span> | ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-P</span> <span class="s2">""</span> <span class="nt">-f</span> ~/.ssh/id_rsa
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"create ssh public key in windows :</span><span class="se">\n\n\t</span><span class="s2">ssh-keygen -t rsa -b 4096</span><span class="se">\n\n</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+then copy C:</span><span class="se">\U</span><span class="s2">sers</span><span class="se">\u</span><span class="s2">mas2017</span><span class="se">\.</span><span class="s2">ssh</span><span class="se">\i</span><span class="s2">d_rsa.pub here:</span><span class="se">\n</span><span class="s2">id_rsa.pub (press enter to skip): "</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$input</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span><span class="k">then
+    if</span> <span class="o">[</span> <span class="nt">-f</span> ~/.ssh/authorized_keys <span class="o">]</span><span class="p">;</span><span class="k">then
+        if </span><span class="nb">cat</span> ~/.ssh/authorized_keys | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$input</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+            </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">公钥已存在</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="k">fi
+    else 
+        </span><span class="nb">echo</span> <span class="nv">$input</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys 
+    <span class="k">fi
+fi</span>
+
+<span class="c"># load一次bashrc作为启动</span>
 <span class="nb">source</span> ~/.bashrc
 
 
-<span class="c"># 进入项目目录安装node modules</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">========== node: install modules ==========</span><span class="se">\n</span><span class="s2">"</span>
-npm <span class="nb">install</span> <span class="nt">-g</span> nrm
-nrm use taobao
-<span class="nb">cd</span> <span class="nv">$project_path</span>
-npm i
 
+<span class="c"># gitee 公钥设置</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> ========== gitee config ========== </span><span class="se">\n</span><span class="s2">"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"1970313791@qq.com"</span>
+git config <span class="nt">--global</span> user.name <span class="s2">"umas"</span>
+<span class="nb">printf</span> <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2">"</span> | ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"1970313791@qq.com"</span> 
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+<span class="nb">cat</span> ~/.ssh/id_ed25519.pub
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">ssh public key above, fill in gitee:</span><span class="se">\n\n\t</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+https://gitee.com/profile/sshkeys</span><span class="se">\n\n</span><span class="s2">press enter to continue"</span>
+<span class="nb">read</span> <span class="nt">-r</span> input
+ssh <span class="nt">-T</span> git@gitee.com
 
-<span class="c"># 以防万一打包一遍</span>
-<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">========== node: run build ==========</span><span class="se">\n</span><span class="s2">"</span>
-npm run build
+<span class="nb">echo</span> <span class="nt">-en</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">process finish, The following command can change http-git to ssh-git</span><span class="se">\n\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git remote rm origin</span><span class="se">\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git remote add origin git@gitee.com:umas/umasbox.git</span><span class="se">\n\</span><span class="s2">
+</span><span class="se">\t</span><span class="s2">git push --set-upstream origin master</span><span class="se">\n\n</span><span class="s2">"</span>
 
-
-
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">ssh setup finish</span><span class="se">\n</span><span class="s2">"</span>
 
 
 </code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry></feed>
