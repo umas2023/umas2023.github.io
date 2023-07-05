@@ -18,15 +18,15 @@ zip_pctools
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "opcua"
+file_name = "obs"
 # 修改这里：md放在哪个目录下
 dir = "windows"
 # 修改这里：文章标题
-title = "'windows: 连接opcua'"
+title = "'windows: obs+usb采集卡连接ps5/switch'"
 # 修改这里：文章介绍
-info = "'opcua'"
+info = "'没钱买显示器，用采集卡凑合一年'"
 # 修改这里：文章分类
-categories = ["windows","python"]
+categories = ["windows"]
 
 
 import os
