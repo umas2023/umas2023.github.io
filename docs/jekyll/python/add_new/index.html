@@ -142,9 +142,22 @@
 </code></pre></div></div>
 
 <ul>
-  <li>放在项目下add.py，使用前在代码里修改头部信息</li>
+  <li>
+    <p>放在项目下add.py，使用前在代码里修改头部信息</p>
+  </li>
+  <li>
+    <p>2023.7.5增加了两行代码，创建完成后自动打开新的md文件和图片文件夹</p>
+  </li>
 </ul>
 
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 打开图片目录
+</span><span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">"</span><span class="s">explorer.exe %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">image_path</span><span class="p">)</span>
+
+<span class="c1"># 打开新md文件
+# 注意路径有空格时需要在外层再套单引号
+</span><span class="n">vscode</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">'"</span><span class="s">D:\p-program\vscode\Microsoft VS Code\Code.exe</span><span class="sh">"'</span>
+<span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">"</span><span class="s">%s %s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">vscode</span><span class="p">,</span><span class="n">file_path</span><span class="p">))</span>
+</code></pre></div></div>
 
   </div>
 

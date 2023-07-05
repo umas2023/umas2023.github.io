@@ -12,21 +12,21 @@ css
 knowhow
 
 python
-
+windows
 zip_pctools
 '''
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "pytesseract"
+file_name = "opcua"
 # 修改这里：md放在哪个目录下
-dir = "python"
+dir = "windows"
 # 修改这里：文章标题
-title = "'python: pytesseract 配置'"
+title = "'windows: 连接opcua'"
 # 修改这里：文章介绍
-info = "'免费ocr:tesseract.exe'"
+info = "'opcua'"
 # 修改这里：文章分类
-categories = ["python","zip_pctools"]
+categories = ["windows","python"]
 
 
 import os
@@ -77,4 +77,9 @@ if not os.path.exists(image_path):
 with open(gitkeep,"w+") as keep:
     pass
 
+# 打开图片目录
+os.system("explorer.exe %s" % image_path)
 
+# 打开新md文件
+vscode = r'"D:\p-program\vscode\Microsoft VS Code\Code.exe"'
+os.system("%s %s" % (vscode,file_path))

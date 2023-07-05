@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "windows: 连接opcua",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/python/opcua/",
+      "date"     : "2023-07-05 15:50:52 +0800"
+    } ,
+  
+    {
       "title"    : "python: pytesseract 配置",
       "category" : "",
       "tags"     : "",
