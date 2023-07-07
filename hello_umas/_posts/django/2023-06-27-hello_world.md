@@ -140,5 +140,28 @@ from py_server.asgi import application
 ```
 
 
+- 如果上面的跨域解决方法不起作用，后端显示200但前端报错Access to XMLHttpRequest at 'http://localhost:4090/xxx' from origin 'http://localhost:8080' has been blocked by CORS policy，试试下面的方法
+
+```
+pip install django-cors-headers
+```
+
+- settings.py添加
+
+```py
+INSTALLED_APPS = [
+    # 其他应用
+    'corsheaders',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    # 其他中间件（注意上面这个放在第一位）
+]
+
+```
 
 

@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-05T18:45:07+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">windows: obs+usb采集卡连接ps5/switch</title><link href="/windows/obs/" rel="alternate" type="text/html" title="windows: obs+usb采集卡连接ps5/switch" /><published>2023-07-05T18:34:06+08:00</published><updated>2023-07-05T18:34:06+08:00</updated><id>/windows/obs</id><content type="html" xml:base="/windows/obs/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-07T13:50:10+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">amtc: 树莓派转发校园网</title><link href="/amtc/rpi_wifi/" rel="alternate" type="text/html" title="amtc: 树莓派转发校园网" /><published>2023-07-06T16:22:43+08:00</published><updated>2023-07-06T16:22:43+08:00</updated><id>/amtc/rpi_wifi</id><content type="html" xml:base="/amtc/rpi_wifi/"><![CDATA[<h2 id="树莓派连接校园网">树莓派连接校园网</h2>
+
+<ul>
+  <li>rasbian系统wifi驱动不支持802.1x协议，刷ubuntu系统</li>
+  <li>连接TJ-wifi，
+    <ul>
+      <li>WiFi security: WPA &amp; WPA2 Enterprise</li>
+      <li>Authentication: PEAP</li>
+      <li>No CA certificate is required</li>
+      <li>PEAP version: Automatic</li>
+      <li>inner authentication: MSCHAPv2</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="iptable转发">iptable转发</h2>
+
+<ul>
+  <li>明天再做</li>
+</ul>
+
+<p>https://zhuanlan.zhihu.com/p/433062004
+https://blog.csdn.net/meihualing/article/details/130755346</p>
+
+<p><img src="/image/amtc/2023-07-06-rpi_wifi/image_1.jpg" alt="引入图片" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><summary type="html"><![CDATA[树莓派连接校园网]]></summary></entry><entry><title type="html">windows: obs+usb采集卡连接ps5/switch</title><link href="/windows/obs/" rel="alternate" type="text/html" title="windows: obs+usb采集卡连接ps5/switch" /><published>2023-07-05T18:34:06+08:00</published><updated>2023-07-05T18:34:06+08:00</updated><id>/windows/obs</id><content type="html" xml:base="/windows/obs/"><![CDATA[<ul>
   <li>首先安装obs
     <ul>
       <li>官网速度比较慢，推荐用steam安装</li>
@@ -20,10 +46,17 @@
 <img src="/image/windows/2023-07-05-obs/image_3.jpg" alt="引入图片" /></p>
   </li>
   <li>添加音频采集设备（略）</li>
-  <li>设置音频输出
+  <li>
+    <p>设置音频输出
 <img src="/image/windows/2023-07-05-obs/image_4.jpg" alt="引入图片" />
-<img src="/image/windows/2023-07-05-obs/image_5.jpg" alt="引入图片" /></li>
-</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[首先安装obs 官网速度比较慢，推荐用steam安装]]></summary></entry><entry><title type="html">windows: 连接opcua</title><link href="/windows/python/opcua/" rel="alternate" type="text/html" title="windows: 连接opcua" /><published>2023-07-05T15:50:52+08:00</published><updated>2023-07-05T15:50:52+08:00</updated><id>/windows/python/opcua</id><content type="html" xml:base="/windows/python/opcua/"><![CDATA[<h2 id="windows通过uaexpert连接">windows通过uaexpert连接</h2>
+<img src="/image/windows/2023-07-05-obs/image_5.jpg" alt="引入图片" /></p>
+  </li>
+  <li>
+    <p>在画面上点击右键可以全屏</p>
+  </li>
+  <li>设置好之后第二次启动主机时obs没有显示，在视频设置里随便切换一个输入然后再切回来就好了</li>
+  <li>或者先启动主机再启动软件也可以</li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[首先安装obs 官网速度比较慢，推荐用steam安装]]></summary></entry><entry><title type="html">amtc: 连接opcua</title><link href="/amtc/python/opcua/" rel="alternate" type="text/html" title="amtc: 连接opcua" /><published>2023-07-05T15:50:52+08:00</published><updated>2023-07-05T15:50:52+08:00</updated><id>/amtc/python/opcua</id><content type="html" xml:base="/amtc/python/opcua/"><![CDATA[<h2 id="windows通过uaexpert连接">windows通过uaexpert连接</h2>
 
 <ul>
   <li>网线连接设备，记下设备ip（192.168.0.112）</li>
@@ -216,7 +249,7 @@
 
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><category term="python" /><summary type="html"><![CDATA[windows通过uaexpert连接]]></summary></entry><entry><title type="html">python: pytesseract 配置</title><link href="/python/zip_pctools/pytesseract/" rel="alternate" type="text/html" title="python: pytesseract 配置" /><published>2023-07-04T11:25:22+08:00</published><updated>2023-07-04T11:25:22+08:00</updated><id>/python/zip_pctools/pytesseract</id><content type="html" xml:base="/python/zip_pctools/pytesseract/"><![CDATA[<h2 id="安装tesseract">安装tesseract</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><category term="python" /><summary type="html"><![CDATA[windows通过uaexpert连接]]></summary></entry><entry><title type="html">python: pytesseract 配置</title><link href="/python/zip_pctools/pytesseract/" rel="alternate" type="text/html" title="python: pytesseract 配置" /><published>2023-07-04T11:25:22+08:00</published><updated>2023-07-04T11:25:22+08:00</updated><id>/python/zip_pctools/pytesseract</id><content type="html" xml:base="/python/zip_pctools/pytesseract/"><![CDATA[<h2 id="安装tesseract">安装tesseract</h2>
 <ul>
   <li>https://github.com/tesseract-ocr/tesseract</li>
 </ul>
@@ -635,45 +668,4 @@ mtd verify /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
 </ul>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;h3&gt;</span>Articles: {{ site.posts.size }} , Categories: {{ site.categories | size }}<span class="nt">&lt;/h3&gt;</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[实现]]></summary></entry><entry><title type="html">bash: rpi_status 树莓派状态监控脚本</title><link href="/bash/raspberry_pi/rpi_status/" rel="alternate" type="text/html" title="bash: rpi_status 树莓派状态监控脚本" /><published>2023-06-29T14:45:00+08:00</published><updated>2023-06-29T14:45:00+08:00</updated><id>/bash/raspberry_pi/rpi_status</id><content type="html" xml:base="/bash/raspberry_pi/rpi_status/"><![CDATA[<ul>
-  <li>简单介绍项目需求
-    <ul>
-      <li>略</li>
-    </ul>
-  </li>
-  <li>sh脚本</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
-
-<span class="c"># ### - rpi_status.sh [显示树莓派状态：温度]</span>
-<span class="c"># - 脚本调用  </span>
-<span class="c"># ```./show.sh```</span>
-
-
-<span class="k">while</span> <span class="o">[</span> <span class="nb">true</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-
-    <span class="c"># 输出时间</span>
-    <span class="nb">date</span>
-
-    <span class="c"># cpu温度</span>
-    <span class="nv">get_temp</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> /sys/class/thermal/thermal_zone0/temp<span class="sb">`</span>
-    <span class="nv">temprature</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">"scale=3; </span><span class="nv">$get_temp</span><span class="s2">/1000"</span> | bc<span class="sb">`</span>
-    <span class="nb">echo</span> <span class="s2">"temperature: </span><span class="nv">$temprature</span><span class="s2"> C"</span>
-
-    <span class="c"># 网络监控</span>
-    <span class="nb">cat</span> /proc/net/dev
-
-    <span class="c"># cpu占用</span>
-    
-
-    <span class="c"># 内存占用</span>
-
-
-    <span class="c"># 睡眠1秒，清屏</span>
-    /bin/sleep 1
-    clear
-<span class="k">done</span>
-
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="bash" /><category term="raspberry_pi" /><summary type="html"><![CDATA[简单介绍项目需求 略]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[实现]]></summary></entry></feed>

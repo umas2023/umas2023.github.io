@@ -7,26 +7,42 @@
 
 - 分类快捷copy
 
+amtc
+bash
+cpp
+crawler
 css
-
+django
+electron
+jekyll
+js
 knowhow
-
+linux
+markdown
+mysql
+nginx
+pyqt
 python
+raspberry_pi
+tampermonkey
+ts
+vue
 windows
+zip_backyard
 zip_pctools
 '''
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "obs"
-# 修改这里：md放在哪个目录下
-dir = "windows"
+file_name = "rpi_wifi"
+# 修改这里：md文件放在哪个目录下
+dir = "amtc"
 # 修改这里：文章标题
-title = "'windows: obs+usb采集卡连接ps5/switch'"
+title = "'amtc: 树莓派转发校园网'"
 # 修改这里：文章介绍
-info = "'没钱买显示器，用采集卡凑合一年'"
+info = "'学习工厂'"
 # 修改这里：文章分类
-categories = ["windows"]
+categories = ["amtc"]
 
 
 import os

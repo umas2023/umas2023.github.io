@@ -177,7 +177,30 @@ python ./manage.py runserver 0.0.0.0:4090
 <span class="kn">from</span> <span class="n">py_server.asgi</span> <span class="kn">import</span> <span class="n">application</span>
 </code></pre></div>    </div>
   </li>
+  <li>如果上面的跨域解决方法不起作用，后端显示200但前端报错Access to XMLHttpRequest at ‘http://localhost:4090/xxx’ from origin ‘http://localhost:8080’ has been blocked by CORS policy，试试下面的方法</li>
 </ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install django-cors-headers
+</code></pre></div></div>
+
+<ul>
+  <li>settings.py添加</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># 其他应用
+</span>    <span class="sh">'</span><span class="s">corsheaders</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">CORS_ORIGIN_ALLOW_ALL</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">CORS_ALLOW_CREDENTIALS</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sh">'</span><span class="s">corsheaders.middleware.CorsMiddleware</span><span class="sh">'</span><span class="p">,</span>
+    <span class="c1"># 其他中间件（注意上面这个放在第一位）
+</span><span class="p">]</span>
+
+</code></pre></div></div>
 
 
   </div>
