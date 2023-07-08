@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="amtc: 树莓派转发校园网" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="树莓派连接校园网" />
-<meta property="og:description" content="树莓派连接校园网" />
+<meta name="description" content="注意以下的方法没有配置成功，放弃了" />
+<meta property="og:description" content="注意以下的方法没有配置成功，放弃了" />
 <link rel="canonical" href="/amtc/rpi_wifi/" />
 <meta property="og:url" content="/amtc/rpi_wifi/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="amtc: 树莓派转发校园网" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-06T16:22:43+08:00","datePublished":"2023-07-06T16:22:43+08:00","description":"树莓派连接校园网","headline":"amtc: 树莓派转发校园网","mainEntityOfPage":{"@type":"WebPage","@id":"/amtc/rpi_wifi/"},"url":"/amtc/rpi_wifi/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-06T16:22:43+08:00","datePublished":"2023-07-06T16:22:43+08:00","description":"注意以下的方法没有配置成功，放弃了","headline":"amtc: 树莓派转发校园网","mainEntityOfPage":{"@type":"WebPage","@id":"/amtc/rpi_wifi/"},"url":"/amtc/rpi_wifi/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -42,12 +42,15 @@
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">amtc: 树莓派转发校园网</h1>
-    <h3>学习工厂上班</h3>
+    <h3>学习工厂上班。树莓派无线连接校园网然后用网线转发到路由器</h3>
   </header>
 
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#注意以下的方法没有配置成功放弃了">注意以下的方法没有配置成功，放弃了</a></li>
+<li class="toc-entry toc-h2"><a href="#简单操作">简单操作</a></li>
+<li class="toc-entry toc-h2"><a href="#注意以下的方法没有配置成功放弃了-1">注意以下的方法没有配置成功，放弃了</a></li>
 <li class="toc-entry toc-h2"><a href="#树莓派连接校园网">树莓派连接校园网</a></li>
 <li class="toc-entry toc-h2"><a href="#iptable转发">iptable转发</a></li>
 </ul>
@@ -55,7 +58,30 @@
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="树莓派连接校园网">树莓派连接校园网</h2>
+    <h2 id="注意以下的方法没有配置成功放弃了">注意以下的方法没有配置成功，放弃了</h2>
+
+<h2 id="简单操作">简单操作</h2>
+
+<ul>
+  <li>
+    <p>桌面设置点击已连接wifi，ipv4选择share to other computers</p>
+  </li>
+  <li>
+    <p>查看网口是否支持nat</p>
+  </li>
+</ul>
+
+<p>sudo iptables -t nat -L</p>
+
+<p>如果输出中包含”MASQUERADE”规则，说明网络接口支持NAT功能</p>
+
+<p>如果不支持</p>
+
+<p>sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE</p>
+
+<h2 id="注意以下的方法没有配置成功放弃了-1">注意以下的方法没有配置成功，放弃了</h2>
+
+<h2 id="树莓派连接校园网">树莓派连接校园网</h2>
 
 <ul>
   <li>rasbian系统wifi驱动不支持802.1x协议，刷ubuntu系统</li>
@@ -63,7 +89,7 @@
     <ul>
       <li>WiFi security: WPA &amp; WPA2 Enterprise</li>
       <li>Authentication: PEAP</li>
-      <li>No CA certificate is required</li>
+      <li>√ No CA certificate is required</li>
       <li>PEAP version: Automatic</li>
       <li>inner authentication: MSCHAPv2</li>
     </ul>
@@ -73,11 +99,79 @@
 <h2 id="iptable转发">iptable转发</h2>
 
 <ul>
-  <li>明天再做</li>
+  <li>参考：
+    <ul>
+      <li>https://zhuanlan.zhihu.com/p/433062004</li>
+      <li>https://blog.csdn.net/meihualing/article/details/130755346</li>
+      <li>https://blog.csdn.net/wr132/article/details/78986190</li>
+    </ul>
+  </li>
+  <li>工具安装</li>
 </ul>
 
-<p>https://zhuanlan.zhihu.com/p/433062004
-https://blog.csdn.net/meihualing/article/details/130755346</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># DNS DHCP</span>
+<span class="nb">sudo </span>apt isntll dnsmasq 
+<span class="c"># 保存防火墙规则</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> netfilter-persistent iptables-persistent
+<span class="c"># 网桥配置</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>bridge-utils
+</code></pre></div></div>
+
+<ul>
+  <li>固定eth0的ip，/etc/dhcp/dhcpd.conf ？ /etc/dhcpcd.conf</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface eth0
+static <span class="nv">ip_address</span><span class="o">=</span>192.168.6.1/24
+</code></pre></div></div>
+
+<!-- - 配置网桥
+
+```bash
+brctl addbr br-lan
+brctl addif br-lan eth0
+ifconfig br-lan 192.168.0.1 up
+ifconfig eth0 0.0.0.0 up
+``` -->
+
+<ul>
+  <li>开启ip转发</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>sysctl net.ipv4.ip_forward<span class="o">=</span>1
+</code></pre></div></div>
+
+<ul>
+  <li>开启nat</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-o</span> wlan0 <span class="nt">-j</span> MASQUERADE
+</code></pre></div></div>
+
+<ul>
+  <li>通过netfilter-persistent服务在系统启动时自动启用这个IP伪装功能</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>netfilter-persistent save
+</code></pre></div></div>
+
+<ul>
+  <li>配置/etc/dnsmasq.conf</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">interface</span><span class="o">=</span>eth0             <span class="c"># 无线网卡接口名称，根据你的实际情况修改</span>
+bind-interfaces             <span class="c"># 绑定接口，确保仅监听指定的接口</span>
+dhcp-range<span class="o">=</span>192.168.6.2,192.168.6.254,24h  <span class="c"># 分配给连接到无线网卡的设备的IP地址范围</span>
+</code></pre></div></div>
+
+<p>sudo service dnsmasq restart</p>
+
+<ul>
+  <li>树莓派ip a返回100.81.165.181/15</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inet 100.81.165.181/15 brd 100.21.255.255
+</code></pre></div></div>
 
 <p><img src="/image/amtc/2023-07-06-rpi_wifi/image_1.jpg" alt="引入图片" /></p>
 

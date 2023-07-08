@@ -214,6 +214,24 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
+<ul>
+  <li>比如下面的代码可以让底部边框border-bottom居中显示80%</li>
+</ul>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">.</span><span class="na">el-menu-item</span><span class="err">.</span><span class="na">collapse</span><span class="p">:</span><span class="o">:</span><span class="n">before</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s2">""</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">10%</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">80%</span><span class="p">;</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="mi">.3</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>关于冒号：在 CSS3 中，为了区分伪类和伪元素，伪元素的语法改为使用双冒号 :: 表示，例如 ::before。但是，为了兼容旧的 CSS2 代码，使用单冒号 : 仍然可以使用。即css3中:before 和 ::before都可以表示伪元素</li>
+  <li>伪类和伪元素的主要区别在于它们描述的内容不同。伪类描述元素的状态，而伪元素描述元素的位置</li>
+</ul>
 
   </div>
 

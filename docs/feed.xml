@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-07T13:50:10+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">amtc: 树莓派转发校园网</title><link href="/amtc/rpi_wifi/" rel="alternate" type="text/html" title="amtc: 树莓派转发校园网" /><published>2023-07-06T16:22:43+08:00</published><updated>2023-07-06T16:22:43+08:00</updated><id>/amtc/rpi_wifi</id><content type="html" xml:base="/amtc/rpi_wifi/"><![CDATA[<h2 id="树莓派连接校园网">树莓派连接校园网</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-08T16:31:20+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">css: div位置控制</title><link href="/css/div_pos/" rel="alternate" type="text/html" title="css: div位置控制" /><published>2023-07-08T12:43:13+08:00</published><updated>2023-07-08T12:43:13+08:00</updated><id>/css/div_pos</id><content type="html" xml:base="/css/div_pos/"><![CDATA[<h2 id="上下左右居中">上下左右居中</h2>
+
+<ul>
+  <li>div自身靠左/靠右</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"left"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;style </span><span class="na">lang=</span><span class="s">"scss"</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nc">.left</span> <span class="p">{</span>
+        <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>div内部元素水平居中</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"body"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"inner"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;style </span><span class="na">lang=</span><span class="s">"scss"</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nc">.body</span> <span class="p">{</span>
+        <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>div内部元素垂直居中</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"layout-header"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"inner"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;style </span><span class="na">lang=</span><span class="s">"scss"</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nt">div</span><span class="nc">.layout-header</span> <span class="p">{</span>
+        <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+        <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/image/css/2023-07-08-div_pos/image_1.jpg" alt="引入图片" /></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><summary type="html"><![CDATA[上下左右居中]]></summary></entry><entry><title type="html">amtc: 树莓派转发校园网</title><link href="/amtc/rpi_wifi/" rel="alternate" type="text/html" title="amtc: 树莓派转发校园网" /><published>2023-07-06T16:22:43+08:00</published><updated>2023-07-06T16:22:43+08:00</updated><id>/amtc/rpi_wifi</id><content type="html" xml:base="/amtc/rpi_wifi/"><![CDATA[<h2 id="注意以下的方法没有配置成功放弃了">注意以下的方法没有配置成功，放弃了</h2>
+
+<h2 id="简单操作">简单操作</h2>
+
+<ul>
+  <li>
+    <p>桌面设置点击已连接wifi，ipv4选择share to other computers</p>
+  </li>
+  <li>
+    <p>查看网口是否支持nat</p>
+  </li>
+</ul>
+
+<p>sudo iptables -t nat -L</p>
+
+<p>如果输出中包含”MASQUERADE”规则，说明网络接口支持NAT功能</p>
+
+<p>如果不支持</p>
+
+<p>sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE</p>
+
+<h2 id="注意以下的方法没有配置成功放弃了-1">注意以下的方法没有配置成功，放弃了</h2>
+
+<h2 id="树莓派连接校园网">树莓派连接校园网</h2>
 
 <ul>
   <li>rasbian系统wifi驱动不支持802.1x协议，刷ubuntu系统</li>
@@ -6,7 +77,7 @@
     <ul>
       <li>WiFi security: WPA &amp; WPA2 Enterprise</li>
       <li>Authentication: PEAP</li>
-      <li>No CA certificate is required</li>
+      <li>√ No CA certificate is required</li>
       <li>PEAP version: Automatic</li>
       <li>inner authentication: MSCHAPv2</li>
     </ul>
@@ -16,15 +87,83 @@
 <h2 id="iptable转发">iptable转发</h2>
 
 <ul>
-  <li>明天再做</li>
+  <li>参考：
+    <ul>
+      <li>https://zhuanlan.zhihu.com/p/433062004</li>
+      <li>https://blog.csdn.net/meihualing/article/details/130755346</li>
+      <li>https://blog.csdn.net/wr132/article/details/78986190</li>
+    </ul>
+  </li>
+  <li>工具安装</li>
 </ul>
 
-<p>https://zhuanlan.zhihu.com/p/433062004
-https://blog.csdn.net/meihualing/article/details/130755346</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># DNS DHCP</span>
+<span class="nb">sudo </span>apt isntll dnsmasq 
+<span class="c"># 保存防火墙规则</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> netfilter-persistent iptables-persistent
+<span class="c"># 网桥配置</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>bridge-utils
+</code></pre></div></div>
+
+<ul>
+  <li>固定eth0的ip，/etc/dhcp/dhcpd.conf ？ /etc/dhcpcd.conf</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface eth0
+static <span class="nv">ip_address</span><span class="o">=</span>192.168.6.1/24
+</code></pre></div></div>
+
+<!-- - 配置网桥
+
+```bash
+brctl addbr br-lan
+brctl addif br-lan eth0
+ifconfig br-lan 192.168.0.1 up
+ifconfig eth0 0.0.0.0 up
+``` -->
+
+<ul>
+  <li>开启ip转发</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>sysctl net.ipv4.ip_forward<span class="o">=</span>1
+</code></pre></div></div>
+
+<ul>
+  <li>开启nat</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-o</span> wlan0 <span class="nt">-j</span> MASQUERADE
+</code></pre></div></div>
+
+<ul>
+  <li>通过netfilter-persistent服务在系统启动时自动启用这个IP伪装功能</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>netfilter-persistent save
+</code></pre></div></div>
+
+<ul>
+  <li>配置/etc/dnsmasq.conf</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">interface</span><span class="o">=</span>eth0             <span class="c"># 无线网卡接口名称，根据你的实际情况修改</span>
+bind-interfaces             <span class="c"># 绑定接口，确保仅监听指定的接口</span>
+dhcp-range<span class="o">=</span>192.168.6.2,192.168.6.254,24h  <span class="c"># 分配给连接到无线网卡的设备的IP地址范围</span>
+</code></pre></div></div>
+
+<p>sudo service dnsmasq restart</p>
+
+<ul>
+  <li>树莓派ip a返回100.81.165.181/15</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inet 100.81.165.181/15 brd 100.21.255.255
+</code></pre></div></div>
 
 <p><img src="/image/amtc/2023-07-06-rpi_wifi/image_1.jpg" alt="引入图片" /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><summary type="html"><![CDATA[树莓派连接校园网]]></summary></entry><entry><title type="html">windows: obs+usb采集卡连接ps5/switch</title><link href="/windows/obs/" rel="alternate" type="text/html" title="windows: obs+usb采集卡连接ps5/switch" /><published>2023-07-05T18:34:06+08:00</published><updated>2023-07-05T18:34:06+08:00</updated><id>/windows/obs</id><content type="html" xml:base="/windows/obs/"><![CDATA[<ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><summary type="html"><![CDATA[注意以下的方法没有配置成功，放弃了]]></summary></entry><entry><title type="html">windows: obs+usb采集卡连接ps5/switch</title><link href="/windows/obs/" rel="alternate" type="text/html" title="windows: obs+usb采集卡连接ps5/switch" /><published>2023-07-05T18:34:06+08:00</published><updated>2023-07-05T18:34:06+08:00</updated><id>/windows/obs</id><content type="html" xml:base="/windows/obs/"><![CDATA[<ul>
   <li>首先安装obs
     <ul>
       <li>官网速度比较慢，推荐用steam安装</li>
@@ -661,11 +800,4 @@ mtd verify /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
 
 <ul>
   <li>这个方法有可能报错Unknown compiler option ‘allowImportingTsExtensions’.</li>
-</ul>]]></content><author><name></name></author><category term="ts" /><summary type="html"><![CDATA[传统方法直接引入报错：无法找到模块“@/utils/api_config.js”的声明文件]]></summary></entry><entry><title type="html">jekyll: count 文章和类别计数</title><link href="/jekyll/count/" rel="alternate" type="text/html" title="jekyll: count 文章和类别计数" /><published>2023-06-29T15:10:00+08:00</published><updated>2023-06-29T15:10:00+08:00</updated><id>/jekyll/count</id><content type="html" xml:base="/jekyll/count/"><![CDATA[<h2 id="实现">实现</h2>
-
-<ul>
-  <li>这一行添加在了home.html里，显示在所有文章前面第一行</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;h3&gt;</span>Articles: {{ site.posts.size }} , Categories: {{ site.categories | size }}<span class="nt">&lt;/h3&gt;</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[实现]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="ts" /><summary type="html"><![CDATA[传统方法直接引入报错：无法找到模块“@/utils/api_config.js”的声明文件]]></summary></entry></feed>

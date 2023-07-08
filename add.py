@@ -34,15 +34,15 @@ zip_pctools
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "rpi_wifi"
+file_name = "div_pos"
 # 修改这里：md文件放在哪个目录下
-dir = "amtc"
+dir = "css"
 # 修改这里：文章标题
-title = "'amtc: 树莓派转发校园网'"
+title = "'css: div位置控制'"
 # 修改这里：文章介绍
-info = "'学习工厂'"
+info = "'持续更新各种怪奇定位需求'"
 # 修改这里：文章分类
-categories = ["amtc"]
+categories = ["css"]
 
 
 import os
