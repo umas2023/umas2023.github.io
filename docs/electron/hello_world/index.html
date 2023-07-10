@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="electron: hello_world 从0开始搭建electron项目" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="一个简单的窗口 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目 在项目中添加electron支持 vue add electron-builder (Electron Version ^13.0.0)" />
-<meta property="og:description" content="一个简单的窗口 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目 在项目中添加electron支持 vue add electron-builder (Electron Version ^13.0.0)" />
+<meta name="description" content="安装" />
+<meta property="og:description" content="安装" />
 <link rel="canonical" href="/electron/hello_world/" />
 <meta property="og:url" content="/electron/hello_world/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="electron: hello_world 从0开始搭建electron项目" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T23:00:00+08:00","datePublished":"2023-06-27T23:00:00+08:00","description":"一个简单的窗口 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目 在项目中添加electron支持 vue add electron-builder (Electron Version ^13.0.0)","headline":"electron: hello_world 从0开始搭建electron项目","mainEntityOfPage":{"@type":"WebPage","@id":"/electron/hello_world/"},"url":"/electron/hello_world/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T23:00:00+08:00","datePublished":"2023-06-27T23:00:00+08:00","description":"安装","headline":"electron: hello_world 从0开始搭建electron项目","mainEntityOfPage":{"@type":"WebPage","@id":"/electron/hello_world/"},"url":"/electron/hello_world/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,7 +48,9 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h2"><a href="#一个简单的窗口">一个简单的窗口</a></li>
+<li class="toc-entry toc-h2"><a href="#安装">安装</a></li>
+<li class="toc-entry toc-h2"><a href="#原生html的一个窗口">原生html的一个窗口</a></li>
+<li class="toc-entry toc-h2"><a href="#electron--vue-一个简单的窗口">electron + vue, 一个简单的窗口</a></li>
 <li class="toc-entry toc-h2"><a href="#常用的一些打包选项">常用的一些打包选项</a></li>
 <li class="toc-entry toc-h2"><a href="#窗口的一些附加参数">窗口的一些附加参数</a></li>
 </ul>
@@ -56,36 +58,98 @@
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="一个简单的窗口">一个简单的窗口</h2>
+    <h2 id="安装">安装</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装</span>
+npm <span class="nb">install </span>electron <span class="nt">-s</span> <span class="nt">-g</span>
+<span class="c"># 查看安装（当前版本20.0.2）</span>
+npx elctron <span class="nt">-v</span>
+<span class="c"># 查看安装2</span>
+.<span class="se">\n</span>ode_modules<span class="se">\.</span>bin<span class="se">\e</span>lectron <span class="nt">-v</span>
+</code></pre></div></div>
+
+<h2 id="原生html的一个窗口">原生html的一个窗口</h2>
+
+<ul>
+  <li>添加一个html，可以用tab快速生成框架</li>
+</ul>
+
+<p><img src="/image/electron/2023-06-27-hello_world/image_1.jpg" alt="图片" /></p>
+
+<ul>
+  <li>添加一个main.js</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">electron</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">electron</span><span class="p">.</span><span class="nx">app</span> <span class="c1">// 引用app</span>
+<span class="kd">var</span> <span class="nx">BrowserWindow</span> <span class="o">=</span> <span class="nx">electron</span><span class="p">.</span><span class="nx">BrowserWindow</span> <span class="c1">// 引用窗口</span>
+<span class="kd">var</span> <span class="nx">mainWindow</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">// 主窗口</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">mainWindow</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BrowserWindow</span><span class="p">({</span><span class="na">width</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="na">height</span><span class="p">:</span><span class="mi">300</span><span class="p">})</span>
+    <span class="nx">mainWindow</span><span class="p">.</span><span class="nf">loadFile</span><span class="p">(</span><span class="dl">'</span><span class="s1">index.html</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// 加载html</span>
+    <span class="nx">mainWindow</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">closed</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">mainWindow</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">// 关闭窗口</span>
+    <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li>在package.json中将index.js改成main.js（如果先写代码再init，js是可以自动添加的）</li>
+  <li>启动这个helloworld：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>electron <span class="nb">.</span>
+</code></pre></div></div>
+
+<ul>
+  <li>窗口可以启动网页调试功能</li>
+</ul>
+
+<p><img src="/image/electron/2023-06-27-hello_world/image_2.jpg" alt="图片" /></p>
+
+<h2 id="electron--vue-一个简单的窗口">electron + vue, 一个简单的窗口</h2>
 <ul>
   <li>首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目</li>
-  <li>在项目中添加electron支持
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue add electron-builder
+  <li>在项目中添加electron支持</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue add electron-builder
 (Electron Version ^13.0.0)
-</code></pre></div>    </div>
-  </li>
-  <li>在package.json中可以看到新增的命令
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run electron:serve
+</code></pre></div></div>
+
+<ul>
+  <li>在package.json中可以看到新增的命令</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run electron:serve
 npm run electron:build
-</code></pre></div>    </div>
-  </li>
-  <li>直接使用<code class="language-plaintext highlighter-rouge">npm run electron:serve</code>启动测试时background.ts可能会报错Object is of type ‘unknown’,需要手动给报错的变量定义类型:any
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>catch (e) 改为 catch (e:any)
-</code></pre></div>    </div>
-  </li>
-  <li>还有可能报错TypeError: loaderContext.getOptions is not a function,需要降低ts-loader的版本到8.2.0
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install ts-loader@~8.2.0
-</code></pre></div>    </div>
-  </li>
-  <li>还有可能在src/router/index.ts中报错File ‘xxx/src/views/HomeView.vue.ts’ is not a module.,这是因为HomeView.vue缺少了export,简单的修改方法是添加setup参数
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">setup</span> <span class="na">lang=</span><span class="s">"ts"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>直接使用<code class="language-plaintext highlighter-rouge">npm run electron:serve</code>启动测试时background.ts可能会报错Object is of type ‘unknown’,需要手动给报错的变量定义类型:any</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>catch (e) 改为 catch (e:any)
+</code></pre></div></div>
+<p><img src="/image/electron/2023-06-27-hello_world/image_3.jpg" alt="图片" /></p>
+
+<ul>
+  <li>还有可能报错TypeError: loaderContext.getOptions is not a function,需要降低ts-loader的版本到8.2.0</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install ts-loader@~8.2.0
+</code></pre></div></div>
+
+<ul>
+  <li>还有可能在src/router/index.ts中报错File ‘xxx/src/views/HomeView.vue.ts’ is not a module.,这是因为HomeView.vue缺少了export,简单的修改方法是添加setup参数</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">setup</span> <span class="na">lang=</span><span class="s">"ts"</span><span class="nt">&gt;</span>
 <span class="nx">或者</span>
 <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">lang</span><span class="o">=</span><span class="dl">"</span><span class="s2">ts</span><span class="dl">"</span><span class="o">&gt;</span>
 <span class="k">export</span> <span class="k">default</span> <span class="p">{};</span>
 <span class="nt">&lt;/script&gt;</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
+</code></pre></div></div>
 
 <h2 id="常用的一些打包选项">常用的一些打包选项</h2>
 <ul>

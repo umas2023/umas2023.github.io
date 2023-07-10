@@ -55,6 +55,7 @@
 <li class="toc-entry toc-h2"><a href="#仅判断体积">仅判断体积</a></li>
 <li class="toc-entry toc-h2"><a href="#整合">整合</a></li>
 <li class="toc-entry toc-h2"><a href="#完整代码">完整代码</a></li>
+<li class="toc-entry toc-h2"><a href="#因为想加更多的功能和可选参数放在单个脚本里不方便这个脚本拿到电脑配件项目里继续开发了">因为想加更多的功能和可选参数，放在单个脚本里不方便，这个脚本拿到电脑配件项目里继续开发了</a></li>
 </ul>
   <hr>
 
@@ -200,8 +201,6 @@
     <span class="n">image_size_list</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="n">duplicate_dict</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">image_paths</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
         <span class="n">img_size</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
         <span class="n">image_size_list</span><span class="p">[</span><span class="n">img_size</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
 
@@ -441,6 +440,8 @@
         <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
 </code></pre></div></div>
+
+<h2 id="因为想加更多的功能和可选参数放在单个脚本里不方便这个脚本拿到电脑配件项目里继续开发了">因为想加更多的功能和可选参数，放在单个脚本里不方便，这个脚本拿到电脑配件项目里继续开发了</h2>
 
   </div>
 

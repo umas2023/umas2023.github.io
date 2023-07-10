@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>electron: js调用python | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="electron: js调用python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考" />
+<meta property="og:description" content="参考" />
+<link rel="canonical" href="/electron/python/js_py/" />
+<meta property="og:url" content="/electron/python/js_py/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-10T10:16:29+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="electron: js调用python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-10T10:16:29+08:00","datePublished":"2023-07-10T10:16:29+08:00","description":"参考","headline":"electron: js调用python","mainEntityOfPage":{"@type":"WebPage","@id":"/electron/python/js_py/"},"url":"/electron/python/js_py/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">electron: js调用python</h1>
+    <h3>使用了python-shell模块</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#参考">参考</a></li>
+<li class="toc-entry toc-h2"><a href="#安装">安装</a></li>
+<li class="toc-entry toc-h2"><a href="#一个简单的例子">一个简单的例子</a></li>
+<li class="toc-entry toc-h2"><a href="#解决打包后路径错误问题">解决打包后路径错误问题</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="参考">参考</h2>
+
+<ul>
+  <li>
+    <p>https://www.skcript.com/svr/how-to-execute-python-scripts-in-electron-and-nodejs</p>
+  </li>
+  <li>
+    <p>官方：</p>
+    <ul>
+      <li>https://www.npmjs.com/package/python-shell</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="安装">安装</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>python-shell <span class="nt">--save</span>
+</code></pre></div></div>
+
+<h2 id="一个简单的例子">一个简单的例子</h2>
+
+<ul>
+  <li>使用new PythonShell调用脚本</li>
+  <li>on message捕获python所有的stdout输出</li>
+  <li>（注意到使用subprocess.run调出一个新的terminal不能成功）</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">PythonShell</span> <span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">python-shell</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">pyshell</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PythonShell</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">src/views/test_call_py/py_script/hello_world.py</span><span class="dl">"</span>
+<span class="p">);</span>
+<span class="nx">pyshell</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">js_input_1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">pyshell</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">js_input_2</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">pyshell</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="nf">function </span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">pyshell</span><span class="p">.</span><span class="nf">end</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">finished</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="解决打包后路径错误问题">解决打包后路径错误问题</h2>
+
+<ul>
+  <li>使用相对路径</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nx">__static</span><span class="p">,</span> <span class="dl">"</span><span class="s2">static/test/data.txt</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>其中__static从public开始定位</li>
+  <li>vue.config.js添加规则</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pluginOptions</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">electronBuilder</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">builderOptions</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">extraResources</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="na">from</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/static</span><span class="dl">'</span><span class="p">,</span> <span class="na">to</span><span class="p">:</span> <span class="dl">'</span><span class="s1">static</span><span class="dl">'</span> <span class="p">}</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>观察发现txt读取时使用的目录是
+dist_electron\win-unpacked\resources\app.asar\static\test\data.txt</p>
+  </li>
+  <li>python也从asar文件中读取，但txt能找到，python找不到，config中添加的直接拷贝目录并没有被使用</li>
+  <li>安装asar解包工具</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --engine-strict asar --location=global
+asar e app.asar app
+</code></pre></div></div>
+<ul>
+  <li>解包后发现python文件已经被正确复制进去了</li>
+  <li>查阅资料发现打包在asar文件内的python确实不能运行，采用planB，不打包py文件</li>
+  <li>config添加不打包目录</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">builderOptions</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">asar</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">asarUnpack</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="dl">"</span><span class="s2">public/static/python</span><span class="dl">"</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<ul>
+  <li>如果工作正常，在app.asar可用看到unpacked 目录
+    <ul>
+      <li>我没看到</li>
+    </ul>
+  </li>
+  <li>直接”asar”: false,正常应该能看到/app目录
+    <ul>
+      <li>这个能行，app.asar变成/app了</li>
+      <li>但是__static默认访问的是app.asar</li>
+    </ul>
+  </li>
+  <li>__static只能定位到asar打包的目录，改用process.cwd()可以定位到安装目录/开发目录</li>
+  <li>这样的话理论上最佳方案应该是unpack，这个日后再说</li>
+  <li>使用process.cwd()之后的改动：
+    <ul>
+      <li>因为改了路径拼接方法，所以asar还是可以接着用的</li>
+      <li>“asar”: true,</li>
+      <li>将python静态资源单独拷贝出来</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">extraResources</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="na">from</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/static/python</span><span class="dl">'</span><span class="p">,</span> <span class="na">to</span><span class="p">:</span> <span class="dl">'</span><span class="s1">static/python</span><span class="dl">'</span> <span class="p">}</span> <span class="c1">// 静态资源拷贝目录</span>
+        <span class="p">],</span>
+</code></pre></div></div>
+
+<ul>
+  <li>这时存在一个问题，开发环境下路径是public/static/python，但生产环境中路径是resources/static/python</li>
+  <li>进行一步三元表达式环境区分：</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">py_path</span> <span class="o">=</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">development</span><span class="dl">"</span>
+        <span class="p">?</span> <span class="nx">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nf">cwd</span><span class="p">(),</span> <span class="dl">"</span><span class="s2">public/static/python</span><span class="dl">"</span><span class="p">)</span>
+        <span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nf">cwd</span><span class="p">(),</span> <span class="dl">"</span><span class="s2">resources/static/python</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/electron/2023-07-10-js_py/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

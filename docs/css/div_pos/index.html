@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="css: div位置控制" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="上下左右居中" />
-<meta property="og:description" content="上下左右居中" />
+<meta name="description" content="常用的5种position" />
+<meta property="og:description" content="常用的5种position" />
 <link rel="canonical" href="/css/div_pos/" />
 <meta property="og:url" content="/css/div_pos/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="css: div位置控制" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-08T12:43:13+08:00","datePublished":"2023-07-08T12:43:13+08:00","description":"上下左右居中","headline":"css: div位置控制","mainEntityOfPage":{"@type":"WebPage","@id":"/css/div_pos/"},"url":"/css/div_pos/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-08T12:43:13+08:00","datePublished":"2023-07-08T12:43:13+08:00","description":"常用的5种position","headline":"css: div位置控制","mainEntityOfPage":{"@type":"WebPage","@id":"/css/div_pos/"},"url":"/css/div_pos/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,13 +48,58 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#常用的5种position">常用的5种position</a></li>
 <li class="toc-entry toc-h2"><a href="#上下左右居中">上下左右居中</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="上下左右居中">上下左右居中</h2>
+    <h2 id="常用的5种position">常用的5种position</h2>
+
+<ul>
+  <li>常用5个
+    <ul>
+      <li>static</li>
+      <li>relative</li>
+      <li>fixed</li>
+      <li>absolute</li>
+      <li>sticky</li>
+    </ul>
+  </li>
+  <li>static/静态
+    <ul>
+      <li>默认</li>
+      <li>静态定位的元素不受 top、bottom、left 和 right 属性的影响</li>
+      <li>static元素不会以任何特殊方式定位；它始终根据页面的正常流进行定位</li>
+    </ul>
+  </li>
+  <li>relative/相对
+    <ul>
+      <li>top、right、bottom 和 left 属性将导致其偏离其正常位置进行调整</li>
+    </ul>
+  </li>
+  <li>fixed/固定
+    <ul>
+      <li>相对于窗口定位的，这意味着即使滚动页面，它也始终位于同一位置</li>
+      <li>top、right、bottom 和 left 属性用于定位此元素</li>
+    </ul>
+  </li>
+  <li>absolute/绝对
+    <ul>
+      <li>同fixed，但相对于parent而不是窗口</li>
+    </ul>
+  </li>
+  <li>sticky/粘性
+    <ul>
+      <li>根据用户的滚动位置进行定位</li>
+      <li>粘性元素根据滚动位置在相对（relative）和固定（fixed）之间切换。起先它会被相对定位，直到在视口中遇到给定的偏移位置为止 - 然后将其“粘贴”在适当的位置（比如 position:fixed）</li>
+      <li>必须至少指定 top、right、bottom 或 left 之一，以便粘性定位起作用</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="上下左右居中">上下左右居中</h2>
 
 <ul>
   <li>div自身靠左/靠右</li>
@@ -100,7 +145,7 @@
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div></div>
 
-<p><img src="/image/css/2023-07-08-div_pos/image_1.jpg" alt="引入图片" /></p>
+<!-- ![引入图片](/image/css/2023-07-08-div_pos/image_1.jpg) -->
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 

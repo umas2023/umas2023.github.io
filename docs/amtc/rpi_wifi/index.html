@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="amtc: 树莓派转发校园网" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="注意以下的方法没有配置成功，放弃了" />
-<meta property="og:description" content="注意以下的方法没有配置成功，放弃了" />
+<meta name="description" content="注意不要参考网上的教程" />
+<meta property="og:description" content="注意不要参考网上的教程" />
 <link rel="canonical" href="/amtc/rpi_wifi/" />
 <meta property="og:url" content="/amtc/rpi_wifi/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="amtc: 树莓派转发校园网" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-06T16:22:43+08:00","datePublished":"2023-07-06T16:22:43+08:00","description":"注意以下的方法没有配置成功，放弃了","headline":"amtc: 树莓派转发校园网","mainEntityOfPage":{"@type":"WebPage","@id":"/amtc/rpi_wifi/"},"url":"/amtc/rpi_wifi/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-06T16:22:43+08:00","datePublished":"2023-07-06T16:22:43+08:00","description":"注意不要参考网上的教程","headline":"amtc: 树莓派转发校园网","mainEntityOfPage":{"@type":"WebPage","@id":"/amtc/rpi_wifi/"},"url":"/amtc/rpi_wifi/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,9 +48,10 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h2"><a href="#注意以下的方法没有配置成功放弃了">注意以下的方法没有配置成功，放弃了</a></li>
-<li class="toc-entry toc-h2"><a href="#简单操作">简单操作</a></li>
-<li class="toc-entry toc-h2"><a href="#注意以下的方法没有配置成功放弃了-1">注意以下的方法没有配置成功，放弃了</a></li>
+<li class="toc-entry toc-h2"><a href="#注意不要参考网上的教程">注意不要参考网上的教程</a></li>
+<li class="toc-entry toc-h2"><a href="#这个功能实现起来其实非常简单">这个功能实现起来其实非常简单</a></li>
+<li class="toc-entry toc-h2"><a href="#顺便把ssh和vnc打开">顺便把ssh和vnc打开</a></li>
+<li class="toc-entry toc-h2"><a href="#以下是失败的配置方法">以下是失败的配置方法</a></li>
 <li class="toc-entry toc-h2"><a href="#树莓派连接校园网">树莓派连接校园网</a></li>
 <li class="toc-entry toc-h2"><a href="#iptable转发">iptable转发</a></li>
 </ul>
@@ -58,33 +59,12 @@
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="注意以下的方法没有配置成功放弃了">注意以下的方法没有配置成功，放弃了</h2>
+    <h2 id="注意不要参考网上的教程">注意不要参考网上的教程</h2>
 
-<h2 id="简单操作">简单操作</h2>
-
-<ul>
-  <li>
-    <p>桌面设置点击已连接wifi，ipv4选择share to other computers</p>
-  </li>
-  <li>
-    <p>查看网口是否支持nat</p>
-  </li>
-</ul>
-
-<p>sudo iptables -t nat -L</p>
-
-<p>如果输出中包含”MASQUERADE”规则，说明网络接口支持NAT功能</p>
-
-<p>如果不支持</p>
-
-<p>sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE</p>
-
-<h2 id="注意以下的方法没有配置成功放弃了-1">注意以下的方法没有配置成功，放弃了</h2>
-
-<h2 id="树莓派连接校园网">树莓派连接校园网</h2>
+<h2 id="这个功能实现起来其实非常简单">这个功能实现起来其实非常简单</h2>
 
 <ul>
-  <li>rasbian系统wifi驱动不支持802.1x协议，刷ubuntu系统</li>
+  <li>首先刷好ubuntu系统</li>
   <li>连接TJ-wifi，
     <ul>
       <li>WiFi security: WPA &amp; WPA2 Enterprise</li>
@@ -94,6 +74,61 @@
       <li>inner authentication: MSCHAPv2</li>
     </ul>
   </li>
+  <li>设置 - Network - Wired - 右边齿轮 - ipv4 - Shared to other computers</li>
+  <li>
+    <p>然后通过网线就可以共享网络了，如果没有的话重新插拔一下</p>
+  </li>
+  <li>
+    <p>插进路由器wan口之后重新配置一下路由器，让路由器自动判断网络类型，已经不能再用pppoe了</p>
+  </li>
+  <li>老水星路由器在 dhcp服务器 -&gt; 静态地址分配 里面加静态ip，路由器管理192.168.1.1</li>
+</ul>
+
+<h2 id="顺便把ssh和vnc打开">顺便把ssh和vnc打开</h2>
+
+<ul>
+  <li>ssh</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>openssh-server
+<span class="nb">sudo </span>service  ssh start
+</code></pre></div></div>
+
+<ul>
+  <li>原生rasbian可以在config里开启vnc，ubuntu需要安装第三方</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>tightvncserver
+vncpasswd
+vncserver 
+<span class="c"># 返回的数字就是vnc端口（一般是1）</span>
+<span class="c"># 但是我连接上之后vnc窗口灰屏，放弃了</span>
+</code></pre></div></div>
+
+<ul>
+  <li>网关树莓派ip：10.42.0.1</li>
+</ul>
+
+<h2 id="以下是失败的配置方法">以下是失败的配置方法</h2>
+
+<ul>
+  <li>查看网口是否支持nat</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>iptables <span class="nt">-t</span> nat <span class="nt">-L</span>
+</code></pre></div></div>
+
+<ul>
+  <li>如果输出中包含”MASQUERADE”规则，说明网络接口支持NAT功能,如果不支持</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-o</span> wlan0 <span class="nt">-j</span> MASQUERADE
+</code></pre></div></div>
+
+<h2 id="树莓派连接校园网">树莓派连接校园网</h2>
+
+<ul>
+  <li>rasbian系统wifi驱动不支持802.1x协议，刷ubuntu系统，然后wifi连接</li>
 </ul>
 
 <h2 id="iptable转发">iptable转发</h2>
@@ -125,14 +160,15 @@
 static <span class="nv">ip_address</span><span class="o">=</span>192.168.6.1/24
 </code></pre></div></div>
 
-<!-- - 配置网桥
+<ul>
+  <li>配置网桥</li>
+</ul>
 
-```bash
-brctl addbr br-lan
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brctl addbr br-lan
 brctl addif br-lan eth0
 ifconfig br-lan 192.168.0.1 up
 ifconfig eth0 0.0.0.0 up
-``` -->
+</code></pre></div></div>
 
 <ul>
   <li>开启ip转发</li>
@@ -173,7 +209,7 @@ dhcp-range<span class="o">=</span>192.168.6.2,192.168.6.254,24h  <span class="c"
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inet 100.81.165.181/15 brd 100.21.255.255
 </code></pre></div></div>
 
-<p><img src="/image/amtc/2023-07-06-rpi_wifi/image_1.jpg" alt="引入图片" /></p>
+<!-- ![引入图片](/image/amtc/2023-07-06-rpi_wifi/image_1.jpg) -->
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 

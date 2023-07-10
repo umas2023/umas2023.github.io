@@ -86,6 +86,9 @@ index index.html;
       </li>
     </ul>
   </li>
+  <li>
+    <p>修改/etc/nginx/nginx.conf中的user</p>
+  </li>
   <li>启动服务（sudo）
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service nginx start
 或：
@@ -94,7 +97,7 @@ nginx -s reload
 service nginx status
 </code></pre></div>    </div>
   </li>
-  <li>默认端口80</li>
+  <li>（默认端口80）</li>
 </ul>
 
 <h2 id="可能出现的问题">可能出现的问题</h2>
@@ -148,7 +151,7 @@ nginx -s reload</li>
   <li>解决：</li>
 </ul>
 
-<p>可能的原因很多，用户名不匹配，修改nginx.conf中的user，改为和启动用户一致
+<p>可能的原因很多，用户名不匹配，修改/etc/nginx/nginx.conf中的user，改为和启动用户一致
 user www-data; -&gt; user root;</p>
 
   </div>

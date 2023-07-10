@@ -51,6 +51,8 @@
 <li class="toc-entry toc-h2"><a href="#windows通过uaexpert连接">windows通过uaexpert连接</a></li>
 <li class="toc-entry toc-h2"><a href="#前端node-opcuajs">前端node-opcua（js）</a></li>
 <li class="toc-entry toc-h2"><a href="#后端opcuapython">后端opcua（python）</a></li>
+<li class="toc-entry toc-h2"><a href="#树莓派后端">树莓派后端</a></li>
+<li class="toc-entry toc-h2"><a href="#后端脚本开机自动运行">后端脚本开机自动运行</a></li>
 </ul>
   <hr>
 
@@ -76,6 +78,10 @@
 </ul>
 
 <p><img src="/image/windows/2023-07-05-opcua/image_3.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>发现偶尔会突然连接不上，旁边电箱总闸Main重启一下</li>
+</ul>
 
 <h2 id="前端node-opcuajs">前端node-opcua（js）</h2>
 
@@ -249,7 +255,98 @@
 
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<h2 id="树莓派后端">树莓派后端</h2>
+
+<ul>
+  <li>简单化，直接图形界面</li>
+</ul>
+
+<p><img src="/image/windows/2023-07-05-opcua/image_5.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>由于有线和无线不在同一个网段，</li>
+</ul>
+
+<p>添加路由规则，将所有发往192.168.0.x网段的数据包发送到192.168.1.x这个网关进行转发</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ip route add 192.168.0.0/24 via 192.168.1.x dev wlan0
+</code></pre></div></div>
+
+<ul>
+  <li>查看
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip route show
+</code></pre></div>    </div>
+  </li>
+  <li>后台运行后端</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 运行</span>
+python3 /home/amtc/lf_localback/localback/manage.py runserver 0.0.0.0:4090 &amp;
+<span class="c"># 查看</span>
+ps <span class="nt">-ef</span>|grep manage.py
+<span class="c"># 杀</span>
+<span class="nb">kill </span>2445
+</code></pre></div></div>
+
+<h2 id="后端脚本开机自动运行">后端脚本开机自动运行</h2>
+<ul>
+  <li>注意脚本是以root身份运行的，如果没有使用docker或者虚拟环境的话要在root用户下pip install</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/systemd/system/start_localback.service
+</code></pre></div></div>
+
+<ul>
+  <li>写入以下内容</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Start Local Backend Server
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/python3 /home/amtc/lf_localback/localback/manage.py runserver 0.0.0.0:4090
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/amtc/lf_localback/localback
+<span class="nv">Restart</span><span class="o">=</span>always
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div></div>
+
+<ul>
+  <li>控制</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 更新服务列表</span>
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="c"># 启动服务</span>
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>start_localback.service
+<span class="c"># 查看状态</span>
+<span class="nb">sudo </span>systemctl status start_localback.service
+<span class="c"># 停止</span>
+<span class="nb">sudo </span>systemctl stop start_localback.service
+<span class="c"># 重启</span>
+<span class="nb">sudo </span>systemctl restart start_localback.service
+</code></pre></div></div>
+
+<ul>
+  <li>开启自动运行（注意以下方式不适用于ubuntu22）（已被验证为无效）
+    <ul>
+      <li>添加/etc/init.d/start_localback.sh</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/init.d/start_localback.sh
+<span class="nb">sudo chmod</span> +x /etc/init.d/start_localback.sh
+<span class="c"># 添加到启动列表</span>
+<span class="nb">sudo </span>update-rc.d start_localback.sh defaults 90
+<span class="c"># 查看</span>
+<span class="nb">sudo </span>service <span class="nt">--status-all</span>
+<span class="c"># 测试</span>
+<span class="nb">sudo </span>service start_localback.sh start
+<span class="c"># 移除</span>
+<span class="nb">sudo </span>update-rc.d <span class="nt">-f</span> start_localback.sh remove
+</code></pre></div></div>
 
   </div>
 
