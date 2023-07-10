@@ -13,7 +13,9 @@ cpp
 crawler
 css
 django
+docker
 electron
+git
 jekyll
 js
 knowhow
@@ -34,15 +36,15 @@ zip_pctools
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "div_pos"
+file_name = "terraria"
 # 修改这里：md文件放在哪个目录下
-dir = "css"
+dir = "windows"
 # 修改这里：文章标题
-title = "'css: div位置控制'"
+title = "'windows: 华为云搭建泰拉瑞亚云服务器'"
 # 修改这里：文章介绍
-info = "'持续更新各种怪奇定位需求'"
+info = "'泰拉瑞亚服务器'"
 # 修改这里：文章分类
-categories = ["css"]
+categories = ["windows"]
 
 
 import os

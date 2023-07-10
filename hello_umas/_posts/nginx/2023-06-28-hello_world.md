@@ -30,6 +30,8 @@ server {
 }
 ```
 
+- 修改/etc/nginx/nginx.conf中的user
+
 - 启动服务（sudo）
 ```
 service nginx start
@@ -39,7 +41,7 @@ nginx -s reload
 service nginx status
 ```
 
-- 默认端口80
+- （默认端口80）
 
 
 
@@ -82,5 +84,5 @@ nginx -s reload
 
 - 解决：
 
-可能的原因很多，用户名不匹配，修改nginx.conf中的user，改为和启动用户一致
+可能的原因很多，用户名不匹配，修改/etc/nginx/nginx.conf中的user，改为和启动用户一致
 user www-data; -> user root;

@@ -8,32 +8,85 @@ toc: true
 ---
 
 
+## 安装
 
-##  一个简单的窗口
+```bash
+# 安装
+npm install electron -s -g
+# 查看安装（当前版本20.0.2）
+npx elctron -v
+# 查看安装2
+.\node_modules\.bin\electron -v
+```
+
+## 原生html的一个窗口
+
+- 添加一个html，可以用tab快速生成框架
+
+![图片]({{site.url}}/image/electron/2023-06-27-hello_world/image_1.jpg)
+
+- 添加一个main.js
+
+{% raw %}
+```js
+var electron = require('electron')
+var app = electron.app // 引用app
+var BrowserWindow = electron.BrowserWindow // 引用窗口
+var mainWindow = null // 主窗口
+app.on('ready',()=>{
+    mainWindow = new BrowserWindow({width:300,height:300})
+    mainWindow.loadFile('index.html') // 加载html
+    mainWindow.on('closed',()=>{
+        mainWindow = null // 关闭窗口
+    })
+})
+```
+{% endraw %}
+
+- 在package.json中将index.js改成main.js（如果先写代码再init，js是可以自动添加的）
+- 启动这个helloworld：
+
+```bash
+electron .
+```
+
+- 窗口可以启动网页调试功能
+
+![图片]({{site.url}}/image/electron/2023-06-27-hello_world/image_2.jpg)
+
+
+##  electron + vue, 一个简单的窗口
 - 首先参见 vue/hello_world.md 创建一个基于vue的 hello world 项目
 - 在项目中添加electron支持
+
 ```
 vue add electron-builder
 (Electron Version ^13.0.0)
 ```
 
 - 在package.json中可以看到新增的命令
+
 ```
 npm run electron:serve
 npm run electron:build
 ```
 
 - 直接使用```npm run electron:serve```启动测试时background.ts可能会报错Object is of type 'unknown',需要手动给报错的变量定义类型:any
+
 ```
 catch (e) 改为 catch (e:any)
 ```
+![图片]({{site.url}}/image/electron/2023-06-27-hello_world/image_3.jpg)
+
 
 - 还有可能报错TypeError: loaderContext.getOptions is not a function,需要降低ts-loader的版本到8.2.0
+
 ```
 npm install ts-loader@~8.2.0
 ```
 
 - 还有可能在src/router/index.ts中报错File 'xxx/src/views/HomeView.vue.ts' is not a module.,这是因为HomeView.vue缺少了export,简单的修改方法是添加setup参数
+
 ```html
 <script setup lang="ts">
 或者

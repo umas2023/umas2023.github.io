@@ -144,8 +144,6 @@ def size_filter(image_paths):
     image_size_list = defaultdict(list)
     duplicate_dict = defaultdict(list)
     for image_path in image_paths:
-        image = Image.open(image_path)
-        width, height = image.size
         img_size = os.path.getsize(image_path)
         image_size_list[img_size].append(image_path)
 
@@ -380,3 +378,5 @@ for dp_list in del_list:
 
 ```
 {% endraw %}
+
+## 因为想加更多的功能和可选参数，放在单个脚本里不方便，这个脚本拿到电脑配件项目里继续开发了

@@ -94,3 +94,45 @@ toc: true
 ![home]({{site.url}}/image/jekyll/2023-6-27-230627_categories/image_1.jpg)
 ![cate]({{site.url}}/image/jekyll/2023-6-27-230627_categories/image_2.jpg)
 
+
+## 补充：按字母顺序排列
+
+- 分类默认按照时间顺序排列，要按字母排序，可以使用sort过滤器
+- 新的categories.html
+
+
+{% raw %}
+```html
+<div id="archives">
+  <!-- 顶部导航 -->
+  <hr>
+  <nav id="category-toc">
+    <ul>
+      {% assign sorted_categories = site.categories | sort %}
+      {% for category in sorted_categories %}
+        <li><a href="#{{ category | first | slugify }}">{{ category | first }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <hr>
+
+  <!-- 所有文章 -->
+  {% assign sorted_categories = site.categories | sort %}
+  {% for category in sorted_categories %}
+    <div class="archive-group">
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      <div id="#{{ category_name | slugize }}"></div>
+      <p></p>
+
+      <h3 class="category-head">{{ category_name }}</h3>
+      <a name="{{ category_name | slugize }}"></a>
+      {% for post in site.categories[category_name] %}
+        <article class="archive-item">
+          <h4><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h4>
+        </article>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+```
+{% endraw %}
