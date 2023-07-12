@@ -36,15 +36,15 @@ zip_pctools
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "terraria"
+file_name = "lf_docker"
 # 修改这里：md文件放在哪个目录下
-dir = "windows"
+dir = "amtc"
 # 修改这里：文章标题
-title = "'windows: 华为云搭建泰拉瑞亚云服务器'"
+title = "'amtc: docker开发环境搭建'"
 # 修改这里：文章介绍
-info = "'泰拉瑞亚服务器'"
+info = "'学习工厂上班；车间蚊子太多在楼上开发搞一个ubuntu环境'"
 # 修改这里：文章分类
-categories = ["windows"]
+categories = ["amtc","docker"]
 
 
 import os

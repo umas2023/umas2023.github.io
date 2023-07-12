@@ -50,6 +50,7 @@
   <ul id="toc" class="toc__list">
 <li class="toc-entry toc-h2"><a href="#参考">参考</a></li>
 <li class="toc-entry toc-h2"><a href="#基本命令">基本命令</a></li>
+<li class="toc-entry toc-h2"><a href="#增加端口映射桌面">增加端口映射（桌面）</a></li>
 <li class="toc-entry toc-h2"><a href="#dockerfile">dockerfile</a></li>
 <li class="toc-entry toc-h2"><a href="#可能出现的问题">可能出现的问题</a></li>
 </ul>
@@ -67,6 +68,7 @@
 <ul>
   <li>下载镜像
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull ubuntu
+docker pull ubuntu:22.04
 </code></pre></div>    </div>
   </li>
   <li>推送本地镜像
@@ -105,7 +107,8 @@ exit退出
     </ul>
   </li>
   <li>后台启动新容器
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo docker run --restart always --name openwrt -d sulinggg/openwrt /sbin/init
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo docker run --restart always --name openwrt -itd sulinggg/openwrt /sbin/init
+docker run -p 44080:4080 -p 44090:4090 --restart=always --name amtc_ubuntu -itd ubuntu:22.04 /bin/bash
 </code></pre></div>    </div>
   </li>
   <li>启动已存在的容器
@@ -139,6 +142,59 @@ exit退出
 -d biarms/mysql:5.7.30-linux-arm64v8
 </code></pre></div>    </div>
   </li>
+</ul>
+
+<h2 id="增加端口映射桌面">增加端口映射（桌面）</h2>
+
+<ul>
+  <li>（命令行的操作后面有空再说）</li>
+  <li>比如有了一个amtc_ubuntu，run的时候忘记映射22端口</li>
+  <li>先把容器停掉</li>
+  <li>文件资源管理器访问：</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\\wsl.localhost\docker-desktop-data\data\docker\containers
+</code></pre></div></div>
+
+<ul>
+  <li>找到里面的hostconfig.json，里面可以配置端口映射</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"PortBindings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"22/tcp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"HostIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"HostPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44022"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"4080/tcp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"HostIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"HostPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44080"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"4090/tcp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"HostIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"HostPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44090"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>同时要修改同目录下的config.v2.json</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"ExposedPorts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"22/tcp"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"4080/tcp"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"4090/tcp"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>重新docker desktop</li>
 </ul>
 
 <h2 id="dockerfile">dockerfile</h2>

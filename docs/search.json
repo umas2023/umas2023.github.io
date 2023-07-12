@@ -1,7 +1,31 @@
 [
   
     {
-      "title"    : "windows: 华为云terraria云服务器",
+      "title"    : "amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/amtc/docker/lf_docker/",
+      "date"     : "2023-07-12 13:59:47 +0800"
+    } ,
+  
+    {
+      "title"    : "amtc: localfront本地前端开发记录",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/amtc/localfront/",
+      "date"     : "2023-07-10 14:48:43 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 导入json",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/vue_json/",
+      "date"     : "2023-07-10 13:56:53 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: 华为云terraria服务器",
       "category" : "",
       "tags"     : "",
       "url"      : "/windows/terraria/",
@@ -65,7 +89,7 @@
     } ,
   
     {
-      "title"    : "amtc: 本地前端",
+      "title"    : "amtc: 本地前端部署",
       "category" : "",
       "tags"     : "",
       "url"      : "/amtc/nginx/rpi_frontend/",

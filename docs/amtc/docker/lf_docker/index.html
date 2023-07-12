@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本机部署" />
+<meta property="og:description" content="本机部署" />
+<link rel="canonical" href="/amtc/docker/lf_docker/" />
+<meta property="og:url" content="/amtc/docker/lf_docker/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-12T13:59:47+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-12T13:59:47+08:00","datePublished":"2023-07-12T13:59:47+08:00","description":"本机部署","headline":"amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本","mainEntityOfPage":{"@type":"WebPage","@id":"/amtc/docker/lf_docker/"},"url":"/amtc/docker/lf_docker/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本</h1>
+    <h3>学习工厂上班；车间蚊子太多在楼上开发搞一个ubuntu环境顺便把docker部署上，树莓派的环境明天再说</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#本机部署">本机部署</a></li>
+<li class="toc-entry toc-h2"><a href="#整合脚本">整合脚本</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="本机部署">本机部署</h2>
+
+<ul>
+  <li>拉取创建进入</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull ubuntu:22.04
+docker run <span class="nt">-p</span> 44022:22 <span class="nt">-p</span> 44080:4080 <span class="nt">-p</span> 44090:4090 <span class="nt">--restart</span><span class="o">=</span>always <span class="nt">--name</span> amtc_ubuntu <span class="nt">-itd</span> ubuntu:22.04 /bin/bash
+docker <span class="nb">exec</span> <span class="nt">-it</span> amtc_ubuntu /bin/bash
+</code></pre></div></div>
+
+<ul>
+  <li>环境配置
+    <ul>
+      <li>前端通过44022远程连接</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update
+apt <span class="nb">install </span>vim git openssh-server python3-pip nginx <span class="nt">-y</span>
+
+<span class="nb">echo</span> <span class="s2">"service ssh start"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+<span class="nb">echo</span> <span class="s2">"root:amtc@9999"</span> | chpasswd
+<span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span>        <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+
+<span class="nb">source</span> /root/.bashrc
+</code></pre></div></div>
+
+<ul>
+  <li>测试后端可用性
+    <ul>
+      <li>postman测本机端口localhost:44090/test</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>python3-pip
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+python3 /root/lf_localback/localback/manage.py runserver 0.0.0.0:4090
+</code></pre></div></div>
+
+<h2 id="整合脚本">整合脚本</h2>
+<ul>
+  <li>由于docker内的ubuntu service不完整，无法通过/etc/systemd/system/xxx.service的方法添加开机启动项</li>
+  <li>但写在bashrc里面的话树莓派没办法直接启动，所以还是要再写一份树莓派的部署脚本</li>
+  <li>这个仅适用于电脑docker环境的部署</li>
+  <li>bash启动项（docker）写在.bashrc内，通过docker启动时入口是/bin/bash，脚本可以bashrc运行</li>
+  <li>deploy.sh内容：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># 安装linux基础工具包</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== install basic tools (apt) ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+apt update
+apt <span class="nb">install </span>vim openssh-server python3-pip nginx <span class="nt">-y</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+
+<span class="c"># 配置ssh登录</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== ssh config ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+<span class="nb">echo</span> <span class="s2">"root:amtc@9999"</span> | chpasswd
+<span class="nb">echo</span> <span class="s2">"set passwd : amtc@9999"</span>
+
+<span class="c"># echo "PermitRootLogin yes"        &gt;&gt; /etc/ssh/sshd_config</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PermitRootLogin"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PermitRootLogin*/cPermitRootLogin yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+
+<span class="c"># echo "PasswordAuthentication yes" &gt;&gt; /etc/ssh/sshd_config</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PasswordAuthentication"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PasswordAuthentication*/cPasswordAuthentication yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi
+
+</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+
+
+<span class="c"># 安装python模组</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== install server modules (pip) ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+
+
+<span class="c"># 配置bash启动项（docker）</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== bashrc config (docker) ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+<span class="nb">cp</span> ./deploy/.amtcrc /root/.amtcrc
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> ~/.bashrc | <span class="nb">grep</span> <span class="s2">"amtcrc"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'amtc setup command : ~/.amtcrc'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.amtcrc ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.amtcrc</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"amtcrc already loaded in bashrc"</span>
+<span class="k">fi
+
+</span><span class="nb">source</span> /root/.bashrc
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>/deploy/.amtcrc</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/root/lf_localback/deploy/startup.sh
+</code></pre></div></div>
+
+<ul>
+  <li>/deploy/startup.sh</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+service ssh start
+
+<span class="nb">echo</span> <span class="s2">"start django server ..."</span>
+<span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'python3 /root/lf_localback/localback/manage.py runserver 0.0.0.0:4090'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
+</code></pre></div></div>
+
+<ul>
+  <li>docker内的的部署流程</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root
+apt <span class="nb">install </span>git
+git clone https://gitee.com/umas/lf_localback.git
+<span class="nb">cd </span>lf_localback
+<span class="nb">chmod </span>777 deploy.sh
+./deploy.sh
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/amtc/2023-07-12-lf_docker/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

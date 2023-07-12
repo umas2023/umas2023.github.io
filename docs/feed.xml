@@ -1,4 +1,275 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-10T13:35:21+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">windows: 华为云terraria云服务器</title><link href="/windows/terraria/" rel="alternate" type="text/html" title="windows: 华为云terraria云服务器" /><published>2023-07-10T12:44:47+08:00</published><updated>2023-07-10T12:44:47+08:00</updated><id>/windows/terraria</id><content type="html" xml:base="/windows/terraria/"><![CDATA[<h2 id="参考">参考</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-12T21:23:01+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本</title><link href="/amtc/docker/lf_docker/" rel="alternate" type="text/html" title="amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本" /><published>2023-07-12T13:59:47+08:00</published><updated>2023-07-12T13:59:47+08:00</updated><id>/amtc/docker/lf_docker</id><content type="html" xml:base="/amtc/docker/lf_docker/"><![CDATA[<h2 id="本机部署">本机部署</h2>
+
+<ul>
+  <li>拉取创建进入</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull ubuntu:22.04
+docker run <span class="nt">-p</span> 44022:22 <span class="nt">-p</span> 44080:4080 <span class="nt">-p</span> 44090:4090 <span class="nt">--restart</span><span class="o">=</span>always <span class="nt">--name</span> amtc_ubuntu <span class="nt">-itd</span> ubuntu:22.04 /bin/bash
+docker <span class="nb">exec</span> <span class="nt">-it</span> amtc_ubuntu /bin/bash
+</code></pre></div></div>
+
+<ul>
+  <li>环境配置
+    <ul>
+      <li>前端通过44022远程连接</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update
+apt <span class="nb">install </span>vim git openssh-server python3-pip nginx <span class="nt">-y</span>
+
+<span class="nb">echo</span> <span class="s2">"service ssh start"</span> <span class="o">&gt;&gt;</span> /root/.bashrc
+<span class="nb">echo</span> <span class="s2">"root:amtc@9999"</span> | chpasswd
+<span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span>        <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+
+<span class="nb">source</span> /root/.bashrc
+</code></pre></div></div>
+
+<ul>
+  <li>测试后端可用性
+    <ul>
+      <li>postman测本机端口localhost:44090/test</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>python3-pip
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+python3 /root/lf_localback/localback/manage.py runserver 0.0.0.0:4090
+</code></pre></div></div>
+
+<h2 id="整合脚本">整合脚本</h2>
+<ul>
+  <li>由于docker内的ubuntu service不完整，无法通过/etc/systemd/system/xxx.service的方法添加开机启动项</li>
+  <li>但写在bashrc里面的话树莓派没办法直接启动，所以还是要再写一份树莓派的部署脚本</li>
+  <li>这个仅适用于电脑docker环境的部署</li>
+  <li>bash启动项（docker）写在.bashrc内，通过docker启动时入口是/bin/bash，脚本可以bashrc运行</li>
+  <li>deploy.sh内容：</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># 安装linux基础工具包</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== install basic tools (apt) ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+apt update
+apt <span class="nb">install </span>vim openssh-server python3-pip nginx <span class="nt">-y</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+
+<span class="c"># 配置ssh登录</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== ssh config ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+<span class="nb">echo</span> <span class="s2">"root:amtc@9999"</span> | chpasswd
+<span class="nb">echo</span> <span class="s2">"set passwd : amtc@9999"</span>
+
+<span class="c"># echo "PermitRootLogin yes"        &gt;&gt; /etc/ssh/sshd_config</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PermitRootLogin"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PermitRootLogin*/cPermitRootLogin yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PermitRootLogin yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi</span>
+
+<span class="c"># echo "PasswordAuthentication yes" &gt;&gt; /etc/ssh/sshd_config</span>
+<span class="k">if </span><span class="nb">cat</span> <span class="s1">'/etc/ssh/sshd_config'</span> | <span class="nb">grep</span> <span class="s2">"^PasswordAuthentication"</span> <span class="o">&gt;</span> /dev/null <span class="p">;</span><span class="k">then
+    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^PasswordAuthentication*/cPasswordAuthentication yes"</span> /etc/ssh/sshd_config
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"PasswordAuthentication yes"</span> <span class="o">&gt;&gt;</span> /etc/ssh/sshd_config
+<span class="k">fi
+
+</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+
+
+<span class="c"># 安装python模组</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== install server modules (pip) ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+
+
+<span class="c"># 配置bash启动项（docker）</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">========== bashrc config (docker) ==========</span><span class="se">\t\n</span><span class="s2">"</span>
+
+<span class="nb">cp</span> ./deploy/.amtcrc /root/.amtcrc
+<span class="k">if</span> <span class="o">!(</span> <span class="nb">cat</span> ~/.bashrc | <span class="nb">grep</span> <span class="s2">"amtcrc"</span> <span class="o">&gt;</span> /dev/null <span class="o">)</span><span class="p">;</span><span class="k">then
+    </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">echo 'amtc setup command : ~/.amtcrc'</span><span class="se">\n</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"if [ -f ~/.amtcrc ]; then</span><span class="se">\n\t</span><span class="s2">. ~/.amtcrc</span><span class="se">\n</span><span class="s2">fi"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"amtcrc already loaded in bashrc"</span>
+<span class="k">fi
+
+</span><span class="nb">source</span> /root/.bashrc
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">done"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>/deploy/.amtcrc</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/root/lf_localback/deploy/startup.sh
+</code></pre></div></div>
+
+<ul>
+  <li>/deploy/startup.sh</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+service ssh start
+
+<span class="nb">echo</span> <span class="s2">"start django server ..."</span>
+<span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'python3 /root/lf_localback/localback/manage.py runserver 0.0.0.0:4090'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
+</code></pre></div></div>
+
+<ul>
+  <li>docker内的的部署流程</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root
+apt <span class="nb">install </span>git
+git clone https://gitee.com/umas/lf_localback.git
+<span class="nb">cd </span>lf_localback
+<span class="nb">chmod </span>777 deploy.sh
+./deploy.sh
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/amtc/2023-07-12-lf_docker/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><category term="docker" /><summary type="html"><![CDATA[本机部署]]></summary></entry><entry><title type="html">amtc: localfront本地前端开发记录</title><link href="/amtc/localfront/" rel="alternate" type="text/html" title="amtc: localfront本地前端开发记录" /><published>2023-07-10T14:48:43+08:00</published><updated>2023-07-10T14:48:43+08:00</updated><id>/amtc/localfront</id><content type="html" xml:base="/amtc/localfront/"><![CDATA[<h2 id="tabledata类型定义">tableData类型定义</h2>
+
+<ul>
+  <li>在导入网络设备的表格时，除了json中定义好的静态参数外，设备状态是由函数实时更新的，这时需要给tableData添加新的属性”status”</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tableData</span><span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="nx">assets_json</span><span class="p">[</span><span class="dl">"</span><span class="s2">network</span><span class="dl">"</span><span class="p">])</span>
+<span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">id</span><span class="p">][</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">offline</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>但因为tableData在赋值时assets_json[“network”]中并没有”status”属性，所以会报错：元素隐式具有 “any” 类型，因为类型为 ““status”” 的表达式不能用于索引类型</li>
+  <li>需要给tableData添加类型定义</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">TableDataItem</span> <span class="p">{</span>
+        <span class="nl">id</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+        <span class="nl">name</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+        <span class="nl">description</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+        <span class="nl">mac</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+        <span class="nl">ip</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+        <span class="nl">port</span><span class="p">:</span><span class="nx">string</span>
+        <span class="nx">status</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">type</span> <span class="nx">TableData</span> <span class="o">=</span> <span class="nx">TableDataItem</span><span class="p">[];</span>
+<span class="kd">const</span> <span class="nx">tableData</span><span class="p">:</span> <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">TableData</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="nx">assets_json</span><span class="p">[</span><span class="dl">"</span><span class="s2">network</span><span class="dl">"</span><span class="p">]</span> <span class="k">as</span> <span class="nx">TableData</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="获取网络设备状态">获取网络设备状态</h2>
+
+<ul>
+  <li>前端没有找到合适的ping函数，所以给后端添加了一个新的test接口，直接返回hello</li>
+  <li>前端用一个定时器来循环获取延时</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 后端连通性检查</span>
+<span class="kd">const</span> <span class="nx">check_status</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">refresh status ...</span><span class="dl">"</span><span class="p">)</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">let</span> <span class="nx">start_time</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nf">now</span><span class="p">()</span>
+        <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="p">(</span><span class="na">msg</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">id</span><span class="p">][</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">start_time</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">ms</span><span class="dl">"</span>
+        <span class="p">}</span>
+        <span class="kd">const</span> <span class="nx">err</span> <span class="o">=</span> <span class="p">(</span><span class="na">msg</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+            <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">id</span><span class="p">][</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">error</span><span class="dl">"</span>
+        <span class="p">}</span>
+
+        <span class="kd">let</span> <span class="nx">asset</span> <span class="o">=</span> <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span>
+        <span class="c1">// let ip = "http://"+asset["ip"]+":4090/"</span>
+        <span class="kd">let</span> <span class="nx">ip</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">http://localhost:4090/</span><span class="dl">"</span>
+        <span class="nf">opc_connect</span><span class="p">(</span><span class="nx">ip</span><span class="p">,</span> <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">(</span><span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="k">as</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="nx">string</span> <span class="p">}).</span><span class="nx">status</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">offline</span><span class="dl">'</span><span class="p">;</span>
+        <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">id</span><span class="p">][</span><span class="dl">"</span><span class="s2">status</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">offline</span><span class="dl">"</span>
+    <span class="p">}</span>
+    <span class="c1">// 设置定时器检查后端连通状态</span>
+    <span class="kd">let</span> <span class="nx">time_interval</span> <span class="o">=</span> <span class="mi">3000</span>
+    <span class="kd">let</span> <span class="nx">set_id</span> <span class="o">=</span> <span class="nf">setInterval</span><span class="p">(</span><span class="nx">check_status</span><span class="p">,</span> <span class="nx">time_interval</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h2 id="表格文本颜色">表格文本颜色</h2>
+
+<ul>
+  <li>想给offline红色，online绿色，但是element ui提供的表格方法中没有对单个单元格的操作，默认格式是这样的：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;el-table-column</span> <span class="na">prop=</span><span class="s">"status"</span> <span class="na">label=</span><span class="s">"Status"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>经过查找，有插槽可以调用</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;el-table-column</span> <span class="na">prop=</span><span class="s">"status"</span> <span class="na">label=</span><span class="s">"Status"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;template</span> <span class="na">#default</span><span class="err">="</span><span class="na">scope</span><span class="err">"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">:class=</span><span class="s">"scope.row.status == 'offline' ? 'red' : 'green'"</span><span class="nt">&gt;</span>{{ scope.row.status }}<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/el-table-column&gt;</span>
+</code></pre></div></div>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 表格属性</span>
+<span class="nt">span</span><span class="nc">.red</span><span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">span</span><span class="nc">.green</span><span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="全部资产列表">全部资产列表</h2>
+
+<ul>
+  <li>拼接network和factory分类，js拼接数组有很多方法，这里使用扩展运算符</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">TableDataItem</span> <span class="p">{</span>
+    <span class="nl">id</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="nl">description</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">type</span> <span class="nx">TableData</span> <span class="o">=</span> <span class="nx">TableDataItem</span><span class="p">[];</span>
+<span class="kd">const</span> <span class="nx">tableData</span><span class="p">:</span> <span class="nx">Ref</span><span class="o">&lt;</span><span class="nx">TableData</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">([...</span><span class="nx">assets_json</span><span class="p">[</span><span class="dl">"</span><span class="s2">network</span><span class="dl">"</span><span class="p">],...</span><span class="nx">assets_json</span><span class="p">[</span><span class="dl">"</span><span class="s2">factory</span><span class="dl">"</span><span class="p">]]</span> <span class="k">as</span> <span class="nx">TableData</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/image/amtc/2023-07-10-localfront/image_1.jpg" alt="引入图片" /></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><summary type="html"><![CDATA[tableData类型定义]]></summary></entry><entry><title type="html">vue: 导入json</title><link href="/vue/vue_json/" rel="alternate" type="text/html" title="vue: 导入json" /><published>2023-07-10T13:56:53+08:00</published><updated>2023-07-10T13:56:53+08:00</updated><id>/vue/vue_json</id><content type="html" xml:base="/vue/vue_json/"><![CDATA[<ul>
+  <li>一般来说直接import就可以</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">image_list</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@/assets/list/image_list.json</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>在ts环境中可能会有红色波浪线：请考虑使用 “–resolveJsonModule” 导入带 “.json” 扩展的模块</p>
+  </li>
+  <li>
+    <p>需要在 TypeScript 配置中开启 resolveJsonModule 选项才能够使用 import 导入 JSON 文件</p>
+  </li>
+  <li>在项目根目录下找到 tsconfig.json 文件。</li>
+  <li>打开文件并在 “compilerOptions” 下添加 “resolveJsonModule”: true。</li>
+</ul>
+
+<!-- ![引入图片](/image/vue/2023-07-10-vue_json/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[一般来说直接import就可以]]></summary></entry><entry><title type="html">windows: 华为云terraria服务器</title><link href="/windows/terraria/" rel="alternate" type="text/html" title="windows: 华为云terraria服务器" /><published>2023-07-10T12:44:47+08:00</published><updated>2023-07-10T12:44:47+08:00</updated><id>/windows/terraria</id><content type="html" xml:base="/windows/terraria/"><![CDATA[<h2 id="参考">参考</h2>
 
 <ul>
   <li>官方
@@ -67,7 +338,7 @@ Choose World:
 <ul>
   <li>输入数字选择已有世界、n为创建新世界、d+数字为删除对应编号的世界</li>
   <li>之后就是跟着提示选就行了（略）</li>
-  <li>等待进度条跑完之后会回到Choose World，这时候再选择刚刚创建好的世界，进行一些配置之后等到下面这个界面就好了</li>
+  <li>等待进度条跑完之后会回到Choose World，选择刚刚创建好的世界，进行一些配置之后等到下面这个界面</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Terraria Server v1.4.4.9
@@ -79,7 +350,7 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
 </code></pre></div></div>
 
 <ul>
-  <li>测试端口连通性用telnet工具（windows需要在启用或关闭windows功能里开启telnet客户端）（或者直接用wsl就好了）</li>
+  <li>测试端口连通性用telnet工具（windows需要在启用或关闭windows功能里开启telnet客户端）（或者直接用wsl）</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet <span class="o">[</span>ip] <span class="o">[</span>port]
@@ -89,11 +360,12 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
   <li>
     <p>记得在华为云安全组里把这个端口开放（安全组 - 配置规则 - 入方向规则 - 添加4090）</p>
   </li>
-  <li>4090不好操作，改成默认7777了</li>
   <li>
-    <p>服务器IP：<code class="language-plaintext highlighter-rouge">123.249.20.87</code>，端口<code class="language-plaintext highlighter-rouge">7777</code></p>
+    <p>4090不好操作，改成默认7777了</p>
   </li>
-  <li>一条命令运行服务器</li>
+  <li>
+    <p>一条命令运行服务器</p>
+  </li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"1</span><span class="se">\n\n\n\n\n</span><span class="s2">"</span> | /root/terraria/1449/Linux/TerrariaServer.bin.x86_64
@@ -104,12 +376,7 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'echo -e "1\n\n\n\n\n" | /root/terraria/1449/Linux/TerrariaServer.bin.x86_64'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/windows/2023-07-10-terraria/image_1.jpg) -->]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[参考]]></summary></entry><entry><title type="html">git: 添加ssh公钥</title><link href="/git/git_ssh/" rel="alternate" type="text/html" title="git: 添加ssh公钥" /><published>2023-07-10T12:39:59+08:00</published><updated>2023-07-10T12:39:59+08:00</updated><id>/git/git_ssh</id><content type="html" xml:base="/git/git_ssh/"><![CDATA[<ul>
+</code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[参考]]></summary></entry><entry><title type="html">git: 添加ssh公钥</title><link href="/git/git_ssh/" rel="alternate" type="text/html" title="git: 添加ssh公钥" /><published>2023-07-10T12:39:59+08:00</published><updated>2023-07-10T12:39:59+08:00</updated><id>/git/git_ssh</id><content type="html" xml:base="/git/git_ssh/"><![CDATA[<ul>
   <li>添加ssh公钥
     <ul>
       <li>gitee: https://gitee.com/profile/sshkeys</li>
@@ -432,232 +699,4 @@ git push <span class="nt">-f</span> origin main
 
 <!-- ![引入图片](/image/electron/2023-07-10-build_icon/image_1.jpg) -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="electron" /><summary type="html"><![CDATA[解决左上角图标不显示： 网上说是生成的ico文件格式不对 解决方法：改用png，像素还是256 新问题：左上角图标显示了一半（？？？） 改用png之后自动生成了dist/.icon-ico/icon.ico，有帖子说用这个ico，也不行 放大缩小重新生成了几次ico，问题没解决 第二天发现下面任务栏的图标也只显示一半了（？？？） 2022.8.28图标修好了 正确的配置是在background.ts里设置图标，打包之后因为路径问题没有成功加载，像python脚本那样直接拷贝出来，区分开发环境和生产环境的路径]]></summary></entry><entry><title type="html">electron: js调用python</title><link href="/electron/python/js_py/" rel="alternate" type="text/html" title="electron: js调用python" /><published>2023-07-10T10:16:29+08:00</published><updated>2023-07-10T10:16:29+08:00</updated><id>/electron/python/js_py</id><content type="html" xml:base="/electron/python/js_py/"><![CDATA[<h2 id="参考">参考</h2>
-
-<ul>
-  <li>
-    <p>https://www.skcript.com/svr/how-to-execute-python-scripts-in-electron-and-nodejs</p>
-  </li>
-  <li>
-    <p>官方：</p>
-    <ul>
-      <li>https://www.npmjs.com/package/python-shell</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="安装">安装</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>python-shell <span class="nt">--save</span>
-</code></pre></div></div>
-
-<h2 id="一个简单的例子">一个简单的例子</h2>
-
-<ul>
-  <li>使用new PythonShell调用脚本</li>
-  <li>on message捕获python所有的stdout输出</li>
-  <li>（注意到使用subprocess.run调出一个新的terminal不能成功）</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">PythonShell</span> <span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">python-shell</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">pyshell</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PythonShell</span><span class="p">(</span>
-    <span class="dl">"</span><span class="s2">src/views/test_call_py/py_script/hello_world.py</span><span class="dl">"</span>
-<span class="p">);</span>
-<span class="nx">pyshell</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">js_input_1</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">pyshell</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">js_input_2</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">pyshell</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">,</span> <span class="nf">function </span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">pyshell</span><span class="p">.</span><span class="nf">end</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">finished</span><span class="dl">"</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<h2 id="解决打包后路径错误问题">解决打包后路径错误问题</h2>
-
-<ul>
-  <li>使用相对路径</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nx">__static</span><span class="p">,</span> <span class="dl">"</span><span class="s2">static/test/data.txt</span><span class="dl">"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>其中__static从public开始定位</li>
-  <li>vue.config.js添加规则</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pluginOptions</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">electronBuilder</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">builderOptions</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">extraResources</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="na">from</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/static</span><span class="dl">'</span><span class="p">,</span> <span class="na">to</span><span class="p">:</span> <span class="dl">'</span><span class="s1">static</span><span class="dl">'</span> <span class="p">}</span>
-<span class="p">],</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>观察发现txt读取时使用的目录是
-dist_electron\win-unpacked\resources\app.asar\static\test\data.txt</p>
-  </li>
-  <li>python也从asar文件中读取，但txt能找到，python找不到，config中添加的直接拷贝目录并没有被使用</li>
-  <li>安装asar解包工具</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --engine-strict asar --location=global
-asar e app.asar app
-</code></pre></div></div>
-<ul>
-  <li>解包后发现python文件已经被正确复制进去了</li>
-  <li>查阅资料发现打包在asar文件内的python确实不能运行，采用planB，不打包py文件</li>
-  <li>config添加不打包目录</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">builderOptions</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">asar</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">asarUnpack</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="dl">"</span><span class="s2">public/static/python</span><span class="dl">"</span>
-<span class="p">],</span>
-</code></pre></div></div>
-
-<ul>
-  <li>如果工作正常，在app.asar可用看到unpacked 目录
-    <ul>
-      <li>我没看到</li>
-    </ul>
-  </li>
-  <li>直接”asar”: false,正常应该能看到/app目录
-    <ul>
-      <li>这个能行，app.asar变成/app了</li>
-      <li>但是__static默认访问的是app.asar</li>
-    </ul>
-  </li>
-  <li>__static只能定位到asar打包的目录，改用process.cwd()可以定位到安装目录/开发目录</li>
-  <li>这样的话理论上最佳方案应该是unpack，这个日后再说</li>
-  <li>使用process.cwd()之后的改动：
-    <ul>
-      <li>因为改了路径拼接方法，所以asar还是可以接着用的</li>
-      <li>“asar”: true,</li>
-      <li>将python静态资源单独拷贝出来</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">extraResources</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span> <span class="na">from</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/static/python</span><span class="dl">'</span><span class="p">,</span> <span class="na">to</span><span class="p">:</span> <span class="dl">'</span><span class="s1">static/python</span><span class="dl">'</span> <span class="p">}</span> <span class="c1">// 静态资源拷贝目录</span>
-        <span class="p">],</span>
-</code></pre></div></div>
-
-<ul>
-  <li>这时存在一个问题，开发环境下路径是public/static/python，但生产环境中路径是resources/static/python</li>
-  <li>进行一步三元表达式环境区分：</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">py_path</span> <span class="o">=</span>
-    <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">development</span><span class="dl">"</span>
-        <span class="p">?</span> <span class="nx">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nf">cwd</span><span class="p">(),</span> <span class="dl">"</span><span class="s2">public/static/python</span><span class="dl">"</span><span class="p">)</span>
-        <span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nf">cwd</span><span class="p">(),</span> <span class="dl">"</span><span class="s2">resources/static/python</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/electron/2023-07-10-js_py/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="electron" /><category term="python" /><summary type="html"><![CDATA[参考]]></summary></entry><entry><title type="html">amtc: 本地前端</title><link href="/amtc/nginx/rpi_frontend/" rel="alternate" type="text/html" title="amtc: 本地前端" /><published>2023-07-10T09:14:54+08:00</published><updated>2023-07-10T09:14:54+08:00</updated><id>/amtc/nginx/rpi_frontend</id><content type="html" xml:base="/amtc/nginx/rpi_frontend/"><![CDATA[<h2 id="网页打包">网页打包</h2>
-
-<ul>
-  <li>简化部署，树莓派上就不配置开发环境了</li>
-  <li>只把build完的dist文件夹放进去</li>
-</ul>
-
-<h2 id="配置nginx">配置nginx</h2>
-
-<ul>
-  <li>安装</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>nginx
-</code></pre></div></div>
-
-<ul>
-  <li>修改/etc/nginx/nginx.conf中的user为root</li>
-  <li>添加配置 /etc/nginx/conf.d/localfront.conf</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 一个简单的frontend.conf</span>
-server <span class="o">{</span>
-listen 4080<span class="p">;</span>
-server_name localfront<span class="p">;</span> 
-root /home/amtc/lf_localfront/lfdist<span class="p">;</span>
-index index.html<span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>启动服务</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service nginx start
-或：
-nginx <span class="nt">-s</span> reload
-查看状态：
-service nginx status
-</code></pre></div></div>
-
-<h2 id="设置开机自启">设置开机自启</h2>
-
-<ul>
-  <li>方法同上一页配置opcua时添加的后端</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/systemd/system/start_localfront.service
-</code></pre></div></div>
-
-<ul>
-  <li>写入以下内容</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
-<span class="nv">Description</span><span class="o">=</span>Nginx HTTP Server
-<span class="nv">After</span><span class="o">=</span>network.target
-
-<span class="o">[</span>Service]
-<span class="nv">Type</span><span class="o">=</span>forking
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/nginx
-<span class="nv">ExecReload</span><span class="o">=</span>/usr/sbin/nginx <span class="nt">-s</span> reload
-<span class="nv">ExecStop</span><span class="o">=</span>/usr/sbin/nginx <span class="nt">-s</span> stop
-<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
-
-<span class="o">[</span>Install]
-<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
-</code></pre></div></div>
-
-<ul>
-  <li>控制</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 启动服务</span>
-<span class="nb">sudo </span>systemctl <span class="nb">enable </span>start_localfront.service
-<span class="c"># 查看状态</span>
-<span class="nb">sudo </span>systemctl status start_localfront.service
-</code></pre></div></div>
-
-<ul>
-  <li>访问:192.168.1.101:4080</li>
-</ul>
-
-<!-- ![引入图片](/image/amtc/2023-07-10-py_type/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="amtc" /><category term="nginx" /><summary type="html"><![CDATA[网页打包]]></summary></entry><entry><title type="html">python: 类型定义</title><link href="/python/py_type/" rel="alternate" type="text/html" title="python: 类型定义" /><published>2023-07-09T23:52:43+08:00</published><updated>2023-07-09T23:52:43+08:00</updated><id>/python/py_type</id><content type="html" xml:base="/python/py_type/"><![CDATA[<ul>
-  <li>函数输入输出类型。函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="k">def</span> <span class="nf">filter_entrance</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">feature_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/python/2023-07-09-py_type/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[函数输入输出类型。函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）]]></summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="electron" /><summary type="html"><![CDATA[解决左上角图标不显示： 网上说是生成的ico文件格式不对 解决方法：改用png，像素还是256 新问题：左上角图标显示了一半（？？？） 改用png之后自动生成了dist/.icon-ico/icon.ico，有帖子说用这个ico，也不行 放大缩小重新生成了几次ico，问题没解决 第二天发现下面任务栏的图标也只显示一半了（？？？） 2022.8.28图标修好了 正确的配置是在background.ts里设置图标，打包之后因为路径问题没有成功加载，像python脚本那样直接拷贝出来，区分开发环境和生产环境的路径]]></summary></entry></feed>

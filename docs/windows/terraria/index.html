@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>windows: 华为云terraria云服务器 | umas’ awesome title</title>
+<title>windows: 华为云terraria服务器 | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="windows: 华为云terraria云服务器" />
+<meta property="og:title" content="windows: 华为云terraria服务器" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="参考" />
 <meta property="og:description" content="参考" />
@@ -15,9 +15,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-07-10T12:44:47+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="windows: 华为云terraria云服务器" />
+<meta property="twitter:title" content="windows: 华为云terraria服务器" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-10T12:44:47+08:00","datePublished":"2023-07-10T12:44:47+08:00","description":"参考","headline":"windows: 华为云terraria云服务器","mainEntityOfPage":{"@type":"WebPage","@id":"/windows/terraria/"},"url":"/windows/terraria/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-10T12:44:47+08:00","datePublished":"2023-07-10T12:44:47+08:00","description":"参考","headline":"windows: 华为云terraria服务器","mainEntityOfPage":{"@type":"WebPage","@id":"/windows/terraria/"},"url":"/windows/terraria/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -41,7 +41,7 @@
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">windows: 华为云terraria云服务器</h1>
+    <h1 class="post-title">windows: 华为云terraria服务器</h1>
     <h3>泰拉瑞亚服务器</h3>
   </header>
 
@@ -125,7 +125,7 @@ Choose World:
 <ul>
   <li>输入数字选择已有世界、n为创建新世界、d+数字为删除对应编号的世界</li>
   <li>之后就是跟着提示选就行了（略）</li>
-  <li>等待进度条跑完之后会回到Choose World，这时候再选择刚刚创建好的世界，进行一些配置之后等到下面这个界面就好了</li>
+  <li>等待进度条跑完之后会回到Choose World，选择刚刚创建好的世界，进行一些配置之后等到下面这个界面</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Terraria Server v1.4.4.9
@@ -137,7 +137,7 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
 </code></pre></div></div>
 
 <ul>
-  <li>测试端口连通性用telnet工具（windows需要在启用或关闭windows功能里开启telnet客户端）（或者直接用wsl就好了）</li>
+  <li>测试端口连通性用telnet工具（windows需要在启用或关闭windows功能里开启telnet客户端）（或者直接用wsl）</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet <span class="o">[</span>ip] <span class="o">[</span>port]
@@ -147,11 +147,12 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
   <li>
     <p>记得在华为云安全组里把这个端口开放（安全组 - 配置规则 - 入方向规则 - 添加4090）</p>
   </li>
-  <li>4090不好操作，改成默认7777了</li>
   <li>
-    <p>服务器IP：<code class="language-plaintext highlighter-rouge">123.249.20.87</code>，端口<code class="language-plaintext highlighter-rouge">7777</code></p>
+    <p>4090不好操作，改成默认7777了</p>
   </li>
-  <li>一条命令运行服务器</li>
+  <li>
+    <p>一条命令运行服务器</p>
+  </li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"1</span><span class="se">\n\n\n\n\n</span><span class="s2">"</span> | /root/terraria/1449/Linux/TerrariaServer.bin.x86_64
@@ -164,10 +165,6 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'echo -e "1\n\n\n\n\n" | /root/terraria/1449/Linux/TerrariaServer.bin.x86_64'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
 </code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/windows/2023-07-10-terraria/image_1.jpg) -->
 
   </div>
 

@@ -16,6 +16,7 @@ toc: true
 - 下载镜像
 ```
 docker pull ubuntu
+docker pull ubuntu:22.04
 ```
 
 - 推送本地镜像
@@ -58,7 +59,8 @@ exit退出
 
 - 后台启动新容器
 ```
-sudo docker run --restart always --name openwrt -d sulinggg/openwrt /sbin/init
+sudo docker run --restart always --name openwrt -itd sulinggg/openwrt /sbin/init
+docker run -p 44080:4080 -p 44090:4090 --restart=always --name amtc_ubuntu -itd ubuntu:22.04 /bin/bash
 ```
 
 - 启动已存在的容器
@@ -98,6 +100,54 @@ docker run -p 13306:3306 --name mysql-iiir --restart=always \
 -d biarms/mysql:5.7.30-linux-arm64v8
 ```
 
+
+## 增加端口映射（桌面）
+
+- （命令行的操作后面有空再说）
+- 比如有了一个amtc_ubuntu，run的时候忘记映射22端口
+- 先把容器停掉
+- 文件资源管理器访问：
+
+```
+\\wsl.localhost\docker-desktop-data\data\docker\containers
+```
+
+- 找到里面的hostconfig.json，里面可以配置端口映射
+
+```json
+"PortBindings": {
+    "22/tcp": [
+        {
+            "HostIp": "",
+            "HostPort": "44022"
+        }
+    ],
+    "4080/tcp": [
+        {
+            "HostIp": "",
+            "HostPort": "44080"
+        }
+    ],
+    "4090/tcp": [
+        {
+            "HostIp": "",
+            "HostPort": "44090"
+        }
+    ]
+},
+```
+
+- 同时要修改同目录下的config.v2.json
+
+```json
+"ExposedPorts": {
+    "22/tcp": {},
+    "4080/tcp": {},
+    "4090/tcp": {}
+},
+```
+
+- 重新docker desktop
 
 ## dockerfile
 
