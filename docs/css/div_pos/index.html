@@ -115,6 +115,13 @@
 </code></pre></div></div>
 
 <ul>
+  <li>div自身水平居中，div必须有宽度属性</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>margin: 0 auto;
+</code></pre></div></div>
+
+<ul>
   <li>div内部元素水平居中</li>
 </ul>
 
@@ -157,6 +164,53 @@
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div></div>
 
+<ul>
+  <li>absolute垂直居中</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>transform: translateY(-50%)
+</code></pre></div></div>
+
+<ul>
+  <li>靠左/右/底
+    <ul>
+      <li>注意带flex的div不能自动换行</li>
+      <li>后接div时可以用clear:both换行</li>
+      <li>其他元素可以用<br />换行</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>display: flex;
+right: 0px;
+botton: 0px;
+</code></pre></div></div>
+
+<ul>
+  <li>inline-block区分
+    <ul>
+      <li>inline
+        <ul>
+          <li>行内元素</li>
+          <li>不能改变宽高，大小由内容撑开</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>block
+    <ul>
+      <li>块级元素，独占一行</li>
+      <li>可以改变宽高</li>
+      <li>默认类型</li>
+    </ul>
+  </li>
+  <li>inline-blick
+    <ul>
+      <li>行内元素，可以改变宽高</li>
+    </ul>
+  </li>
+</ul>
+
 <!-- ![引入图片](/image/css/2023-07-08-div_pos/image_1.jpg) -->
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
@@ -176,7 +230,7 @@
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:umas@no_email.com">umas@no_email.com</a></li></ul>
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>

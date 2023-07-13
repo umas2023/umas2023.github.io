@@ -48,4 +48,9 @@ env/Script/pip.exe
 ```
 
 
+- （创建requirements）
+
+```bash
+pip freeze > requirements.txt
+```
 

@@ -21,6 +21,7 @@ toc: True
 {% raw %}
 ```bash
 apt install nginx
+# 修改/etc/nginx/nginx.conf中的user
 ```
 {% endraw %}
 

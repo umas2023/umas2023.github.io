@@ -36,15 +36,15 @@ zip_pctools
 
 
 # 修改这里：md文件名后面会跟时间拼接起来
-file_name = "lf_docker"
+file_name = "samba"
 # 修改这里：md文件放在哪个目录下
-dir = "amtc"
+dir = "linux"
 # 修改这里：文章标题
-title = "'amtc: docker开发环境搭建'"
+title = "'linux: samba局域网文件共享'"
 # 修改这里：文章介绍
-info = "'学习工厂上班；车间蚊子太多在楼上开发搞一个ubuntu环境'"
+info = "'3分钟树莓派nas'"
 # 修改这里：文章分类
-categories = ["amtc","docker"]
+categories = ["linux"]
 
 
 import os

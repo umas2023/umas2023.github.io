@@ -1,7 +1,199 @@
 [
   
     {
-      "title"    : "amtc: 本地后端部署 + docker开发环境搭建 + sh一键部署脚本",
+      "title"    : "linux: samba局域网文件共享",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/linux/samba/",
+      "date"     : "2023-07-13 14:35:51 +0800"
+    } ,
+  
+    {
+      "title"    : "linux: apt改国内源",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/linux/apt_source/",
+      "date"     : "2023-07-13 14:33:32 +0800"
+    } ,
+  
+    {
+      "title"    : "python: python指向python3",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/python_python3/",
+      "date"     : "2023-07-13 14:31:35 +0800"
+    } ,
+  
+    {
+      "title"    : "linux: tmux终端窗口拆分",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/linux/tmux/",
+      "date"     : "2023-07-13 14:22:05 +0800"
+    } ,
+  
+    {
+      "title"    : "js: async,await异步修饰符",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/js/async_await/",
+      "date"     : "2023-07-13 14:18:18 +0800"
+    } ,
+  
+    {
+      "title"    : "js: Promise",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/js/promise/",
+      "date"     : "2023-07-13 14:15:19 +0800"
+    } ,
+  
+    {
+      "title"    : "python: vscode中import黄色波浪线报警",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/windows/import_warning/",
+      "date"     : "2023-07-13 14:12:11 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 开启web服务器",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/local_server/",
+      "date"     : "2023-07-13 14:08:13 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 绝对路径",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/abs_path/",
+      "date"     : "2023-07-13 14:01:53 +0800"
+    } ,
+  
+    {
+      "title"    : "python: threading多线程",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/threading/",
+      "date"     : "2023-07-13 13:59:46 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 文件遍历",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/zip_pctools/file_iter/",
+      "date"     : "2023-07-13 13:56:53 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 动态import",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/zip_pctools/dynamic_import/",
+      "date"     : "2023-07-13 13:52:41 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 程序时间",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/process_time/",
+      "date"     : "2023-07-13 12:47:00 +0800"
+    } ,
+  
+    {
+      "title"    : "python: json读写",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/json/",
+      "date"     : "2023-07-13 12:45:09 +0800"
+    } ,
+  
+    {
+      "title"    : "python: deep-translator调用谷歌翻译",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/zip_pctools/deep-translator/",
+      "date"     : "2023-07-13 12:43:41 +0800"
+    } ,
+  
+    {
+      "title"    : "python: windows添加环境变量",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/env_path/",
+      "date"     : "2023-07-13 12:36:57 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 数组去重",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/list_sort/",
+      "date"     : "2023-07-13 12:33:25 +0800"
+    } ,
+  
+    {
+      "title"    : "css: 固定宽高比例",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/css/css-hxw/",
+      "date"     : "2023-07-13 10:49:30 +0800"
+    } ,
+  
+    {
+      "title"    : "zip_backyard: hash模式路由",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/zip_backyard/vue/hash-router/",
+      "date"     : "2023-07-13 10:35:05 +0800"
+    } ,
+  
+    {
+      "title"    : "amtc: mjpg-streamer给网页添加usb摄像头实时监控",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/amtc/mjpg-streamer/",
+      "date"     : "2023-07-13 10:21:02 +0800"
+    } ,
+  
+    {
+      "title"    : "linux: vim文本编辑器常用操作",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/linux/vim/",
+      "date"     : "2023-07-13 10:16:49 +0800"
+    } ,
+  
+    {
+      "title"    : "amtc: 本地前端部署脚本",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/amtc/lff_setup/",
+      "date"     : "2023-07-13 10:02:08 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: vscode连接不上",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/vscode_fix/",
+      "date"     : "2023-07-12 23:14:59 +0800"
+    } ,
+  
+    {
+      "title"    : "amtc: 本地后端部署脚本",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/amtc/lf_deploy/",
+      "date"     : "2023-07-12 23:00:19 +0800"
+    } ,
+  
+    {
+      "title"    : "amtc: 桌面后端部署 + docker开发环境搭建 + sh一键部署脚本",
       "category" : "",
       "tags"     : "",
       "url"      : "/amtc/docker/lf_docker/",
@@ -129,7 +321,7 @@
     } ,
   
     {
-      "title"    : "amtc: 连接opcua",
+      "title"    : "amtc: 连接opcua，后端部署",
       "category" : "",
       "tags"     : "",
       "url"      : "/amtc/python/opcua/",

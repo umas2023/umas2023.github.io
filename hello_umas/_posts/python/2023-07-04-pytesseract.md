@@ -9,6 +9,7 @@ toc: True
 
 ## 安装tesseract
 - https://github.com/tesseract-ocr/tesseract
+- 记得勾选 Additional language data 不然没有日语
 
 
 ## 加入环境变量
