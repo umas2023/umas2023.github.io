@@ -19,6 +19,7 @@ git
 jekyll
 js
 knowhow
+leetcode
 linux
 markdown
 mysql
@@ -35,16 +36,16 @@ zip_pctools
 '''
 
 
-# 修改这里：md文件名后面会跟时间拼接起来
-file_name = "samba"
+# 修改这里：md文件名，前面会拼接上时间
+file_name = "leetcode_2"
 # 修改这里：md文件放在哪个目录下
-dir = "linux"
+dir = "leetcode"
 # 修改这里：文章标题
-title = "'linux: samba局域网文件共享'"
+title = "'leetcode: 2.两数相加'"
 # 修改这里：文章介绍
-info = "'3分钟树莓派nas'"
+info = "'链表'"
 # 修改这里：文章分类
-categories = ["linux"]
+categories = ["leetcode"]
 
 
 import os

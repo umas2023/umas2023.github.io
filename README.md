@@ -3,14 +3,20 @@
 
 
 ## 常用命令
-- 启动（hello_umas目录下）
+
+- 新建
+```bash
+python add.py
 ```
+
+- 启动（hello_umas目录下）
+```bash
 jekyll serve
 或运行 serve.py
 ```
 
 - 打包（hello_umas同级目录）
-```
+```bash
 jekyll build --source hello_umas --destination docs
 或运行build.py
 ```
@@ -29,7 +35,7 @@ jekyll build --source hello_umas --destination docs
 
 
 
-## 待办
+## jekyll待办
 
 - 返回顶部按钮
 - 进categories的时候右上角search没了

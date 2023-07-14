@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="python: 类型定义" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="函数输入输出类型。函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）" />
-<meta property="og:description" content="函数输入输出类型。函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）" />
+<meta name="description" content="python默认类型不多，推荐使用typing库" />
+<meta property="og:description" content="python默认类型不多，推荐使用typing库" />
 <link rel="canonical" href="/python/py_type/" />
 <meta property="og:url" content="/python/py_type/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="python: 类型定义" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-09T23:52:43+08:00","datePublished":"2023-07-09T23:52:43+08:00","description":"函数输入输出类型。函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）","headline":"python: 类型定义","mainEntityOfPage":{"@type":"WebPage","@id":"/python/py_type/"},"url":"/python/py_type/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-09T23:52:43+08:00","datePublished":"2023-07-09T23:52:43+08:00","description":"python默认类型不多，推荐使用typing库","headline":"python: 类型定义","mainEntityOfPage":{"@type":"WebPage","@id":"/python/py_type/"},"url":"/python/py_type/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,22 +48,55 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#列表类型list">列表类型List</a></li>
+<li class="toc-entry toc-h2"><a href="#函数类型">函数类型</a></li>
+<li class="toc-entry toc-h2"><a href="#可选类型">可选类型</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
     <ul>
-  <li>函数输入输出类型。函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）</li>
+  <li>python默认类型不多，推荐使用typing库</li>
+</ul>
+
+<h2 id="列表类型list">列表类型List</h2>
+<ul>
+  <li>支持对列表内容类型的定义</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</code></pre></div></div>
+
+<h2 id="函数类型">函数类型</h2>
+<ul>
+  <li>函数类型的输入参数并不是function而是Callable，可以指定输入输出参数的类型（回头再查）</li>
 </ul>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="k">def</span> <span class="nf">filter_entrance</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">feature_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
 </code></pre></div></div>
 
+<h2 id="可选类型">可选类型</h2>
+<ul>
+  <li>可选参数，可以传递，也可以是None</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># do something with param
+</span>    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># handle the case where param is None
+</span></code></pre></div></div>
+
 <!-- ![引入图片](/image/python/2023-07-09-py_type/image_1.jpg) -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
 
   </div>

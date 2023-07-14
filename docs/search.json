@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "leetcode: 2.两数相加",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/leetcode_2/",
+      "date"     : "2023-07-14 14:56:52 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 1.两数之和",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/leetcode_1/",
+      "date"     : "2023-07-14 14:16:17 +0800"
+    } ,
+  
+    {
       "title"    : "linux: samba局域网文件共享",
       "category" : "",
       "tags"     : "",
@@ -661,6 +677,14 @@
       "category" : "",
       "tags"     : "",
       "url"      : "/python/pip/",
+      "date"     : "2023-06-28 09:20:00 +0800"
+    } ,
+  
+    {
+      "title"    : "python: hello_world",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/hello/",
       "date"     : "2023-06-28 09:20:00 +0800"
     } ,
   

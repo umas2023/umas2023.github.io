@@ -1,7 +1,7 @@
 # 打包并上传Jekyll项目
 
 
-commit_txt = "add new"
+commit_txt = "leet"
 
 import os
 import subprocess

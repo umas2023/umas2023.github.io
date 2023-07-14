@@ -1,4 +1,200 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-13T14:40:29+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">linux: samba局域网文件共享</title><link href="/linux/samba/" rel="alternate" type="text/html" title="linux: samba局域网文件共享" /><published>2023-07-13T14:35:51+08:00</published><updated>2023-07-13T14:35:51+08:00</updated><id>/linux/samba</id><content type="html" xml:base="/linux/samba/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-14T17:18:14+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">leetcode: 2.两数相加</title><link href="/leetcode/leetcode_2/" rel="alternate" type="text/html" title="leetcode: 2.两数相加" /><published>2023-07-14T14:56:52+08:00</published><updated>2023-07-14T14:56:52+08:00</updated><id>/leetcode/leetcode_2</id><content type="html" xml:base="/leetcode/leetcode_2/"><![CDATA[<h2 id="自解1">自解1</h2>
+
+<ul>
+  <li>
+    <p>没有用过链表，思路是先把链表转换为普通列表，再转化为数字，计算完之后再转换回去</p>
+  </li>
+  <li>
+    <p>补充：链表</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
+</code></pre></div></div>
+
+<ul>
+  <li>首先定义四个函数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">node</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">node2list</span><span class="p">(</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))))</span>
+</code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">node</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">list_in</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">num</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">list2number</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+<span class="c1"># 5321
+</span></code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>击败5%的代码</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
+
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+
+        <span class="k">def</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">]</span>
+            <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+                <span class="n">res</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+        <span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">node</span>
+
+        <span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="n">num</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">index</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+        <span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
+
+        <span class="c1"># 链表转为列表
+</span>        <span class="n">l1_list</span> <span class="o">=</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+        <span class="n">l2_list</span> <span class="o">=</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+
+        <span class="c1"># 倒序列表拼接为一个数字
+</span>        <span class="n">l1_number</span> <span class="o">=</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">l1_list</span><span class="p">)</span>
+        <span class="n">l2_number</span> <span class="o">=</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">l2_list</span><span class="p">)</span>
+
+        <span class="c1"># 计算并输出结果
+</span>        <span class="n">res_number</span> <span class="o">=</span> <span class="n">l1_number</span> <span class="o">+</span> <span class="n">l2_number</span>
+        <span class="n">res_list</span> <span class="o">=</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">res_number</span><span class="p">)</span>
+        <span class="nf">return</span><span class="p">(</span><span class="nf">list2node</span><span class="p">(</span><span class="n">res_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+
+<span class="n">l1</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="nc">Solution</span><span class="p">().</span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">l2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="答案">答案</h2>
+<ul>
+  <li>妈的看完题解之后感觉刚才的自己脑子简直秀逗</li>
+  <li>因为py并没有链表和指针，所以并不容易定义结果的类型，可以把结果存放在l1或l2中，如果计算中发现l1长度小于l2，可以交换l1和l2</li>
+  <li>递归函数！</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
+
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="c1"># l1 和 l2 为当前遍历的节点，carry 为进位
+</span>    <span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">carry</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">l2</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># 递归边界：l1 和 l2 都是空节点
+</span>            <span class="k">return</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">carry</span><span class="p">)</span> <span class="k">if</span> <span class="n">carry</span> <span class="k">else</span> <span class="bp">None</span>  <span class="c1"># 如果进位了，就额外创建一个节点
+</span>        <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># 如果 l1 是空的，那么此时 l2 一定不是空节点
+</span>            <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">,</span> <span class="n">l1</span>  <span class="c1"># 交换 l1 与 l2，保证 l1 非空，从而简化代码
+</span>        <span class="n">carry</span> <span class="o">+=</span> <span class="n">l1</span><span class="p">.</span><span class="n">val</span> <span class="o">+</span> <span class="p">(</span><span class="n">l2</span><span class="p">.</span><span class="n">val</span> <span class="k">if</span> <span class="n">l2</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 节点值和进位加在一起
+</span>        <span class="n">l1</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">carry</span> <span class="o">%</span> <span class="mi">10</span>  <span class="c1"># 每个节点保存一个数位
+</span>        <span class="n">l1</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="nb">next</span><span class="p">,</span> <span class="n">l2</span><span class="p">.</span><span class="nb">next</span> <span class="k">if</span> <span class="n">l2</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span> <span class="n">carry</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 进位
+</span>        <span class="k">return</span> <span class="n">l1</span>
+
+
+<span class="n">l1</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="nc">Solution</span><span class="p">().</span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">l2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[自解1]]></summary></entry><entry><title type="html">leetcode: 1.两数之和</title><link href="/leetcode/leetcode_1/" rel="alternate" type="text/html" title="leetcode: 1.两数之和" /><published>2023-07-14T14:16:17+08:00</published><updated>2023-07-14T14:16:17+08:00</updated><id>/leetcode/leetcode_1</id><content type="html" xml:base="/leetcode/leetcode_1/"><![CDATA[<h2 id="自解">自解</h2>
+
+<ul>
+  <li>除了两层循环之外根本想不到其他解法</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">index_1</span><span class="p">,</span> <span class="n">number_1</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">index_2</span><span class="p">,</span> <span class="n">number_2</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">index_1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]):</span>
+                <span class="k">if</span> <span class="n">number_1</span> <span class="o">+</span> <span class="n">number_2</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">[</span><span class="n">index_1</span><span class="p">,</span> <span class="n">index_1</span> <span class="o">+</span> <span class="n">index_2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">twoSum</span><span class="p">(</span><span class="n">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="mi">9</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="答案">答案</h2>
+
+<ul>
+  <li>我的天哈希表居然这么简单就实现了，我是傻逼</li>
+  <li>在第二遍循环里寻找 number_2 = target - number_1，而不是 number_2 + number_1 = target，后者很难想到hash</li>
+  <li>利用字典中键不能重复的特点创建hash表</li>
+  <li>修改一下自己的代码：</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">hash_table</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">index_1</span><span class="p">,</span> <span class="n">number_1</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">-</span> <span class="n">number_1</span> <span class="ow">in</span> <span class="n">hash_table</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">hash_table</span><span class="p">[</span><span class="n">target</span> <span class="o">-</span> <span class="n">number_1</span><span class="p">],</span><span class="n">index_1</span><span class="p">]</span>
+            <span class="n">hash_table</span><span class="p">[</span><span class="n">number_1</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_1</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">twoSum</span><span class="p">(</span><span class="n">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="mi">9</span><span class="p">))</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[自解]]></summary></entry><entry><title type="html">linux: samba局域网文件共享</title><link href="/linux/samba/" rel="alternate" type="text/html" title="linux: samba局域网文件共享" /><published>2023-07-13T14:35:51+08:00</published><updated>2023-07-13T14:35:51+08:00</updated><id>/linux/samba</id><content type="html" xml:base="/linux/samba/"><![CDATA[<ul>
   <li>下载配置</li>
 </ul>
 
@@ -328,112 +524,4 @@ python.exe <span class="nt">-m</span> http.server 8000 <span class="nt">--direct
 
 <!-- ![引入图片](/image/python/2023-07-13-local_server/image_1.jpg) -->
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[假如vue项目已经打包好了dist文件夹，可以用这个命令来启动一个web服务器]]></summary></entry><entry><title type="html">python: 绝对路径</title><link href="/python/abs_path/" rel="alternate" type="text/html" title="python: 绝对路径" /><published>2023-07-13T14:01:53+08:00</published><updated>2023-07-13T14:01:53+08:00</updated><id>/python/abs_path</id><content type="html" xml:base="/python/abs_path/"><![CDATA[<ul>
-  <li>获取当前程序运行的绝对路径法1</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
-<span class="c1"># /Users/s/PycharmProjects/dr_check/main.py
-</span></code></pre></div></div>
-
-<ul>
-  <li>获取当前程序运行的绝对路径法2</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
-<span class="c1"># /Users/s/PycharmProjects/dr_check/main.py
-</span></code></pre></div></div>
-
-<ul>
-  <li>获取当前程序运行的绝对路径法3</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># split返回一个元组，取第一项即可得到文件夹的绝对路径
-</span><span class="nf">print</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">)))</span>
-<span class="c1"># ('/Users/s/PycharmProjects/dr_check', 'main.py')
-</span>
-<span class="c1"># 或者这个也一样
-</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
-</code></pre></div></div>
-
-<ul>
-  <li>这两个如果是server调用script，会定位到server</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="c1"># /Users/s/PycharmProjects/dr_check
-</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="nf">getcwd</span><span class="p">())</span>
-<span class="c1"># /Users/s/PycharmProjects/dr_check
-</span></code></pre></div></div>
-
-<ul>
-  <li>有空试试这个：</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="nc">Path</span><span class="p">(</span><span class="n">__file__</span><span class="p">).</span><span class="nf">resolve</span><span class="p">().</span><span class="n">parent</span><span class="p">.</span><span class="n">parent</span>
-</code></pre></div></div>
-
-<ul>
-  <li>补充：os.sep可以获取当前系统的路径分隔符（正斜杠、反斜杠）
-    <ul>
-      <li>如果不能确定的话可以用<code class="language-plaintext highlighter-rouge">os.path.normpath()</code>来格式化正反斜杠</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 拆分所有路径
-</span><span class="nb">dir</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">sep</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>两个路径之间的相对路径</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">relpath</span><span class="p">(</span><span class="n">methodPathIn</span><span class="p">,</span><span class="n">self</span><span class="p">.</span><span class="n">path_in</span><span class="p">)</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/python/2023-07-13-abs_path/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[获取当前程序运行的绝对路径法1]]></summary></entry><entry><title type="html">python: threading多线程</title><link href="/python/threading/" rel="alternate" type="text/html" title="python: threading多线程" /><published>2023-07-13T13:59:46+08:00</published><updated>2023-07-13T13:59:46+08:00</updated><id>/python/threading</id><content type="html" xml:base="/python/threading/"><![CDATA[<ul>
-  <li>基本写法</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">threading</span>
-
-<span class="k">def</span> <span class="nf">test_thread</span><span class="p">:</span>
-    <span class="c1"># xxx
-</span>    <span class="k">pass</span>
-
-<span class="n">thread_hi</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">test_thread</span><span class="p">)</span>
-<span class="n">thread_hello</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">test_thread</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="sh">'</span><span class="s">hello</span><span class="sh">'</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="n">thread_hi</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
-<span class="n">thread_hello</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
-</code></pre></div></div>
-
-<ul>
-  <li>多线程不能被ctrl+c中断，设置deamon参数使得子线程随主线程一起中断</li>
-  <li>（即设置为守护进程，当程序仅剩守护进程时退出）</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">th_shot</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">shot_main</span><span class="p">)</span>
-<span class="n">th_sharpen</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sharpen_main</span><span class="p">)</span>
-<span class="n">th_shot</span><span class="p">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">th_sharpen</span><span class="p">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">th_sharpen</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
-<span class="n">th_shot</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">sharpen_running</span><span class="p">:</span>
-    <span class="k">break</span>
-</code></pre></div></div>
-<ul>
-  <li>上面的代码实测无法完全同时运行，th2运行中会等待th1</li>
-  <li>没能实现这个功能</li>
-</ul>
-
-<p><img src="/image/python/2023-07-13-threading/image_1.jpg" alt="引入图片" /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[基本写法]]></summary></entry></feed>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[假如vue项目已经打包好了dist文件夹，可以用这个命令来启动一个web服务器]]></summary></entry></feed>
