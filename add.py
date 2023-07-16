@@ -37,15 +37,15 @@ zip_pctools
 
 
 # 修改这里：md文件名，前面会拼接上时间
-file_name = "leetcode_2"
+file_name = "inner_vue"
 # 修改这里：md文件放在哪个目录下
-dir = "leetcode"
+dir = "jekyll"
 # 修改这里：文章标题
-title = "'leetcode: 2.两数相加'"
+title = "'jekyll: 内嵌vue页面'"
 # 修改这里：文章介绍
-info = "'链表'"
+info = "'通过header栏的右侧按钮进入'"
 # 修改这里：文章分类
-categories = ["leetcode"]
+categories = ["jekyll"]
 
 
 import os
@@ -102,3 +102,7 @@ os.system("explorer.exe %s" % image_path)
 # 打开新md文件
 vscode = r'"D:\p-program\vscode\Microsoft VS Code\Code.exe"'
 os.system("%s %s" % (vscode,file_path))
+
+
+
+

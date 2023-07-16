@@ -1,30 +1,12 @@
-# 打包并上传Jekyll项目
 
-
-commit_txt = "leet"
 
 import os
-import subprocess
-import sys
 import shutil
-script_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(script_path)
-
-
-print("\n===== jekyll build =====\n")
-os.system("jekyll build --source hello_umas --destination docs")
-
-
-print("\n===== vue build =====\n")
-subprocess.run(["npm", "run", "build"], cwd="./inner_vue", shell=True)
-
-print("\n===== copy vue dist =====\n")
 
 src_dir = r"./inner_vue/dist"
 dst_dir = r"./hello_umas"
 # 遍历源目录下的所有文件和子目录
 for root, dirs, files in os.walk(src_dir):
-    # 计算出每个文件在目标目录中的路径
     dst_root = os.path.join(dst_dir, os.path.relpath(root, src_dir))
     # 如果目标目录不存在，则先创建目标目录
     if not os.path.exists(dst_root):
@@ -38,16 +20,3 @@ for root, dirs, files in os.walk(src_dir):
             os.remove(dst_file)
         # 复制文件
         shutil.copy(src_file, dst_file)
-
-
-
-
-
-print("\n===== git push =====\n")
-subprocess.run(["git", "add", "."], cwd=".", shell=True)
-subprocess.run(["git", "commit", "-m", commit_txt], cwd=".", shell=True)
-subprocess.run(["git", "push"], cwd=".", shell=True)
-
-
-
-

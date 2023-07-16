@@ -129,6 +129,20 @@ npm install --save js-cookie
 npm install --save   echarts
 ```
 
+### 6. 打包
+
+- 打包
+
+```bash
+npm run build
+# 生成/dist/目录
+```
+
+- python测试服务器
+
+```
+python.exe -m http.server 8000
+```
 
 ## 单页hello world
 - 创建单个html文件的vue项目
