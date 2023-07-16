@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="jekyll: 内嵌vue页面" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="jekyll项目右上角的导航栏是通过目录下的html文件生成的 把vue项目打包后放在jekyll目录下应该可以直接嵌入 注意右上角导航的顺序是按照html文件名排序，可以用数字来排序" />
-<meta property="og:description" content="jekyll项目右上角的导航栏是通过目录下的html文件生成的 把vue项目打包后放在jekyll目录下应该可以直接嵌入 注意右上角导航的顺序是按照html文件名排序，可以用数字来排序" />
+<meta name="description" content="尝试1" />
+<meta property="og:description" content="尝试1" />
 <link rel="canonical" href="/jekyll/inner_vue/" />
 <meta property="og:url" content="/jekyll/inner_vue/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="jekyll: 内嵌vue页面" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-16T14:43:34+08:00","datePublished":"2023-07-16T14:43:34+08:00","description":"jekyll项目右上角的导航栏是通过目录下的html文件生成的 把vue项目打包后放在jekyll目录下应该可以直接嵌入 注意右上角导航的顺序是按照html文件名排序，可以用数字来排序","headline":"jekyll: 内嵌vue页面","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/inner_vue/"},"url":"/jekyll/inner_vue/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-16T14:43:34+08:00","datePublished":"2023-07-16T14:43:34+08:00","description":"尝试1","headline":"jekyll: 内嵌vue页面","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/inner_vue/"},"url":"/jekyll/inner_vue/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -32,7 +32,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/inner/">Inner</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -48,12 +48,16 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#尝试1">尝试1</a></li>
+<li class="toc-entry toc-h2"><a href="#尝试2">尝试2</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <ul>
+    <h2 id="尝试1">尝试1</h2>
+
+<ul>
   <li>jekyll项目右上角的导航栏是通过目录下的html文件生成的</li>
   <li>把vue项目打包后放在jekyll目录下应该可以直接嵌入</li>
   <li>注意右上角导航的顺序是按照html文件名排序，可以用数字来排序</li>
@@ -92,6 +96,10 @@
 </code></pre></div></div>
 
 <ul>
+  <li>↑如果按照上面的方法修改，npm run serve会报错</li>
+  <li>
+    <p>直接把public/index.html改名为public/c99_inner.html就行了</p>
+  </li>
   <li>打包</li>
 </ul>
 
@@ -165,11 +173,57 @@ permalink: /inner/
   <li>效果：
     <ul>
       <li>（title不能删掉，后面再想办法）</li>
+      <li>而且发现右上角字体变粗了，可能是有哪里少了scope</li>
     </ul>
   </li>
 </ul>
 
 <p><img src="/image/jekyll/2023-07-16-inner_vue/image_3.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>对vue进行一些修改之后发现jekyll里显示不出来了</li>
+  <li>正在找问题</li>
+</ul>
+
+<h2 id="尝试2">尝试2</h2>
+
+<ul>
+  <li>dist放在jekyll根目录下，重命名为vue</li>
+  <li>c3_inner.md</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: page
+permalink: /vue/
+title: Vue
+---
+{% include_relative vue/index.html %}
+</code></pre></div></div>
+
+<ul>
+  <li>vue打包后的引用路径要一致</li>
+  <li>参考search.js可以看到引用路径从根目录开始，进入vue页之后内容全部在/vue之下，所以直接重命名为vue</li>
+</ul>
+
+<p><img src="/image/jekyll/2023-07-16-inner_vue/image_4.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>确认打包后的index.html的引用路径是相对路径</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">defer=</span><span class="s">"defer"</span> <span class="na">src=</span><span class="s">"/js/chunk-vendors.4e859eba.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>改为：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">defer=</span><span class="s">"defer"</span> <span class="na">src=</span><span class="s">"js/chunk-vendors.4e859eba.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>还是不行，router没有生效，放弃了</li>
+</ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 

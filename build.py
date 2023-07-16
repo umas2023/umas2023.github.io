@@ -1,7 +1,7 @@
 # 打包并上传Jekyll项目
 
 
-commit_txt = "add vue"
+commit_txt = "rm vue"
 
 import os
 import subprocess
