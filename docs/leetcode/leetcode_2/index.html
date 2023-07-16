@@ -32,7 +32,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/inner/">Inner</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -76,16 +76,19 @@
   <li>首先定义四个函数</li>
 </ul>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">node</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 链表转列表
+</span><span class="k">def</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">res</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
 
 <span class="nf">print</span><span class="p">(</span><span class="nf">node2list</span><span class="p">(</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))))</span>
 </code></pre></div></div>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 列表转链表
+</span><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
     <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
         <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
@@ -97,7 +100,8 @@
 <span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 列表转数字
+</span><span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">list_in</span><span class="p">)</span> <span class="p">:</span>
         <span class="n">res</span> <span class="o">+=</span> <span class="n">num</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">index</span><span class="p">)</span>
@@ -107,7 +111,8 @@
 <span class="c1"># 5321
 </span></code></pre></div></div>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 数字转列表
+</span><span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
 </code></pre></div></div>
 

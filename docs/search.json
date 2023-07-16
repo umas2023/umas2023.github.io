@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "jekyll: 内嵌vue页面",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/jekyll/inner_vue/",
+      "date"     : "2023-07-16 14:43:34 +0800"
+    } ,
+  
+    {
       "title"    : "leetcode: 2.两数相加",
       "category" : "",
       "tags"     : "",

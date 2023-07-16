@@ -1,4 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-14T17:18:14+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">leetcode: 2.两数相加</title><link href="/leetcode/leetcode_2/" rel="alternate" type="text/html" title="leetcode: 2.两数相加" /><published>2023-07-14T14:56:52+08:00</published><updated>2023-07-14T14:56:52+08:00</updated><id>/leetcode/leetcode_2</id><content type="html" xml:base="/leetcode/leetcode_2/"><![CDATA[<h2 id="自解1">自解1</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-16T15:15:45+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">jekyll: 内嵌vue页面</title><link href="/jekyll/inner_vue/" rel="alternate" type="text/html" title="jekyll: 内嵌vue页面" /><published>2023-07-16T14:43:34+08:00</published><updated>2023-07-16T14:43:34+08:00</updated><id>/jekyll/inner_vue</id><content type="html" xml:base="/jekyll/inner_vue/"><![CDATA[<ul>
+  <li>jekyll项目右上角的导航栏是通过目录下的html文件生成的</li>
+  <li>把vue项目打包后放在jekyll目录下应该可以直接嵌入</li>
+  <li>注意右上角导航的顺序是按照html文件名排序，可以用数字来排序</li>
+</ul>
+
+<p><img src="/image/jekyll/2023-07-16-inner_vue/image_1.jpg" alt="引入图片" />
+<img src="/image/jekyll/2023-07-16-inner_vue/image_2.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>创建项目</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue create inner_vue
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>(编辑vue)</p>
+  </li>
+  <li>
+    <p>修改vue.config.js，修改输出index.html的文件名</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@vue/cli-service</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">defineConfig</span><span class="p">({</span>
+  <span class="na">transpileDependencies</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">pages</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">home</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">entry</span><span class="p">:</span> <span class="dl">'</span><span class="s1">src/main.ts</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/index.html</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">c99_inner.html</span><span class="dl">'</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li>打包</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run build
+</code></pre></div></div>
+
+<ul>
+  <li>打包之后直接放到jekyll目录下，给html添加yaml头，可以正常识别</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: page
+permalink: /inner/
+---
+</code></pre></div></div>
+
+<ul>
+  <li>写一个build_vue.py脚本来自动化以上过程：打包 -&gt; 拷贝 -&gt; 添加头</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">
+打包vue子页面并添加到jekyll
+</span><span class="sh">'''</span>
+
+
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">shutil</span>
+<span class="kn">import</span> <span class="n">subprocess</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== vue build =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">npm</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">run</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">build</span><span class="sh">"</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="sh">"</span><span class="s">./inner_vue</span><span class="sh">"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== copy vue dist =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">src_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">./inner_vue/dist</span><span class="sh">"</span>
+<span class="n">dst_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">./hello_umas</span><span class="sh">"</span>
+<span class="c1"># 遍历源目录下的所有文件和子目录
+</span><span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">src_dir</span><span class="p">):</span>
+    <span class="c1"># 计算出每个文件在目标目录中的路径
+</span>    <span class="n">dst_root</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dst_dir</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">relpath</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">src_dir</span><span class="p">))</span>
+    <span class="c1"># 如果目标目录不存在，则先创建目标目录
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">dst_root</span><span class="p">):</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">dst_root</span><span class="p">)</span>
+    <span class="c1"># 遍历当前目录下的所有文件
+</span>    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">src_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+        <span class="n">dst_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dst_root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+        <span class="c1"># 如果目标文件已经存在，则先删除目标文件
+</span>        <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">dst_file</span><span class="p">):</span>
+            <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">dst_file</span><span class="p">)</span>
+        <span class="c1"># 复制文件
+</span>        <span class="n">shutil</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">src_file</span><span class="p">,</span> <span class="n">dst_file</span><span class="p">)</span>
+
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== edit yaml header =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sa">r</span><span class="sh">"</span><span class="s">./hello_umas/c99_inner.html</span><span class="sh">"</span><span class="p">,</span> <span class="sh">'</span><span class="s">r+</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+    <span class="c1"># 将文件指针移到文件开头
+</span>    <span class="n">f</span><span class="p">.</span><span class="nf">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># 插入需要添加的内容
+</span>    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">---</span><span class="se">\n</span><span class="s">layout: page</span><span class="se">\n</span><span class="s">permalink: /inner/</span><span class="se">\n</span><span class="s">---</span><span class="se">\n</span><span class="sh">"</span> <span class="o">+</span> <span class="n">content</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>效果：
+    <ul>
+      <li>（title不能删掉，后面再想办法）</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/image/jekyll/2023-07-16-inner_vue/image_3.jpg" alt="引入图片" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[jekyll项目右上角的导航栏是通过目录下的html文件生成的 把vue项目打包后放在jekyll目录下应该可以直接嵌入 注意右上角导航的顺序是按照html文件名排序，可以用数字来排序]]></summary></entry><entry><title type="html">leetcode: 2.两数相加</title><link href="/leetcode/leetcode_2/" rel="alternate" type="text/html" title="leetcode: 2.两数相加" /><published>2023-07-14T14:56:52+08:00</published><updated>2023-07-14T14:56:52+08:00</updated><id>/leetcode/leetcode_2</id><content type="html" xml:base="/leetcode/leetcode_2/"><![CDATA[<h2 id="自解1">自解1</h2>
 
 <ul>
   <li>
@@ -19,16 +137,19 @@
   <li>首先定义四个函数</li>
 </ul>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">node</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 链表转列表
+</span><span class="k">def</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">res</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
 
 <span class="nf">print</span><span class="p">(</span><span class="nf">node2list</span><span class="p">(</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))))</span>
 </code></pre></div></div>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 列表转链表
+</span><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
     <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
         <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
@@ -40,7 +161,8 @@
 <span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 列表转数字
+</span><span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">list_in</span><span class="p">)</span> <span class="p">:</span>
         <span class="n">res</span> <span class="o">+=</span> <span class="n">num</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">index</span><span class="p">)</span>
@@ -50,7 +172,8 @@
 <span class="c1"># 5321
 </span></code></pre></div></div>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 数字转列表
+</span><span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
 </code></pre></div></div>
 
@@ -514,14 +637,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted unive
 
 <ul>
   <li>用pip show查找目标的path:<code class="language-plaintext highlighter-rouge">c:\python310\lib\site-packages</code>添加进去</li>
-</ul>]]></content><author><name></name></author><category term="python" /><category term="windows" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">python: 开启web服务器</title><link href="/python/local_server/" rel="alternate" type="text/html" title="python: 开启web服务器" /><published>2023-07-13T14:08:13+08:00</published><updated>2023-07-13T14:08:13+08:00</updated><id>/python/local_server</id><content type="html" xml:base="/python/local_server/"><![CDATA[<ul>
-  <li>假如vue项目已经打包好了dist文件夹，可以用这个命令来启动一个web服务器</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python.exe <span class="nt">-m</span> http.server 8000
-python.exe <span class="nt">-m</span> http.server 8000 <span class="nt">--directory</span> D:<span class="se">\s</span><span class="nt">-linux</span><span class="se">\p</span>roject<span class="se">\l</span>ocalviewer<span class="se">\h</span>tmlviewer<span class="se">\d</span>ata
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/python/2023-07-13-local_server/image_1.jpg) -->
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[假如vue项目已经打包好了dist文件夹，可以用这个命令来启动一个web服务器]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="python" /><category term="windows" /><summary type="html"><![CDATA[]]></summary></entry></feed>
