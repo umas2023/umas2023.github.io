@@ -48,18 +48,21 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#脚本">脚本</a></li>
+<li class="toc-entry toc-h2"><a href="#报错">报错</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
     <ul>
-  <li>
-    <p>注意这个脚本是在楼上盲写的，还没有下楼验证过，如果存在问题被修改并且能记得来这里记录的话，这句话会在那个时候被删掉</p>
-  </li>
-  <li>
-    <p>使用</p>
-  </li>
+  <li>注意这个脚本是在楼上盲写的，还没有下楼验证过，如果存在问题被修改并且能记得来这里记录的话，这句话会在那个时候被删掉</li>
+</ul>
+
+<h2 id="脚本">脚本</h2>
+
+<ul>
+  <li>使用</li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root/
@@ -69,7 +72,12 @@ git clone https://gitee.com/umas/lf_localfront.git
 </code></pre></div></div>
 
 <ul>
-  <li>deploy.sh</li>
+  <li>
+    <p>注意脚本拷贝不能覆盖，如果已经存在</p>
+  </li>
+  <li>
+    <p>deploy.sh</p>
+  </li>
 </ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
@@ -120,6 +128,40 @@ systemctl status amtc_localfront.service
 
 <span class="o">[</span>Install]
 <span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div></div>
+
+<h2 id="报错">报错</h2>
+
+<ul>
+  <li>status状态显示failed，检查端口占用</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lsof -i :4080
+</code></pre></div></div>
+
+<ul>
+  <li>返回了一堆nginx</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nginx   930 root    6u  IPv4  23092      0t0  TCP *:4080 (LISTEN)
+nginx   931 root    6u  IPv4  23092      0t0  TCP *:4080 (LISTEN)
+nginx   932 root    6u  IPv4  23092      0t0  TCP *:4080 (LISTEN)
+nginx   933 root    6u  IPv4  23092      0t0  TCP *:4080 (LISTEN)
+nginx   934 root    6u  IPv4  23092      0t0  TCP *:4080 (LISTEN)
+</code></pre></div></div>
+
+<ul>
+  <li>停掉这些nginx</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl stop nginx
+</code></pre></div></div>
+
+<ul>
+  <li>重启</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service amtc_localfront restart
 </code></pre></div></div>
 
 

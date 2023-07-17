@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-16T20:00:44+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">jekyll: 内嵌vue页面</title><link href="/jekyll/inner_vue/" rel="alternate" type="text/html" title="jekyll: 内嵌vue页面" /><published>2023-07-16T14:43:34+08:00</published><updated>2023-07-16T14:43:34+08:00</updated><id>/jekyll/inner_vue</id><content type="html" xml:base="/jekyll/inner_vue/"><![CDATA[<h2 id="尝试1">尝试1</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-17T15:53:42+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">python: 传值调用、传引用调用</title><link href="/python/value_refer/" rel="alternate" type="text/html" title="python: 传值调用、传引用调用" /><published>2023-07-17T14:01:41+08:00</published><updated>2023-07-17T14:01:41+08:00</updated><id>/python/value_refer</id><content type="html" xml:base="/python/value_refer/"><![CDATA[<ul>
+  <li>
+    <p>在 Python 中，参数传递的方式分为传值调用和传引用调用两种方式。</p>
+  </li>
+  <li>
+    <p>对于不可变对象，如数字、字符串、元组等，Python 采用的是传值调用的方式。这意味着，在将这些对象作为参数传递给函数或方法时，其实是将对象的值复制一份传递给了函数或方法，而不是对象本身。因此，在函数或方法内部修改参数的值，不会影响到原始对象。</p>
+  </li>
+  <li>
+    <p>对于可变对象，如列表、字典等，则采用的是传引用调用的方式。这意味着，在将这些对象作为参数传递给函数或方法时，其实是将对象的引用（即指向对象的内存地址）传递给了函数或方法。因此，在函数或方法内部修改参数的值，将会影响到原始对象。</p>
+  </li>
+  <li>
+    <p>例子：</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AutoPlay</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="sh">""</span><span class="p">,</span> <span class="n">stop_flag</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">...</span>
+
+    <span class="k">def</span> <span class="nf">auto_run</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">INTERVAL</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">stop_flag</span><span class="p">:</span>
+                <span class="k">break</span>
+
+<span class="c1"># 调用：
+</span><span class="n">stop_flag</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="nc">AutoPlay</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="sh">""</span><span class="p">,</span> <span class="n">stop_flag</span><span class="o">=</span><span class="n">stop_flag</span><span class="p">).</span><span class="nf">auto_run_th</span><span class="p">()</span>
+
+<span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">stop_flag</span> <span class="o">=</span> <span class="bp">True</span>
+</code></pre></div></div>
+
+<ul>
+  <li>以上程序不会在3秒后停下</li>
+  <li>要想实现外部控制程序停止，可以改成数组（call by reference）</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stop_flag</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span>
+<span class="n">stop_flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[在 Python 中，参数传递的方式分为传值调用和传引用调用两种方式。]]></summary></entry><entry><title type="html">jekyll: 内嵌vue页面</title><link href="/jekyll/inner_vue/" rel="alternate" type="text/html" title="jekyll: 内嵌vue页面" /><published>2023-07-16T14:43:34+08:00</published><updated>2023-07-16T14:43:34+08:00</updated><id>/jekyll/inner_vue</id><content type="html" xml:base="/jekyll/inner_vue/"><![CDATA[<h2 id="尝试1">尝试1</h2>
 
 <ul>
   <li>jekyll项目右上角的导航栏是通过目录下的html文件生成的</li>
@@ -671,22 +714,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted unive
 
 </code></pre></div></div>
 
-<!-- ![引入图片](/image/js/2023-07-13-promise/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[封装异步操作，避免回调地狱]]></summary></entry><entry><title type="html">python: vscode中import黄色波浪线报警</title><link href="/python/windows/import_warning/" rel="alternate" type="text/html" title="python: vscode中import黄色波浪线报警" /><published>2023-07-13T14:12:11+08:00</published><updated>2023-07-13T14:12:11+08:00</updated><id>/python/windows/import_warning</id><content type="html" xml:base="/python/windows/import_warning/"><![CDATA[<p><img src="/image/python/2023-07-13-import_warning/image_1.png" alt="引入图片" /></p>
-
-<ul>
-  <li>
-    <p>但是脚本能正常运行</p>
-  </li>
-  <li>
-    <p>左下角打开设置，搜索：</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python analysis extra paths
-</code></pre></div></div>
-
-<p><img src="/image/python/2023-07-13-import_warning/image_2.png" alt="引入图片" /></p>
-
-<ul>
-  <li>用pip show查找目标的path:<code class="language-plaintext highlighter-rouge">c:\python310\lib\site-packages</code>添加进去</li>
-</ul>]]></content><author><name></name></author><category term="python" /><category term="windows" /><summary type="html"><![CDATA[]]></summary></entry></feed>
+<!-- ![引入图片](/image/js/2023-07-13-promise/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[封装异步操作，避免回调地狱]]></summary></entry></feed>

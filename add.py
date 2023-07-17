@@ -37,15 +37,15 @@ zip_pctools
 
 
 # 修改这里：md文件名，前面会拼接上时间
-file_name = "inner_vue"
+file_name = "value_refer"
 # 修改这里：md文件放在哪个目录下
-dir = "jekyll"
+dir = "amtc"
 # 修改这里：文章标题
-title = "'jekyll: 内嵌vue页面'"
+title = "'amtc: 传感器匹配opc_id'"
 # 修改这里：文章介绍
-info = "'通过header栏的右侧按钮进入'"
+info = "'设备标签跟id对不上，uaexpert也没法实时更新，直接做个页面轮询所有接口'"
 # 修改这里：文章分类
-categories = ["jekyll"]
+categories = ["amtc"]
 
 
 import os

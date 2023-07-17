@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "python: 传值调用、传引用调用",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/value_refer/",
+      "date"     : "2023-07-17 14:01:41 +0800"
+    } ,
+  
+    {
       "title"    : "jekyll: 内嵌vue页面",
       "category" : "",
       "tags"     : "",
