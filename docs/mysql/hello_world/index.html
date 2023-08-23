@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="mysql: hello_world 基本操作" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="ubuntu安装 sudo apt install mysql-server mysql-client" />
-<meta property="og:description" content="ubuntu安装 sudo apt install mysql-server mysql-client" />
+<meta name="description" content="ubuntu安装 sudo apt install mysql-server mysql-client mysql --version" />
+<meta property="og:description" content="ubuntu安装 sudo apt install mysql-server mysql-client mysql --version" />
 <link rel="canonical" href="/mysql/hello_world/" />
 <meta property="og:url" content="/mysql/hello_world/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="mysql: hello_world 基本操作" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T09:10:00+08:00","datePublished":"2023-06-28T09:10:00+08:00","description":"ubuntu安装 sudo apt install mysql-server mysql-client","headline":"mysql: hello_world 基本操作","mainEntityOfPage":{"@type":"WebPage","@id":"/mysql/hello_world/"},"url":"/mysql/hello_world/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T09:10:00+08:00","datePublished":"2023-06-28T09:10:00+08:00","description":"ubuntu安装 sudo apt install mysql-server mysql-client mysql --version","headline":"mysql: hello_world 基本操作","mainEntityOfPage":{"@type":"WebPage","@id":"/mysql/hello_world/"},"url":"/mysql/hello_world/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -59,15 +59,16 @@
   <div class="post-content">
     <h2 id="ubuntu安装">ubuntu安装</h2>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install mysql-server mysql-client
+mysql --version
 </code></pre></div></div>
 
 <h2 id="用户密码设置">用户密码设置</h2>
 <ul>
-  <li>默认用户密码
+  <li>查看默认用户密码
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo cat /etc/mysql/debian.cnf
 </code></pre></div>    </div>
   </li>
-  <li>登入
+  <li>登入（先启动）
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql -u用户名 -p密码
 </code></pre></div>    </div>
   </li>
@@ -80,6 +81,12 @@ flush privileges;
 quit; 
 （重新登入）
 mysql -uroot -p123456
+</code></pre></div>    </div>
+  </li>
+  <li>新版
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALTER USER 'root'@'localhost' IDENTIFIED  BY '123456';
+flush privileges;
+quit; 
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -100,9 +107,17 @@ sudo service mysql restart
 </code></pre></div></div>
 
 <h2 id="基本操作">基本操作</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>创建数据库
-create database 数据库名称 default charset=utf8; # 防止编码问题，指定为 utf8
+
+<ul>
+  <li>创建数据库
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>create database 数据库名称 default charset=utf8; # 防止编码问题，指定为 utf8
 create database iiir_fullstack default charset=utf8;
+</code></pre></div>    </div>
+  </li>
+  <li>查看数据库</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SHOW DATABASES;
 </code></pre></div></div>
 
   </div>

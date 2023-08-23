@@ -51,6 +51,7 @@ build.py
 - 返回顶部按钮
 - 进categories的时候右上角search没了
 - categories有时候点击目录不能跳转
+- 博文显示日期
 
 
 

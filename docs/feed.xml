@@ -1,4 +1,279 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-17T15:53:42+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">python: 传值调用、传引用调用</title><link href="/python/value_refer/" rel="alternate" type="text/html" title="python: 传值调用、传引用调用" /><published>2023-07-17T14:01:41+08:00</published><updated>2023-07-17T14:01:41+08:00</updated><id>/python/value_refer</id><content type="html" xml:base="/python/value_refer/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-08-23T17:24:20+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">django: mysql数据库用户认证</title><link href="/django/mysql_user/" rel="alternate" type="text/html" title="django: mysql数据库用户认证" /><published>2023-08-23T14:21:32+08:00</published><updated>2023-08-23T14:21:32+08:00</updated><id>/django/mysql_user</id><content type="html" xml:base="/django/mysql_user/"><![CDATA[<h2 id="验证用户的一个例子">验证用户的一个例子</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
+<span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">JsonResponse</span>
+
+<span class="k">def</span> <span class="nf">login_check</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">username</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">password</span><span class="sh">'</span><span class="p">)</span>
+        
+        <span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+            <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">token</span><span class="sh">'</span><span class="p">:</span> <span class="sh">"</span><span class="s">generated_token</span><span class="sh">"</span><span class="p">}</span>
+            <span class="k">return</span> <span class="nc">JsonResponse</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nc">JsonResponse</span><span class="p">({</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Invalid credentials</span><span class="sh">'</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>postman发送请求时在body里选择”x-www-form-urlencoded”并添加key</li>
+  <li>(因为使用postman时csrf报错不知道怎么解决所以在settings的MIDDLEWARE里先禁用了)</li>
+  <li>前端axios数据发送时data字段使用qs.stringify而不是JSON.stringify，前者用于构造 URL 查询字符串
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// npm i -s qs</span>
+<span class="c1">// import qs from 'qs';</span>
+<span class="nx">inputData</span><span class="p">:</span> <span class="nx">qs</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span>
+          <span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span><span class="nx">username</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span><span class="nx">password</span>
+      <span class="p">})</span>
+<span class="c1">// 结果："username=user123&amp;password=pass456"</span>
+</code></pre></div>    </div>
+  </li>
+</ul>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry><entry><title type="html">django: mysql数据库增删改查基本操作</title><link href="/django/mysql_func/" rel="alternate" type="text/html" title="django: mysql数据库增删改查基本操作" /><published>2023-08-23T13:21:32+08:00</published><updated>2023-08-23T13:21:32+08:00</updated><id>/django/mysql_func</id><content type="html" xml:base="/django/mysql_func/"><![CDATA[<h2 id="准备">准备</h2>
+
+<ul>
+  <li>mysql安装启动(ubuntu)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装</span>
+apt <span class="nb">install </span>mysql-server mysql-client
+<span class="c"># 查看初始密码</span>
+<span class="nb">sudo cat</span> /etc/mysql/debian.cnf
+<span class="c"># 启动</span>
+<span class="nb">sudo </span>service mysql start
+<span class="c"># 登录</span>
+mysql <span class="nt">-u</span><span class="o">[</span>用户名] <span class="nt">-p</span><span class="o">[</span>密码]
+</code></pre></div></div>
+
+<ul>
+  <li>修改密码(sql)</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span>  <span class="k">BY</span> <span class="s1">'123456'</span><span class="p">;</span>
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+<span class="n">quit</span><span class="p">;</span> 
+</code></pre></div></div>
+
+<ul>
+  <li>创建数据库(sql)</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">database</span> <span class="n">ubk</span> <span class="k">default</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="创建一个带用户认证的model">创建一个带用户认证的model</h2>
+
+<ul>
+  <li>新增一个app</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp app_model
+</code></pre></div></div>
+
+<ul>
+  <li>settings.py中添加这个app</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">***</span>
+    <span class="sh">'</span><span class="s">app_model</span><span class="sh">'</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>在 @/app_model/models.py中添加数据模型</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="n">django.db.models</span> <span class="kn">import</span> <span class="n">JSONField</span>
+
+<span class="c1"># 类名ModelRec对应数据库中的Tabel名是app_model_modelrec
+</span>
+<span class="k">class</span> <span class="nc">ModelRec</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">date</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">amount</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">commit</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">commit</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">tag</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>迁移数据库（django）</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py makemigrations
+python manage.py migrate
+
+<span class="c"># 如果对model进行了大量修改导致migrate冲突，可以把数据库Tables内所有表全部删除后重新migrate</span>
+</code></pre></div></div>
+
+<h2 id="新增用户的一个示例app">新增用户的一个示例app</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="kn">from</span> <span class="n">app_model.models</span> <span class="kn">import</span> <span class="n">ModelRec</span>
+<span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="kn">import</span> <span class="n">json</span>
+
+<span class="k">def</span> <span class="nf">add_user</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">basic response test</span><span class="sh">'''</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">))</span>
+    <span class="n">user_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">user_name</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">password</span><span class="sh">'</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_name</span><span class="p">).</span><span class="nf">exists</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">User already exists.</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">username</span> <span class="o">=</span> <span class="n">user_name</span><span class="p">)</span>
+    <span class="n">user</span><span class="p">.</span><span class="nf">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">user</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">Success.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>postman发送请求；在body中添加json</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "user_name":"admin",
+    "password":"1234"
+}
+</code></pre></div></div>
+
+<ul>
+  <li>新增的用户可以在数据库Tabels/auth_user中看到</li>
+</ul>
+
+<h2 id="添加数据的一个示例app">添加数据的一个示例app</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="kn">from</span> <span class="n">app_model.models</span> <span class="kn">import</span> <span class="n">ModelRec</span>
+<span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="kn">import</span> <span class="n">json</span>
+
+
+<span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">basic response test</span><span class="sh">'''</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">))</span>
+    <span class="n">user_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">user_name</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">date</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">amount</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">commit</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">commit</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">tag</span><span class="sh">'</span><span class="p">]</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_name</span><span class="p">)</span>
+
+    <span class="n">new_object</span> <span class="o">=</span> <span class="nc">ModelRec</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="n">commit</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+    <span class="n">new_object</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">Hello world </span><span class="sh">"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>postman发送请求；在body中添加json</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "user_name":"admin",
+    "date":"20230823",
+    "amount":"7225",
+    "commit":"api test",
+    "tag":"test"
+}
+</code></pre></div></div>
+
+<ul>
+  <li>新增的用户可以在数据库Tabels/app_model_modelrec中看到</li>
+</ul>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[准备]]></summary></entry><entry><title type="html">vue: 使用axios和后端通信</title><link href="/vue/vue_axios/" rel="alternate" type="text/html" title="vue: 使用axios和后端通信" /><published>2023-08-21T14:27:00+08:00</published><updated>2023-08-21T14:27:00+08:00</updated><id>/vue/vue_axios</id><content type="html" xml:base="/vue/vue_axios/"><![CDATA[<h2 id="引入">引入</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i -s axios
+</code></pre></div></div>
+
+<h2 id="在电脑配件里写的通用axios函数">在电脑配件里写的通用axios函数</h2>
+
+<ul>
+  <li>重试次数引入了额外的包axiosRetry</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">axiosRetry</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios-retry</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="cm">/**
+ * axios基本函数, 接收任意url
+ * @param {string}  inputUrl        ip地址
+ * @param {object}  inputHeaders    请求头；default = {}
+ * @param {string}  inputApi        api名, 带斜杠, 如"oi_r/"
+ * @param {string}  inputMethod     "get" / "put" / "post" ...
+ * @param {int}     inputTimeout    超时时长；default = 5000 (set in conf)
+ * @param {int}     inputRetry      重试次数；default = 1
+ * @param {object}  inputData       body；default = {}
+ * @param {function} inputFuncGetRes callback, 获取返回值；default = printRes()
+ * @param {function} inputFuncGetErr callback, 获取错误信息；default = printRes()
+ */</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nf">use_axios</span><span class="p">({</span>
+  <span class="nx">inputUrl</span><span class="p">,</span>
+  <span class="nx">inputHeaders</span><span class="p">,</span>
+  <span class="nx">inputApi</span><span class="p">,</span>
+  <span class="nx">inputMethod</span><span class="p">,</span>
+  <span class="nx">inputTimeout</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+  <span class="nx">inputRetry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">inputData</span> <span class="o">=</span> <span class="p">{},</span>
+  <span class="nx">inputFuncGetRes</span> <span class="o">=</span> <span class="nx">printRes</span><span class="p">,</span>
+  <span class="nx">inputFuncGetErr</span> <span class="o">=</span> <span class="nx">printRes</span><span class="p">,</span>
+<span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// 设置重试次数和等待时间</span>
+  <span class="nf">axiosRetry</span><span class="p">(</span><span class="nx">axios</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">retries</span><span class="p">:</span> <span class="nx">inputRetry</span><span class="p">,</span> <span class="c1">// 设置自动发送请求次数</span>
+    <span class="na">retryDelay</span><span class="p">:</span> <span class="p">(</span><span class="nx">retryCount</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">retryCount</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// 重复请求延迟</span>
+    <span class="p">},</span>
+    <span class="na">shouldResetTimeout</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//  重置超时时间</span>
+    <span class="na">retryCondition</span><span class="p">:</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">//true为打开自动发送请求, false为关闭自动发送请求</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">timeout</span><span class="dl">"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+
+  <span class="c1">// 发送请求</span>
+  <span class="nf">axios</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="nx">inputMethod</span><span class="p">,</span>
+    <span class="c1">// url: inputUrl + inputApi + "/", //不加斜杠报错301</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">inputUrl</span> <span class="o">+</span> <span class="nx">inputApi</span><span class="p">,</span> <span class="c1">// 有些api不要斜杠, 如user_id</span>
+    <span class="na">data</span><span class="p">:</span> <span class="nx">inputData</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="nx">inputHeaders</span><span class="p">,</span>
+    <span class="na">timeout</span><span class="p">:</span> <span class="nx">inputTimeout</span><span class="p">,</span>
+  <span class="p">})</span>
+    <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nf">inputFuncGetRes</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">api_axios get error : </span><span class="dl">"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+      <span class="nf">inputFuncGetErr</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/image/vue/2023-08-21-vue_axiso/image_1.jpg" alt="引入图片" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[引入]]></summary></entry><entry><title type="html">python: 传值调用、传引用调用</title><link href="/python/value_refer/" rel="alternate" type="text/html" title="python: 传值调用、传引用调用" /><published>2023-07-17T14:01:41+08:00</published><updated>2023-07-17T14:01:41+08:00</updated><id>/python/value_refer</id><content type="html" xml:base="/python/value_refer/"><![CDATA[<ul>
   <li>
     <p>在 Python 中，参数传递的方式分为传值调用和传引用调用两种方式。</p>
   </li>
@@ -529,189 +804,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted unive
 
 <!-- ![引入图片](/image/python/2023-07-13-python_python3/image_1.jpg) -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[在.bashrc中alias python=python3可以解决一部分问题]]></summary></entry><entry><title type="html">linux: tmux终端窗口拆分</title><link href="/linux/tmux/" rel="alternate" type="text/html" title="linux: tmux终端窗口拆分" /><published>2023-07-13T14:22:05+08:00</published><updated>2023-07-13T14:22:05+08:00</updated><id>/linux/tmux</id><content type="html" xml:base="/linux/tmux/"><![CDATA[<ul>
-  <li>多窗口工具：tmux
-    <ul>
-      <li>参考 https://zhuanlan.zhihu.com/p/102546608</li>
-    </ul>
-  </li>
-  <li>会话session
-<img src="/image/linux/2023-07-13-tmux/image_1.jpg" alt="引入图片" />
-    <ul>
-      <li>新建默认session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux</code></li>
-        </ul>
-      </li>
-      <li>新建命名session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux new -s  &lt;session-name&gt; </code></li>
-        </ul>
-      </li>
-      <li>离开session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux detach</code></li>
-        </ul>
-      </li>
-      <li>查看session列表
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux ls</code></li>
-        </ul>
-      </li>
-      <li>进入session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux attach -t  &lt;session-name&gt;</code></li>
-        </ul>
-      </li>
-      <li>关闭session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux kill-session -t &lt;session-name&gt;</code></li>
-          <li>ctrl+d</li>
-        </ul>
-      </li>
-      <li>切换session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux switch -t &lt;session-name&gt;</code></li>
-        </ul>
-      </li>
-      <li>重命名session
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux rename-session -t &lt;old-session-name&gt; &lt;new-session-name&gt;</code></li>
-          <li><code class="language-plaintext highlighter-rouge">ctrl+b   $</code></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>窗格<br />
-  <img src="/image/linux/2023-07-13-tmux/image_2.jpg" alt="引入图片" />
-    <ul>
-      <li>切割窗格
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux split-window </code></li>
-          <li>左右切割：<code class="language-plaintext highlighter-rouge">ctrl + b %</code></li>
-          <li>上下切割：<code class="language-plaintext highlighter-rouge">ctrl + b “</code></li>
-        </ul>
-      </li>
-      <li>光标移动
-        <ul>
-          <li>移到上面：<code class="language-plaintext highlighter-rouge">tmux select-pane  -U</code></li>
-          <li>移到下面：<code class="language-plaintext highlighter-rouge">tmux select-pane -D</code></li>
-          <li>移到左边：<code class="language-plaintext highlighter-rouge">tmux select-pane -L</code></li>
-          <li>移到右边：<code class="language-plaintext highlighter-rouge">tmux select-pane -R</code></li>
-          <li>方向键移动：<code class="language-plaintext highlighter-rouge">ctrl+b ↑/↓/←/→</code></li>
-        </ul>
-      </li>
-      <li>移动窗格
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux swap-pane -U / -D</code></li>
-        </ul>
-      </li>
-      <li>关闭窗格
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">ctrl+b x</code></li>
-        </ul>
-      </li>
-      <li>放大窗格
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">ctrl+b z</code></li>
-          <li>重复<code class="language-plaintext highlighter-rouge">ctrl+b z</code> 还原</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>窗口window
-    <ul>
-      <li>新建窗口
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">ctrl+b c</code></li>
-          <li><code class="language-plaintext highlighter-rouge">tmux new-window -n &lt;window-name&gt;</code></li>
-        </ul>
-      </li>
-      <li>切换窗口
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux select-window -t &lt;window-name&gt;</code></li>
-          <li><code class="language-plaintext highlighter-rouge">ctrl + b w</code> 显示窗口列表用方向键进入</li>
-          <li><code class="language-plaintext highlighter-rouge">ctrl+b n/p</code> 快速切换到上一个/下一个窗口</li>
-        </ul>
-      </li>
-      <li>重命名窗口
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux rename-window &lt;new-window-name&gt;</code></li>
-          <li><code class="language-plaintext highlighter-rouge">ctrl+b ,</code></li>
-        </ul>
-      </li>
-      <li>关闭窗口
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tmux kill-window -t &lt;window-name&gt;</code></li>
-          <li><code class="language-plaintext highlighter-rouge">ctrl + b &amp;</code></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>快捷键的修改
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">~/.tmux.conf</code></li>
-    </ul>
-  </li>
-  <li>其他命令行命令：ctrl+b+
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">t</code>：锁屏</li>
-    </ul>
-  </li>
-</ul>
-
-<!-- ![引入图片](/image/linux/2023-07-13-tmux/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[多窗口工具：tmux 参考 https://zhuanlan.zhihu.com/p/102546608]]></summary></entry><entry><title type="html">js: async,await异步修饰符</title><link href="/js/async_await/" rel="alternate" type="text/html" title="js: async,await异步修饰符" /><published>2023-07-13T14:18:18+08:00</published><updated>2023-07-13T14:18:18+08:00</updated><id>/js/async_await</id><content type="html" xml:base="/js/async_await/"><![CDATA[<ul>
-  <li>await 关键字只能放在 async 函数内部，await关键字的作用是获取Promise中返回的内容，获取的是Promise函数中resolve或者reject的值</li>
-  <li>如果一个 Promise 被传递给一个 await 操作符，await 将等待 Promise 正常处理完成并返回其处理结果。</li>
-  <li>如果await后面不是一个Promise的返回值，则会按照同步程序返回值处理,为undefined</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">bbb</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">}</span>
-    
-<span class="k">async</span> <span class="kd">function</span> <span class="nf">funAsy</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">await</span> <span class="mi">1</span>
-    <span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">await</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
-        <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-            <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">time</span><span class="dl">'</span><span class="p">)</span>
-        <span class="p">},</span> <span class="mi">3000</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="kd">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">bbb</span><span class="p">()</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
-<span class="p">}</span>
-    
-<span class="nf">funAsy</span><span class="p">()</span>
-
-<span class="c1">//  运行结果是 3秒钟之后 ，输出 1， time , string,</span>
-<span class="c1">//  程序在b = await处停顿了</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/js/2023-07-13-async_await/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[await 关键字只能放在 async 函数内部，await关键字的作用是获取Promise中返回的内容，获取的是Promise函数中resolve或者reject的值 如果一个 Promise 被传递给一个 await 操作符，await 将等待 Promise 正常处理完成并返回其处理结果。 如果await后面不是一个Promise的返回值，则会按照同步程序返回值处理,为undefined]]></summary></entry><entry><title type="html">js: Promise</title><link href="/js/promise/" rel="alternate" type="text/html" title="js: Promise" /><published>2023-07-13T14:15:19+08:00</published><updated>2023-07-13T14:15:19+08:00</updated><id>/js/promise</id><content type="html" xml:base="/js/promise/"><![CDATA[<ul>
-  <li>封装异步操作，避免回调地狱</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">res</span><span class="p">,</span> <span class="nx">rej</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">state</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nf">res</span><span class="p">(</span><span class="dl">"</span><span class="s2">result</span><span class="dl">"</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nf">rej</span><span class="p">(</span><span class="dl">"</span><span class="s2">reject</span><span class="dl">"</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-
-
-<span class="nx">p</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
-    <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">promise val:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="p">(</span><span class="nx">rej</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">promise err:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">rej</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">);</span>
-
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/js/2023-07-13-promise/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[封装异步操作，避免回调地狱]]></summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[在.bashrc中alias python=python3可以解决一部分问题]]></summary></entry></feed>

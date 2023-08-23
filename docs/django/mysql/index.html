@@ -72,8 +72,8 @@
 </code></pre></div>    </div>
   </li>
   <li>在settings.py同级的__init__.py中引入模块
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pymysql</span>
-<span class="n">pymysql</span><span class="p">.</span><span class="nf">install_as_MySQLdb</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pymysql</span> <span class="c1"># pip install pymysql
+</span><span class="n">pymysql</span><span class="p">.</span><span class="nf">install_as_MySQLdb</span><span class="p">()</span>
 </code></pre></div>    </div>
   </li>
   <li>创建APP
@@ -104,7 +104,7 @@ python3 manage.py migrate TestModel   # 创建表结构
 </code></pre></div>    </div>
   </li>
   <li>数据库操作，添加HelloWorld/testdb.py
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 没做
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 单开一篇
 </span></code></pre></div>    </div>
   </li>
   <li>修改urls.py

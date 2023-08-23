@@ -12,17 +12,20 @@ toc: true
 ## ubuntu安装
 ```
 sudo apt install mysql-server mysql-client
+mysql --version
 ```
 
 ## 用户密码设置
-- 默认用户密码
+- 查看默认用户密码
 ```
  sudo cat /etc/mysql/debian.cnf
 ```
-- 登入
+
+- 登入（先启动）
 ```
 mysql -u用户名 -p密码
 ```
+
 - 重置用户密码
 ```
 （登入）
@@ -33,6 +36,12 @@ flush privileges;
 quit; 
 （重新登入）
 mysql -uroot -p123456
+```
+- 新版
+```
+ALTER USER 'root'@'localhost' IDENTIFIED  BY '123456';
+flush privileges;
+quit; 
 ```
 
 ## 启动/关闭/重启mysql
@@ -52,8 +61,15 @@ sudo service mysql restart
 ```
 
 ## 基本操作
+
+- 创建数据库
 ```
-创建数据库
 create database 数据库名称 default charset=utf8; # 防止编码问题，指定为 utf8
 create database iiir_fullstack default charset=utf8;
+```
+
+- 查看数据库
+
+```
+SHOW DATABASES;
 ```

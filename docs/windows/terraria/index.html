@@ -51,6 +51,7 @@
 <li class="toc-entry toc-h2"><a href="#参考">参考</a></li>
 <li class="toc-entry toc-h2"><a href="#下载服务器">下载服务器</a></li>
 <li class="toc-entry toc-h2"><a href="#启动服务器">启动服务器</a></li>
+<li class="toc-entry toc-h2"><a href="#2023810补充tmodeloader开服">2023.8.10补充：tmodeloader开服</a></li>
 </ul>
   <hr>
 
@@ -165,6 +166,60 @@ Type <span class="s1">'help'</span> <span class="k">for </span>a list of command
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'echo -e "1\n\n\n\n\n" | /root/terraria/1449/Linux/TerrariaServer.bin.x86_64'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
 </code></pre></div></div>
 
+<ul>
+  <li>2023.8.3创建了新的master世界，指定新的端口</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'echo -e "2\n\n4090\n\n\n" | /root/terraria/1449/Linux/TerrariaServer.bin.x86_64'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
+</code></pre></div></div>
+
+<h2 id="2023810补充tmodeloader开服">2023.8.10补充：tmodeloader开服</h2>
+
+<ul>
+  <li>参考：
+    <ul>
+      <li>https://www.youtube.com/watch?v=vN8LqgKPN0s</li>
+    </ul>
+  </li>
+  <li>站点：
+    <ul>
+      <li>https://github.com/tModLoader/tModLoader/releases</li>
+      <li>注意tmod服务器和游戏版本一致</li>
+      <li>steam游戏右键 - 属性 - 测试版</li>
+    </ul>
+  </li>
+  <li>下载后运行脚本：
+    <ul>
+      <li>start-tModLoaderServer.sh</li>
+      <li>不使用steam server</li>
+    </ul>
+  </li>
+  <li>添加mod
+    <ul>
+      <li>本地订阅并启用mod，在游戏中 【创意工坊】 - 【模组整合包】 - 【将已启用的模组生成新的整合包】 - 【打开模组整合包文件夹】</li>
+      <li>整合包内的Mods文件夹拷贝到服务器 ~/.local/share/Terraria/tModeLoader/Mods</li>
+      <li>start-tModLoaderServer.sh启动后按m可以管理mod</li>
+    </ul>
+  </li>
+  <li>启动
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">nohup </span>bash <span class="nt">-c</span> <span class="s1">'echo -e "n\n1\n\n13900\n\n\n" | /root/tmod/tModLoader_1.4.3/start-tModLoaderServer.sh'</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1 &amp;
+</code></pre></div>    </div>
+  </li>
+  <li>杀（注意杀完之后要等一会）
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps -ef|grep start-tModLoaderServer.sh
+kill xxx
+</code></pre></div>    </div>
+  </li>
+  <li>查看端口占用
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lsof -i :13900
+</code></pre></div>    </div>
+  </li>
+  <li>screen</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>screen -R tmd
+
+</code></pre></div></div>
 
   </div>
 

@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "django: mysql数据库用户认证",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/django/mysql_user/",
+      "date"     : "2023-08-23 14:21:32 +0800"
+    } ,
+  
+    {
+      "title"    : "django: mysql数据库增删改查基本操作",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/django/mysql_func/",
+      "date"     : "2023-08-23 13:21:32 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 使用axios和后端通信",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/vue_axios/",
+      "date"     : "2023-08-21 14:27:00 +0800"
+    } ,
+  
+    {
       "title"    : "python: 传值调用、传引用调用",
       "category" : "",
       "tags"     : "",

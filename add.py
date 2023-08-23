@@ -37,15 +37,15 @@ zip_pctools
 
 
 # 修改这里：md文件名，前面会拼接上时间
-file_name = "value_refer"
+file_name = "mysql_func"
 # 修改这里：md文件放在哪个目录下
-dir = "amtc"
+dir = "django"
 # 修改这里：文章标题
-title = "'amtc: 传感器匹配opc_id'"
+title = "'django: mysql数据库增删改查基本操作'"
 # 修改这里：文章介绍
-info = "'设备标签跟id对不上，uaexpert也没法实时更新，直接做个页面轮询所有接口'"
+info = "'接上文mysql连接'"
 # 修改这里：文章分类
-categories = ["amtc"]
+categories = ["django"]
 
 
 import os
