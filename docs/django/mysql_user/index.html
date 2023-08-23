@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>django: mysql数据库用户认证 | umas’ awesome title</title>
+<title>django: 用户认证 | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="django: mysql数据库用户认证" />
+<meta property="og:title" content="django: 用户认证" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="验证用户的一个例子" />
 <meta property="og:description" content="验证用户的一个例子" />
@@ -15,9 +15,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-08-23T14:21:32+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="django: mysql数据库用户认证" />
+<meta property="twitter:title" content="django: 用户认证" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-23T14:21:32+08:00","datePublished":"2023-08-23T14:21:32+08:00","description":"验证用户的一个例子","headline":"django: mysql数据库用户认证","mainEntityOfPage":{"@type":"WebPage","@id":"/django/mysql_user/"},"url":"/django/mysql_user/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-23T14:21:32+08:00","datePublished":"2023-08-23T14:21:32+08:00","description":"验证用户的一个例子","headline":"django: 用户认证","mainEntityOfPage":{"@type":"WebPage","@id":"/django/mysql_user/"},"url":"/django/mysql_user/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -41,7 +41,7 @@
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">django: mysql数据库用户认证</h1>
+    <h1 class="post-title">django: 用户认证</h1>
     <h3>接上文mysql增删改查</h3>
   </header>
 
@@ -49,6 +49,7 @@
   <hr>
   <ul id="toc" class="toc__list">
 <li class="toc-entry toc-h2"><a href="#验证用户的一个例子">验证用户的一个例子</a></li>
+<li class="toc-entry toc-h2"><a href="#部分官方文档搬运">部分官方文档搬运</a></li>
 </ul>
   <hr>
 
@@ -89,6 +90,102 @@
 </code></pre></div>    </div>
   </li>
 </ul>
+
+<h2 id="部分官方文档搬运">部分官方文档搬运</h2>
+
+<ul>
+  <li>参考：
+    <ul>
+      <li>https://docs.djangoproject.com/en/4.2/topics/auth/default/</li>
+    </ul>
+  </li>
+  <li>创建用户</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">create_user</span><span class="p">(</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lennon@thebeatles.com</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">johnpassword</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">user</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Lennon</span><span class="sh">"</span>
+<span class="n">ser</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>创建super用户</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py createsuperuser --username=joe --email=joe@example.com
+</code></pre></div></div>
+
+<ul>
+  <li>修改密码</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">u</span><span class="p">.</span><span class="nf">set_password</span><span class="p">(</span><span class="sh">"</span><span class="s">new password</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">u</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>身份验证</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="sh">"</span><span class="s">secret</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="c1"># A backend authenticated the credentials
+</span>    <span class="bp">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># No backend authenticated the credentials
+</span>    <span class="bp">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>权限和用户组
+    <ul>
+      <li>略，参见官方文档</li>
+    </ul>
+  </li>
+  <li>登录</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
+
+
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">"</span><span class="s">username</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">"</span><span class="s">password</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+        <span class="c1"># Redirect to a success page.
+</span>        <span class="bp">...</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Return an 'invalid login' error message.
+</span>        <span class="bp">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>注销</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">logout</span>
+
+
+<span class="k">def</span> <span class="nf">logout_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="nf">logout</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="c1"># Redirect to a success page.
+</span></code></pre></div></div>
+
+<ul>
+  <li>使用装饰器来限制仅登录用户访问</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">xxx</span> <span class="bp">...</span>
+</code></pre></div></div>
 
 
   </div>

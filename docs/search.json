@@ -1,7 +1,15 @@
 [
   
     {
-      "title"    : "django: mysql数据库用户认证",
+      "title"    : "django: token认证",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/django/token/",
+      "date"     : "2023-08-23 22:21:32 +0800"
+    } ,
+  
+    {
+      "title"    : "django: 用户认证",
       "category" : "",
       "tags"     : "",
       "url"      : "/django/mysql_user/",

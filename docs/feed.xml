@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-08-23T17:24:20+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">django: mysql数据库用户认证</title><link href="/django/mysql_user/" rel="alternate" type="text/html" title="django: mysql数据库用户认证" /><published>2023-08-23T14:21:32+08:00</published><updated>2023-08-23T14:21:32+08:00</updated><id>/django/mysql_user</id><content type="html" xml:base="/django/mysql_user/"><![CDATA[<h2 id="验证用户的一个例子">验证用户的一个例子</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-08-23T23:47:50+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">django: token认证</title><link href="/django/token/" rel="alternate" type="text/html" title="django: token认证" /><published>2023-08-23T22:21:32+08:00</published><updated>2023-08-23T22:21:32+08:00</updated><id>/django/token</id><content type="html" xml:base="/django/token/"><![CDATA[<h2 id="准备">准备</h2>
+
+<ul>
+  <li>安装
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install djangorestframework
+</code></pre></div>    </div>
+  </li>
+  <li>settins.py</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...
+</span>    <span class="sh">'</span><span class="s">rest_framework</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">rest_framework.authtoken</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 添加 Token 认证应用
+</span>    <span class="c1"># ...
+</span><span class="p">]</span>
+
+<span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">DEFAULT_AUTHENTICATION_CLASSES</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="sh">'</span><span class="s">rest_framework.authentication.TokenAuthentication</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 使用 Token 认证
+</span>    <span class="p">],</span>
+    <span class="sh">'</span><span class="s">DEFAULT_PERMISSION_CLASSES</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="sh">'</span><span class="s">rest_framework.permissions.IsAuthenticated</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 限制只有认证用户能访问
+</span>    <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="生成token">生成token</h2>
+
+<ul>
+  <li>HMAC 是一种基于哈希函数和密钥的消息认证码算法。在生成 Token 时，Django 使用用户的密钥（通常是用户的密码的哈希值）与当前时间戳来计算 Token 的值</li>
+  <li>默认生成的token是永久有效的，定期更新有空再说</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="n">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
+
+<span class="k">def</span> <span class="nf">login_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># 处理用户登录逻辑
+</span>    <span class="c1"># ...
+</span>
+    <span class="c1"># 为已登录用户生成 Token
+</span>    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">'</span><span class="s">username</span><span class="sh">'</span><span class="p">])</span>
+    <span class="n">token</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">Token</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">JsonResponse</span><span class="p">({</span><span class="sh">'</span><span class="s">token</span><span class="sh">'</span><span class="p">:</span> <span class="n">token</span><span class="p">.</span><span class="n">key</span><span class="p">})</span>
+</code></pre></div></div>
+
+<h2 id="验证token">验证token</h2>
+
+<ul>
+  <li>从数据库中获取与给定用户和给定 Token 键匹配的 Token 对象。如果找不到符合条件的 Token，将会引发 Token.DoesNotExist 异常。如果找到符合条件的 Token，它将被返回。
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">Token</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">token_key</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>一个简单的例子</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 验证token
+</span><span class="n">token_key</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">META</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">HTTP_AUTHORIZATION</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> 
+<span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">username</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">Token</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">token_key</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">Token</span><span class="p">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">authentication failed</span><span class="sh">"</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>前端发送请求时，以postman为例，需要在headers添加</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "Authorization" : "Bearer [token here]"
+}
+</code></pre></div></div>
+
+<ul>
+  <li>axios发送时需要配置headers，注意后端要允许跨域请求中包含 “Authorization” 字段</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// js</span>
+<span class="nx">headers</span><span class="p">:</span> <span class="p">{</span> 
+<span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer [token here]</span><span class="dl">'</span><span class="p">,</span> 
+<span class="p">},</span>
+</code></pre></div></div>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># py
+</span><span class="n">CORS_ALLOW_HEADERS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...
+</span>    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">,</span>
+    <span class="c1"># ...
+</span><span class="p">]</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[准备]]></summary></entry><entry><title type="html">django: 用户认证</title><link href="/django/mysql_user/" rel="alternate" type="text/html" title="django: 用户认证" /><published>2023-08-23T14:21:32+08:00</published><updated>2023-08-23T14:21:32+08:00</updated><id>/django/mysql_user</id><content type="html" xml:base="/django/mysql_user/"><![CDATA[<h2 id="验证用户的一个例子">验证用户的一个例子</h2>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
 <span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">JsonResponse</span>
@@ -32,7 +124,103 @@
 <span class="c1">// 结果："username=user123&amp;password=pass456"</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry><entry><title type="html">django: mysql数据库增删改查基本操作</title><link href="/django/mysql_func/" rel="alternate" type="text/html" title="django: mysql数据库增删改查基本操作" /><published>2023-08-23T13:21:32+08:00</published><updated>2023-08-23T13:21:32+08:00</updated><id>/django/mysql_func</id><content type="html" xml:base="/django/mysql_func/"><![CDATA[<h2 id="准备">准备</h2>
+</ul>
+
+<h2 id="部分官方文档搬运">部分官方文档搬运</h2>
+
+<ul>
+  <li>参考：
+    <ul>
+      <li>https://docs.djangoproject.com/en/4.2/topics/auth/default/</li>
+    </ul>
+  </li>
+  <li>创建用户</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">create_user</span><span class="p">(</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lennon@thebeatles.com</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">johnpassword</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">user</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Lennon</span><span class="sh">"</span>
+<span class="n">ser</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>创建super用户</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py createsuperuser --username=joe --email=joe@example.com
+</code></pre></div></div>
+
+<ul>
+  <li>修改密码</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">u</span><span class="p">.</span><span class="nf">set_password</span><span class="p">(</span><span class="sh">"</span><span class="s">new password</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">u</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>身份验证</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="sh">"</span><span class="s">secret</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="c1"># A backend authenticated the credentials
+</span>    <span class="bp">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># No backend authenticated the credentials
+</span>    <span class="bp">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>权限和用户组
+    <ul>
+      <li>略，参见官方文档</li>
+    </ul>
+  </li>
+  <li>登录</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
+
+
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">"</span><span class="s">username</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">"</span><span class="s">password</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+        <span class="c1"># Redirect to a success page.
+</span>        <span class="bp">...</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Return an 'invalid login' error message.
+</span>        <span class="bp">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>注销</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">logout</span>
+
+
+<span class="k">def</span> <span class="nf">logout_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="nf">logout</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="c1"># Redirect to a success page.
+</span></code></pre></div></div>
+
+<ul>
+  <li>使用装饰器来限制仅登录用户访问</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">xxx</span> <span class="bp">...</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry><entry><title type="html">django: mysql数据库增删改查基本操作</title><link href="/django/mysql_func/" rel="alternate" type="text/html" title="django: mysql数据库增删改查基本操作" /><published>2023-08-23T13:21:32+08:00</published><updated>2023-08-23T13:21:32+08:00</updated><id>/django/mysql_func</id><content type="html" xml:base="/django/mysql_func/"><![CDATA[<h2 id="准备">准备</h2>
 
 <ul>
   <li>mysql安装启动(ubuntu)</li>
@@ -780,28 +968,4 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted unive
 
 <!-- ![引入图片](/image/linux/2023-07-13-apt_source/image_1.jpg) -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[这里可以找到源： 阿里源：https://developer.aliyun.com/mirror/ 清华源：https://mirrors.tuna.tsinghua.edu.cn/ 华科源：http://mirrors.ustc.edu.cn/ 网易源：http://mirrors.163.com/]]></summary></entry><entry><title type="html">python: python指向python3</title><link href="/python/python_python3/" rel="alternate" type="text/html" title="python: python指向python3" /><published>2023-07-13T14:31:35+08:00</published><updated>2023-07-13T14:31:35+08:00</updated><id>/python/python_python3</id><content type="html" xml:base="/python/python_python3/"><![CDATA[<ul>
-  <li>
-    <p>在.bashrc中<code class="language-plaintext highlighter-rouge">alias python=python3</code>可以解决一部分问题</p>
-  </li>
-  <li>
-    <p>根源上解决</p>
-  </li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> /usr/bin/python /usr/bin/python.bak
- 
-<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/bin/python3 /usr/bin/python
-<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/bin/pip3 /usr/bin/pip
-</code></pre></div></div>
-
-<ul>
-  <li>也可以试试这个</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>python-is-python3
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/python/2023-07-13-python_python3/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[在.bashrc中alias python=python3可以解决一部分问题]]></summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[这里可以找到源： 阿里源：https://developer.aliyun.com/mirror/ 清华源：https://mirrors.tuna.tsinghua.edu.cn/ 华科源：http://mirrors.ustc.edu.cn/ 网易源：http://mirrors.163.com/]]></summary></entry></feed>
