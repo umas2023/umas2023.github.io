@@ -120,6 +120,19 @@ create database iiir_fullstack default charset=utf8;
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SHOW DATABASES;
 </code></pre></div></div>
 
+<ul>
+  <li>
+    <p>新建用户(略)</p>
+  </li>
+  <li>
+    <p>为用户umas添加访问数据库ubk的权限</p>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="n">ubk</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'umas'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span>
+<span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div></div>
+
   </div>
 
 </article>

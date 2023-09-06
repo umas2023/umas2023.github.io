@@ -138,6 +138,20 @@ npm run build
 # 生成/dist/目录
 ```
 
+- github page 打包注意
+  - 默认打包时资源索引路径定位在https://github.com/umas2022/xxx，如果不是github.io项目而是其他的子项目比如backyard，主页url是https://github.com/umas2022/backyard/，此时资源索引路径需要定位在这个子目录下，修改vue.config.js:
+
+```js
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
+  outputDir:"../docs",
+  publicPath: process.env.NODE_ENV === 'production' ? '/backyard/' : '/',
+})
+
+```
+
+
 - python测试服务器
 
 ```

@@ -1,4 +1,291 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-08-23T23:47:50+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">django: token认证</title><link href="/django/token/" rel="alternate" type="text/html" title="django: token认证" /><published>2023-08-23T22:21:32+08:00</published><updated>2023-08-23T22:21:32+08:00</updated><id>/django/token</id><content type="html" xml:base="/django/token/"><![CDATA[<h2 id="准备">准备</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-06T14:31:08+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">python: 使用python驱动声卡播放音频(ubuntu)</title><link href="/python/nio_voice_play/" rel="alternate" type="text/html" title="python: 使用python驱动声卡播放音频(ubuntu)" /><published>2023-09-06T14:16:58+08:00</published><updated>2023-09-06T14:16:58+08:00</updated><id>/python/nio_voice_play</id><content type="html" xml:base="/python/nio_voice_play/"><![CDATA[<h2 id="ubuntu命令行播放音频">ubuntu命令行播放音频</h2>
+
+<ul>
+  <li>aplay命令
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>alsa-utils
+</code></pre></div>    </div>
+  </li>
+  <li>查看声卡设备
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /proc/asound/cards
+</code></pre></div>    </div>
+  </li>
+  <li>指定声卡播放
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aplay <span class="nt">-D</span> default Hinomi_Chinese_lijun.wav
+aplay <span class="nt">-D</span> plughw:2 Hinomi_Chinese_lijun.wav
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="excel转json">excel转json</h2>
+<ul>
+  <li>由于拿到的目录是excel格式不方便程序操作，先转为json</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">原程序找不到了，目录下面只有这个↓</span><span class="sh">'''</span>
+
+<span class="kn">import</span> <span class="n">openpyxl</span> <span class="c1"># pip install openpyxl
+</span>
+<span class="k">def</span> <span class="nf">load_each_sheet</span><span class="p">():</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="p">.</span><span class="nf">load_workbook</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">wb</span><span class="p">.</span><span class="n">worksheets</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sheet</span><span class="p">.</span><span class="n">title</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exceptSheets</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">wb</span><span class="p">,</span> <span class="n">sheet</span>
+    <span class="n">fileNameOut</span> <span class="o">=</span> <span class="n">fileName</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">.xlsx</span><span class="sh">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">-out.xlsx</span><span class="sh">"</span>
+    <span class="n">wb</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">fileDir</span><span class="p">,</span> <span class="n">fileNameOut</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<h2 id="py播放音频">py播放音频</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">wave</span> <span class="c1"># pip install wave
+</span><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">threading</span>
+
+
+<span class="k">class</span> <span class="nc">SayHello</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span>
+                 <span class="n">package_path</span><span class="o">=</span><span class="sh">'</span><span class="s">/home/nuc/test_voice_play/nio-voice</span><span class="sh">'</span><span class="p">,</span>
+                 <span class="n">default_sleep_time</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">default_sound_volume</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">package_path</span> <span class="o">=</span> <span class="n">package_path</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_sleep_time</span> <span class="o">=</span> <span class="n">default_sleep_time</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span> <span class="o">=</span> <span class="n">default_sound_volume</span>
+
+    <span class="c1"># Get audio file duration
+</span>    <span class="k">def</span> <span class="nf">get_duration</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">wavfile</span> <span class="o">=</span> <span class="n">wave</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sh">'</span><span class="s">rb</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">wavfile</span><span class="p">.</span><span class="nf">getparams</span><span class="p">()</span>
+        <span class="n">framesra</span><span class="p">,</span> <span class="n">frameswav</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">framesra</span> <span class="o">*</span> <span class="n">frameswav</span>
+        <span class="k">return</span> <span class="n">time</span>
+
+    <span class="c1"># Modify playback volume
+</span>    <span class="k">def</span> <span class="nf">set_volume</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        Modify playback volume  </span><span class="se">\n</span><span class="s">
+        volume : 0~100  </span><span class="se">\n</span><span class="s">
+        card : default = 0 </span><span class="se">\n</span><span class="s">
+        </span><span class="sh">'''</span>
+        <span class="k">if</span> <span class="n">volume</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="ow">or</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Ranges : 0 &lt; volume &lt; 100</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span> <span class="o">=</span> <span class="n">volume</span>
+        <span class="n">volume_percent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">%</span><span class="sh">"</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">amixer set -c %s Master %s 1&gt;/dev/null 2&gt;&amp;1</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">card</span><span class="p">),</span> <span class="n">volume_percent</span><span class="p">))</span>
+
+    <span class="c1"># play one audio file
+</span>    <span class="k">def</span> <span class="nf">play_one</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cmdstr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        play one single .wav file, return wav file path and content  </span><span class="se">\n</span><span class="s">
+        cmdstr : eg:</span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="s">  </span><span class="se">\n</span><span class="s">
+        card : default = 0  </span><span class="se">\n</span><span class="s">
+        volume : default = 80
+        </span><span class="sh">'''</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">set_volume</span><span class="p">(</span><span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="n">card</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">volume set error</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">package_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">Voiceconfig.json</span><span class="sh">"</span><span class="p">),</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">load_f</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">load_f</span><span class="p">)</span>
+            <span class="n">cmdlist</span> <span class="o">=</span> <span class="n">cmdstr</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">wav_path</span> <span class="o">=</span> <span class="sh">""</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]][</span><span class="sh">"</span><span class="s">file</span><span class="sh">"</span><span class="p">]</span>
+                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">package_path</span><span class="p">,</span> <span class="n">wav_path</span><span class="p">)</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]][</span><span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">]</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">content : %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">content</span><span class="p">)</span>
+                <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">aplay -D plughw:%s %s 1&gt;/dev/null 2&gt;&amp;1</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">card</span><span class="p">),</span> <span class="n">wav_path</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">wav_path</span>
+            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">command input illegal</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+
+    <span class="c1"># play multi audio file by step in a list
+</span>    <span class="k">def</span> <span class="nf">play_step</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cmdlist</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">}],</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        play multi .wav file sequentially at once  </span><span class="se">\n</span><span class="s">
+        sleep: default = 3
+        card : default = 0  </span><span class="se">\n</span><span class="s">
+        volume : default = 80
+        </span><span class="sh">'''</span>
+        <span class="k">for</span> <span class="n">each_cmd</span> <span class="ow">in</span> <span class="n">cmdlist</span><span class="p">:</span>
+
+            <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">default_sleep_time</span>
+            <span class="k">if</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">each_cmd</span><span class="p">:</span>
+                <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">each_cmd</span><span class="p">[</span><span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">]</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">play_one</span><span class="p">(</span><span class="n">cmdstr</span><span class="o">=</span><span class="n">each_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">cmd</span><span class="sh">'</span><span class="p">],</span> <span class="n">card</span><span class="o">=</span><span class="n">card</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">sleep : %fs</span><span class="sh">"</span> <span class="o">%</span> <span class="n">sleep_time</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">get_duration</span><span class="p">(</span><span class="n">wav_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">sleep_time</span><span class="p">)</span>
+            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">command input illegal</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+
+    <span class="c1"># Drive multiple sound cards at the same time
+</span>    <span class="k">def</span> <span class="nf">play_parallel</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">playlist</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">}])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        Drive multiple sound cards at the same time </span><span class="se">\n</span><span class="s">
+        card : sound card number  </span><span class="se">\n</span><span class="s">
+        step : eg. [{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="s">: </span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="s">: 2}]
+        volume : default = 80
+        </span><span class="sh">'''</span>
+        <span class="n">thread_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">))]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">)):</span>
+            <span class="n">card</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">volume</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span>
+            <span class="k">if</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">volume</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">thread_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">play_step</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">card</span><span class="p">))</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">each_thread</span> <span class="ow">in</span> <span class="n">thread_list</span><span class="p">:</span>
+                <span class="n">each_thread</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">thread error : </span><span class="sh">"</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="功能">功能</h2>
+
+<ol>
+  <li>单条指令播放</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="nf">play_one</span><span class="p">(</span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>多条指令连续播放
+参数card, volume, sleep有预设值</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="nf">play_step</span><span class="p">(</span>
+    <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">volume</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">cmdlist</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">},</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="p">])</span>
+</code></pre></div></div>
+
+<ol>
+  <li>多声卡并行播放
+参数sleep, volumn有预设值</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">play_0</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">play_1</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">a</span><span class="p">.</span><span class="nf">play_parallel</span><span class="p">([</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="n">play_0</span><span class="p">,</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="n">play_1</span><span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/python/2023-09-06-nio_voice_play/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[ubuntu命令行播放音频]]></summary></entry><entry><title type="html">ts: import红色波浪线</title><link href="/ts/ts_import/" rel="alternate" type="text/html" title="ts: import红色波浪线" /><published>2023-08-28T19:59:22+08:00</published><updated>2023-08-28T19:59:22+08:00</updated><id>/ts/ts_import</id><content type="html" xml:base="/ts/ts_import/"><![CDATA[<ul>
+  <li>引入echarts时发现<code class="language-plaintext highlighter-rouge">import * as echarts from 'echarts';</code>有红色波浪线提示，但程序可以正常运行</li>
+  <li>在tsconfig.json中添加path就好了</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">compilerOptions</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">baseUrl</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paths</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">echarts</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">node_modules/echarts/types/dist/index.d.ts</span><span class="dl">"</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>如果不行的话</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install @types/echarts
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="ts" /><summary type="html"><![CDATA[引入echarts时发现import * as echarts from 'echarts';有红色波浪线提示，但程序可以正常运行 在tsconfig.json中添加path就好了]]></summary></entry><entry><title type="html">vue: 组件入门</title><link href="/vue/vue_components/" rel="alternate" type="text/html" title="vue: 组件入门" /><published>2023-08-24T19:50:10+08:00</published><updated>2023-08-24T19:50:10+08:00</updated><id>/vue/vue_components</id><content type="html" xml:base="/vue/vue_components/"><![CDATA[<h2 id="组件传参">组件传参</h2>
+
+<ul>
+  <li>props官方：https://cn.vuejs.org/guide/components/props#prop-passing-details</li>
+</ul>
+
+<!-- 子组件类型定义 -->
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="o">&lt;</span><span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="kr">string</span> 
+<span class="p">}</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nf">defineProps</span><span class="p">({</span>
+    <span class="na">type</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+        <span class="na">require</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 父组件 --&gt;</span>
+<span class="nt">&lt;MyComponent</span> <span class="na">greeting-message=</span><span class="s">"hello"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>defineProps不需要手动引入，但一些情况下可能报错 ‘defineProps’ is not defined  no-undef</li>
+  <li>解决：在根目录下创建.eslintrc.js，写入以下内容</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">root</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">env</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">node</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">extends</span><span class="p">:</span> <span class="p">[</span>
+      <span class="dl">'</span><span class="s1">plugin:vue/vue3-essential</span><span class="dl">'</span><span class="p">,</span>
+      <span class="dl">'</span><span class="s1">@vue/typescript/recommended</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">parserOptions</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">parser</span><span class="p">:</span> <span class="dl">'</span><span class="s1">@typescript-eslint/parser</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// 自定义规则可以在这里添加</span>
+    <span class="p">},</span>
+  <span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="slot">slot</h2>
+<ul>
+  <li>官方：https://cn.vuejs.org/guide/components/slots.html#slots</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 组件 --&gt;</span>
+<span class="nt">&lt;FancyButton&gt;</span>
+  Click me! <span class="c">&lt;!-- 插槽内容 --&gt;</span>
+<span class="nt">&lt;/FancyButton&gt;</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 模板 --&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"fancy-btn"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;slot&gt;&lt;/slot&gt;</span> <span class="c">&lt;!-- 插槽出口 --&gt;</span>
+<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/vue/2023-08-24-vue_components/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[组件传参]]></summary></entry><entry><title type="html">django: token认证</title><link href="/django/token/" rel="alternate" type="text/html" title="django: token认证" /><published>2023-08-23T22:21:32+08:00</published><updated>2023-08-23T22:21:32+08:00</updated><id>/django/token</id><content type="html" xml:base="/django/token/"><![CDATA[<h2 id="准备">准备</h2>
 
 <ul>
   <li>安装
@@ -220,6 +507,13 @@
 
 <span class="nd">@login_required</span>
 <span class="k">def</span> <span class="nf">xxx</span> <span class="bp">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>可能会报错RuntimeError: ‘cryptography’ package is required for sha256_password or caching_sha2_password auth methods</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install cryptography
 </code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry><entry><title type="html">django: mysql数据库增删改查基本操作</title><link href="/django/mysql_func/" rel="alternate" type="text/html" title="django: mysql数据库增删改查基本操作" /><published>2023-08-23T13:21:32+08:00</published><updated>2023-08-23T13:21:32+08:00</updated><id>/django/mysql_func</id><content type="html" xml:base="/django/mysql_func/"><![CDATA[<h2 id="准备">准备</h2>
 
 <ul>
@@ -837,135 +1131,4 @@ title: Vue
 
 
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[自解1]]></summary></entry><entry><title type="html">leetcode: 1.两数之和</title><link href="/leetcode/leetcode_1/" rel="alternate" type="text/html" title="leetcode: 1.两数之和" /><published>2023-07-14T14:16:17+08:00</published><updated>2023-07-14T14:16:17+08:00</updated><id>/leetcode/leetcode_1</id><content type="html" xml:base="/leetcode/leetcode_1/"><![CDATA[<h2 id="自解">自解</h2>
-
-<ul>
-  <li>除了两层循环之外根本想不到其他解法</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="k">for</span> <span class="n">index_1</span><span class="p">,</span> <span class="n">number_1</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">index_2</span><span class="p">,</span> <span class="n">number_2</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">index_1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]):</span>
-                <span class="k">if</span> <span class="n">number_1</span> <span class="o">+</span> <span class="n">number_2</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="p">[</span><span class="n">index_1</span><span class="p">,</span> <span class="n">index_1</span> <span class="o">+</span> <span class="n">index_2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">twoSum</span><span class="p">(</span><span class="n">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="mi">9</span><span class="p">))</span>
-</code></pre></div></div>
-
-<h2 id="答案">答案</h2>
-
-<ul>
-  <li>我的天哈希表居然这么简单就实现了，我是傻逼</li>
-  <li>在第二遍循环里寻找 number_2 = target - number_1，而不是 number_2 + number_1 = target，后者很难想到hash</li>
-  <li>利用字典中键不能重复的特点创建hash表</li>
-  <li>修改一下自己的代码：</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="n">hash_table</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">index_1</span><span class="p">,</span> <span class="n">number_1</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">target</span> <span class="o">-</span> <span class="n">number_1</span> <span class="ow">in</span> <span class="n">hash_table</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">[</span><span class="n">hash_table</span><span class="p">[</span><span class="n">target</span> <span class="o">-</span> <span class="n">number_1</span><span class="p">],</span><span class="n">index_1</span><span class="p">]</span>
-            <span class="n">hash_table</span><span class="p">[</span><span class="n">number_1</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_1</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">twoSum</span><span class="p">(</span><span class="n">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="mi">9</span><span class="p">))</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[自解]]></summary></entry><entry><title type="html">linux: samba局域网文件共享</title><link href="/linux/samba/" rel="alternate" type="text/html" title="linux: samba局域网文件共享" /><published>2023-07-13T14:35:51+08:00</published><updated>2023-07-13T14:35:51+08:00</updated><id>/linux/samba</id><content type="html" xml:base="/linux/samba/"><![CDATA[<ul>
-  <li>下载配置</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>samba
-<span class="nb">sudo </span>vim /etc/samba/smb.conf
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>share]
-path <span class="o">=</span> /media/xf
-valid <span class="nb">users</span> <span class="o">=</span> xf
-writable <span class="o">=</span> <span class="nb">yes</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>↑share为samba显示的文件名，可以添加多个</p>
-  </li>
-  <li>
-    <p>启动</p>
-  </li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>smbpasswd <span class="nt">-a</span> umas
-<span class="nb">sudo </span>service smbd restart
-</code></pre></div></div>
-
-<ul>
-  <li>偶尔不能自动挂载</li>
-  <li>手动挂载 sudo mount /dev/sda1 /media/xf/manuell-1T</li>
-  <li>查看硬盘 sudo fdisk -l</li>
-</ul>
-
-<!-- ![引入图片](/image/linux/2023-07-13-samba/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[下载配置]]></summary></entry><entry><title type="html">linux: apt改国内源</title><link href="/linux/apt_source/" rel="alternate" type="text/html" title="linux: apt改国内源" /><published>2023-07-13T14:33:32+08:00</published><updated>2023-07-13T14:33:32+08:00</updated><id>/linux/apt_source</id><content type="html" xml:base="/linux/apt_source/"><![CDATA[<ul>
-  <li>这里可以找到源：
-    <ul>
-      <li>阿里源：https://developer.aliyun.com/mirror/</li>
-      <li>清华源：https://mirrors.tuna.tsinghua.edu.cn/</li>
-      <li>华科源：http://mirrors.ustc.edu.cn/</li>
-      <li>网易源：http://mirrors.163.com/</li>
-    </ul>
-  </li>
-  <li>查看linux版本</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /etc/issue
-<span class="c"># 返回</span>
-Debian GNU/Linux 11 <span class="se">\n</span> <span class="se">\l</span>
-</code></pre></div></div>
-
-<ul>
-  <li>debian换国内源，修改/etc/apt/sources.list文件</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s@http://deb.debian.org@https://mirrors.163.com@g"</span> /etc/apt/sources.list
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>补充ubuntu改源</p>
-  </li>
-  <li>
-    <p>备份原文件</p>
-  </li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak
-vim /etc/apt/sources.list
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
-</code></pre></div></div>
-
-<ul>
-  <li>更新软件列表</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/linux/2023-07-13-apt_source/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[这里可以找到源： 阿里源：https://developer.aliyun.com/mirror/ 清华源：https://mirrors.tuna.tsinghua.edu.cn/ 华科源：http://mirrors.ustc.edu.cn/ 网易源：http://mirrors.163.com/]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[自解1]]></summary></entry></feed>

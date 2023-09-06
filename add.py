@@ -35,18 +35,20 @@ zip_backyard
 zip_pctools
 '''
 
+# 修改这里：基础分类
+basic_cat = "python"
 
-# 修改这里：md文件名，前面会拼接上时间
-file_name = "mysql_func"
-# 修改这里：md文件放在哪个目录下
-dir = "django"
+# 修改这里：md文件名，前面会自动拼接上时间
+file_name = "nio_voice_play"
 # 修改这里：文章标题
-title = "'django: mysql数据库增删改查基本操作'"
+title = "'%s: 使用python驱动声卡播放音频'" % basic_cat
 # 修改这里：文章介绍
-info = "'接上文mysql连接'"
-# 修改这里：文章分类
-categories = ["django"]
+info = "'记录某个实习的需求'"
 
+# 文章分类
+categories = [basic_cat]
+# md文件放在哪个目录下
+dir =  basic_cat
 
 import os
 from datetime import datetime
@@ -87,13 +89,12 @@ with open(file_path, "w+", encoding="utf-8") as md:
     md.write("{% endraw %}\n")
 
 
-
 # 创建图片目录
-image_path = os.path.normpath(os.path.join(script_path,"hello_umas/image",dir,file_name))
-gitkeep = os.path.normpath(os.path.join(image_path,".gitkeep"))
+image_path = os.path.normpath(os.path.join(script_path, "hello_umas/image", dir, file_name))
+gitkeep = os.path.normpath(os.path.join(image_path, ".gitkeep"))
 if not os.path.exists(image_path):
     os.makedirs(image_path)
-with open(gitkeep,"w+") as keep:
+with open(gitkeep, "w+") as keep:
     pass
 
 # 打开图片目录
@@ -101,8 +102,4 @@ os.system("explorer.exe %s" % image_path)
 
 # 打开新md文件
 vscode = r'"D:\p-program\vscode\Microsoft VS Code\Code.exe"'
-os.system("%s %s" % (vscode,file_path))
-
-
-
-
+os.system("%s %s" % (vscode, file_path))

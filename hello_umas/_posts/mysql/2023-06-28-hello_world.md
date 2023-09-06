@@ -73,3 +73,15 @@ create database iiir_fullstack default charset=utf8;
 ```
 SHOW DATABASES;
 ```
+
+
+- 新建用户(略)
+
+
+
+- 为用户umas添加访问数据库ubk的权限
+
+```sql
+GRANT ALL PRIVILEGES ON ubk.* TO 'umas'@'localhost';
+FLUSH PRIVILEGES;
+```

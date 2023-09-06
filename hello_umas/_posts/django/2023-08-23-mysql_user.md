@@ -136,6 +136,12 @@ def xxx ...
 ```
 
 
+- 可能会报错RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+
+```
+pip install cryptography
+```
+
 
 
 

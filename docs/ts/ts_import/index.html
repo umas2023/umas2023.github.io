@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>css: 文字样式 | umas’ awesome title</title>
+<title>ts: import红色波浪线 | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="css: 文字样式" />
+<meta property="og:title" content="ts: import红色波浪线" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="基本语法" />
-<meta property="og:description" content="基本语法" />
-<link rel="canonical" href="/css/css_text/" />
-<meta property="og:url" content="/css/css_text/" />
+<meta name="description" content="引入echarts时发现import * as echarts from &#39;echarts&#39;;有红色波浪线提示，但程序可以正常运行 在tsconfig.json中添加path就好了" />
+<meta property="og:description" content="引入echarts时发现import * as echarts from &#39;echarts&#39;;有红色波浪线提示，但程序可以正常运行 在tsconfig.json中添加path就好了" />
+<link rel="canonical" href="/ts/ts_import/" />
+<meta property="og:url" content="/ts/ts_import/" />
 <meta property="og:site_name" content="umas’ awesome title" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-07-10T10:47:43+08:00" />
+<meta property="article:published_time" content="2023-08-28T19:59:22+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="css: 文字样式" />
+<meta property="twitter:title" content="ts: import红色波浪线" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-10T10:47:43+08:00","datePublished":"2023-07-10T10:47:43+08:00","description":"基本语法","headline":"css: 文字样式","mainEntityOfPage":{"@type":"WebPage","@id":"/css/css_text/"},"url":"/css/css_text/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-28T19:59:22+08:00","datePublished":"2023-08-28T19:59:22+08:00","description":"引入echarts时发现import * as echarts from &#39;echarts&#39;;有红色波浪线提示，但程序可以正常运行 在tsconfig.json中添加path就好了","headline":"ts: import红色波浪线","mainEntityOfPage":{"@type":"WebPage","@id":"/ts/ts_import/"},"url":"/ts/ts_import/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -41,46 +41,38 @@
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">css: 文字样式</h1>
-    <h3>持续更新</h3>
+    <h1 class="post-title">ts: import红色波浪线</h1>
+    <h3>程序可以正常运行但vscode有红色波浪线报错找不到</h3>
   </header>
 
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h2"><a href="#基本语法">基本语法</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="基本语法">基本语法</h2>
-
-<ul>
-  <li>文字不换行</li>
+    <ul>
+  <li>引入echarts时发现<code class="language-plaintext highlighter-rouge">import * as echarts from 'echarts';</code>有红色波浪线提示，但程序可以正常运行</li>
+  <li>在tsconfig.json中添加path就好了</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>white-space: nowrap
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">compilerOptions</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">baseUrl</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">paths</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">echarts</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">node_modules/echarts/types/dist/index.d.ts</span><span class="dl">"</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <ul>
-  <li>文字对齐</li>
+  <li>如果不行的话</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>text-align: right; /* 文字靠右对齐 */
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install @types/echarts
+
 </code></pre></div></div>
-
-<ul>
-  <li>禁止文本选中</li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">user-select</span><span class="o">:</span> <span class="nt">none</span><span class="o">;</span> <span class="o">//</span> <span class="nt">禁止文本选中</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/css/2023-07-10-css_text/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
 
   </div>
 

@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "python: 使用python驱动声卡播放音频(ubuntu)",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/nio_voice_play/",
+      "date"     : "2023-09-06 14:16:58 +0800"
+    } ,
+  
+    {
+      "title"    : "ts: import红色波浪线",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/ts/ts_import/",
+      "date"     : "2023-08-28 19:59:22 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 组件入门",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/vue_components/",
+      "date"     : "2023-08-24 19:50:10 +0800"
+    } ,
+  
+    {
       "title"    : "django: token认证",
       "category" : "",
       "tags"     : "",
@@ -222,6 +246,14 @@
       "tags"     : "",
       "url"      : "/amtc/mjpg-streamer/",
       "date"     : "2023-07-13 10:21:02 +0800"
+    } ,
+  
+    {
+      "title"    : "linux: screen命令",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/linux/screen/",
+      "date"     : "2023-07-13 10:16:49 +0800"
     } ,
   
     {

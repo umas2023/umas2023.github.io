@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>python: 使用python驱动声卡播放音频(ubuntu) | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="python: 使用python驱动声卡播放音频(ubuntu)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ubuntu命令行播放音频" />
+<meta property="og:description" content="ubuntu命令行播放音频" />
+<link rel="canonical" href="/python/nio_voice_play/" />
+<meta property="og:url" content="/python/nio_voice_play/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-06T14:16:58+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="python: 使用python驱动声卡播放音频(ubuntu)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-06T14:16:58+08:00","datePublished":"2023-09-06T14:16:58+08:00","description":"ubuntu命令行播放音频","headline":"python: 使用python驱动声卡播放音频(ubuntu)","mainEntityOfPage":{"@type":"WebPage","@id":"/python/nio_voice_play/"},"url":"/python/nio_voice_play/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">python: 使用python驱动声卡播放音频(ubuntu)</h1>
+    <h3>python通过wave库来实现，ubuntu可以用aplay命令播放</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#ubuntu命令行播放音频">ubuntu命令行播放音频</a></li>
+<li class="toc-entry toc-h2"><a href="#excel转json">excel转json</a></li>
+<li class="toc-entry toc-h2"><a href="#py播放音频">py播放音频</a></li>
+<li class="toc-entry toc-h2"><a href="#功能">功能</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="ubuntu命令行播放音频">ubuntu命令行播放音频</h2>
+
+<ul>
+  <li>aplay命令
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>alsa-utils
+</code></pre></div>    </div>
+  </li>
+  <li>查看声卡设备
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /proc/asound/cards
+</code></pre></div>    </div>
+  </li>
+  <li>指定声卡播放
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aplay <span class="nt">-D</span> default Hinomi_Chinese_lijun.wav
+aplay <span class="nt">-D</span> plughw:2 Hinomi_Chinese_lijun.wav
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="excel转json">excel转json</h2>
+<ul>
+  <li>由于拿到的目录是excel格式不方便程序操作，先转为json</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">原程序找不到了，目录下面只有这个↓</span><span class="sh">'''</span>
+
+<span class="kn">import</span> <span class="n">openpyxl</span> <span class="c1"># pip install openpyxl
+</span>
+<span class="k">def</span> <span class="nf">load_each_sheet</span><span class="p">():</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="p">.</span><span class="nf">load_workbook</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">wb</span><span class="p">.</span><span class="n">worksheets</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sheet</span><span class="p">.</span><span class="n">title</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exceptSheets</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">wb</span><span class="p">,</span> <span class="n">sheet</span>
+    <span class="n">fileNameOut</span> <span class="o">=</span> <span class="n">fileName</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">.xlsx</span><span class="sh">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">-out.xlsx</span><span class="sh">"</span>
+    <span class="n">wb</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">fileDir</span><span class="p">,</span> <span class="n">fileNameOut</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<h2 id="py播放音频">py播放音频</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">wave</span> <span class="c1"># pip install wave
+</span><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">threading</span>
+
+
+<span class="k">class</span> <span class="nc">SayHello</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span>
+                 <span class="n">package_path</span><span class="o">=</span><span class="sh">'</span><span class="s">/home/nuc/test_voice_play/nio-voice</span><span class="sh">'</span><span class="p">,</span>
+                 <span class="n">default_sleep_time</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">default_sound_volume</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">package_path</span> <span class="o">=</span> <span class="n">package_path</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_sleep_time</span> <span class="o">=</span> <span class="n">default_sleep_time</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span> <span class="o">=</span> <span class="n">default_sound_volume</span>
+
+    <span class="c1"># Get audio file duration
+</span>    <span class="k">def</span> <span class="nf">get_duration</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">wavfile</span> <span class="o">=</span> <span class="n">wave</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sh">'</span><span class="s">rb</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">wavfile</span><span class="p">.</span><span class="nf">getparams</span><span class="p">()</span>
+        <span class="n">framesra</span><span class="p">,</span> <span class="n">frameswav</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">framesra</span> <span class="o">*</span> <span class="n">frameswav</span>
+        <span class="k">return</span> <span class="n">time</span>
+
+    <span class="c1"># Modify playback volume
+</span>    <span class="k">def</span> <span class="nf">set_volume</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        Modify playback volume  </span><span class="se">\n</span><span class="s">
+        volume : 0~100  </span><span class="se">\n</span><span class="s">
+        card : default = 0 </span><span class="se">\n</span><span class="s">
+        </span><span class="sh">'''</span>
+        <span class="k">if</span> <span class="n">volume</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="ow">or</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Ranges : 0 &lt; volume &lt; 100</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span> <span class="o">=</span> <span class="n">volume</span>
+        <span class="n">volume_percent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">%</span><span class="sh">"</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">amixer set -c %s Master %s 1&gt;/dev/null 2&gt;&amp;1</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">card</span><span class="p">),</span> <span class="n">volume_percent</span><span class="p">))</span>
+
+    <span class="c1"># play one audio file
+</span>    <span class="k">def</span> <span class="nf">play_one</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cmdstr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        play one single .wav file, return wav file path and content  </span><span class="se">\n</span><span class="s">
+        cmdstr : eg:</span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="s">  </span><span class="se">\n</span><span class="s">
+        card : default = 0  </span><span class="se">\n</span><span class="s">
+        volume : default = 80
+        </span><span class="sh">'''</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">set_volume</span><span class="p">(</span><span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="n">card</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">volume set error</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">package_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">Voiceconfig.json</span><span class="sh">"</span><span class="p">),</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">load_f</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">load_f</span><span class="p">)</span>
+            <span class="n">cmdlist</span> <span class="o">=</span> <span class="n">cmdstr</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">wav_path</span> <span class="o">=</span> <span class="sh">""</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]][</span><span class="sh">"</span><span class="s">file</span><span class="sh">"</span><span class="p">]</span>
+                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">package_path</span><span class="p">,</span> <span class="n">wav_path</span><span class="p">)</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]][</span><span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">]</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">content : %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">content</span><span class="p">)</span>
+                <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">aplay -D plughw:%s %s 1&gt;/dev/null 2&gt;&amp;1</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">card</span><span class="p">),</span> <span class="n">wav_path</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">wav_path</span>
+            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">command input illegal</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+
+    <span class="c1"># play multi audio file by step in a list
+</span>    <span class="k">def</span> <span class="nf">play_step</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cmdlist</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">}],</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        play multi .wav file sequentially at once  </span><span class="se">\n</span><span class="s">
+        sleep: default = 3
+        card : default = 0  </span><span class="se">\n</span><span class="s">
+        volume : default = 80
+        </span><span class="sh">'''</span>
+        <span class="k">for</span> <span class="n">each_cmd</span> <span class="ow">in</span> <span class="n">cmdlist</span><span class="p">:</span>
+
+            <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">default_sleep_time</span>
+            <span class="k">if</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">each_cmd</span><span class="p">:</span>
+                <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">each_cmd</span><span class="p">[</span><span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">]</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">play_one</span><span class="p">(</span><span class="n">cmdstr</span><span class="o">=</span><span class="n">each_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">cmd</span><span class="sh">'</span><span class="p">],</span> <span class="n">card</span><span class="o">=</span><span class="n">card</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">sleep : %fs</span><span class="sh">"</span> <span class="o">%</span> <span class="n">sleep_time</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">get_duration</span><span class="p">(</span><span class="n">wav_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">sleep_time</span><span class="p">)</span>
+            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">command input illegal</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+
+    <span class="c1"># Drive multiple sound cards at the same time
+</span>    <span class="k">def</span> <span class="nf">play_parallel</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">playlist</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">}])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sh">'''</span><span class="s">
+        Drive multiple sound cards at the same time </span><span class="se">\n</span><span class="s">
+        card : sound card number  </span><span class="se">\n</span><span class="s">
+        step : eg. [{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="s">: </span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="s">: 2}]
+        volume : default = 80
+        </span><span class="sh">'''</span>
+        <span class="n">thread_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">))]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">)):</span>
+            <span class="n">card</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">volume</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span>
+            <span class="k">if</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">volume</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">thread_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">play_step</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">card</span><span class="p">))</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">each_thread</span> <span class="ow">in</span> <span class="n">thread_list</span><span class="p">:</span>
+                <span class="n">each_thread</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">thread error : </span><span class="sh">"</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="功能">功能</h2>
+
+<ol>
+  <li>单条指令播放</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="nf">play_one</span><span class="p">(</span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>多条指令连续播放
+参数card, volume, sleep有预设值</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="nf">play_step</span><span class="p">(</span>
+    <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">volume</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">cmdlist</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">},</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="p">])</span>
+</code></pre></div></div>
+
+<ol>
+  <li>多声卡并行播放
+参数sleep, volumn有预设值</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">play_0</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">play_1</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">a</span><span class="p">.</span><span class="nf">play_parallel</span><span class="p">([</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="n">play_0</span><span class="p">,</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="n">play_1</span><span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/python/2023-09-06-nio_voice_play/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

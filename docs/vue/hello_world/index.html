@@ -215,6 +215,23 @@ npm run serve
 </code></pre></div></div>
 
 <ul>
+  <li>github page 打包注意
+    <ul>
+      <li>默认打包时资源索引路径定位在https://github.com/umas2022/xxx，如果不是github.io项目而是其他的子项目比如backyard，主页url是https://github.com/umas2022/backyard/，此时资源索引路径需要定位在这个子目录下，修改vue.config.js:</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@vue/cli-service</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">defineConfig</span><span class="p">({</span>
+  <span class="na">transpileDependencies</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">outputDir</span><span class="p">:</span><span class="dl">"</span><span class="s2">../docs</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">publicPath</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">production</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">/backyard/</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">})</span>
+
+</code></pre></div></div>
+
+<ul>
   <li>python测试服务器</li>
 </ul>
 
