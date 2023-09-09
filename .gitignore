@@ -142,3 +142,11 @@ cython_debug/
 # 手动添加node_modules
 node_modules
 electron_output
+
+
+# jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor

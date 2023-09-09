@@ -3,7 +3,7 @@ layout: post
 title: 'amtc: mjpg-streamer给网页添加usb摄像头实时监控'
 info: '学习工厂上班（摄像头拿楼上了）'
 date: 2023-07-13 10:21:02  +0800
-categories: ['amtc']
+categories: ['amtc','raspberry_pi']
 toc: True
 ---
 

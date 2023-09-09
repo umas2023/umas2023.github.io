@@ -3,7 +3,7 @@ layout: post
 title: 'amtc: localfront本地前端开发记录'
 info: '学习工厂上班，记录开发中遇到的问题和解决（持续更新）'
 date: 2023-07-10 14:48:43  +0800
-categories: ['amtc']
+categories: ['amtc','vue','raspberry_pi']
 toc: True
 ---
 

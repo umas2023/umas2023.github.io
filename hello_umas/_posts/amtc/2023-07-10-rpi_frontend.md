@@ -3,7 +3,7 @@ layout: post
 title: 'amtc: 本地前端部署'
 info: 'nginx简化部署'
 date: 2023-07-10 09:14:54  +0800
-categories: ['amtc', 'nginx']
+categories: ['amtc', 'nginx','raspberry_pi']
 toc: True
 ---
 

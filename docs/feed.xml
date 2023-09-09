@@ -1,4 +1,394 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-09T11:37:26+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">vue: ts环境下导入public目录下的json</title><link href="/vue/import_json/" rel="alternate" type="text/html" title="vue: ts环境下导入public目录下的json" /><published>2023-09-08T19:50:10+08:00</published><updated>2023-09-08T19:50:10+08:00</updated><id>/vue/import_json</id><content type="html" xml:base="/vue/import_json/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-09T14:22:17+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">windows: 查看wifi密码</title><link href="/windows/wifi_passwd/" rel="alternate" type="text/html" title="windows: 查看wifi密码" /><published>2023-09-09T14:20:16+08:00</published><updated>2023-09-09T14:20:16+08:00</updated><id>/windows/wifi_passwd</id><content type="html" xml:base="/windows/wifi_passwd/"><![CDATA[<p><img src="/image/windows/2023-09-09-wifi_passwd/image_1.png" alt="引入图片" />
+<img src="/image/windows/2023-09-09-wifi_passwd/image_2.png" alt="引入图片" />
+<img src="/image/windows/2023-09-09-wifi_passwd/image_3.png" alt="引入图片" />
+<img src="/image/windows/2023-09-09-wifi_passwd/image_4.png" alt="引入图片" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">windows: 局域网共享文件夹</title><link href="/windows/share_dir/" rel="alternate" type="text/html" title="windows: 局域网共享文件夹" /><published>2023-09-09T14:15:13+08:00</published><updated>2023-09-09T14:15:13+08:00</updated><id>/windows/share_dir</id><content type="html" xml:base="/windows/share_dir/"><![CDATA[<ul>
+  <li>设置 =&gt; 网络 =&gt; 网络共享中心 =&gt; 高级共享设置，全部启用</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-share_dir/image_1.png" alt="引入图片" /></p>
+
+<ul>
+  <li>控制面板 =&gt; 程序和功能 =&gt; 启用或关闭windows功能 =&gt; smb文件共享</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-share_dir/image_2.png" alt="引入图片" /></p>
+
+<ul>
+  <li>关于用户名和密码
+    <ul>
+      <li>首先在c盘users文件夹确定当前用户名</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-share_dir/image_3.png" alt="引入图片" /></p>
+
+<ul>
+  <li>使用这个名字添加用户</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-share_dir/image_4.png" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>手机访问时直接用outlook邮箱账号密码</p>
+  </li>
+  <li>电脑连接树莓派的smb</li>
+  <li>此电脑右键，映射网络驱动器</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-share_dir/image_5.png" alt="引入图片" /></p>
+
+<ul>
+  <li>关于如何在树莓派开启smb，好像记在树莓派分区里了</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[设置 =&gt; 网络 =&gt; 网络共享中心 =&gt; 高级共享设置，全部启用]]></summary></entry><entry><title type="html">windows: hyperv虚拟机软路由</title><link href="/windows/hyperv_openwrt/" rel="alternate" type="text/html" title="windows: hyperv虚拟机软路由" /><published>2023-09-09T11:57:03+08:00</published><updated>2023-09-09T11:57:03+08:00</updated><id>/windows/hyperv_openwrt</id><content type="html" xml:base="/windows/hyperv_openwrt/"><![CDATA[<h2 id="下载镜像">下载镜像</h2>
+
+<ul>
+  <li>下载openwrt镜像
+    <ul>
+      <li>https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_1.png" alt="引入图片" /></p>
+
+<ul>
+  <li>combined：文件系统 + 内核</li>
+  <li>
+    <p>rootfs： 只有文件系统</p>
+  </li>
+  <li>
+    <p>注意下载之后的压缩包用7z解压可能报错，可以用winrar</p>
+  </li>
+  <li>starwind软件将img转为vmdk
+    <ul>
+      <li>选localfile，VHD/VHDX，VHDX growable image</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="启动虚拟机">启动虚拟机</h2>
+
+<ul>
+  <li>确认hyperv已经打开</li>
+  <li>windows管理工具-&gt;hyper-v管理器</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_2.png" alt="引入图片" /></p>
+
+<ul>
+  <li>外部网络选择当前使用的网卡</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_3.png" alt="引入图片" /></p>
+
+<ul>
+  <li>创建虚拟机</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_4.png" alt="引入图片" /></p>
+
+<ul>
+  <li>第二代，不使用动态内存，连接选刚才的wrt_lan，使用现有虚拟硬盘找到刚才的vhdx</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_5.png" alt="引入图片" /></p>
+
+<ul>
+  <li>安全 -&gt; 启用安全启动 - 关掉</li>
+  <li>网络适配器 -&gt; 高级功能 -&gt; 启用mac地址欺骗</li>
+  <li>检查点 -&gt; 使用自动检查点 - 关掉</li>
+  <li>
+    <p>自动启动 -&gt; 有需要的话开启始终自动启动</p>
+  </li>
+  <li>右键连接openwrt，编辑</li>
+  <li>Vim etc/config/network</li>
+  <li>改成和当前路由器相同网段</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_6.png" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>reboot</p>
+  </li>
+  <li>浏览器输入上面的ip：192.168.31.31</li>
+  <li>没有密码</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_7.png" alt="引入图片" /></p>
+
+<ul>
+  <li>修改lan，网关指向主路由</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_8.png" alt="引入图片" /></p>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_9.png" alt="引入图片" /></p>
+
+<ul>
+  <li>DHCP服务器：忽略此接口</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_10.png" alt="引入图片" /></p>
+
+<ul>
+  <li>禁用桥接</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_11.png" alt="引入图片" /></p>
+
+<ul>
+  <li>Dns 8.8.8.8</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_12.png" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>ping downloads.openwrt.org</p>
+  </li>
+  <li>安装中文语言包</li>
+  <li>Index of /releases/22.03.5/packages/x86_64/luci/ (openwrt.org)</li>
+  <li>搜base-zh-cn</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_13.png" alt="引入图片" /></p>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_14.png" alt="引入图片" /></p>
+
+<ul>
+  <li>更换阿里源</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_15.png" alt="引入图片" /></p>
+
+<ul>
+  <li>将 /etc/opkg/distfeeds.conf 下的 downloads.openwrt.org 替换为mirrors.aliyun.com/openwrt</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/gz openwrt_core https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/packages
+src/gz openwrt_base https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/base
+src/gz openwrt_luci https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/luci
+src/gz openwrt_packages https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/packages
+src/gz openwrt_routing https://do
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>完了update一下：<code class="language-plaintext highlighter-rouge">opkg update</code></p>
+  </li>
+  <li>
+    <p>注意第一行的targets不要改，会报错（2023.5.28）</p>
+  </li>
+</ul>
+
+<h2 id="安装clash">安装clash</h2>
+
+<ul>
+  <li>
+    <p>参考：https://github.com/vernesong/OpenClash/wiki/%E5%AE%89%E8%A3%85</p>
+  </li>
+  <li>
+    <p>首先删掉dnsmasq</p>
+  </li>
+  <li>下载ipk</li>
+  <li>Releases · vernesong/OpenClash (github.com)</li>
+  <li>安装依赖</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg update
+opkg install coreutils-nohup --force-overwrite
+opkg install bash --force-overwrite
+opkg install iptables --force-overwrite
+opkg install dnsmasq-full --force-overwrite
+opkg install curl --force-overwrite
+opkg install ca-certificates --force-overwrite
+opkg install ipset --force-overwrite
+opkg install i
+</code></pre></div></div>
+
+<ul>
+  <li>整合↑</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install coreutils-nohup  bash  iptables  dnsmasq-full  curl  ca-certificates  ipset  ip-full  iptables-mod-tproxy  iptables-mod-extra  libcap  libcap-bin  ruby  ruby-yaml  kmod-tun --force-overwrite 
+
+</code></pre></div></div>
+
+<ul>
+  <li>ipk文件拷贝到远程主机
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp .\luci-app-openclash_0.45.121-beta_all.ipk root@192.168.31.31:/root
+</code></pre></div>    </div>
+  </li>
+  <li>opkg install
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install luci-app-openclash_0.45.121-beta_all.ipk
+</code></pre></div>    </div>
+  </li>
+  <li>报错 module ‘luci.cbi.datatypes’ not found
+    <ul>
+      <li>参考：https://github.com/vernesong/OpenClash/issues/2364</li>
+      <li>参考：https://blog.csdn.net/xs18952904/article/details/124600025</li>
+    </ul>
+  </li>
+  <li>命令报错找不到：opkg install luci-compat，需要手动下载
+    <ul>
+      <li>https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/luci/</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp .\luci-compat_git-23.093.42303-ef4cd04_all.ipk root@192.168.31.31:/root
+opkg install luci-compat_git-23.093.42303-ef4cd04_all.ipk
+</code></pre></div></div>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_16.png" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>这里没有手动下载内核，如果配置完成后内核自动下载失败，需要手动下载</p>
+  </li>
+  <li>
+    <p>不行，它不能自动下载，还是要手动下</p>
+  </li>
+  <li>
+    <p>下载内核，三个不存在的都下载</p>
+    <ul>
+      <li>md好麻烦，还是安一个winscp吧</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_17.png" alt="引入图片" /></p>
+
+<ul>
+  <li>拷过去之后加权限</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_18.png" alt="引入图片" />
+<img src="/image/windows/2023-09-09-hyperv_openwrt/image_19.png" alt="引入图片" /></p>
+
+<ul>
+  <li>启用fake-ip模式（在底部点击）记得点保存应用</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_20.png" alt="引入图片" /></p>
+
+<ul>
+  <li>启动之后在 server logs 报错</li>
+  <li>警告：OpenClash 启动成功，检测到您启用了IPv6的DHCP服务，可能会造成连接异常！</li>
+  <li>接口编辑里关掉这个：</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_21.png" alt="引入图片" /></p>
+
+<ul>
+  <li>安装主题</li>
+  <li><a href="https://github.com/jerrykuku/luci-theme-argon/blob/master/README_ZH.md">luci-theme-argon/README_ZH.md at master · jerrykuku/luci-theme-argon · GitHub</a></li>
+  <li>可以用wget
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install luci-compat
+opkg install luci-lib-ipkg
+wget --no-check-certificate https://github.com/jerrykuku/luci-theme-argon/releases/download/v2.3/luci-theme-argon_2.3_all.ipk
+opkg install luci-theme-argon*.ipk
+</code></pre></div>    </div>
+  </li>
+  <li>报错找不到的话update一下
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg update
+</code></pre></div>    </div>
+  </li>
+  <li>也可以直接下载：</li>
+  <li>https://github.com/jerrykuku/</li>
+</ul>
+
+<h2 id="windows连接">windows连接</h2>
+
+<ul>
+  <li>修改默认网关</li>
+  <li>不需要在路由器里固定ip地址</li>
+  <li>设置的网卡必须是之前open wrt连接的网卡，双网卡要选对，第三方手机不能连接</li>
+  <li>首选dns是wrt地址
+注意连接后需要等待2-3分钟，期间会无法联网</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_22.png" alt="引入图片" />
+<img src="/image/windows/2023-09-09-hyperv_openwrt/image_23.png" alt="引入图片" /></p>
+
+<ul>
+  <li>经测试下面这个方法不太行</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_24.png" alt="引入图片" /></p>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_25.png" alt="引入图片" /></p>
+
+<ul>
+  <li>1、网络前缀长度24，对应子网掩码【255.255.255.0】；</li>
+  <li>2、网络前缀长度18，对应子网掩码【255.255.240.0】；</li>
+  <li>3、网络前缀长度16，对应子网掩码【255.255.0.0】</li>
+</ul>
+
+<h2 id="热点转发">热点转发</h2>
+
+<ul>
+  <li>实际测试时发现只有电脑本机可以正常上网，安卓苹果switch都不行</li>
+  <li>可以将电脑的网络通过热点转发给其他设备</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_26.png" alt="引入图片" /></p>
+
+<ul>
+  <li>打开共享后可以看到多出一个网络设备</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_27.png" alt="引入图片" /></p>
+
+<ul>
+  <li>在当前电脑连接wifi的设备属性里打开共享，没有开启共享时手机连上会显示没有网络</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_28.png" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>补充一点，如果手机长时间连接不上的话，把上面的勾去掉试试</p>
+  </li>
+  <li>
+    <p>如果电脑连接后可以正常上网翻墙，但右下角显示无internet，这时无法开启热点，可以尝试：</p>
+    <ul>
+      <li>更换节点</li>
+      <li>或者关闭ipv4校验，关闭后重新启动clash并重新连接，</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_29.png" alt="引入图片" /></p>
+
+<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_30.png" alt="引入图片" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="后记">后记</h2>
+
+<ul>
+  <li>由于虚拟机性能限制，switch连接后nat无法满足联机需要</li>
+  <li>加钱买了个小米路由器，刷机教程详见另一篇</li>
+</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[下载镜像]]></summary></entry><entry><title type="html">windows: 删除文件被占用</title><link href="/windows/delete_in_use/" rel="alternate" type="text/html" title="windows: 删除文件被占用" /><published>2023-09-09T11:49:35+08:00</published><updated>2023-09-09T11:49:35+08:00</updated><id>/windows/delete_in_use</id><content type="html" xml:base="/windows/delete_in_use/"><![CDATA[<ul>
+  <li>任务管理器 -&gt; 性能 -&gt; 打开资源监视器 -&gt; cpu -&gt; 搜索句柄</li>
+</ul>
+
+<p><img src="/image/windows/2023-09-09-delete_in_use/image_1.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>右键结束进程</li>
+  <li>亲测可以解决 ERR_ELECTRON_BUILDER_CANNOT_EXECUTE 问题</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[任务管理器 -&gt; 性能 -&gt; 打开资源监视器 -&gt; cpu -&gt; 搜索句柄]]></summary></entry><entry><title type="html">vue: ts环境下导入public目录下的json</title><link href="/vue/import_json/" rel="alternate" type="text/html" title="vue: ts环境下导入public目录下的json" /><published>2023-09-08T19:50:10+08:00</published><updated>2023-09-08T19:50:10+08:00</updated><id>/vue/import_json</id><content type="html" xml:base="/vue/import_json/"><![CDATA[<ul>
   <li>一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加<code class="language-plaintext highlighter-rouge">"resolveJsonModule": true,</code>即可</li>
 </ul>
 
@@ -105,13 +495,7 @@
   </li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[基本命令]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派命令行联网</title><link href="/raspberry_pi/linux/server_net/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派命令行联网" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/linux/server_net</id><content type="html" xml:base="/raspberry_pi/linux/server_net/"><![CDATA[<ul>
-  <li>参考
-    <ul>
-      <li>https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="linux" /><summary type="html"><![CDATA[参考 https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派ssh</title><link href="/raspberry_pi/ssh/vscode/windows/ssh/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派ssh" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/ssh/vscode/windows/ssh</id><content type="html" xml:base="/raspberry_pi/ssh/vscode/windows/ssh/"><![CDATA[<h2 id="windows平台vscode添加ssh公钥">windows平台vscode添加ssh公钥</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[基本命令]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派ssh</title><link href="/raspberry_pi/ssh/vscode/windows/ssh/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派ssh" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/ssh/vscode/windows/ssh</id><content type="html" xml:base="/raspberry_pi/ssh/vscode/windows/ssh/"><![CDATA[<h2 id="windows平台vscode添加ssh公钥">windows平台vscode添加ssh公钥</h2>
 <ul>
   <li>windows平台下运行：
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096 
@@ -152,7 +536,13 @@ wget https://vscode.cdn.azure.cn/stable/57fd6d0195bb9b9d1b49f6da5db789060795de47
 <span class="nb">tar</span> <span class="nt">-xvzf</span> vscode-server-linux-x64.tar.gz <span class="nt">--strip-components</span> 1
 
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="ssh" /><category term="vscode" /><category term="windows" /><summary type="html"><![CDATA[windows平台vscode添加ssh公钥 windows平台下运行： ssh-keygen -t rsa -b 4096 Linux服务器拷贝内容 C:\Users\umas2017\.ssh\id_rsa.pub 到 ~/.ssh/authorized_keys]]></summary></entry><entry><title type="html">markdown: 进阶命令</title><link href="/markdown/cmd/" rel="alternate" type="text/html" title="markdown: 进阶命令" /><published>2023-09-08T09:00:00+08:00</published><updated>2023-09-08T09:00:00+08:00</updated><id>/markdown/cmd</id><content type="html" xml:base="/markdown/cmd/"><![CDATA[<h2 id="vscode中自动生成目录">vscode中自动生成目录</h2>
+</code></pre></div></div>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="ssh" /><category term="vscode" /><category term="windows" /><summary type="html"><![CDATA[windows平台vscode添加ssh公钥 windows平台下运行： ssh-keygen -t rsa -b 4096 Linux服务器拷贝内容 C:\Users\umas2017\.ssh\id_rsa.pub 到 ~/.ssh/authorized_keys]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派命令行联网</title><link href="/raspberry_pi/linux/server_net/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派命令行联网" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/linux/server_net</id><content type="html" xml:base="/raspberry_pi/linux/server_net/"><![CDATA[<ul>
+  <li>参考
+    <ul>
+      <li>https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="linux" /><summary type="html"><![CDATA[参考 https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server]]></summary></entry><entry><title type="html">markdown: 进阶命令</title><link href="/markdown/cmd/" rel="alternate" type="text/html" title="markdown: 进阶命令" /><published>2023-09-08T09:00:00+08:00</published><updated>2023-09-08T09:00:00+08:00</updated><id>/markdown/cmd</id><content type="html" xml:base="/markdown/cmd/"><![CDATA[<h2 id="vscode中自动生成目录">vscode中自动生成目录</h2>
 <ul>
   <li>光标放在插入目录的位置</li>
   <li>快捷键<code class="language-plaintext highlighter-rouge">ctrl+shift+p</code></li>
@@ -360,358 +750,4 @@ aplay <span class="nt">-D</span> plughw:2 Hinomi_Chinese_lijun.wav
 
 <!-- ![引入图片](/image/python/2023-09-06-nio_voice_play/image_1.jpg) -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[ubuntu命令行播放音频]]></summary></entry><entry><title type="html">ts: import红色波浪线</title><link href="/ts/ts_import/" rel="alternate" type="text/html" title="ts: import红色波浪线" /><published>2023-08-28T19:59:22+08:00</published><updated>2023-08-28T19:59:22+08:00</updated><id>/ts/ts_import</id><content type="html" xml:base="/ts/ts_import/"><![CDATA[<ul>
-  <li>引入echarts时发现<code class="language-plaintext highlighter-rouge">import * as echarts from 'echarts';</code>有红色波浪线提示，但程序可以正常运行</li>
-  <li>在tsconfig.json中添加path就好了</li>
-</ul>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">compilerOptions</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">baseUrl</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">paths</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">echarts</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">node_modules/echarts/types/dist/index.d.ts</span><span class="dl">"</span><span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>如果不行的话</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install @types/echarts
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="ts" /><summary type="html"><![CDATA[引入echarts时发现import * as echarts from 'echarts';有红色波浪线提示，但程序可以正常运行 在tsconfig.json中添加path就好了]]></summary></entry><entry><title type="html">vue: 组件入门</title><link href="/vue/vue_components/" rel="alternate" type="text/html" title="vue: 组件入门" /><published>2023-08-24T19:50:10+08:00</published><updated>2023-08-24T19:50:10+08:00</updated><id>/vue/vue_components</id><content type="html" xml:base="/vue/vue_components/"><![CDATA[<h2 id="组件传参">组件传参</h2>
-
-<ul>
-  <li>props官方：https://cn.vuejs.org/guide/components/props#prop-passing-details</li>
-</ul>
-
-<!-- 子组件类型定义 -->
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="o">&lt;</span><span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="kr">string</span> 
-<span class="p">}</span><span class="o">&gt;</span><span class="p">();</span>
-
-<span class="kd">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nf">defineProps</span><span class="p">({</span>
-    <span class="na">type</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
-        <span class="na">require</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 父组件 --&gt;</span>
-<span class="nt">&lt;MyComponent</span> <span class="na">greeting-message=</span><span class="s">"hello"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>defineProps不需要手动引入，但一些情况下可能报错 ‘defineProps’ is not defined  no-undef</li>
-  <li>解决：在根目录下创建.eslintrc.js，写入以下内容</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">root</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="na">env</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">node</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">extends</span><span class="p">:</span> <span class="p">[</span>
-      <span class="dl">'</span><span class="s1">plugin:vue/vue3-essential</span><span class="dl">'</span><span class="p">,</span>
-      <span class="dl">'</span><span class="s1">@vue/typescript/recommended</span><span class="dl">'</span><span class="p">,</span>
-    <span class="p">],</span>
-    <span class="na">parserOptions</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">parser</span><span class="p">:</span> <span class="dl">'</span><span class="s1">@typescript-eslint/parser</span><span class="dl">'</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">rules</span><span class="p">:</span> <span class="p">{</span>
-      <span class="c1">// 自定义规则可以在这里添加</span>
-    <span class="p">},</span>
-  <span class="p">};</span>
-</code></pre></div></div>
-
-<h2 id="slot">slot</h2>
-<ul>
-  <li>官方：https://cn.vuejs.org/guide/components/slots.html#slots</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 组件 --&gt;</span>
-<span class="nt">&lt;FancyButton&gt;</span>
-  Click me! <span class="c">&lt;!-- 插槽内容 --&gt;</span>
-<span class="nt">&lt;/FancyButton&gt;</span>
-</code></pre></div></div>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 模板 --&gt;</span>
-<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"fancy-btn"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;slot&gt;&lt;/slot&gt;</span> <span class="c">&lt;!-- 插槽出口 --&gt;</span>
-<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<h2 id="动态导入文件夹下所有组件">动态导入文件夹下所有组件</h2>
-
-<ul>
-  <li>参考：https://stackoverflow.com/questions/54344164/how-to-import-all-vue-components-from-a-folder</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ComponentContext</span> <span class="o">=</span> <span class="nx">require</span><span class="p">.</span><span class="nf">context</span><span class="p">(</span><span class="dl">'</span><span class="s1">./</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">vue$/i</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lazy</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">ComponentContext</span><span class="p">.</span><span class="nf">keys</span><span class="p">().</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">componentFilePath</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-
-    <span class="kd">const</span> <span class="nx">componentName</span> <span class="o">=</span> <span class="nx">componentFilePath</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">).</span><span class="nf">pop</span><span class="p">().</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">.</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="nx">Vue</span><span class="p">.</span><span class="nf">component</span><span class="p">(</span><span class="nx">componentName</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nc">ComponentContext</span><span class="p">(</span><span class="nx">componentFilePath</span><span class="p">));</span>
-
-<span class="p">});</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>其中<code class="language-plaintext highlighter-rouge">require.context(directory,useSubdirectories,regExp)</code>
-    <ul>
-      <li>directory:表示检索的目录</li>
-      <li>useSubdirectories：表示是否检索子文件夹</li>
-      <li>regExp:匹配文件的正则表达式,一般是文件名</li>
-    </ul>
-  </li>
-  <li>如果目标是html文件，可能会需要附加插件
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --s html-loader
-</code></pre></div>    </div>
-  </li>
-  <li>然后在vue.config.js里加入</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">chainWebpack</span><span class="p">:</span> <span class="nx">config</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">config</span><span class="p">.</span><span class="nx">module</span>
-      <span class="p">.</span><span class="nf">rule</span><span class="p">(</span><span class="dl">'</span><span class="s1">html</span><span class="dl">'</span><span class="p">)</span> 
-      <span class="p">.</span><span class="nf">test</span><span class="p">(</span><span class="sr">/</span><span class="se">\.</span><span class="sr">html$/</span><span class="p">)</span>
-      <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">html-loader</span><span class="dl">'</span><span class="p">)</span>
-      <span class="p">.</span><span class="nf">loader</span><span class="p">(</span><span class="dl">'</span><span class="s1">html-loader</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">}</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/vue/2023-08-24-vue_components/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[组件传参]]></summary></entry><entry><title type="html">django: token认证</title><link href="/django/token/" rel="alternate" type="text/html" title="django: token认证" /><published>2023-08-23T22:21:32+08:00</published><updated>2023-08-23T22:21:32+08:00</updated><id>/django/token</id><content type="html" xml:base="/django/token/"><![CDATA[<h2 id="准备">准备</h2>
-
-<ul>
-  <li>安装
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install djangorestframework
-</code></pre></div>    </div>
-  </li>
-  <li>settins.py</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="c1"># ...
-</span>    <span class="sh">'</span><span class="s">rest_framework</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">rest_framework.authtoken</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 添加 Token 认证应用
-</span>    <span class="c1"># ...
-</span><span class="p">]</span>
-
-<span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sh">'</span><span class="s">DEFAULT_AUTHENTICATION_CLASSES</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span>
-        <span class="sh">'</span><span class="s">rest_framework.authentication.TokenAuthentication</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 使用 Token 认证
-</span>    <span class="p">],</span>
-    <span class="sh">'</span><span class="s">DEFAULT_PERMISSION_CLASSES</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span>
-        <span class="sh">'</span><span class="s">rest_framework.permissions.IsAuthenticated</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 限制只有认证用户能访问
-</span>    <span class="p">],</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="生成token">生成token</h2>
-
-<ul>
-  <li>HMAC 是一种基于哈希函数和密钥的消息认证码算法。在生成 Token 时，Django 使用用户的密钥（通常是用户的密码的哈希值）与当前时间戳来计算 Token 的值</li>
-  <li>默认生成的token是永久有效的，定期更新有空再说</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-<span class="kn">from</span> <span class="n">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
-
-<span class="k">def</span> <span class="nf">login_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="c1"># 处理用户登录逻辑
-</span>    <span class="c1"># ...
-</span>
-    <span class="c1"># 为已登录用户生成 Token
-</span>    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">'</span><span class="s">username</span><span class="sh">'</span><span class="p">])</span>
-    <span class="n">token</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">Token</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nc">JsonResponse</span><span class="p">({</span><span class="sh">'</span><span class="s">token</span><span class="sh">'</span><span class="p">:</span> <span class="n">token</span><span class="p">.</span><span class="n">key</span><span class="p">})</span>
-</code></pre></div></div>
-
-<h2 id="验证token">验证token</h2>
-
-<ul>
-  <li>从数据库中获取与给定用户和给定 Token 键匹配的 Token 对象。如果找不到符合条件的 Token，将会引发 Token.DoesNotExist 异常。如果找到符合条件的 Token，它将被返回。
-    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
-<span class="n">token</span> <span class="o">=</span> <span class="n">Token</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">token_key</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li>一个简单的例子</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 验证token
-</span><span class="n">token_key</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">META</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">HTTP_AUTHORIZATION</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> 
-<span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">username</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">token</span> <span class="o">=</span> <span class="n">Token</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">token_key</span><span class="p">)</span>
-<span class="k">except</span> <span class="n">Token</span><span class="p">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
-    <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">authentication failed</span><span class="sh">"</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="mi">401</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>前端发送请求时，以postman为例，需要在headers添加</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "Authorization" : "Bearer [token here]"
-}
-</code></pre></div></div>
-
-<ul>
-  <li>axios发送时需要配置headers，注意后端要允许跨域请求中包含 “Authorization” 字段</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// js</span>
-<span class="nx">headers</span><span class="p">:</span> <span class="p">{</span> 
-<span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer [token here]</span><span class="dl">'</span><span class="p">,</span> 
-<span class="p">},</span>
-</code></pre></div></div>
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># py
-</span><span class="n">CORS_ALLOW_HEADERS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="c1"># ...
-</span>    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">,</span>
-    <span class="c1"># ...
-</span><span class="p">]</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[准备]]></summary></entry><entry><title type="html">django: 用户认证</title><link href="/django/mysql_user/" rel="alternate" type="text/html" title="django: 用户认证" /><published>2023-08-23T14:21:32+08:00</published><updated>2023-08-23T14:21:32+08:00</updated><id>/django/mysql_user</id><content type="html" xml:base="/django/mysql_user/"><![CDATA[<h2 id="验证用户的一个例子">验证用户的一个例子</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
-<span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">JsonResponse</span>
-
-<span class="k">def</span> <span class="nf">login_check</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">username</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">password</span><span class="sh">'</span><span class="p">)</span>
-        
-        <span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-            <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">token</span><span class="sh">'</span><span class="p">:</span> <span class="sh">"</span><span class="s">generated_token</span><span class="sh">"</span><span class="p">}</span>
-            <span class="k">return</span> <span class="nc">JsonResponse</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nc">JsonResponse</span><span class="p">({</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Invalid credentials</span><span class="sh">'</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>postman发送请求时在body里选择”x-www-form-urlencoded”并添加key</li>
-  <li>(因为使用postman时csrf报错不知道怎么解决所以在settings的MIDDLEWARE里先禁用了)</li>
-  <li>前端axios数据发送时data字段使用qs.stringify而不是JSON.stringify，前者用于构造 URL 查询字符串
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// npm i -s qs</span>
-<span class="c1">// import qs from 'qs';</span>
-<span class="nx">inputData</span><span class="p">:</span> <span class="nx">qs</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span>
-          <span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span><span class="nx">username</span><span class="p">,</span>
-          <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span><span class="nx">password</span>
-      <span class="p">})</span>
-<span class="c1">// 结果："username=user123&amp;password=pass456"</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="部分官方文档搬运">部分官方文档搬运</h2>
-
-<ul>
-  <li>参考：
-    <ul>
-      <li>https://docs.djangoproject.com/en/4.2/topics/auth/default/</li>
-    </ul>
-  </li>
-  <li>创建用户</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">create_user</span><span class="p">(</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lennon@thebeatles.com</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">johnpassword</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">user</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Lennon</span><span class="sh">"</span>
-<span class="n">ser</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
-</code></pre></div></div>
-
-<ul>
-  <li>创建super用户</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py createsuperuser --username=joe --email=joe@example.com
-</code></pre></div></div>
-
-<ul>
-  <li>修改密码</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">u</span><span class="p">.</span><span class="nf">set_password</span><span class="p">(</span><span class="sh">"</span><span class="s">new password</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">u</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
-</code></pre></div></div>
-
-<ul>
-  <li>身份验证</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span>
-
-<span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="sh">"</span><span class="s">john</span><span class="sh">"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="sh">"</span><span class="s">secret</span><span class="sh">"</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="c1"># A backend authenticated the credentials
-</span>    <span class="bp">...</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="c1"># No backend authenticated the credentials
-</span>    <span class="bp">...</span>
-</code></pre></div></div>
-
-<ul>
-  <li>权限和用户组
-    <ul>
-      <li>略，参见官方文档</li>
-    </ul>
-  </li>
-  <li>登录</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
-
-
-<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">"</span><span class="s">username</span><span class="sh">"</span><span class="p">]</span>
-    <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">POST</span><span class="p">[</span><span class="sh">"</span><span class="s">password</span><span class="sh">"</span><span class="p">]</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-        <span class="c1"># Redirect to a success page.
-</span>        <span class="bp">...</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Return an 'invalid login' error message.
-</span>        <span class="bp">...</span>
-</code></pre></div></div>
-
-<ul>
-  <li>注销</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth</span> <span class="kn">import</span> <span class="n">logout</span>
-
-
-<span class="k">def</span> <span class="nf">logout_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="nf">logout</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="c1"># Redirect to a success page.
-</span></code></pre></div></div>
-
-<ul>
-  <li>使用装饰器来限制仅登录用户访问</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
-
-<span class="nd">@login_required</span>
-<span class="k">def</span> <span class="nf">xxx</span> <span class="bp">...</span>
-</code></pre></div></div>
-
-<ul>
-  <li>可能会报错RuntimeError: ‘cryptography’ package is required for sha256_password or caching_sha2_password auth methods</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install cryptography
-</code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[ubuntu命令行播放音频]]></summary></entry></feed>

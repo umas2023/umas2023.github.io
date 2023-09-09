@@ -1,6 +1,38 @@
 [
   
     {
+      "title"    : "windows: 查看wifi密码",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/wifi_passwd/",
+      "date"     : "2023-09-09 14:20:16 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: 局域网共享文件夹",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/share_dir/",
+      "date"     : "2023-09-09 14:15:13 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: hyperv虚拟机软路由",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/hyperv_openwrt/",
+      "date"     : "2023-09-09 11:57:03 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: 删除文件被占用",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/delete_in_use/",
+      "date"     : "2023-09-09 11:49:35 +0800"
+    } ,
+  
+    {
       "title"    : "vue: ts环境下导入public目录下的json",
       "category" : "",
       "tags"     : "",
@@ -284,7 +316,7 @@
       "title"    : "amtc: mjpg-streamer给网页添加usb摄像头实时监控",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/mjpg-streamer/",
+      "url"      : "/amtc/raspberry_pi/mjpg-streamer/",
       "date"     : "2023-07-13 10:21:02 +0800"
     } ,
   
@@ -316,7 +348,7 @@
       "title"    : "amtc: 本地前端部署脚本",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/lff_setup/",
+      "url"      : "/amtc/raspberry_pi/vue/lff_setup/",
       "date"     : "2023-07-13 10:02:08 +0800"
     } ,
   
@@ -332,7 +364,7 @@
       "title"    : "amtc: 本地后端部署脚本",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/lf_deploy/",
+      "url"      : "/amtc/django/raspberry_pi/lf_deploy/",
       "date"     : "2023-07-12 23:00:19 +0800"
     } ,
   
@@ -348,7 +380,7 @@
       "title"    : "amtc: localfront本地前端开发记录",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/localfront/",
+      "url"      : "/amtc/vue/raspberry_pi/localfront/",
       "date"     : "2023-07-10 14:48:43 +0800"
     } ,
   
@@ -428,7 +460,7 @@
       "title"    : "amtc: 本地前端部署",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/nginx/rpi_frontend/",
+      "url"      : "/amtc/nginx/raspberry_pi/rpi_frontend/",
       "date"     : "2023-07-10 09:14:54 +0800"
     } ,
   
@@ -452,7 +484,7 @@
       "title"    : "amtc: 树莓派转发校园网",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/rpi_wifi/",
+      "url"      : "/amtc/linux/raspberry_pi/rpi_wifi/",
       "date"     : "2023-07-06 16:22:43 +0800"
     } ,
   
@@ -468,7 +500,7 @@
       "title"    : "amtc: 连接opcua，后端部署",
       "category" : "",
       "tags"     : "",
-      "url"      : "/amtc/python/opcua/",
+      "url"      : "/amtc/python/raspberry_pi/opcua/",
       "date"     : "2023-07-05 15:50:52 +0800"
     } ,
   

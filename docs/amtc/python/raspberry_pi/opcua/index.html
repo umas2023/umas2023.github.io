@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>amtc: 连接opcua，后端部署 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="amtc: 连接opcua，后端部署" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="windows通过uaexpert连接" />
+<meta property="og:description" content="windows通过uaexpert连接" />
+<link rel="canonical" href="/amtc/python/raspberry_pi/opcua/" />
+<meta property="og:url" content="/amtc/python/raspberry_pi/opcua/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-05T15:50:52+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="amtc: 连接opcua，后端部署" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-05T15:50:52+08:00","datePublished":"2023-07-05T15:50:52+08:00","description":"windows通过uaexpert连接","headline":"amtc: 连接opcua，后端部署","mainEntityOfPage":{"@type":"WebPage","@id":"/amtc/python/raspberry_pi/opcua/"},"url":"/amtc/python/raspberry_pi/opcua/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">amtc: 连接opcua，后端部署</h1>
+    <h3>电脑/树莓派连接opcua，后端helloworld，service开机自启</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#windows通过uaexpert连接">windows通过uaexpert连接</a></li>
+<li class="toc-entry toc-h2"><a href="#前端node-opcuajs">前端node-opcua（js）</a></li>
+<li class="toc-entry toc-h2"><a href="#后端opcuapython">后端opcua（python）</a></li>
+<li class="toc-entry toc-h2"><a href="#树莓派后端">树莓派后端</a></li>
+<li class="toc-entry toc-h2"><a href="#后端脚本开机自动运行">后端脚本开机自动运行</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="windows通过uaexpert连接">windows通过uaexpert连接</h2>
+
+<ul>
+  <li>网线连接设备，记下设备ip（192.168.0.112）</li>
+  <li>电脑有线连接ipv4设置为与设备同一网段，随便定一个ip</li>
+</ul>
+
+<p><img src="/image/windows/2023-07-05-opcua/image_2.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>打开uaexpert，点击上方加号添加设备，端口4840</li>
+</ul>
+
+<p><img src="/image/windows/2023-07-05-opcua/image_1.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>流水线的参数在logic目录下，鼠标拖到右边可以查看，out型变量（气阀）可以在右边双击修改</li>
+</ul>
+
+<p><img src="/image/windows/2023-07-05-opcua/image_3.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>发现偶尔会突然连接不上，旁边电箱总闸Main重启一下</li>
+</ul>
+
+<h2 id="前端node-opcuajs">前端node-opcua（js）</h2>
+
+<ul>
+  <li>node-opcua库
+    <ul>
+      <li>https://www.npmjs.com/package/node-opcua</li>
+    </ul>
+  </li>
+  <li>安装</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i -s node-opcua
+</code></pre></div></div>
+<ul>
+  <li>导入</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import * as opcua from "node-opcua";
+</code></pre></div></div>
+
+<ul>
+  <li>经测试导入到vue项目之后有很多报错Can’t resolve xxx …</li>
+  <li>放弃，改用后端连接opcua</li>
+</ul>
+
+<h2 id="后端opcuapython">后端opcua（python）</h2>
+
+<ul>
+  <li>
+    <p>opcua库</p>
+  </li>
+  <li>
+    <p>读取单个节点的例子</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">opcua</span> <span class="kn">import</span> <span class="n">Client</span>  <span class="c1"># pip install opcua
+</span>
+<span class="c1"># OPC UA 服务器地址
+</span><span class="n">server_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">opc.tcp://192.168.0.112:4840</span><span class="sh">"</span>
+
+<span class="c1"># 创建 OPC UA 客户端
+</span><span class="n">client</span> <span class="o">=</span> <span class="nc">Client</span><span class="p">(</span><span class="n">server_url</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 连接到 OPC UA 服务器
+</span>    <span class="n">client</span><span class="p">.</span><span class="nf">connect</span><span class="p">()</span>
+
+    <span class="c1"># 获取节点对象
+</span>    <span class="n">var_node</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">get_node</span><span class="p">(</span><span class="sh">"</span><span class="s">ns=2;s=Application.PlcProg.in00</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">var_node</span><span class="p">.</span><span class="nf">get_value</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Variable value:</span><span class="sh">"</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># 断开与 OPC UA 服务器的连接
+</span>    <span class="n">client</span><span class="p">.</span><span class="nf">disconnect</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>其中get_node函数中的id可以在uaexpert软件中看到，软件中选中然后ctrl+c即可复制id</li>
+</ul>
+
+<p><img src="/image/windows/2023-07-05-opcua/image_4.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>可以通过一个简单的字符串变换直接把uaexpert中复制来的id转换为python函数可以识别的形式</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 要修改的节点的 Node ID
+</span><span class="n">node_id_str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">NS2|String|Application.PlcProg.in00</span><span class="sh">"</span>
+
+<span class="c1"># 解析 Node ID
+</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">node_id_str</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">|</span><span class="sh">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">NS</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">)</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">node_id_str</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">|</span><span class="sh">"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">node_id</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">ns=</span><span class="si">{</span><span class="n">namespace</span><span class="si">}</span><span class="s">;s=</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="sh">"</span>
+
+<span class="c1"># 使用 Node ID 获取节点对象
+</span><span class="n">node</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">get_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>遍历所有节点的例子</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">opcua</span> <span class="kn">import</span> <span class="n">Client</span>  <span class="c1"># pip install opcua
+</span>
+<span class="c1"># OPC UA 服务器地址
+</span><span class="n">server_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">opc.tcp://192.168.0.112:4840</span><span class="sh">"</span>
+
+<span class="c1"># 创建 OPC UA 客户端
+</span><span class="n">client</span> <span class="o">=</span> <span class="nc">Client</span><span class="p">(</span><span class="n">server_url</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">browse_nodes</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="c1"># 获取节点的子节点
+</span>    <span class="n">child_nodes</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nf">get_children</span><span class="p">()</span>
+
+    <span class="c1"># 遍历子节点
+</span>    <span class="k">for</span> <span class="n">child_node</span> <span class="ow">in</span> <span class="n">child_nodes</span><span class="p">:</span>
+        <span class="c1"># 打印节点的名称和节点 ID
+</span>        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Node Name:</span><span class="sh">"</span><span class="p">,</span> <span class="n">child_node</span><span class="p">.</span><span class="nf">get_display_name</span><span class="p">().</span><span class="n">Text</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Node ID:</span><span class="sh">"</span><span class="p">,</span> <span class="n">child_node</span><span class="p">.</span><span class="n">nodeid</span><span class="p">)</span>
+
+        <span class="c1"># 递归遍历子节点的子节点
+</span>        <span class="nf">browse_nodes</span><span class="p">(</span><span class="n">child_node</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 连接到 OPC UA 服务器
+</span>    <span class="n">client</span><span class="p">.</span><span class="nf">connect</span><span class="p">()</span>
+
+    <span class="c1"># 获取服务器上的根节点
+</span>    <span class="n">root_node</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">get_root_node</span><span class="p">()</span>
+
+    <span class="c1"># 递归遍历节点树
+</span>    <span class="nf">browse_nodes</span><span class="p">(</span><span class="n">root_node</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># 断开与 OPC UA 服务器的连接
+</span>    <span class="n">client</span><span class="p">.</span><span class="nf">disconnect</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>注意并不是所有节点都可以访问，一些节点受权限保护，报错：</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opcua.ua.uaerrors._auto.BadNotReadable: "The access level does not allow reading or subscribing to the Node."(BadNotReadable)
+</code></pre></div></div>
+
+<ul>
+  <li>修改节点的值通过set_value函数</li>
+  <li>注意变量的类型要与设备需求一致比如这里的Boolean型不能写字符串”true”</li>
+  <li>一个例子：</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="n">opcua</span> <span class="kn">import</span> <span class="n">Client</span>  <span class="c1"># pip install opcua
+</span>
+<span class="c1"># OPC UA 服务器地址
+</span><span class="n">server_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">opc.tcp://192.168.0.112:4840</span><span class="sh">"</span>
+
+<span class="c1"># 创建 OPC UA 客户端
+</span><span class="n">client</span> <span class="o">=</span> <span class="nc">Client</span><span class="p">(</span><span class="n">server_url</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 连接到 OPC UA 服务器
+</span>    <span class="n">client</span><span class="p">.</span><span class="nf">connect</span><span class="p">()</span>
+
+    <span class="c1"># 要修改的节点的 Node ID
+</span>    <span class="n">node_id_str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">NS2|String|Application.PlcProg.out01</span><span class="sh">"</span>
+
+    <span class="c1"># 解析 Node ID
+</span>    <span class="n">namespace</span> <span class="o">=</span> <span class="n">node_id_str</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">|</span><span class="sh">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">NS</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">)</span>
+    <span class="n">identifier</span> <span class="o">=</span> <span class="n">node_id_str</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">|</span><span class="sh">"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">node_id</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">ns=</span><span class="si">{</span><span class="n">namespace</span><span class="si">}</span><span class="s">;s=</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="sh">"</span>
+
+    <span class="c1"># 使用 Node ID 获取节点对象
+</span>    <span class="n">node</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">get_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+
+    <span class="c1"># 要设置的新值
+</span>    <span class="n">new_value</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="c1"># 设置节点的新值
+</span>    <span class="n">node</span><span class="p">.</span><span class="nf">set_value</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Node ID:</span><span class="sh">"</span><span class="p">,</span> <span class="n">node_id</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">New Value:</span><span class="sh">"</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># 断开与 OPC UA 服务器的连接
+</span>    <span class="n">client</span><span class="p">.</span><span class="nf">disconnect</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<h2 id="树莓派后端">树莓派后端</h2>
+
+<ul>
+  <li>简单化，直接图形界面</li>
+</ul>
+
+<p><img src="/image/windows/2023-07-05-opcua/image_5.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>由于有线和无线不在同一个网段，</li>
+</ul>
+
+<p>添加路由规则，将所有发往192.168.0.x网段的数据包发送到192.168.1.x这个网关进行转发</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ip route add 192.168.0.0/24 via 192.168.1.x dev wlan0
+</code></pre></div></div>
+
+<ul>
+  <li>查看
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip route show
+</code></pre></div>    </div>
+  </li>
+  <li>后台运行后端</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 运行</span>
+python3 /home/amtc/lf_localback/localback/manage.py runserver 0.0.0.0:4090 &amp;
+<span class="c"># 查看</span>
+ps <span class="nt">-ef</span>|grep manage.py
+<span class="c"># 杀</span>
+<span class="nb">kill </span>2445
+</code></pre></div></div>
+
+<h2 id="后端脚本开机自动运行">后端脚本开机自动运行</h2>
+<ul>
+  <li>注意脚本是以root身份运行的，如果没有使用docker或者虚拟环境的话要在root用户下pip install</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/systemd/system/start_localback.service
+</code></pre></div></div>
+
+<ul>
+  <li>写入以下内容</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Start Local Backend Server
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/python3 /home/amtc/lf_localback/localback/manage.py runserver 0.0.0.0:4090
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/amtc/lf_localback/localback
+<span class="nv">Restart</span><span class="o">=</span>always
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div></div>
+
+<ul>
+  <li>控制</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 更新服务列表</span>
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="c"># 启动服务</span>
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>start_localback.service
+<span class="c"># 查看状态</span>
+<span class="nb">sudo </span>systemctl status start_localback.service
+<span class="c"># 停止</span>
+<span class="nb">sudo </span>systemctl stop start_localback.service
+<span class="c"># 重启</span>
+<span class="nb">sudo </span>systemctl restart start_localback.service
+</code></pre></div></div>
+
+<ul>
+  <li>开启自动运行（注意以下方式不适用于ubuntu22）（已被验证为无效）
+    <ul>
+      <li>添加/etc/init.d/start_localback.sh</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/init.d/start_localback.sh
+<span class="nb">sudo chmod</span> +x /etc/init.d/start_localback.sh
+<span class="c"># 添加到启动列表</span>
+<span class="nb">sudo </span>update-rc.d start_localback.sh defaults 90
+<span class="c"># 查看</span>
+<span class="nb">sudo </span>service <span class="nt">--status-all</span>
+<span class="c"># 测试</span>
+<span class="nb">sudo </span>service start_localback.sh start
+<span class="c"># 移除</span>
+<span class="nb">sudo </span>update-rc.d <span class="nt">-f</span> start_localback.sh remove
+</code></pre></div></div>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
