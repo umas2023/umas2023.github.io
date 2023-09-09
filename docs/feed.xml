@@ -1,4 +1,163 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-06T14:31:08+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</subtitle><entry><title type="html">python: 使用python驱动声卡播放音频(ubuntu)</title><link href="/python/nio_voice_play/" rel="alternate" type="text/html" title="python: 使用python驱动声卡播放音频(ubuntu)" /><published>2023-09-06T14:16:58+08:00</published><updated>2023-09-06T14:16:58+08:00</updated><id>/python/nio_voice_play</id><content type="html" xml:base="/python/nio_voice_play/"><![CDATA[<h2 id="ubuntu命令行播放音频">ubuntu命令行播放音频</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-09T11:37:26+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">vue: ts环境下导入public目录下的json</title><link href="/vue/import_json/" rel="alternate" type="text/html" title="vue: ts环境下导入public目录下的json" /><published>2023-09-08T19:50:10+08:00</published><updated>2023-09-08T19:50:10+08:00</updated><id>/vue/import_json</id><content type="html" xml:base="/vue/import_json/"><![CDATA[<ul>
+  <li>一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加<code class="language-plaintext highlighter-rouge">"resolveJsonModule": true,</code>即可</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">assets_json</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@/utils/assets_conf.json</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>如果json在public路径下，直接导入会报错</li>
+  <li>在项目根目录（或者如果已经定义了utils.d.ts的话在utils目录也可以）下新建.d.ts，比如assets_conf.d.ts，写入以下内容</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">*.json</span><span class="dl">"</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">value</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+    <span class="k">export</span> <span class="k">default</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>这时再导入就不会报错了</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">assets_json</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">/public/config/assets_conf.json</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加"resolveJsonModule": true,即可]]></summary></entry><entry><title type="html">termux: hello world</title><link href="/linux/termux-hello/" rel="alternate" type="text/html" title="termux: hello world" /><published>2023-09-08T10:16:49+08:00</published><updated>2023-09-08T10:16:49+08:00</updated><id>/linux/termux-hello</id><content type="html" xml:base="/linux/termux-hello/"><![CDATA[<h2 id="基本命令">基本命令</h2>
+
+<ul>
+  <li>termux-change-repo
+    <ul>
+      <li>换源，空格键选中</li>
+    </ul>
+  </li>
+  <li>termux-setup-storage
+    <ul>
+      <li>创建storage文件夹，直接访问手机文件</li>
+    </ul>
+  </li>
+  <li>pkg install vim
+    <ul>
+      <li>有时候apt可能不好用，改为pkg</li>
+    </ul>
+  </li>
+  <li>ssh远程
+    <ul>
+      <li>实测termux里面的ubuntu的ssh服务启不起来，只能先ssh进termux再进ubuntu</li>
+      <li>更新：termux和ubuntu共用8022端口，不能同时开ssh，把termux的ssh关了就可以开ubuntu的ssh了</li>
+      <li>pkg install openssh</li>
+      <li>看我是谁：whoami</li>
+      <li>设置密码：passwd</li>
+      <li>启动服务：sshd</li>
+      <li>电脑连接端口是8022：ssh u0_a153@192.168.1.109 -p 8022</li>
+      <li>mate10用户名u0_a243</li>
+      <li>nova9用户名u0_a282</li>
+      <li>matepad用户名u0_a153</li>
+      <li>记得把vpn都退了不然一直timeout，md查了好久居然是因为这个</li>
+    </ul>
+  </li>
+  <li>termux调用摄像头，参考：https://zhuanlan.zhihu.com/p/381044910</li>
+</ul>
+
+<h2 id="安装ubuntu">安装ubuntu</h2>
+
+<ul>
+  <li>安装ubuntu
+    <ul>
+      <li>安装工具：pkg install proot-distro</li>
+      <li>记得先pkg update一下</li>
+      <li>查看可安装版本：proot-distro list</li>
+      <li>安装：proot-distro install ubuntu</li>
+      <li>登录：proot-distro login ubuntu</li>
+      <li>文件：termux启用storage之后，Ubuntu中 /sdcard 目录即为手机存储</li>
+    </ul>
+  </li>
+  <li>termux设置默认进入ubuntu：
+    <ul>
+      <li>新建.profile</li>
+      <li>加入登录命令</li>
+    </ul>
+  </li>
+  <li>
+    <p>手机文件在/sdcard目录下</p>
+  </li>
+  <li>安装code－server
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>curl -fsSL https://code-server.dev/install.sh</td>
+              <td>sh</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>挂梯子↑</li>
+      <li>code-server</li>
+      <li>cat .config/code-server/config.yaml</li>
+      <li>把密码记住</li>
+      <li>fe2bee81b0fa36545baec7ad</li>
+      <li>浏览器访问127.0.0.1:8080</li>
+      <li>输完密码黑屏/白屏换个浏览器，安卓edge可行chrome不行</li>
+      <li>密码替换：sed -i “/^passwd=*/cpasswd=666” config.yaml</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[基本命令]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派命令行联网</title><link href="/raspberry_pi/linux/server_net/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派命令行联网" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/linux/server_net</id><content type="html" xml:base="/raspberry_pi/linux/server_net/"><![CDATA[<ul>
+  <li>参考
+    <ul>
+      <li>https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="linux" /><summary type="html"><![CDATA[参考 https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派ssh</title><link href="/raspberry_pi/ssh/vscode/windows/ssh/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派ssh" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/ssh/vscode/windows/ssh</id><content type="html" xml:base="/raspberry_pi/ssh/vscode/windows/ssh/"><![CDATA[<h2 id="windows平台vscode添加ssh公钥">windows平台vscode添加ssh公钥</h2>
+<ul>
+  <li>windows平台下运行：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096 
+</code></pre></div>    </div>
+  </li>
+  <li>Linux服务器拷贝内容
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Users\umas2017\.ssh\id_rsa.pub 
+</code></pre></div>    </div>
+    <p>到</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~/.ssh/authorized_keys
+</code></pre></div>    </div>
+  </li>
+  <li>服务器重启ssh
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service ssh restart
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="连接错误的解决方法">连接错误的解决方法</h2>
+
+<ul>
+  <li>
+    <p>大部分情况下首先排查对应端口是否变化，删除c盘user下.ssh/known_hosts</p>
+  </li>
+  <li>
+    <p>卡在download vscode server的情况可以试试手动下载这个包</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/.vscode-server/bin
+tree
+<span class="c"># 返回一串id，比如我的是57fd6d0195bb9b9d1b49f6da5db789060795de47</span>
+<span class="c"># 手动下载这个包：https://update.code.visualstudio.com/commit:57fd6d0195bb9b9d1b49f6da5db789060795de47/server-linux-x64/stable</span>
+
+wget https://vscode.cdn.azure.cn/stable/57fd6d0195bb9b9d1b49f6da5db789060795de47/vscode-server-linux-x64.tar.gz
+
+<span class="c"># 拷贝到id的目录下解压</span>
+<span class="nb">tar</span> <span class="nt">-xvzf</span> vscode-server-linux-x64.tar.gz <span class="nt">--strip-components</span> 1
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="ssh" /><category term="vscode" /><category term="windows" /><summary type="html"><![CDATA[windows平台vscode添加ssh公钥 windows平台下运行： ssh-keygen -t rsa -b 4096 Linux服务器拷贝内容 C:\Users\umas2017\.ssh\id_rsa.pub 到 ~/.ssh/authorized_keys]]></summary></entry><entry><title type="html">markdown: 进阶命令</title><link href="/markdown/cmd/" rel="alternate" type="text/html" title="markdown: 进阶命令" /><published>2023-09-08T09:00:00+08:00</published><updated>2023-09-08T09:00:00+08:00</updated><id>/markdown/cmd</id><content type="html" xml:base="/markdown/cmd/"><![CDATA[<h2 id="vscode中自动生成目录">vscode中自动生成目录</h2>
+<ul>
+  <li>光标放在插入目录的位置</li>
+  <li>快捷键<code class="language-plaintext highlighter-rouge">ctrl+shift+p</code></li>
+  <li>输入 Markdown: Create Table of Contents 并选择该命令</li>
+</ul>]]></content><author><name></name></author><category term="markdown" /><summary type="html"><![CDATA[vscode中自动生成目录 光标放在插入目录的位置 快捷键ctrl+shift+p 输入 Markdown: Create Table of Contents 并选择该命令]]></summary></entry><entry><title type="html">python: 使用python驱动声卡播放音频(ubuntu)</title><link href="/python/nio_voice_play/" rel="alternate" type="text/html" title="python: 使用python驱动声卡播放音频(ubuntu)" /><published>2023-09-06T14:16:58+08:00</published><updated>2023-09-06T14:16:58+08:00</updated><id>/python/nio_voice_play</id><content type="html" xml:base="/python/nio_voice_play/"><![CDATA[<h2 id="ubuntu命令行播放音频">ubuntu命令行播放音频</h2>
 
 <ul>
   <li>aplay命令
@@ -283,6 +442,47 @@ aplay <span class="nt">-D</span> plughw:2 Hinomi_Chinese_lijun.wav
 <span class="nt">&lt;/button&gt;</span>
 </code></pre></div></div>
 
+<h2 id="动态导入文件夹下所有组件">动态导入文件夹下所有组件</h2>
+
+<ul>
+  <li>参考：https://stackoverflow.com/questions/54344164/how-to-import-all-vue-components-from-a-folder</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ComponentContext</span> <span class="o">=</span> <span class="nx">require</span><span class="p">.</span><span class="nf">context</span><span class="p">(</span><span class="dl">'</span><span class="s1">./</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">vue$/i</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lazy</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">ComponentContext</span><span class="p">.</span><span class="nf">keys</span><span class="p">().</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">componentFilePath</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+    <span class="kd">const</span> <span class="nx">componentName</span> <span class="o">=</span> <span class="nx">componentFilePath</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">).</span><span class="nf">pop</span><span class="p">().</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">.</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">Vue</span><span class="p">.</span><span class="nf">component</span><span class="p">(</span><span class="nx">componentName</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nc">ComponentContext</span><span class="p">(</span><span class="nx">componentFilePath</span><span class="p">));</span>
+
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>其中<code class="language-plaintext highlighter-rouge">require.context(directory,useSubdirectories,regExp)</code>
+    <ul>
+      <li>directory:表示检索的目录</li>
+      <li>useSubdirectories：表示是否检索子文件夹</li>
+      <li>regExp:匹配文件的正则表达式,一般是文件名</li>
+    </ul>
+  </li>
+  <li>如果目标是html文件，可能会需要附加插件
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --s html-loader
+</code></pre></div>    </div>
+  </li>
+  <li>然后在vue.config.js里加入</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">chainWebpack</span><span class="p">:</span> <span class="nx">config</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">config</span><span class="p">.</span><span class="nx">module</span>
+      <span class="p">.</span><span class="nf">rule</span><span class="p">(</span><span class="dl">'</span><span class="s1">html</span><span class="dl">'</span><span class="p">)</span> 
+      <span class="p">.</span><span class="nf">test</span><span class="p">(</span><span class="sr">/</span><span class="se">\.</span><span class="sr">html$/</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">html-loader</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">loader</span><span class="p">(</span><span class="dl">'</span><span class="s1">html-loader</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
 <!-- ![引入图片](/image/vue/2023-08-24-vue_components/image_1.jpg) -->
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[组件传参]]></summary></entry><entry><title type="html">django: token认证</title><link href="/django/token/" rel="alternate" type="text/html" title="django: token认证" /><published>2023-08-23T22:21:32+08:00</published><updated>2023-08-23T22:21:32+08:00</updated><id>/django/token</id><content type="html" xml:base="/django/token/"><![CDATA[<h2 id="准备">准备</h2>
@@ -514,621 +714,4 @@ aplay <span class="nt">-D</span> plughw:2 Hinomi_Chinese_lijun.wav
 </ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install cryptography
-</code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry><entry><title type="html">django: mysql数据库增删改查基本操作</title><link href="/django/mysql_func/" rel="alternate" type="text/html" title="django: mysql数据库增删改查基本操作" /><published>2023-08-23T13:21:32+08:00</published><updated>2023-08-23T13:21:32+08:00</updated><id>/django/mysql_func</id><content type="html" xml:base="/django/mysql_func/"><![CDATA[<h2 id="准备">准备</h2>
-
-<ul>
-  <li>mysql安装启动(ubuntu)</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装</span>
-apt <span class="nb">install </span>mysql-server mysql-client
-<span class="c"># 查看初始密码</span>
-<span class="nb">sudo cat</span> /etc/mysql/debian.cnf
-<span class="c"># 启动</span>
-<span class="nb">sudo </span>service mysql start
-<span class="c"># 登录</span>
-mysql <span class="nt">-u</span><span class="o">[</span>用户名] <span class="nt">-p</span><span class="o">[</span>密码]
-</code></pre></div></div>
-
-<ul>
-  <li>修改密码(sql)</li>
-</ul>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span>  <span class="k">BY</span> <span class="s1">'123456'</span><span class="p">;</span>
-<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
-<span class="n">quit</span><span class="p">;</span> 
-</code></pre></div></div>
-
-<ul>
-  <li>创建数据库(sql)</li>
-</ul>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">database</span> <span class="n">ubk</span> <span class="k">default</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
-</code></pre></div></div>
-
-<h2 id="创建一个带用户认证的model">创建一个带用户认证的model</h2>
-
-<ul>
-  <li>新增一个app</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp app_model
-</code></pre></div></div>
-
-<ul>
-  <li>settings.py中添加这个app</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="o">***</span>
-    <span class="sh">'</span><span class="s">app_model</span><span class="sh">'</span>
-<span class="p">]</span>
-</code></pre></div></div>
-
-<ul>
-  <li>在 @/app_model/models.py中添加数据模型</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-
-<span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-<span class="kn">from</span> <span class="n">django.db.models</span> <span class="kn">import</span> <span class="n">JSONField</span>
-
-<span class="c1"># 类名ModelRec对应数据库中的Tabel名是app_model_modelrec
-</span>
-<span class="k">class</span> <span class="nc">ModelRec</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">CASCADE</span><span class="p">)</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">date</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">amount</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">amount</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">commit</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">commit</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">tag</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="nc">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">tag</span><span class="sh">'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>迁移数据库（django）</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py makemigrations
-python manage.py migrate
-
-<span class="c"># 如果对model进行了大量修改导致migrate冲突，可以把数据库Tables内所有表全部删除后重新migrate</span>
-</code></pre></div></div>
-
-<h2 id="新增用户的一个示例app">新增用户的一个示例app</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
-
-<span class="kn">from</span> <span class="n">app_model.models</span> <span class="kn">import</span> <span class="n">ModelRec</span>
-<span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-
-<span class="kn">import</span> <span class="n">json</span>
-
-<span class="k">def</span> <span class="nf">add_user</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">basic response test</span><span class="sh">'''</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">))</span>
-    <span class="n">user_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">user_name</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">password</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">password</span><span class="sh">'</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_name</span><span class="p">).</span><span class="nf">exists</span><span class="p">():</span>
-        <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">User already exists.</span><span class="sh">"</span><span class="p">)</span>
-
-    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">username</span> <span class="o">=</span> <span class="n">user_name</span><span class="p">)</span>
-    <span class="n">user</span><span class="p">.</span><span class="nf">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
-    <span class="n">user</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
-    
-    <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">Success.</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>postman发送请求；在body中添加json</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "user_name":"admin",
-    "password":"1234"
-}
-</code></pre></div></div>
-
-<ul>
-  <li>新增的用户可以在数据库Tabels/auth_user中看到</li>
-</ul>
-
-<h2 id="添加数据的一个示例app">添加数据的一个示例app</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kn">from</span> <span class="n">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
-
-<span class="kn">from</span> <span class="n">app_model.models</span> <span class="kn">import</span> <span class="n">ModelRec</span>
-<span class="kn">from</span> <span class="n">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
-
-<span class="kn">import</span> <span class="n">json</span>
-
-
-<span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">basic response test</span><span class="sh">'''</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">))</span>
-    <span class="n">user_name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">user_name</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">date</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">amount</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">commit</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">commit</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">tag</span><span class="sh">'</span><span class="p">]</span>
-
-    <span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="n">user_id</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_name</span><span class="p">)</span>
-
-    <span class="n">new_object</span> <span class="o">=</span> <span class="nc">ModelRec</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user_id</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="n">commit</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
-    <span class="n">new_object</span><span class="p">.</span><span class="nf">save</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="nc">HttpResponse</span><span class="p">(</span><span class="sh">"</span><span class="s">Hello world </span><span class="sh">"</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>postman发送请求；在body中添加json</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "user_name":"admin",
-    "date":"20230823",
-    "amount":"7225",
-    "commit":"api test",
-    "tag":"test"
-}
-</code></pre></div></div>
-
-<ul>
-  <li>新增的用户可以在数据库Tabels/app_model_modelrec中看到</li>
-</ul>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[准备]]></summary></entry><entry><title type="html">vue: 使用axios和后端通信</title><link href="/vue/vue_axios/" rel="alternate" type="text/html" title="vue: 使用axios和后端通信" /><published>2023-08-21T14:27:00+08:00</published><updated>2023-08-21T14:27:00+08:00</updated><id>/vue/vue_axios</id><content type="html" xml:base="/vue/vue_axios/"><![CDATA[<h2 id="引入">引入</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i -s axios
-</code></pre></div></div>
-
-<h2 id="在电脑配件里写的通用axios函数">在电脑配件里写的通用axios函数</h2>
-
-<ul>
-  <li>重试次数引入了额外的包axiosRetry</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">axiosRetry</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios-retry</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="cm">/**
- * axios基本函数, 接收任意url
- * @param {string}  inputUrl        ip地址
- * @param {object}  inputHeaders    请求头；default = {}
- * @param {string}  inputApi        api名, 带斜杠, 如"oi_r/"
- * @param {string}  inputMethod     "get" / "put" / "post" ...
- * @param {int}     inputTimeout    超时时长；default = 5000 (set in conf)
- * @param {int}     inputRetry      重试次数；default = 1
- * @param {object}  inputData       body；default = {}
- * @param {function} inputFuncGetRes callback, 获取返回值；default = printRes()
- * @param {function} inputFuncGetErr callback, 获取错误信息；default = printRes()
- */</span>
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">use_axios</span><span class="p">({</span>
-  <span class="nx">inputUrl</span><span class="p">,</span>
-  <span class="nx">inputHeaders</span><span class="p">,</span>
-  <span class="nx">inputApi</span><span class="p">,</span>
-  <span class="nx">inputMethod</span><span class="p">,</span>
-  <span class="nx">inputTimeout</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
-  <span class="nx">inputRetry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">inputData</span> <span class="o">=</span> <span class="p">{},</span>
-  <span class="nx">inputFuncGetRes</span> <span class="o">=</span> <span class="nx">printRes</span><span class="p">,</span>
-  <span class="nx">inputFuncGetErr</span> <span class="o">=</span> <span class="nx">printRes</span><span class="p">,</span>
-<span class="p">})</span> <span class="p">{</span>
-  <span class="c1">// 设置重试次数和等待时间</span>
-  <span class="nf">axiosRetry</span><span class="p">(</span><span class="nx">axios</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">retries</span><span class="p">:</span> <span class="nx">inputRetry</span><span class="p">,</span> <span class="c1">// 设置自动发送请求次数</span>
-    <span class="na">retryDelay</span><span class="p">:</span> <span class="p">(</span><span class="nx">retryCount</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">retryCount</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// 重复请求延迟</span>
-    <span class="p">},</span>
-    <span class="na">shouldResetTimeout</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//  重置超时时间</span>
-    <span class="na">retryCondition</span><span class="p">:</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="c1">//true为打开自动发送请求, false为关闭自动发送请求</span>
-      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">timeout</span><span class="dl">"</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-  <span class="p">});</span>
-
-  <span class="c1">// 发送请求</span>
-  <span class="nf">axios</span><span class="p">({</span>
-    <span class="na">method</span><span class="p">:</span> <span class="nx">inputMethod</span><span class="p">,</span>
-    <span class="c1">// url: inputUrl + inputApi + "/", //不加斜杠报错301</span>
-    <span class="na">url</span><span class="p">:</span> <span class="nx">inputUrl</span> <span class="o">+</span> <span class="nx">inputApi</span><span class="p">,</span> <span class="c1">// 有些api不要斜杠, 如user_id</span>
-    <span class="na">data</span><span class="p">:</span> <span class="nx">inputData</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="nx">inputHeaders</span><span class="p">,</span>
-    <span class="na">timeout</span><span class="p">:</span> <span class="nx">inputTimeout</span><span class="p">,</span>
-  <span class="p">})</span>
-    <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nf">inputFuncGetRes</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">api_axios get error : </span><span class="dl">"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
-      <span class="nf">inputFuncGetErr</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-    <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><img src="/image/vue/2023-08-21-vue_axiso/image_1.jpg" alt="引入图片" /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[引入]]></summary></entry><entry><title type="html">python: 传值调用、传引用调用</title><link href="/python/value_refer/" rel="alternate" type="text/html" title="python: 传值调用、传引用调用" /><published>2023-07-17T14:01:41+08:00</published><updated>2023-07-17T14:01:41+08:00</updated><id>/python/value_refer</id><content type="html" xml:base="/python/value_refer/"><![CDATA[<ul>
-  <li>
-    <p>在 Python 中，参数传递的方式分为传值调用和传引用调用两种方式。</p>
-  </li>
-  <li>
-    <p>对于不可变对象，如数字、字符串、元组等，Python 采用的是传值调用的方式。这意味着，在将这些对象作为参数传递给函数或方法时，其实是将对象的值复制一份传递给了函数或方法，而不是对象本身。因此，在函数或方法内部修改参数的值，不会影响到原始对象。</p>
-  </li>
-  <li>
-    <p>对于可变对象，如列表、字典等，则采用的是传引用调用的方式。这意味着，在将这些对象作为参数传递给函数或方法时，其实是将对象的引用（即指向对象的内存地址）传递给了函数或方法。因此，在函数或方法内部修改参数的值，将会影响到原始对象。</p>
-  </li>
-  <li>
-    <p>例子：</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AutoPlay</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="sh">""</span><span class="p">,</span> <span class="n">stop_flag</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="bp">...</span>
-
-    <span class="k">def</span> <span class="nf">auto_run</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">INTERVAL</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">stop_flag</span><span class="p">:</span>
-                <span class="k">break</span>
-
-<span class="c1"># 调用：
-</span><span class="n">stop_flag</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="nc">AutoPlay</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="sh">""</span><span class="p">,</span> <span class="n">stop_flag</span><span class="o">=</span><span class="n">stop_flag</span><span class="p">).</span><span class="nf">auto_run_th</span><span class="p">()</span>
-
-<span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">stop_flag</span> <span class="o">=</span> <span class="bp">True</span>
-</code></pre></div></div>
-
-<ul>
-  <li>以上程序不会在3秒后停下</li>
-  <li>要想实现外部控制程序停止，可以改成数组（call by reference）</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stop_flag</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span>
-<span class="n">stop_flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[在 Python 中，参数传递的方式分为传值调用和传引用调用两种方式。]]></summary></entry><entry><title type="html">jekyll: 内嵌vue页面</title><link href="/jekyll/inner_vue/" rel="alternate" type="text/html" title="jekyll: 内嵌vue页面" /><published>2023-07-16T14:43:34+08:00</published><updated>2023-07-16T14:43:34+08:00</updated><id>/jekyll/inner_vue</id><content type="html" xml:base="/jekyll/inner_vue/"><![CDATA[<h2 id="尝试1">尝试1</h2>
-
-<ul>
-  <li>jekyll项目右上角的导航栏是通过目录下的html文件生成的</li>
-  <li>把vue项目打包后放在jekyll目录下应该可以直接嵌入</li>
-  <li>注意右上角导航的顺序是按照html文件名排序，可以用数字来排序</li>
-</ul>
-
-<p><img src="/image/jekyll/2023-07-16-inner_vue/image_1.jpg" alt="引入图片" />
-<img src="/image/jekyll/2023-07-16-inner_vue/image_2.jpg" alt="引入图片" /></p>
-
-<ul>
-  <li>创建项目</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue create inner_vue
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>(编辑vue)</p>
-  </li>
-  <li>
-    <p>修改vue.config.js，修改输出index.html的文件名</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@vue/cli-service</span><span class="dl">'</span><span class="p">)</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">defineConfig</span><span class="p">({</span>
-  <span class="na">transpileDependencies</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">home</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">entry</span><span class="p">:</span> <span class="dl">'</span><span class="s1">src/main.ts</span><span class="dl">'</span><span class="p">,</span>
-      <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">public/index.html</span><span class="dl">'</span><span class="p">,</span>
-      <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">c99_inner.html</span><span class="dl">'</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
-<ul>
-  <li>↑如果按照上面的方法修改，npm run serve会报错</li>
-  <li>
-    <p>直接把public/index.html改名为public/c99_inner.html就行了</p>
-  </li>
-  <li>打包</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run build
-</code></pre></div></div>
-
-<ul>
-  <li>打包之后直接放到jekyll目录下，给html添加yaml头，可以正常识别</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: page
-permalink: /inner/
----
-</code></pre></div></div>
-
-<ul>
-  <li>写一个build_vue.py脚本来自动化以上过程：打包 -&gt; 拷贝 -&gt; 添加头</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">
-打包vue子页面并添加到jekyll
-</span><span class="sh">'''</span>
-
-
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">shutil</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== vue build =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">npm</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">run</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">build</span><span class="sh">"</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="sh">"</span><span class="s">./inner_vue</span><span class="sh">"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== copy vue dist =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="n">src_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">./inner_vue/dist</span><span class="sh">"</span>
-<span class="n">dst_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"</span><span class="s">./hello_umas</span><span class="sh">"</span>
-<span class="c1"># 遍历源目录下的所有文件和子目录
-</span><span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">src_dir</span><span class="p">):</span>
-    <span class="c1"># 计算出每个文件在目标目录中的路径
-</span>    <span class="n">dst_root</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dst_dir</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">relpath</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">src_dir</span><span class="p">))</span>
-    <span class="c1"># 如果目标目录不存在，则先创建目标目录
-</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">dst_root</span><span class="p">):</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">dst_root</span><span class="p">)</span>
-    <span class="c1"># 遍历当前目录下的所有文件
-</span>    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-        <span class="n">src_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-        <span class="n">dst_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dst_root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-        <span class="c1"># 如果目标文件已经存在，则先删除目标文件
-</span>        <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">dst_file</span><span class="p">):</span>
-            <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">dst_file</span><span class="p">)</span>
-        <span class="c1"># 复制文件
-</span>        <span class="n">shutil</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">src_file</span><span class="p">,</span> <span class="n">dst_file</span><span class="p">)</span>
-
-
-
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">===== edit yaml header =====</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sa">r</span><span class="sh">"</span><span class="s">./hello_umas/c99_inner.html</span><span class="sh">"</span><span class="p">,</span> <span class="sh">'</span><span class="s">r+</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="c1"># 将文件指针移到文件开头
-</span>    <span class="n">f</span><span class="p">.</span><span class="nf">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="c1"># 插入需要添加的内容
-</span>    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">---</span><span class="se">\n</span><span class="s">layout: page</span><span class="se">\n</span><span class="s">permalink: /inner/</span><span class="se">\n</span><span class="s">---</span><span class="se">\n</span><span class="sh">"</span> <span class="o">+</span> <span class="n">content</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>效果：
-    <ul>
-      <li>（title不能删掉，后面再想办法）</li>
-      <li>而且发现右上角字体变粗了，可能是有哪里少了scope</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/image/jekyll/2023-07-16-inner_vue/image_3.jpg" alt="引入图片" /></p>
-
-<ul>
-  <li>对vue进行一些修改之后发现jekyll里显示不出来了</li>
-  <li>正在找问题</li>
-</ul>
-
-<h2 id="尝试2">尝试2</h2>
-
-<ul>
-  <li>dist放在jekyll根目录下，重命名为vue</li>
-  <li>c3_inner.md</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: page
-permalink: /vue/
-title: Vue
----
-{% include_relative vue/index.html %}
-</code></pre></div></div>
-
-<ul>
-  <li>vue打包后的引用路径要一致</li>
-  <li>参考search.js可以看到引用路径从根目录开始，进入vue页之后内容全部在/vue之下，所以直接重命名为vue</li>
-</ul>
-
-<p><img src="/image/jekyll/2023-07-16-inner_vue/image_4.jpg" alt="引入图片" /></p>
-
-<ul>
-  <li>确认打包后的index.html的引用路径是相对路径</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">defer=</span><span class="s">"defer"</span> <span class="na">src=</span><span class="s">"/js/chunk-vendors.4e859eba.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>改为：</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">defer=</span><span class="s">"defer"</span> <span class="na">src=</span><span class="s">"js/chunk-vendors.4e859eba.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>还是不行，router没有生效，放弃了</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[尝试1]]></summary></entry><entry><title type="html">leetcode: 2.两数相加</title><link href="/leetcode/leetcode_2/" rel="alternate" type="text/html" title="leetcode: 2.两数相加" /><published>2023-07-14T14:56:52+08:00</published><updated>2023-07-14T14:56:52+08:00</updated><id>/leetcode/leetcode_2</id><content type="html" xml:base="/leetcode/leetcode_2/"><![CDATA[<h2 id="自解1">自解1</h2>
-
-<ul>
-  <li>
-    <p>没有用过链表，思路是先把链表转换为普通列表，再转化为数字，计算完之后再转换回去</p>
-  </li>
-  <li>
-    <p>补充：链表</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
-</code></pre></div></div>
-
-<ul>
-  <li>首先定义四个函数</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 链表转列表
-</span><span class="k">def</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">]</span>
-    <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
-        <span class="n">res</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">res</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nf">node2list</span><span class="p">(</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))))</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 列表转链表
-</span><span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">list_in</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span><span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">node</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">list2node</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]).</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 列表转数字
-</span><span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">list_in</span><span class="p">)</span> <span class="p">:</span>
-        <span class="n">res</span> <span class="o">+=</span> <span class="n">num</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">index</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">res</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nf">list2number</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
-<span class="c1"># 5321
-</span></code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 数字转列表
-</span><span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
-    <span class="k">return</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
-</code></pre></div></div>
-
-<ul>
-  <li>击败5%的代码</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
-
-
-<span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
-
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
-
-        <span class="k">def</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">]</span>
-            <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span>
-                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nb">next</span>
-                <span class="n">res</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">res</span>
-
-        <span class="k">def</span> <span class="nf">list2node</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="bp">None</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
-                <span class="n">node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">node</span>
-
-        <span class="k">def</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">list_in</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">list_in</span><span class="p">):</span>
-                <span class="n">res</span> <span class="o">+=</span> <span class="n">num</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="n">index</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">res</span>
-
-        <span class="k">def</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
-
-        <span class="c1"># 链表转为列表
-</span>        <span class="n">l1_list</span> <span class="o">=</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
-        <span class="n">l2_list</span> <span class="o">=</span> <span class="nf">node2list</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
-
-        <span class="c1"># 倒序列表拼接为一个数字
-</span>        <span class="n">l1_number</span> <span class="o">=</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">l1_list</span><span class="p">)</span>
-        <span class="n">l2_number</span> <span class="o">=</span> <span class="nf">list2number</span><span class="p">(</span><span class="n">l2_list</span><span class="p">)</span>
-
-        <span class="c1"># 计算并输出结果
-</span>        <span class="n">res_number</span> <span class="o">=</span> <span class="n">l1_number</span> <span class="o">+</span> <span class="n">l2_number</span>
-        <span class="n">res_list</span> <span class="o">=</span> <span class="nf">number2list</span><span class="p">(</span><span class="n">res_number</span><span class="p">)</span>
-        <span class="nf">return</span><span class="p">(</span><span class="nf">list2node</span><span class="p">(</span><span class="n">res_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-
-
-<span class="n">l1</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
-<span class="n">l2</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
-
-<span class="n">ans</span> <span class="o">=</span> <span class="nc">Solution</span><span class="p">().</span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">l2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="答案">答案</h2>
-<ul>
-  <li>妈的看完题解之后感觉刚才的自己脑子简直秀逗</li>
-  <li>因为py并没有链表和指针，所以并不容易定义结果的类型，可以把结果存放在l1或l2中，如果计算中发现l1长度小于l2，可以交换l1和l2</li>
-  <li>递归函数！</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
-
-
-<span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
-
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="c1"># l1 和 l2 为当前遍历的节点，carry 为进位
-</span>    <span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">],</span> <span class="n">carry</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">l2</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># 递归边界：l1 和 l2 都是空节点
-</span>            <span class="k">return</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">carry</span><span class="p">)</span> <span class="k">if</span> <span class="n">carry</span> <span class="k">else</span> <span class="bp">None</span>  <span class="c1"># 如果进位了，就额外创建一个节点
-</span>        <span class="k">if</span> <span class="n">l1</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># 如果 l1 是空的，那么此时 l2 一定不是空节点
-</span>            <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">,</span> <span class="n">l1</span>  <span class="c1"># 交换 l1 与 l2，保证 l1 非空，从而简化代码
-</span>        <span class="n">carry</span> <span class="o">+=</span> <span class="n">l1</span><span class="p">.</span><span class="n">val</span> <span class="o">+</span> <span class="p">(</span><span class="n">l2</span><span class="p">.</span><span class="n">val</span> <span class="k">if</span> <span class="n">l2</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 节点值和进位加在一起
-</span>        <span class="n">l1</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">carry</span> <span class="o">%</span> <span class="mi">10</span>  <span class="c1"># 每个节点保存一个数位
-</span>        <span class="n">l1</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">l1</span><span class="p">.</span><span class="nb">next</span><span class="p">,</span> <span class="n">l2</span><span class="p">.</span><span class="nb">next</span> <span class="k">if</span> <span class="n">l2</span> <span class="k">else</span> <span class="bp">None</span><span class="p">,</span> <span class="n">carry</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 进位
-</span>        <span class="k">return</span> <span class="n">l1</span>
-
-
-<span class="n">l1</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
-<span class="n">l2</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="nc">ListNode</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span>
-
-<span class="n">ans</span> <span class="o">=</span> <span class="nc">Solution</span><span class="p">().</span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">l2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-
-
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[自解1]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="django" /><summary type="html"><![CDATA[验证用户的一个例子]]></summary></entry></feed>

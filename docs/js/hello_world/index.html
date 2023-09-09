@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="js: hello_world JavaScript基础语法" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="常用函数" />
-<meta property="og:description" content="常用函数" />
+<meta name="description" content="基本语法" />
+<meta property="og:description" content="基本语法" />
 <link rel="canonical" href="/js/hello_world/" />
 <meta property="og:url" content="/js/hello_world/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="js: hello_world JavaScript基础语法" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T08:20:00+08:00","datePublished":"2023-06-28T08:20:00+08:00","description":"常用函数","headline":"js: hello_world JavaScript基础语法","mainEntityOfPage":{"@type":"WebPage","@id":"/js/hello_world/"},"url":"/js/hello_world/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T08:20:00+08:00","datePublished":"2023-06-28T08:20:00+08:00","description":"基本语法","headline":"js: hello_world JavaScript基础语法","mainEntityOfPage":{"@type":"WebPage","@id":"/js/hello_world/"},"url":"/js/hello_world/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,17 +48,37 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h2"><a href="#常用函数">常用函数</a></li>
+<li class="toc-entry toc-h2"><a href="#基本语法">基本语法</a></li>
+<li class="toc-entry toc-h2"><a href="#常用函数">常用函数</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h3"><a href="#定时器">定时器</a></li>
+<li class="toc-entry toc-h3"><a href="#获取当前时间">获取当前时间</a></li>
+</ul>
+</li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="常用函数">常用函数</h2>
+    <h2 id="基本语法">基本语法</h2>
 
 <ul>
-  <li>定时器
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// 时间间隔</span>
+  <li>两种for循环</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// for...in 循环适用于遍历对象的属性，而不是用于遍历数组的元素。</span>
+<span class="c1">// 使用 for...of 循环来遍历它的元素。</span>
+
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">item</span> <span class="k">of</span> <span class="nx">tableData</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="常用函数">常用函数</h2>
+
+<h3 id="定时器">定时器</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// 时间间隔</span>
   <span class="kd">let</span> <span class="nx">time_interval</span> <span class="o">=</span> <span class="mi">3000</span>
   <span class="c1">// 设置定时器</span>
   <span class="kd">let</span> <span class="nx">set_id</span> <span class="o">=</span> <span class="nf">setInterval</span><span class="p">(</span><span class="nx">get_list_check</span><span class="p">,</span> <span class="nx">time_interval</span><span class="p">)</span>
@@ -66,9 +86,18 @@
   <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="nf">clearInterval</span><span class="p">(</span><span class="nx">set_id</span><span class="p">)</span>
   <span class="p">},</span> <span class="mi">10</span> <span class="o">*</span> <span class="nx">time_interval</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
+</code></pre></div></div>
+
+<h3 id="获取当前时间">获取当前时间</h3>
+
+<ul>
+  <li>格式为 20:05:31</li>
 </ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">currentTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">toLocaleTimeString</span><span class="p">(</span><span class="dl">'</span><span class="s1">en-US</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">hour12</span><span class="p">:</span> <span class="kc">false</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
   </div>
 
@@ -91,7 +120,7 @@
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
       </div>
     </div>
 

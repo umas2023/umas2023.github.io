@@ -89,6 +89,50 @@ module.exports = {
 
 
 
+## 动态导入文件夹下所有组件
+
+- 参考：https://stackoverflow.com/questions/54344164/how-to-import-all-vue-components-from-a-folder
+
+
+{% raw %}
+```js
+const ComponentContext = require.context('./', true, /\.vue$/i, 'lazy');
+
+ComponentContext.keys().forEach((componentFilePath) => {
+
+    const componentName = componentFilePath.split('/').pop().split('.')[0];
+    Vue.component(componentName, () => ComponentContext(componentFilePath));
+
+});
+
+```
+{% endraw %}
+
+
+
+- 其中```require.context(directory,useSubdirectories,regExp)```
+  - directory:表示检索的目录
+  - useSubdirectories：表示是否检索子文件夹
+  - regExp:匹配文件的正则表达式,一般是文件名
+
+
+- 如果目标是html文件，可能会需要附加插件
+```
+npm install --s html-loader
+```
+
+- 然后在vue.config.js里加入
+
+```js
+chainWebpack: config => {
+    config.module
+      .rule('html') 
+      .test(/\.html$/)
+      .use('html-loader')
+      .loader('html-loader')
+  }
+```
+
 
 
 <!-- ![引入图片]({{site.url}}/image/vue/2023-08-24-vue_components/image_1.jpg) -->

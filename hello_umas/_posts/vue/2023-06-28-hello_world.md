@@ -158,6 +158,8 @@ module.exports = defineConfig({
 python.exe -m http.server 8000
 ```
 
+- 2023.9.8记录一个坑，windows环境下图片后缀名不区分大小写，png和PNG相同，但服务器部署在linux后区分大小写，会出现图片加载失败。由于windows不区分，所以在win中即使修改了后缀也无法push到git，要全部重新上传
+
 ## 单页hello world
 - 创建单个html文件的vue项目
 - 下面是一个使用cdn引入vue和element-ui的例子,在vs-code中可以使用插件live-server实时查看它

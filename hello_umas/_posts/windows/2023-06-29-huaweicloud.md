@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "windows: huaweicloud hello_world 华为云服务器基本操作"
-info: "618租了一年居然才99块"
+info: "618租了一年居然才99块，暴风购入，哈哈哈哈我也是有服务器的人了"
 date:   2023-06-29 11:00:00 +0800
-categories: windows
+categories: ['windows','linux']
 toc: true
 ---
 

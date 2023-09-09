@@ -238,6 +238,10 @@ npm run serve
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python.exe -m http.server 8000
 </code></pre></div></div>
 
+<ul>
+  <li>2023.9.8记录一个坑，windows环境下图片后缀名不区分大小写，png和PNG相同，但服务器部署在linux后区分大小写，会出现图片加载失败。由于windows不区分，所以在win中即使修改了后缀也无法push到git，要全部重新上传</li>
+</ul>
+
 <h2 id="单页hello-world">单页hello world</h2>
 <ul>
   <li>创建单个html文件的vue项目</li>
@@ -358,7 +362,7 @@ https://github.com/coreybutler/nvm-windows
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
       </div>
     </div>
 

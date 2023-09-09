@@ -50,6 +50,7 @@
   <ul id="toc" class="toc__list">
 <li class="toc-entry toc-h2"><a href="#组件传参">组件传参</a></li>
 <li class="toc-entry toc-h2"><a href="#slot">slot</a></li>
+<li class="toc-entry toc-h2"><a href="#动态导入文件夹下所有组件">动态导入文件夹下所有组件</a></li>
 </ul>
   <hr>
 
@@ -118,6 +119,47 @@
 <span class="nt">&lt;/button&gt;</span>
 </code></pre></div></div>
 
+<h2 id="动态导入文件夹下所有组件">动态导入文件夹下所有组件</h2>
+
+<ul>
+  <li>参考：https://stackoverflow.com/questions/54344164/how-to-import-all-vue-components-from-a-folder</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ComponentContext</span> <span class="o">=</span> <span class="nx">require</span><span class="p">.</span><span class="nf">context</span><span class="p">(</span><span class="dl">'</span><span class="s1">./</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">vue$/i</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lazy</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">ComponentContext</span><span class="p">.</span><span class="nf">keys</span><span class="p">().</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">componentFilePath</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+    <span class="kd">const</span> <span class="nx">componentName</span> <span class="o">=</span> <span class="nx">componentFilePath</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">).</span><span class="nf">pop</span><span class="p">().</span><span class="nf">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">.</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">Vue</span><span class="p">.</span><span class="nf">component</span><span class="p">(</span><span class="nx">componentName</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nc">ComponentContext</span><span class="p">(</span><span class="nx">componentFilePath</span><span class="p">));</span>
+
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>其中<code class="language-plaintext highlighter-rouge">require.context(directory,useSubdirectories,regExp)</code>
+    <ul>
+      <li>directory:表示检索的目录</li>
+      <li>useSubdirectories：表示是否检索子文件夹</li>
+      <li>regExp:匹配文件的正则表达式,一般是文件名</li>
+    </ul>
+  </li>
+  <li>如果目标是html文件，可能会需要附加插件
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --s html-loader
+</code></pre></div>    </div>
+  </li>
+  <li>然后在vue.config.js里加入</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">chainWebpack</span><span class="p">:</span> <span class="nx">config</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">config</span><span class="p">.</span><span class="nx">module</span>
+      <span class="p">.</span><span class="nf">rule</span><span class="p">(</span><span class="dl">'</span><span class="s1">html</span><span class="dl">'</span><span class="p">)</span> 
+      <span class="p">.</span><span class="nf">test</span><span class="p">(</span><span class="sr">/</span><span class="se">\.</span><span class="sr">html$/</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">html-loader</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">loader</span><span class="p">(</span><span class="dl">'</span><span class="s1">html-loader</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
 <!-- ![引入图片](/image/vue/2023-08-24-vue_components/image_1.jpg) -->
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
@@ -144,7 +186,7 @@
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
       </div>
     </div>
 

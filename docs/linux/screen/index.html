@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="linux: screen命令" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="umas’ awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description." />
-<meta property="og:description" content="umas’ awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description." />
+<meta name="description" content="基础用法" />
+<meta property="og:description" content="基础用法" />
 <link rel="canonical" href="/linux/screen/" />
 <meta property="og:url" content="/linux/screen/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="linux: screen命令" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-13T10:16:49+08:00","datePublished":"2023-07-13T10:16:49+08:00","description":"umas’ awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.","headline":"linux: screen命令","mainEntityOfPage":{"@type":"WebPage","@id":"/linux/screen/"},"url":"/linux/screen/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-13T10:16:49+08:00","datePublished":"2023-07-13T10:16:49+08:00","description":"基础用法","headline":"linux: screen命令","mainEntityOfPage":{"@type":"WebPage","@id":"/linux/screen/"},"url":"/linux/screen/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -53,7 +53,45 @@
 
   <!-- 内容主体 -->
   <div class="post-content">
-    
+    <ul>
+  <li>基础用法</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装</span>
+apt <span class="nb">install </span>screen
+
+<span class="c"># 创建一个</span>
+screen <span class="nt">-S</span> <span class="nb">test</span>
+
+<span class="c"># 连接一个现有窗口</span>
+screen <span class="nt">-r</span> <span class="nb">test</span>
+
+<span class="c"># 连接一个现有窗口，如果不存在则新建</span>
+screen <span class="nt">-R</span> <span class="nb">test</span>
+
+<span class="c"># 查看现有窗口</span>
+screen <span class="nt">-ls</span>
+
+<span class="c"># 在虚拟终端中退出</span>
+<span class="nb">exit</span>
+
+<span class="c"># 在主终端中结束虚拟终端</span>
+<span class="c"># 使用-R/-r/-S均可</span>
+screen <span class="nt">-R</span> <span class="o">[</span>pid/Name] <span class="nt">-X</span> quit
+</code></pre></div></div>
+
+<ul>
+  <li>快捷键</li>
+  <li>在虚拟终端内输入Ctril+a将等待接受预先设置的绑定键
+    <ul>
+      <li>d：保存会话，后台运行改虚拟终端</li>
+      <li>k：关闭对话，等同输入：exit</li>
+      <li>c：新建一个虚拟终端</li>
+      <li>?：显示所有绑定键盘</li>
+    </ul>
+  </li>
+</ul>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
 
@@ -78,7 +116,7 @@
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>umas&#39; awesome description for my new site here. It will appear in my document head meta (for Google search results) and in my feed.xml site description.</p>
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
       </div>
     </div>
 

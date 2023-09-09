@@ -3,7 +3,7 @@ layout: post
 title:  "windows: redmi-ax6000路由器刷openwrt固件"
 info: "解锁特色功能"
 date:   2023-06-30 09:48:00 +0800
-categories: windows
+categories: ['windows','openwrt']
 toc: true
 ---
 

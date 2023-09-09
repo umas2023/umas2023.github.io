@@ -45,7 +45,7 @@ title = "'%s: 使用python驱动声卡播放音频'" % basic_cat
 # 修改这里：文章介绍
 info = "'记录某个实习的需求'"
 
-# 文章分类
+# 文章分类，可以添加多个
 categories = [basic_cat]
 # md文件放在哪个目录下
 dir =  basic_cat

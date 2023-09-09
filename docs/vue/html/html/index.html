@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>关于html | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="关于html" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考： https://www.nowcoder.com/issue/tutorial?tutorialId=96&amp;uuid=4700c6f1f3334c9191a38406002efa65" />
+<meta property="og:description" content="参考： https://www.nowcoder.com/issue/tutorial?tutorialId=96&amp;uuid=4700c6f1f3334c9191a38406002efa65" />
+<link rel="canonical" href="/vue/html/html/" />
+<meta property="og:url" content="/vue/html/html/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-25T09:55:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="关于html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-25T09:55:00+08:00","datePublished":"2023-06-25T09:55:00+08:00","description":"参考： https://www.nowcoder.com/issue/tutorial?tutorialId=96&amp;uuid=4700c6f1f3334c9191a38406002efa65","headline":"关于html","mainEntityOfPage":{"@type":"WebPage","@id":"/vue/html/html/"},"url":"/vue/html/html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">关于html</h1>
+    <h3>html基础知识，大部分来自牛客网</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#html标签的类型">html标签的类型</a></li>
+<li class="toc-entry toc-h2"><a href="#用过的一些h5新特性">用过的一些h5新特性</a></li>
+<li class="toc-entry toc-h2"><a href="#伪类和伪元素">伪类和伪元素</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>参考：
+    <ul>
+      <li>https://www.nowcoder.com/issue/tutorial?tutorialId=96&amp;uuid=4700c6f1f3334c9191a38406002efa65</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="html标签的类型">html标签的类型</h2>
+
+<ul>
+  <li>!DOCTYPE
+    <ul>
+      <li>它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- HTML5 的文档类型声明 --&gt;</span>
+<span class="c">&lt;!-- 在现代的 Web 开发中，使用 &lt;!DOCTYPE html&gt; 声明已经成为标准做法，因为 HTML5 已经成为主流的 HTML 规范，并且几乎所有的现代浏览器都支持它。 --&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="c">&lt;!-- HTML 4.01 的严格规范 --&gt;</span>
+<span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>head
+    <ul>
+      <li>是所有头部元素的容器, 绝大多数头部标签的内容不会显示给读者</li>
+    </ul>
+  </li>
+  <li>body
+    <ul>
+      <li>用于定义文档的主体, 包含了文档的所有内容</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用过的一些h5新特性">用过的一些h5新特性</h2>
+
+<ul>
+  <li>新增选择器 document.querySelector、document.querySelectorAll</li>
+  <li>本地存储 localStorage 和 sessionStorage</li>
+  <li>全双工通信协议 websocket</li>
+  <li>跨域资源共享(CORS) Access-Control-Allow-Origin</li>
+  <li>绘画 canvas</li>
+</ul>
+
+<h2 id="伪类和伪元素">伪类和伪元素</h2>
+
+<ul>
+  <li>伪类：用于已有元素处于某种状态时为其添加对应的样式，这个状态是根据用户行为而动态变化的。</li>
+</ul>
+
+<p>例如：当用户悬停在指定元素时，可以通过:hover来描述这个元素的状态，虽然它和一般css相似，可以为 已有元素添加样式，但是它只有处于DOM树无法描述的状态下才能为元素添加样式，所以称为伪类。</p>
+
+<ul>
+  <li>伪元素：用于创建一些不在DOM树中的元素，并为其添加样式。</li>
+</ul>
+
+<p>例如，我们可以通过:before来在一个元素之前添加一些文本，并为这些文本添加样式，虽然用户可以看见 这些文本，但是它实际上并不在DOM文档中。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
