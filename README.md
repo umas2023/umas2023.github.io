@@ -11,6 +11,18 @@
 - leetcode
   - 刷题源码
 
+
+## server
+
+- github page 自动部署
+- 镜像由python命令在screen中启动
+
+```bash
+screen -r blog
+cd docs/
+python3 -m http.server 25221
+
+
 ## 常用命令
 
 - 新建
