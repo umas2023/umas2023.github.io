@@ -21,6 +21,7 @@
 screen -r blog
 cd docs/
 python3 -m http.server 25221
+```
 
 
 ## 常用命令
