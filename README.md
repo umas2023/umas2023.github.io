@@ -20,7 +20,7 @@
 ```bash
 # 注意不要在服务器上build，会卡死！
 screen -r blog
-python3 -m http.server 25221 --directory /root/project/umas2022.github.io/docs
+python3 -m http.server 25221 --directory /root/project/umas2023.github.io/docs
 ```
 
 
