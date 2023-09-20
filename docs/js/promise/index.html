@@ -42,7 +42,7 @@
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">js: Promise</h1>
-    <h3>一直搞不懂这个函数</h3>
+    <h3>更加优雅地书写复杂的异步任务</h3>
   </header>
 
   <!-- 目录 -->
@@ -76,6 +76,104 @@
     <span class="p">}</span>
 <span class="p">);</span>
 
+</code></pre></div></div>
+
+<ul>
+  <li>另一个例子</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">First</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Second</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Third</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">4000</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">First</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nf">resolve</span><span class="p">();</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}).</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Second</span><span class="dl">"</span><span class="p">);</span>
+            <span class="nf">resolve</span><span class="p">();</span>
+        <span class="p">},</span> <span class="mi">4000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}).</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Third</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li>传参的例子</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// resolve() 中可以放置一个参数用于向下一个 then 传递一个值，then 中的函数也可以返回一个值传递给 then</span>
+
+<span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mi">1111</span><span class="p">);</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="mi">2222</span><span class="p">);</span>
+<span class="p">}).</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">3333</span><span class="p">;</span>
+<span class="p">}).</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="dl">"</span><span class="s2">An error</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>结果</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1111
+2222
+3333
+An error
+</code></pre></div></div>
+
+<ul>
+  <li>一个计时器函数的例子</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">print</span><span class="p">(</span><span class="nx">delay</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+            <span class="nf">resolve</span><span class="p">();</span>
+        <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="dl">"</span><span class="s2">First</span><span class="dl">"</span><span class="p">).</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">print</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Second</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}).</span><span class="nf">then</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Third</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ul>
+  <li>使用异步函数重写上面的调用</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 异步函数 async function 中可以使用 await 指令，await 指令后必须跟着一个 Promise，异步函数会在这个 Promise 运行中暂停，直到其运行结束再继续运行</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">asyncFunc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nf">print</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="dl">"</span><span class="s2">First</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">await</span> <span class="nf">print</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Second</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">await</span> <span class="nf">print</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Third</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nf">asyncFunc</span><span class="p">();</span>
 </code></pre></div></div>
 
 <!-- ![引入图片](/image/js/2023-07-13-promise/image_1.jpg) -->

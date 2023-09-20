@@ -48,7 +48,13 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h2"><a href="#基本语法">基本语法</a></li>
+<li class="toc-entry toc-h2"><a href="#基本语法">基本语法</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h3"><a href="#数据类型">数据类型</a></li>
+<li class="toc-entry toc-h3"><a href="#变量声明">变量声明</a></li>
+<li class="toc-entry toc-h3"><a href="#两种for循环">两种for循环</a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#常用函数">常用函数</a>
 <ul class="toc__sublist">
 <li class="toc-entry toc-h3"><a href="#定时器">定时器</a></li>
@@ -62,9 +68,118 @@
   <div class="post-content">
     <h2 id="基本语法">基本语法</h2>
 
+<h3 id="数据类型">数据类型</h3>
+
 <ul>
-  <li>两种for循环</li>
+  <li>Map 和 Set</li>
 </ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Map: 类似Object的一种键值对，但Map的键不仅限字符串</span>
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Map</span><span class="p">()</span>
+<span class="nx">a</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="dl">"</span><span class="s2">aaa</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">a</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">size</span>
+
+<span class="c1">// Set: 类似数组，但没有重复的值</span>
+<span class="kd">const</span> <span class="kd">set</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="c1">// &gt; Set(4) {1,2,3}</span>
+<span class="kd">set</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="kd">set</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="kd">set</span><span class="p">.</span><span class="nx">size</span>
+</code></pre></div></div>
+
+<ul>
+  <li>区分Map和Object：
+    <ul>
+      <li>键的类型</li>
+      <li>Object的键值对个数需要手动计算，而Map可以.size</li>
+      <li>Map是iterable可迭代的</li>
+    </ul>
+  </li>
+  <li>利用Set给数组去重</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">unique</span> <span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="k">new</span> <span class="nc">Set</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// 注意这种方法不能去除空对象{}</span>
+<span class="c1">// 可以用双层for循环splice删除</span>
+</code></pre></div></div>
+
+<ul>
+  <li>补充Array.from的用法：</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 类数组转换为数组</span>
+
+
+<span class="c1">// 数组每一项乘2</span>
+<span class="kd">const</span> <span class="nx">someNumbers</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mi">2</span> <span class="p">};</span>
+<span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">someNumbers</span><span class="p">,</span> <span class="nx">value</span> <span class="o">=&gt;</span> <span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// =&gt; [20, 30]</span>
+
+<span class="c1">// 填充数组</span>
+<span class="kd">const</span> <span class="nx">length</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">init</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">({</span> <span class="nx">length</span> <span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">init</span><span class="p">);</span>
+
+<span class="c1">// 填充数组2</span>
+<span class="kd">const</span> <span class="nx">length</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">init</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nc">Array</span><span class="p">(</span><span class="nx">length</span><span class="p">).</span><span class="nf">fill</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>补充去重的其他方法</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 新建空数组，使用indexOf或者includes判断是否已存在，不存在push进去，代码略</span>
+
+
+<span class="c1">// 使用filter：filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素</span>
+<span class="c1">// 接受一个函数作为输入参数，这个函数有三个参数：item, index, arr</span>
+<span class="c1">// filter基础示例：返回数组 ages 中所有元素都大于 18 的元素</span>
+<span class="kd">var</span> <span class="nx">ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">40</span><span class="p">];</span>
+<span class="kd">function</span> <span class="nf">checkAdult</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">;}</span>
+<span class="kd">function</span> <span class="nf">myFunction</span><span class="p">()</span> <span class="p">{</span><span class="err">   </span> 
+  <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">demo</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">ages</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">checkAdult</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// filter去重</span>
+<span class="kd">function</span> <span class="nf">unique</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">arr</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素</span>
+    <span class="k">return</span> <span class="nx">arr</span><span class="p">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">===</span> <span class="nx">index</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="变量声明">变量声明</h3>
+
+<ul>
+  <li>var ——ES5 变量声明方式
+    <ol>
+      <li>在变量未赋值时，变量undefined（为使用声明变量时也为undefined）</li>
+      <li>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都
+可以使用</li>
+    </ol>
+  </li>
+  <li>let——ES6变量声明方式
+    <ol>
+      <li>在变量为声明前直接使用会报错</li>
+      <li>作用域——let为块作用域——通常let比var 范围要小</li>
+      <li>let禁止重复声明变量，否则会报错；var可以重复声明</li>
+    </ol>
+  </li>
+  <li>const——ES6变量声明方式
+    <ol>
+      <li>const为常量声明方式；声明变量时必须初始化，在后面出现的代码中不能再修改该常量的值</li>
+      <li>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="两种for循环">两种for循环</h3>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// for...in 循环适用于遍历对象的属性，而不是用于遍历数组的元素。</span>
 <span class="c1">// 使用 for...of 循环来遍历它的元素。</span>

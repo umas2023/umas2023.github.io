@@ -36,14 +36,15 @@ zip_pctools
 '''
 
 # 修改这里：基础分类
-basic_cat = "windows"
+basic_cat = "knowhow"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "wifi_passwd"
+file_name = "knowhow_design_pattern"
 # 修改这里：文章标题
-title = "'%s: 查看wifi密码'" % basic_cat
+title = "'%s: 设计模式'" % basic_cat
 # 修改这里：文章介绍
-info = "'win10'"
+info = "'Design Patterns - Elements of Reusable Object-Oriented Software 可复用的面向对象软件元素'"
+
 
 # 文章分类，可以添加多个
 categories = [basic_cat]

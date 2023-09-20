@@ -1,4 +1,453 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-09T14:22:17+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">windows: 查看wifi密码</title><link href="/windows/wifi_passwd/" rel="alternate" type="text/html" title="windows: 查看wifi密码" /><published>2023-09-09T14:20:16+08:00</published><updated>2023-09-09T14:20:16+08:00</updated><id>/windows/wifi_passwd</id><content type="html" xml:base="/windows/wifi_passwd/"><![CDATA[<p><img src="/image/windows/2023-09-09-wifi_passwd/image_1.png" alt="引入图片" />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-20T12:03:01+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">knowhow: 设计模式</title><link href="/knowhow/knowhow_design_pattern/" rel="alternate" type="text/html" title="knowhow: 设计模式" /><published>2023-09-11T14:37:22+08:00</published><updated>2023-09-11T14:37:22+08:00</updated><id>/knowhow/knowhow_design_pattern</id><content type="html" xml:base="/knowhow/knowhow_design_pattern/"><![CDATA[<ul>
+  <li>参考：
+    <ul>
+      <li>https://www.runoob.com/design-pattern/design-pattern-intro.html</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="设计模式">设计模式</h1>
+
+<h2 id="创建型模式">创建型模式</h2>
+<p>这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。</p>
+
+<ul>
+  <li>工厂模式（Factory Pattern）</li>
+  <li>抽象工厂模式（Abstract Factory Pattern）</li>
+  <li>单例模式（Singleton Pattern）</li>
+  <li>建造者模式（Builder Pattern）</li>
+  <li>原型模式（Prototype Pattern）</li>
+</ul>
+
+<h2 id="结构型模式">结构型模式</h2>
+<p>这些模式关注对象之间的组合和关系，旨在解决如何构建灵活且可复用的类和对象结构。</p>
+
+<ul>
+  <li>适配器模式（Adapter Pattern）</li>
+  <li>桥接模式（Bridge Pattern）</li>
+  <li>过滤器模式（Filter、Criteria Pattern）</li>
+  <li>组合模式（Composite Pattern）</li>
+  <li>装饰器模式（Decorator Pattern）</li>
+  <li>外观模式（Facade Pattern）</li>
+  <li>享元模式（Flyweight Pattern）</li>
+  <li>代理模式（Proxy Pattern）</li>
+</ul>
+
+<h2 id="行为型模式">行为型模式</h2>
+<p>这些模式关注对象之间的通信和交互，旨在解决对象之间的责任分配和算法的封装。</p>
+
+<ul>
+  <li>责任链模式（Chain of Responsibility Pattern）</li>
+  <li>命令模式（Command Pattern）</li>
+  <li>解释器模式（Interpreter Pattern）</li>
+  <li>迭代器模式（Iterator Pattern）</li>
+  <li>中介者模式（Mediator Pattern）</li>
+  <li>备忘录模式（Memento Pattern）</li>
+  <li>观察者模式（Observer Pattern）</li>
+  <li>状态模式（State Pattern）</li>
+  <li>空对象模式（Null Object Pattern）</li>
+  <li>策略模式（Strategy Pattern）</li>
+  <li>模板模式（Template Pattern）</li>
+  <li>访问者模式（Visitor Pattern）</li>
+</ul>
+
+<h2 id="j2ee-模式">J2EE 模式</h2>
+<p>这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。</p>
+
+<ul>
+  <li>MVC 模式（MVC Pattern）</li>
+  <li>业务代表模式（Business Delegate Pattern）</li>
+  <li>组合实体模式（Composite Entity Pattern）</li>
+  <li>数据访问对象模式（Data Access Object Pattern）</li>
+  <li>前端控制器模式（Front Controller Pattern）</li>
+  <li>拦截过滤器模式（Intercepting Filter Pattern）</li>
+  <li>服务定位器模式（Service Locator Pattern）</li>
+  <li>传输对象模式（Transfer Object Pattern）</li>
+</ul>
+
+<h1 id="设计模式6原则">设计模式6原则</h1>
+
+<ol>
+  <li>开闭原则（Open Close Principle）</li>
+</ol>
+
+<p>开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</p>
+
+<ol>
+  <li>里氏代换原则（Liskov Substitution Principle）</li>
+</ol>
+
+<p>里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。</p>
+
+<ol>
+  <li>依赖倒转原则（Dependence Inversion Principle）</li>
+</ol>
+
+<p>这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
+
+<ol>
+  <li>接口隔离原则（Interface Segregation Principle）</li>
+</ol>
+
+<p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
+
+<ol>
+  <li>迪米特法则，又称最少知道原则（Demeter Principle）</li>
+</ol>
+
+<p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
+
+<ol>
+  <li>合成复用原则（Composite Reuse Principle）</li>
+</ol>
+
+<p>合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。</p>
+
+<!-- ![引入图片](/image/knowhow/2023-09-11-knowhow_design_pattern/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="knowhow" /><summary type="html"><![CDATA[参考： https://www.runoob.com/design-pattern/design-pattern-intro.html]]></summary></entry><entry><title type="html">js: HTML DOM (文档对象模型)</title><link href="/js/js_dom/" rel="alternate" type="text/html" title="js: HTML DOM (文档对象模型)" /><published>2023-09-11T13:45:54+08:00</published><updated>2023-09-11T13:45:54+08:00</updated><id>/js/js_dom</id><content type="html" xml:base="/js/js_dom/"><![CDATA[<h2 id="查找html元素">查找HTML元素</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// NodeList 集合中的元素可以通过索引(以 0 为起始位置)来访问</span>
+
+<span class="c1">// 通过id</span>
+<span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">intro</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// 通过类名</span>
+<span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByClassName</span><span class="p">(</span><span class="dl">"</span><span class="s2">intro</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// 通过标签名</span>
+<span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="nx">x</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h2 id="改变html内容">改变HTML内容</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Old</span> <span class="nx">Header</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+	<span class="kd">var</span> <span class="nx">element</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">);</span><span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="dl">"</span><span class="s2">New Header</span><span class="dl">"</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>结合点击事件</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">onclick</span><span class="o">=</span><span class="dl">"</span><span class="s2">this.innerHTML='Ooops!'</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">点击文本</span><span class="o">!&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>通过函数传递dom</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">function</span> <span class="nf">changetext</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="err">    </span><span class="nx">id</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="dl">"</span><span class="s2">Ooops!</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/head</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">onclick</span><span class="o">=</span><span class="dl">"</span><span class="s2">changetext(this)</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">点击文本</span><span class="o">!&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h2 id="改变html属性">改变HTML属性</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">img</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">image</span><span class="dl">"</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">smiley.gif</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">image</span><span class="dl">"</span><span class="p">).</span><span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">landscape.jpg</span><span class="dl">"</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h2 id="改变html样式">改变HTML样式</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="dl">"</span><span class="s2">utf-8</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nf">菜鸟教程</span><span class="p">(</span><span class="nx">runoob</span><span class="p">.</span><span class="nx">com</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/title</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/head</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+ 
+<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontFamily</span><span class="o">=</span><span class="dl">"</span><span class="s2">Arial</span><span class="dl">"</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="o">=</span><span class="dl">"</span><span class="s2">larger</span><span class="dl">"</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span> 
+<span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h2 id="事件">事件</h2>
+
+<ul>
+  <li>进入和离开页面时触发：onload/onunload</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">body</span> <span class="nx">onload</span><span class="o">=</span><span class="dl">"</span><span class="s2">checkCookies()</span><span class="dl">"</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>改变时触发：onchange</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">fname</span><span class="dl">"</span> <span class="nx">onchange</span><span class="o">=</span><span class="dl">"</span><span class="s2">upperCase()</span><span class="dl">"</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>鼠标悬停触发：onmouseover / onmouseout</p>
+  </li>
+  <li>
+    <p>鼠标点击：onmousedown / onmouseup / onclick</p>
+  </li>
+  <li>
+    <p>输入框获得焦点时触发：onfocus</p>
+  </li>
+  <li>
+    <p>监听事件 - addEventListener</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 点击时触发监听事件</span>
+<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">myBtn</span><span class="dl">"</span><span class="p">).</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">displayDate</span><span class="p">);</span>
+
+<span class="c1">// addEventListener() 方法允许向同一个元素添加多个事件，且不会覆盖已存在的事件</span>
+
+<span class="c1">// 一些常用的触发场景</span>
+<span class="nx">element</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouseover</span><span class="dl">"</span><span class="p">,</span> <span class="nx">myFunction</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">mySecondFunction</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouseout</span><span class="dl">"</span><span class="p">,</span> <span class="nx">myThirdFunction</span><span class="p">);</span>
+
+<span class="c1">// windows对象：窗口大小重置</span>
+<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">resize</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="err">    </span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">demo</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">sometext</span><span class="p">;</span>
+	<span class="p">});</span>
+
+<span class="c1">// 移除监听事件</span>
+<span class="nx">element</span><span class="p">.</span><span class="nf">removeEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">mousemove</span><span class="dl">"</span><span class="p">,</span> <span class="nx">myFunction</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="创建节点">创建节点</h2>
+
+<ul>
+  <li>添加新元素到尾部：appendChild</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span> 
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">var</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createTextNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">这是一个新的段落。</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">para</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+ 
+<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">para</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>添加到头部：insertBefore</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span> 
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">var</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createTextNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">这是一个新的段落。</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">para</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+ 
+<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">element</span><span class="p">.</span><span class="nf">insertBefore</span><span class="p">(</span><span class="nx">para</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h2 id="移除元素">移除元素</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span> 
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nf">removeChild</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h2 id="替换元素">替换元素</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span> 
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">var</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createTextNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">这是一个新的段落。</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">para</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+ 
+<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nf">replaceChild</span><span class="p">(</span><span class="nx">para</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<!-- ![引入图片](/image/js/2023-09-11-js_dom/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[查找HTML元素]]></summary></entry><entry><title type="html">js: js对象</title><link href="/js/js_object/" rel="alternate" type="text/html" title="js: js对象" /><published>2023-09-11T13:31:08+08:00</published><updated>2023-09-11T13:31:08+08:00</updated><id>/js/js_object</id><content type="html" xml:base="/js/js_object/"><![CDATA[<ul>
+  <li>
+    <p>一种数据类型，带有属性和方法</p>
+  </li>
+  <li>
+    <p>创建新对象有两种不同的方法：</p>
+
+    <ul>
+      <li>使用 Object 定义并创建对象的实例。</li>
+      <li>使用函数来定义对象，然后创建新的对象实例。</li>
+    </ul>
+  </li>
+  <li>
+    <p>Object 构造函数，会根据给定的参数创建对象，具体有以下情况：</p>
+
+    <ul>
+      <li>如果给定值是 null 或 undefined，将会创建并返回一个空对象。</li>
+      <li>如果传进去的是一个基本类型的值，则会构造其包装类型的对象。</li>
+      <li>如果传进去的是引用类型的值，仍然会返回这个值，经他们复制的变量保有和源对象相同的引用地址。</li>
+    </ul>
+  </li>
+  <li>
+    <p>示例</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 等价于 o = new Boolean(true);</span>
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="o">=</span><span class="k">new</span> <span class="nc">Object</span><span class="p">();</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="mi">50</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 等价于：</span>
+<span class="nx">person</span><span class="o">=</span><span class="p">{</span><span class="na">firstname</span><span class="p">:</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span><span class="na">lastname</span><span class="p">:</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="na">eyecolor</span><span class="p">:</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>使用函数（对象构造器constructor）的例子</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">person</span><span class="p">(</span><span class="nx">firstname</span><span class="p">,</span><span class="nx">lastname</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">eyecolor</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="nx">firstname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">lastname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="nx">age</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="nx">eyecolor</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 在JavaScript中，this通常指向的是我们正在执行的函数本身，或者是指向该函数所属的对象（运行时）</span>
+
+<span class="c1">// 创建新实例</span>
+<span class="kd">var</span> <span class="nx">myFather</span><span class="o">=</span><span class="k">new</span> <span class="nf">person</span><span class="p">(</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">myMother</span><span class="o">=</span><span class="k">new</span> <span class="nf">person</span><span class="p">(</span><span class="dl">"</span><span class="s2">Sally</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Rally</span><span class="dl">"</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="dl">"</span><span class="s2">green</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// 添加属性</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">x</span><span class="o">=</span><span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>为对象添加方法</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">person</span><span class="p">(</span><span class="nx">firstname</span><span class="p">,</span><span class="nx">lastname</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">eyecolor</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="nx">firstname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">lastname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="nx">age</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="nx">eyecolor</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">changeName</span><span class="o">=</span><span class="nx">changeName</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nf">changeName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>JavaScript for…in 语句循环遍历对象的属性。</p>
+  </li>
+  <li>
+    <p>一个已存在的构造器对象中不能添加新的属性，只能在构造器函数中添加</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 报错</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">nationality</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">English</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>所有的 JavaScript 对象都会从一个 prototype（原型对象）中继承属性和方法，使用 prototype 属性就可以给对象的构造函数添加新的属性</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Person</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">last</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">eyecolor</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">eyeColor</span> <span class="o">=</span> <span class="nx">eyecolor</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">nationality</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">English</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>补充，判断一个实例是否属于某种类型</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">no</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">person</span><span class="p">()</span>
+<span class="nx">no</span> <span class="k">instanceof</span> <span class="nx">person</span><span class="c1">//true</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/js/2023-09-11-js_object/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[一种数据类型，带有属性和方法]]></summary></entry><entry><title type="html">windows: 查看wifi密码</title><link href="/windows/wifi_passwd/" rel="alternate" type="text/html" title="windows: 查看wifi密码" /><published>2023-09-09T14:20:16+08:00</published><updated>2023-09-09T14:20:16+08:00</updated><id>/windows/wifi_passwd</id><content type="html" xml:base="/windows/wifi_passwd/"><![CDATA[<p><img src="/image/windows/2023-09-09-wifi_passwd/image_1.png" alt="引入图片" />
 <img src="/image/windows/2023-09-09-wifi_passwd/image_2.png" alt="引入图片" />
 <img src="/image/windows/2023-09-09-wifi_passwd/image_3.png" alt="引入图片" />
 <img src="/image/windows/2023-09-09-wifi_passwd/image_4.png" alt="引入图片" /></p>
@@ -495,259 +944,10 @@ opkg install luci-theme-argon*.ipk
   </li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[基本命令]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派ssh</title><link href="/raspberry_pi/ssh/vscode/windows/ssh/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派ssh" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/ssh/vscode/windows/ssh</id><content type="html" xml:base="/raspberry_pi/ssh/vscode/windows/ssh/"><![CDATA[<h2 id="windows平台vscode添加ssh公钥">windows平台vscode添加ssh公钥</h2>
-<ul>
-  <li>windows平台下运行：
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096 
-</code></pre></div>    </div>
-  </li>
-  <li>Linux服务器拷贝内容
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Users\umas2017\.ssh\id_rsa.pub 
-</code></pre></div>    </div>
-    <p>到</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~/.ssh/authorized_keys
-</code></pre></div>    </div>
-  </li>
-  <li>服务器重启ssh
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service ssh restart
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="连接错误的解决方法">连接错误的解决方法</h2>
-
-<ul>
-  <li>
-    <p>大部分情况下首先排查对应端口是否变化，删除c盘user下.ssh/known_hosts</p>
-  </li>
-  <li>
-    <p>卡在download vscode server的情况可以试试手动下载这个包</p>
-  </li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/.vscode-server/bin
-tree
-<span class="c"># 返回一串id，比如我的是57fd6d0195bb9b9d1b49f6da5db789060795de47</span>
-<span class="c"># 手动下载这个包：https://update.code.visualstudio.com/commit:57fd6d0195bb9b9d1b49f6da5db789060795de47/server-linux-x64/stable</span>
-
-wget https://vscode.cdn.azure.cn/stable/57fd6d0195bb9b9d1b49f6da5db789060795de47/vscode-server-linux-x64.tar.gz
-
-<span class="c"># 拷贝到id的目录下解压</span>
-<span class="nb">tar</span> <span class="nt">-xvzf</span> vscode-server-linux-x64.tar.gz <span class="nt">--strip-components</span> 1
-
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="ssh" /><category term="vscode" /><category term="windows" /><summary type="html"><![CDATA[windows平台vscode添加ssh公钥 windows平台下运行： ssh-keygen -t rsa -b 4096 Linux服务器拷贝内容 C:\Users\umas2017\.ssh\id_rsa.pub 到 ~/.ssh/authorized_keys]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派命令行联网</title><link href="/raspberry_pi/linux/server_net/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派命令行联网" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/linux/server_net</id><content type="html" xml:base="/raspberry_pi/linux/server_net/"><![CDATA[<ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="linux" /><summary type="html"><![CDATA[基本命令]]></summary></entry><entry><title type="html">raspberry_pi: 树莓派命令行联网</title><link href="/raspberry_pi/linux/server_net/" rel="alternate" type="text/html" title="raspberry_pi: 树莓派命令行联网" /><published>2023-09-08T09:33:00+08:00</published><updated>2023-09-08T09:33:00+08:00</updated><id>/raspberry_pi/linux/server_net</id><content type="html" xml:base="/raspberry_pi/linux/server_net/"><![CDATA[<ul>
   <li>参考
     <ul>
       <li>https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server</li>
     </ul>
   </li>
-</ul>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="linux" /><summary type="html"><![CDATA[参考 https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server]]></summary></entry><entry><title type="html">markdown: 进阶命令</title><link href="/markdown/cmd/" rel="alternate" type="text/html" title="markdown: 进阶命令" /><published>2023-09-08T09:00:00+08:00</published><updated>2023-09-08T09:00:00+08:00</updated><id>/markdown/cmd</id><content type="html" xml:base="/markdown/cmd/"><![CDATA[<h2 id="vscode中自动生成目录">vscode中自动生成目录</h2>
-<ul>
-  <li>光标放在插入目录的位置</li>
-  <li>快捷键<code class="language-plaintext highlighter-rouge">ctrl+shift+p</code></li>
-  <li>输入 Markdown: Create Table of Contents 并选择该命令</li>
-</ul>]]></content><author><name></name></author><category term="markdown" /><summary type="html"><![CDATA[vscode中自动生成目录 光标放在插入目录的位置 快捷键ctrl+shift+p 输入 Markdown: Create Table of Contents 并选择该命令]]></summary></entry><entry><title type="html">python: 使用python驱动声卡播放音频(ubuntu)</title><link href="/python/nio_voice_play/" rel="alternate" type="text/html" title="python: 使用python驱动声卡播放音频(ubuntu)" /><published>2023-09-06T14:16:58+08:00</published><updated>2023-09-06T14:16:58+08:00</updated><id>/python/nio_voice_play</id><content type="html" xml:base="/python/nio_voice_play/"><![CDATA[<h2 id="ubuntu命令行播放音频">ubuntu命令行播放音频</h2>
-
-<ul>
-  <li>aplay命令
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>alsa-utils
-</code></pre></div>    </div>
-  </li>
-  <li>查看声卡设备
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /proc/asound/cards
-</code></pre></div>    </div>
-  </li>
-  <li>指定声卡播放
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aplay <span class="nt">-D</span> default Hinomi_Chinese_lijun.wav
-aplay <span class="nt">-D</span> plughw:2 Hinomi_Chinese_lijun.wav
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="excel转json">excel转json</h2>
-<ul>
-  <li>由于拿到的目录是excel格式不方便程序操作，先转为json</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">'''</span><span class="s">原程序找不到了，目录下面只有这个↓</span><span class="sh">'''</span>
-
-<span class="kn">import</span> <span class="n">openpyxl</span> <span class="c1"># pip install openpyxl
-</span>
-<span class="k">def</span> <span class="nf">load_each_sheet</span><span class="p">():</span>
-    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="p">.</span><span class="nf">load_workbook</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">wb</span><span class="p">.</span><span class="n">worksheets</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sheet</span><span class="p">.</span><span class="n">title</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exceptSheets</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">wb</span><span class="p">,</span> <span class="n">sheet</span>
-    <span class="n">fileNameOut</span> <span class="o">=</span> <span class="n">fileName</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">.xlsx</span><span class="sh">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">-out.xlsx</span><span class="sh">"</span>
-    <span class="n">wb</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">fileDir</span><span class="p">,</span> <span class="n">fileNameOut</span><span class="p">))</span>
-
-</code></pre></div></div>
-
-<h2 id="py播放音频">py播放音频</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">wave</span> <span class="c1"># pip install wave
-</span><span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">threading</span>
-
-
-<span class="k">class</span> <span class="nc">SayHello</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span>
-                 <span class="n">package_path</span><span class="o">=</span><span class="sh">'</span><span class="s">/home/nuc/test_voice_play/nio-voice</span><span class="sh">'</span><span class="p">,</span>
-                 <span class="n">default_sleep_time</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                 <span class="n">default_sound_volume</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">package_path</span> <span class="o">=</span> <span class="n">package_path</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">default_sleep_time</span> <span class="o">=</span> <span class="n">default_sleep_time</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span> <span class="o">=</span> <span class="n">default_sound_volume</span>
-
-    <span class="c1"># Get audio file duration
-</span>    <span class="k">def</span> <span class="nf">get_duration</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="n">wavfile</span> <span class="o">=</span> <span class="n">wave</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="sh">'</span><span class="s">rb</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="n">wavfile</span><span class="p">.</span><span class="nf">getparams</span><span class="p">()</span>
-        <span class="n">framesra</span><span class="p">,</span> <span class="n">frameswav</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">time</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">framesra</span> <span class="o">*</span> <span class="n">frameswav</span>
-        <span class="k">return</span> <span class="n">time</span>
-
-    <span class="c1"># Modify playback volume
-</span>    <span class="k">def</span> <span class="nf">set_volume</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="sh">'''</span><span class="s">
-        Modify playback volume  </span><span class="se">\n</span><span class="s">
-        volume : 0~100  </span><span class="se">\n</span><span class="s">
-        card : default = 0 </span><span class="se">\n</span><span class="s">
-        </span><span class="sh">'''</span>
-        <span class="k">if</span> <span class="n">volume</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="ow">or</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Ranges : 0 &lt; volume &lt; 100</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span> <span class="o">=</span> <span class="n">volume</span>
-        <span class="n">volume_percent</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">%</span><span class="sh">"</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">amixer set -c %s Master %s 1&gt;/dev/null 2&gt;&amp;1</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">card</span><span class="p">),</span> <span class="n">volume_percent</span><span class="p">))</span>
-
-    <span class="c1"># play one audio file
-</span>    <span class="k">def</span> <span class="nf">play_one</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cmdstr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sh">'''</span><span class="s">
-        play one single .wav file, return wav file path and content  </span><span class="se">\n</span><span class="s">
-        cmdstr : eg:</span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="s">  </span><span class="se">\n</span><span class="s">
-        card : default = 0  </span><span class="se">\n</span><span class="s">
-        volume : default = 80
-        </span><span class="sh">'''</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">self</span><span class="p">.</span><span class="nf">set_volume</span><span class="p">(</span><span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">card</span><span class="o">=</span><span class="n">card</span><span class="p">)</span>
-        <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">volume set error</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">return</span>
-
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">package_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">Voiceconfig.json</span><span class="sh">"</span><span class="p">),</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">load_f</span><span class="p">:</span>
-            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">load_f</span><span class="p">)</span>
-            <span class="n">cmdlist</span> <span class="o">=</span> <span class="n">cmdstr</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">wav_path</span> <span class="o">=</span> <span class="sh">""</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]][</span><span class="sh">"</span><span class="s">file</span><span class="sh">"</span><span class="p">]</span>
-                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">package_path</span><span class="p">,</span> <span class="n">wav_path</span><span class="p">)</span>
-                <span class="n">content</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">cmdlist</span><span class="p">[</span><span class="mi">2</span><span class="p">]][</span><span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">]</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">content : %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">content</span><span class="p">)</span>
-                <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">aplay -D plughw:%s %s 1&gt;/dev/null 2&gt;&amp;1</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">card</span><span class="p">),</span> <span class="n">wav_path</span><span class="p">))</span>
-                <span class="k">return</span> <span class="n">wav_path</span>
-            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">command input illegal</span><span class="sh">"</span><span class="p">)</span>
-                <span class="k">return</span>
-
-    <span class="c1"># play multi audio file by step in a list
-</span>    <span class="k">def</span> <span class="nf">play_step</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cmdlist</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">}],</span> <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="sh">'''</span><span class="s">
-        play multi .wav file sequentially at once  </span><span class="se">\n</span><span class="s">
-        sleep: default = 3
-        card : default = 0  </span><span class="se">\n</span><span class="s">
-        volume : default = 80
-        </span><span class="sh">'''</span>
-        <span class="k">for</span> <span class="n">each_cmd</span> <span class="ow">in</span> <span class="n">cmdlist</span><span class="p">:</span>
-
-            <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">default_sleep_time</span>
-            <span class="k">if</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">each_cmd</span><span class="p">:</span>
-                <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">each_cmd</span><span class="p">[</span><span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">]</span>
-
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">wav_path</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">play_one</span><span class="p">(</span><span class="n">cmdstr</span><span class="o">=</span><span class="n">each_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">cmd</span><span class="sh">'</span><span class="p">],</span> <span class="n">card</span><span class="o">=</span><span class="n">card</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="n">volume</span><span class="p">)</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">sleep : %fs</span><span class="sh">"</span> <span class="o">%</span> <span class="n">sleep_time</span><span class="p">)</span>
-                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">get_duration</span><span class="p">(</span><span class="n">wav_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">sleep_time</span><span class="p">)</span>
-            <span class="k">except</span> <span class="nb">BaseException</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">command input illegal</span><span class="sh">"</span><span class="p">)</span>
-                <span class="k">return</span>
-
-    <span class="c1"># Drive multiple sound cards at the same time
-</span>    <span class="k">def</span> <span class="nf">play_parallel</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">playlist</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">:</span> <span class="nb">int</span><span class="p">}])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="sh">'''</span><span class="s">
-        Drive multiple sound cards at the same time </span><span class="se">\n</span><span class="s">
-        card : sound card number  </span><span class="se">\n</span><span class="s">
-        step : eg. [{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="s">: </span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="s">: 2}]
-        volume : default = 80
-        </span><span class="sh">'''</span>
-        <span class="n">thread_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">))]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">playlist</span><span class="p">)):</span>
-            <span class="n">card</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">]</span>
-            <span class="n">step</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">]</span>
-            <span class="n">volume</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">default_sound_volume</span>
-            <span class="k">if</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                <span class="n">volume</span> <span class="o">=</span> <span class="n">playlist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">]</span>
-            <span class="n">thread_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">play_step</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">card</span><span class="p">))</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">each_thread</span> <span class="ow">in</span> <span class="n">thread_list</span><span class="p">:</span>
-                <span class="n">each_thread</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
-        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">thread error : </span><span class="sh">"</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="功能">功能</h2>
-
-<ol>
-  <li>单条指令播放</li>
-</ol>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="nf">play_one</span><span class="p">(</span><span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ol>
-  <li>多条指令连续播放
-参数card, volume, sleep有预设值</li>
-</ol>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="nf">play_step</span><span class="p">(</span>
-    <span class="n">card</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">volume</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">cmdlist</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">},</span>
-        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-        <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
-    <span class="p">])</span>
-</code></pre></div></div>
-
-<ol>
-  <li>多声卡并行播放
-参数sleep, volumn有预设值</li>
-</ol>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">play_0</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
-<span class="p">]</span>
-
-<span class="n">play_1</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Basic/wakeup/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/open_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">cmd</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Control/close_window/adult_male_nature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">sleep</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
-<span class="p">]</span>
-
-<span class="n">a</span><span class="p">.</span><span class="nf">play_parallel</span><span class="p">([</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="n">play_0</span><span class="p">,</span> <span class="sh">"</span><span class="s">volume</span><span class="sh">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">},</span>
-    <span class="p">{</span><span class="sh">"</span><span class="s">card</span><span class="sh">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sh">"</span><span class="s">step</span><span class="sh">"</span><span class="p">:</span> <span class="n">play_1</span><span class="p">}</span>
-<span class="p">])</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/python/2023-09-06-nio_voice_play/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[ubuntu命令行播放音频]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="raspberry_pi" /><category term="linux" /><summary type="html"><![CDATA[参考 https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server]]></summary></entry></feed>

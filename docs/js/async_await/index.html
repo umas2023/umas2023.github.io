@@ -78,6 +78,38 @@
 <span class="c1">//  程序在b = await处停顿了</span>
 </code></pre></div></div>
 
+<ul>
+  <li>异常处理</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">asyncFunc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="k">await</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="dl">"</span><span class="s2">Some error</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// 或者 reject("Some error")</span>
+        <span class="p">});</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="c1">// 会输出 Some error</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nf">asyncFunc</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>返回值</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">asyncFunc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="k">await</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span>
+        <span class="nf">function </span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Return value</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nf">asyncFunc</span><span class="p">();</span>
+</code></pre></div></div>
+
 <!-- ![引入图片](/image/js/2023-07-13-async_await/image_1.jpg) -->
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>

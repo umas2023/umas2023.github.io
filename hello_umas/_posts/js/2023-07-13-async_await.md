@@ -38,10 +38,38 @@ funAsy()
 ```
 {% endraw %}
 
-    
+
+- 异常处理
+
+```js
+async function asyncFunc() {
+    try {
+        await new Promise(function (resolve, reject) {
+            throw "Some error"; // 或者 reject("Some error")
+        });
+    } catch (err) {
+        console.log(err);
+        // 会输出 Some error
+    }
+}
+asyncFunc();
+```
     
 
 
+- 返回值
+
+```js
+async function asyncFunc() {
+    let value = await new Promise(
+        function (resolve, reject) {
+            resolve("Return value");
+        }
+    );
+    console.log(value);
+}
+asyncFunc();
+```
 
 
 

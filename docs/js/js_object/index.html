@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>js: js对象 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="js: js对象" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一种数据类型，带有属性和方法" />
+<meta property="og:description" content="一种数据类型，带有属性和方法" />
+<link rel="canonical" href="/js/js_object/" />
+<meta property="og:url" content="/js/js_object/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-11T13:31:08+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="js: js对象" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-11T13:31:08+08:00","datePublished":"2023-09-11T13:31:08+08:00","description":"一种数据类型，带有属性和方法","headline":"js: js对象","mainEntityOfPage":{"@type":"WebPage","@id":"/js/js_object/"},"url":"/js/js_object/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">js: js对象</h1>
+    <h3>对象、对象构造器</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>
+    <p>一种数据类型，带有属性和方法</p>
+  </li>
+  <li>
+    <p>创建新对象有两种不同的方法：</p>
+
+    <ul>
+      <li>使用 Object 定义并创建对象的实例。</li>
+      <li>使用函数来定义对象，然后创建新的对象实例。</li>
+    </ul>
+  </li>
+  <li>
+    <p>Object 构造函数，会根据给定的参数创建对象，具体有以下情况：</p>
+
+    <ul>
+      <li>如果给定值是 null 或 undefined，将会创建并返回一个空对象。</li>
+      <li>如果传进去的是一个基本类型的值，则会构造其包装类型的对象。</li>
+      <li>如果传进去的是引用类型的值，仍然会返回这个值，经他们复制的变量保有和源对象相同的引用地址。</li>
+    </ul>
+  </li>
+  <li>
+    <p>示例</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 等价于 o = new Boolean(true);</span>
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="o">=</span><span class="k">new</span> <span class="nc">Object</span><span class="p">();</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="mi">50</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 等价于：</span>
+<span class="nx">person</span><span class="o">=</span><span class="p">{</span><span class="na">firstname</span><span class="p">:</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span><span class="na">lastname</span><span class="p">:</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="na">eyecolor</span><span class="p">:</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>使用函数（对象构造器constructor）的例子</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">person</span><span class="p">(</span><span class="nx">firstname</span><span class="p">,</span><span class="nx">lastname</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">eyecolor</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="nx">firstname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">lastname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="nx">age</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="nx">eyecolor</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 在JavaScript中，this通常指向的是我们正在执行的函数本身，或者是指向该函数所属的对象（运行时）</span>
+
+<span class="c1">// 创建新实例</span>
+<span class="kd">var</span> <span class="nx">myFather</span><span class="o">=</span><span class="k">new</span> <span class="nf">person</span><span class="p">(</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">myMother</span><span class="o">=</span><span class="k">new</span> <span class="nf">person</span><span class="p">(</span><span class="dl">"</span><span class="s2">Sally</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Rally</span><span class="dl">"</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="dl">"</span><span class="s2">green</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// 添加属性</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">x</span><span class="o">=</span><span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>为对象添加方法</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">person</span><span class="p">(</span><span class="nx">firstname</span><span class="p">,</span><span class="nx">lastname</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">eyecolor</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="nx">firstname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">lastname</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="nx">age</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="nx">eyecolor</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">changeName</span><span class="o">=</span><span class="nx">changeName</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nf">changeName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>JavaScript for…in 语句循环遍历对象的属性。</p>
+  </li>
+  <li>
+    <p>一个已存在的构造器对象中不能添加新的属性，只能在构造器函数中添加</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 报错</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">nationality</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">English</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>所有的 JavaScript 对象都会从一个 prototype（原型对象）中继承属性和方法，使用 prototype 属性就可以给对象的构造函数添加新的属性</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Person</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">last</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">eyecolor</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">eyeColor</span> <span class="o">=</span> <span class="nx">eyecolor</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">nationality</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">English</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>补充，判断一个实例是否属于某种类型</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">no</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">person</span><span class="p">()</span>
+<span class="nx">no</span> <span class="k">instanceof</span> <span class="nx">person</span><span class="c1">//true</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/js/2023-09-11-js_object/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
