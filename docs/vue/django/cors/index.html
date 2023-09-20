@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>vue: cors跨域不通过 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="vue: cors跨域不通过" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="跨源资源共享（CORS，或通俗地译为跨域资源共享）是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其他源（域、协议或端口），使得浏览器允许这些源访问加载自己的资源。" />
+<meta property="og:description" content="跨源资源共享（CORS，或通俗地译为跨域资源共享）是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其他源（域、协议或端口），使得浏览器允许这些源访问加载自己的资源。" />
+<link rel="canonical" href="/vue/django/cors/" />
+<meta property="og:url" content="/vue/django/cors/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-20T18:29:39+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="vue: cors跨域不通过" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-20T18:29:39+08:00","datePublished":"2023-09-20T18:29:39+08:00","description":"跨源资源共享（CORS，或通俗地译为跨域资源共享）是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其他源（域、协议或端口），使得浏览器允许这些源访问加载自己的资源。","headline":"vue: cors跨域不通过","mainEntityOfPage":{"@type":"WebPage","@id":"/vue/django/cors/"},"url":"/vue/django/cors/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">vue: cors跨域不通过</h1>
+    <h3>是前端的问题，也是后端的问题</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>
+    <p>跨源资源共享（CORS，或通俗地译为跨域资源共享）是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其他源（域、协议或端口），使得浏览器允许这些源访问加载自己的资源。</p>
+  </li>
+  <li>
+    <p>cors将请求分为简单请求和预检请求，cors预检的目的是为了验证CORS协议是否被理解，预检的OPTION请求包含下面三个字段</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>“Access-Control-Request-Method”
+“Access-Control-Request-Headers”
+“Origin”
+</code></pre></div></div>
+
+<ul>
+  <li>服务器响应的一个例子</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Access-Control-Allow-Origin:http://my.com
+Access-Control-ALlow-Metheds: POST
+Access-Control-Allow-Headers:a,b, content-type
+Access-Control-Max-Age: 86400
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>这些字段会被浏览器自动的发给服务器端。所以，在正常情况下，前端开发人员不需要自己指定此类请求。如果服务器允许发送请求，那么浏览器就会发送所需的HTTP数据包。</p>
+  </li>
+  <li>
+    <p>简单请求：</p>
+    <ul>
+      <li>GET、HEAD、POST</li>
+      <li>头部满足CORS安全规范（不主动去改header就是满足的）</li>
+      <li>请求头的Content-Type为以下三种</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>text/plain
+multipart/form-data
+application/x-www-form-urlencoded
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>比如在header里添加了一个json格式的token，Content-Type变成了application/json，发给后端就会被cors拦截，这是二级节点项目里曾经遇到的问题（当时的解决方法是在后端关闭了cors）</p>
+  </li>
+  <li>
+    <p>简单请求发送后，浏览器会自动加上一个包含Origin的请求头（当前页面源），服务器验证通过后返回响应头Access-Control-Allow-Credentials包含当前源（或者星号允许所有）</p>
+  </li>
+</ul>
+
+<!-- ![引入图片](/image/vue/2023-09-20-cors/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
