@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-20T19:10:32+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">css: 保持宽高比的简单方法</title><link href="/css/aspect_ratio/" rel="alternate" type="text/html" title="css: 保持宽高比的简单方法" /><published>2023-09-20T18:52:11+08:00</published><updated>2023-09-20T18:52:11+08:00</updated><id>/css/aspect_ratio</id><content type="html" xml:base="/css/aspect_ratio/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-22T13:11:24+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">css: fontawesome安装</title><link href="/css/vue/fontawesome/" rel="alternate" type="text/html" title="css: fontawesome安装" /><published>2023-09-22T11:51:15+08:00</published><updated>2023-09-22T11:51:15+08:00</updated><id>/css/vue/fontawesome</id><content type="html" xml:base="/css/vue/fontawesome/"><![CDATA[<ul>
+  <li>在vue中引入
+    <ul>
+      <li>https://fontawesome.com/docs/web/use-with/vue/add-icons</li>
+    </ul>
+  </li>
+  <li>npm
+```bash
+    <h1 id="core">core</h1>
+    <p>npm i –save @fortawesome/fontawesome-svg-core</p>
+  </li>
+</ul>
+
+<h1 id="free-icons-styles">Free icons styles</h1>
+<p>npm i –save @fortawesome/free-solid-svg-icons
+npm i –save @fortawesome/free-regular-svg-icons
+npm i –save @fortawesome/free-brands-svg-icons</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- main.ts
+
+
+```js
+/* Set up using Vue 3 */
+import { createApp } from 'vue'
+import App from './App.vue'
+
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faUserSecret)
+
+createApp(App)
+.component('font-awesome-icon', FontAwesomeIcon)
+.mount('#app')
+
+</code></pre></div></div>
+
+<ul>
+  <li>vue</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* add fontawesome core */</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">library</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/fontawesome-svg-core</span><span class="dl">'</span>
+
+<span class="cm">/* add some free styles */</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">faTwitter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/free-brands-svg-icons</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">faUserSecret</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/free-solid-svg-icons</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">faEnvelope</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/free-regular-svg-icons</span><span class="dl">'</span>
+
+<span class="cm">/* add each imported icon to the library */</span>
+<span class="nx">library</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">faTwitter</span><span class="p">,</span> <span class="nx">faUserSceret</span><span class="p">,</span><span class="nx">faEnvelope</span><span class="p">)</span>
+
+<span class="c1">// 注意每个icon都有solid/regular/light/duotone/thin的区别，引入时需要区分</span>
+
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/css/2023-09-20-bg_img/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><category term="vue" /><summary type="html"><![CDATA[在vue中引入 https://fontawesome.com/docs/web/use-with/vue/add-icons]]></summary></entry><entry><title type="html">css: 保持宽高比的简单方法</title><link href="/css/aspect_ratio/" rel="alternate" type="text/html" title="css: 保持宽高比的简单方法" /><published>2023-09-20T18:52:11+08:00</published><updated>2023-09-20T18:52:11+08:00</updated><id>/css/aspect_ratio</id><content type="html" xml:base="/css/aspect_ratio/"><![CDATA[<ul>
   <li>设置height=0后用padding-bottom控制比例</li>
 </ul>
 
@@ -746,336 +811,4 @@ application/x-www-form-urlencoded
   <li>关于如何在树莓派开启smb，好像记在树莓派分区里了</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[设置 =&gt; 网络 =&gt; 网络共享中心 =&gt; 高级共享设置，全部启用]]></summary></entry><entry><title type="html">windows: hyperv虚拟机软路由</title><link href="/windows/hyperv_openwrt/" rel="alternate" type="text/html" title="windows: hyperv虚拟机软路由" /><published>2023-09-09T11:57:03+08:00</published><updated>2023-09-09T11:57:03+08:00</updated><id>/windows/hyperv_openwrt</id><content type="html" xml:base="/windows/hyperv_openwrt/"><![CDATA[<h2 id="下载镜像">下载镜像</h2>
-
-<ul>
-  <li>下载openwrt镜像
-    <ul>
-      <li>https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_1.png" alt="引入图片" /></p>
-
-<ul>
-  <li>combined：文件系统 + 内核</li>
-  <li>
-    <p>rootfs： 只有文件系统</p>
-  </li>
-  <li>
-    <p>注意下载之后的压缩包用7z解压可能报错，可以用winrar</p>
-  </li>
-  <li>starwind软件将img转为vmdk
-    <ul>
-      <li>选localfile，VHD/VHDX，VHDX growable image</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="启动虚拟机">启动虚拟机</h2>
-
-<ul>
-  <li>确认hyperv已经打开</li>
-  <li>windows管理工具-&gt;hyper-v管理器</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_2.png" alt="引入图片" /></p>
-
-<ul>
-  <li>外部网络选择当前使用的网卡</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_3.png" alt="引入图片" /></p>
-
-<ul>
-  <li>创建虚拟机</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_4.png" alt="引入图片" /></p>
-
-<ul>
-  <li>第二代，不使用动态内存，连接选刚才的wrt_lan，使用现有虚拟硬盘找到刚才的vhdx</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_5.png" alt="引入图片" /></p>
-
-<ul>
-  <li>安全 -&gt; 启用安全启动 - 关掉</li>
-  <li>网络适配器 -&gt; 高级功能 -&gt; 启用mac地址欺骗</li>
-  <li>检查点 -&gt; 使用自动检查点 - 关掉</li>
-  <li>
-    <p>自动启动 -&gt; 有需要的话开启始终自动启动</p>
-  </li>
-  <li>右键连接openwrt，编辑</li>
-  <li>Vim etc/config/network</li>
-  <li>改成和当前路由器相同网段</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_6.png" alt="引入图片" /></p>
-
-<ul>
-  <li>
-    <p>reboot</p>
-  </li>
-  <li>浏览器输入上面的ip：192.168.31.31</li>
-  <li>没有密码</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_7.png" alt="引入图片" /></p>
-
-<ul>
-  <li>修改lan，网关指向主路由</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_8.png" alt="引入图片" /></p>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_9.png" alt="引入图片" /></p>
-
-<ul>
-  <li>DHCP服务器：忽略此接口</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_10.png" alt="引入图片" /></p>
-
-<ul>
-  <li>禁用桥接</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_11.png" alt="引入图片" /></p>
-
-<ul>
-  <li>Dns 8.8.8.8</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_12.png" alt="引入图片" /></p>
-
-<ul>
-  <li>
-    <p>ping downloads.openwrt.org</p>
-  </li>
-  <li>安装中文语言包</li>
-  <li>Index of /releases/22.03.5/packages/x86_64/luci/ (openwrt.org)</li>
-  <li>搜base-zh-cn</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_13.png" alt="引入图片" /></p>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_14.png" alt="引入图片" /></p>
-
-<ul>
-  <li>更换阿里源</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_15.png" alt="引入图片" /></p>
-
-<ul>
-  <li>将 /etc/opkg/distfeeds.conf 下的 downloads.openwrt.org 替换为mirrors.aliyun.com/openwrt</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/gz openwrt_core https://downloads.openwrt.org/releases/22.03.5/targets/x86/64/packages
-src/gz openwrt_base https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/base
-src/gz openwrt_luci https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/luci
-src/gz openwrt_packages https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/packages
-src/gz openwrt_routing https://do
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>完了update一下：<code class="language-plaintext highlighter-rouge">opkg update</code></p>
-  </li>
-  <li>
-    <p>注意第一行的targets不要改，会报错（2023.5.28）</p>
-  </li>
-</ul>
-
-<h2 id="安装clash">安装clash</h2>
-
-<ul>
-  <li>
-    <p>参考：https://github.com/vernesong/OpenClash/wiki/%E5%AE%89%E8%A3%85</p>
-  </li>
-  <li>
-    <p>首先删掉dnsmasq</p>
-  </li>
-  <li>下载ipk</li>
-  <li>Releases · vernesong/OpenClash (github.com)</li>
-  <li>安装依赖</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg update
-opkg install coreutils-nohup --force-overwrite
-opkg install bash --force-overwrite
-opkg install iptables --force-overwrite
-opkg install dnsmasq-full --force-overwrite
-opkg install curl --force-overwrite
-opkg install ca-certificates --force-overwrite
-opkg install ipset --force-overwrite
-opkg install i
-</code></pre></div></div>
-
-<ul>
-  <li>整合↑</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install coreutils-nohup  bash  iptables  dnsmasq-full  curl  ca-certificates  ipset  ip-full  iptables-mod-tproxy  iptables-mod-extra  libcap  libcap-bin  ruby  ruby-yaml  kmod-tun --force-overwrite 
-
-</code></pre></div></div>
-
-<ul>
-  <li>ipk文件拷贝到远程主机
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp .\luci-app-openclash_0.45.121-beta_all.ipk root@192.168.31.31:/root
-</code></pre></div>    </div>
-  </li>
-  <li>opkg install
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install luci-app-openclash_0.45.121-beta_all.ipk
-</code></pre></div>    </div>
-  </li>
-  <li>报错 module ‘luci.cbi.datatypes’ not found
-    <ul>
-      <li>参考：https://github.com/vernesong/OpenClash/issues/2364</li>
-      <li>参考：https://blog.csdn.net/xs18952904/article/details/124600025</li>
-    </ul>
-  </li>
-  <li>命令报错找不到：opkg install luci-compat，需要手动下载
-    <ul>
-      <li>https://downloads.openwrt.org/releases/22.03.5/packages/x86_64/luci/</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp .\luci-compat_git-23.093.42303-ef4cd04_all.ipk root@192.168.31.31:/root
-opkg install luci-compat_git-23.093.42303-ef4cd04_all.ipk
-</code></pre></div></div>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_16.png" alt="引入图片" /></p>
-
-<ul>
-  <li>
-    <p>这里没有手动下载内核，如果配置完成后内核自动下载失败，需要手动下载</p>
-  </li>
-  <li>
-    <p>不行，它不能自动下载，还是要手动下</p>
-  </li>
-  <li>
-    <p>下载内核，三个不存在的都下载</p>
-    <ul>
-      <li>md好麻烦，还是安一个winscp吧</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_17.png" alt="引入图片" /></p>
-
-<ul>
-  <li>拷过去之后加权限</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_18.png" alt="引入图片" />
-<img src="/image/windows/2023-09-09-hyperv_openwrt/image_19.png" alt="引入图片" /></p>
-
-<ul>
-  <li>启用fake-ip模式（在底部点击）记得点保存应用</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_20.png" alt="引入图片" /></p>
-
-<ul>
-  <li>启动之后在 server logs 报错</li>
-  <li>警告：OpenClash 启动成功，检测到您启用了IPv6的DHCP服务，可能会造成连接异常！</li>
-  <li>接口编辑里关掉这个：</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_21.png" alt="引入图片" /></p>
-
-<ul>
-  <li>安装主题</li>
-  <li><a href="https://github.com/jerrykuku/luci-theme-argon/blob/master/README_ZH.md">luci-theme-argon/README_ZH.md at master · jerrykuku/luci-theme-argon · GitHub</a></li>
-  <li>可以用wget
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install luci-compat
-opkg install luci-lib-ipkg
-wget --no-check-certificate https://github.com/jerrykuku/luci-theme-argon/releases/download/v2.3/luci-theme-argon_2.3_all.ipk
-opkg install luci-theme-argon*.ipk
-</code></pre></div>    </div>
-  </li>
-  <li>报错找不到的话update一下
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg update
-</code></pre></div>    </div>
-  </li>
-  <li>也可以直接下载：</li>
-  <li>https://github.com/jerrykuku/</li>
-</ul>
-
-<h2 id="windows连接">windows连接</h2>
-
-<ul>
-  <li>修改默认网关</li>
-  <li>不需要在路由器里固定ip地址</li>
-  <li>设置的网卡必须是之前open wrt连接的网卡，双网卡要选对，第三方手机不能连接</li>
-  <li>首选dns是wrt地址
-注意连接后需要等待2-3分钟，期间会无法联网</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_22.png" alt="引入图片" />
-<img src="/image/windows/2023-09-09-hyperv_openwrt/image_23.png" alt="引入图片" /></p>
-
-<ul>
-  <li>经测试下面这个方法不太行</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_24.png" alt="引入图片" /></p>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_25.png" alt="引入图片" /></p>
-
-<ul>
-  <li>1、网络前缀长度24，对应子网掩码【255.255.255.0】；</li>
-  <li>2、网络前缀长度18，对应子网掩码【255.255.240.0】；</li>
-  <li>3、网络前缀长度16，对应子网掩码【255.255.0.0】</li>
-</ul>
-
-<h2 id="热点转发">热点转发</h2>
-
-<ul>
-  <li>实际测试时发现只有电脑本机可以正常上网，安卓苹果switch都不行</li>
-  <li>可以将电脑的网络通过热点转发给其他设备</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_26.png" alt="引入图片" /></p>
-
-<ul>
-  <li>打开共享后可以看到多出一个网络设备</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_27.png" alt="引入图片" /></p>
-
-<ul>
-  <li>在当前电脑连接wifi的设备属性里打开共享，没有开启共享时手机连上会显示没有网络</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_28.png" alt="引入图片" /></p>
-
-<ul>
-  <li>
-    <p>补充一点，如果手机长时间连接不上的话，把上面的勾去掉试试</p>
-  </li>
-  <li>
-    <p>如果电脑连接后可以正常上网翻墙，但右下角显示无internet，这时无法开启热点，可以尝试：</p>
-    <ul>
-      <li>更换节点</li>
-      <li>或者关闭ipv4校验，关闭后重新启动clash并重新连接，</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_29.png" alt="引入图片" /></p>
-
-<p><img src="/image/windows/2023-09-09-hyperv_openwrt/image_30.png" alt="引入图片" /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<h2 id="后记">后记</h2>
-
-<ul>
-  <li>由于虚拟机性能限制，switch连接后nat无法满足联机需要</li>
-  <li>加钱买了个小米路由器，刷机教程详见另一篇</li>
-</ul>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[下载镜像]]></summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[设置 =&gt; 网络 =&gt; 网络共享中心 =&gt; 高级共享设置，全部启用]]></summary></entry></feed>
