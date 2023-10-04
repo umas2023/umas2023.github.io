@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-04T19:36:06+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 不同路径</title><link href="/leetcode/python/uniquePaths/" rel="alternate" type="text/html" title="leetcode: 不同路径" /><published>2023-10-04T19:19:58+08:00</published><updated>2023-10-04T19:19:58+08:00</updated><id>/leetcode/python/uniquePaths</id><content type="html" xml:base="/leetcode/python/uniquePaths/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-04T20:52:11+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 9键输入法组合</title><link href="/leetcode/python/9_button_input/" rel="alternate" type="text/html" title="leetcode: 9键输入法组合" /><published>2023-10-04T20:42:31+08:00</published><updated>2023-10-04T20:42:31+08:00</updated><id>/leetcode/python/9_button_input</id><content type="html" xml:base="/leetcode/python/9_button_input/"><![CDATA[<ul>
+  <li>Klook笔试题，因为原题是英文给的，事后没有找到完全一样的原题</li>
+  <li>简述一下题目大意：9键输入法，给定按键序列，返回所有组合</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>比如按下23
+所有可能的组合有['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
+</code></pre></div></div>
+
+<ul>
+  <li>题目本身不难，循环嵌套再拼接就行了</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dic9</span><span class="o">=</span><span class="p">{</span>
+        <span class="sh">"</span><span class="s">2</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">b</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">c</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">3</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">d</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">e</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">f</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">4</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">g</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">h</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">5</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">j</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">k</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">l</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">6</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">m</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">n</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">o</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">7</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">p</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">q</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">r</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">s</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">8</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">t</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">u</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">v</span><span class="sh">"</span><span class="p">],</span>
+        <span class="sh">"</span><span class="s">9</span><span class="sh">"</span><span class="p">:[</span><span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">z</span><span class="sh">"</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">dic9</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">sv</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">dic9</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ans</span><span class="p">:</span>
+                    <span class="n">sv</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">letter</span><span class="o">+</span><span class="n">item</span><span class="p">)</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">sv</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>（但是他妈的，python打印字符串列表时默认使用单引号，牛客判定结果用双引号，我的程序通过率是0%）</li>
+  <li>（↑转义成纯字符串也通不过，妈的真是触及到知识盲区了）</li>
+</ul>
+
+<!--![引入图片](/image/leetcode/2023-10-04-9_button_input/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[Klook笔试题，因为原题是英文给的，事后没有找到完全一样的原题 简述一下题目大意：9键输入法，给定按键序列，返回所有组合]]></summary></entry><entry><title type="html">leetcode: 不同路径</title><link href="/leetcode/python/uniquePaths/" rel="alternate" type="text/html" title="leetcode: 不同路径" /><published>2023-10-04T19:19:58+08:00</published><updated>2023-10-04T19:19:58+08:00</updated><id>/leetcode/python/uniquePaths</id><content type="html" xml:base="/leetcode/python/uniquePaths/"><![CDATA[<ul>
   <li>
     <p>链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
   </li>
@@ -580,69 +628,4 @@ p[j]    a       a       *       a       b
         <span class="c1"># 对左右子树分别进行递归比较
 </span>        <span class="k">return</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[leetcode 100.相同的树]]></summary></entry><entry><title type="html">css: fontawesome安装</title><link href="/css/vue/fontawesome/" rel="alternate" type="text/html" title="css: fontawesome安装" /><published>2023-09-22T11:51:15+08:00</published><updated>2023-09-22T11:51:15+08:00</updated><id>/css/vue/fontawesome</id><content type="html" xml:base="/css/vue/fontawesome/"><![CDATA[<ul>
-  <li>在vue中引入
-    <ul>
-      <li>https://fontawesome.com/docs/web/use-with/vue/add-icons</li>
-    </ul>
-  </li>
-  <li>npm
-```bash
-    <h1 id="core">core</h1>
-    <p>npm i –save @fortawesome/fontawesome-svg-core</p>
-  </li>
-</ul>
-
-<h1 id="free-icons-styles">Free icons styles</h1>
-<p>npm i –save @fortawesome/free-solid-svg-icons
-npm i –save @fortawesome/free-regular-svg-icons
-npm i –save @fortawesome/free-brands-svg-icons</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-- main.ts
-
-
-```js
-/* Set up using Vue 3 */
-import { createApp } from 'vue'
-import App from './App.vue'
-
-/* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-
-/* add icons to the library */
-library.add(faUserSecret)
-
-createApp(App)
-.component('font-awesome-icon', FontAwesomeIcon)
-.mount('#app')
-
-</code></pre></div></div>
-
-<ul>
-  <li>vue</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* add fontawesome core */</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">library</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/fontawesome-svg-core</span><span class="dl">'</span>
-
-<span class="cm">/* add some free styles */</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">faTwitter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/free-brands-svg-icons</span><span class="dl">'</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">faUserSecret</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/free-solid-svg-icons</span><span class="dl">'</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">faEnvelope</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/free-regular-svg-icons</span><span class="dl">'</span>
-
-<span class="cm">/* add each imported icon to the library */</span>
-<span class="nx">library</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">faTwitter</span><span class="p">,</span> <span class="nx">faUserSceret</span><span class="p">,</span><span class="nx">faEnvelope</span><span class="p">)</span>
-
-<span class="c1">// 注意每个icon都有solid/regular/light/duotone/thin的区别，引入时需要区分</span>
-
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/css/2023-09-20-bg_img/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><category term="vue" /><summary type="html"><![CDATA[在vue中引入 https://fontawesome.com/docs/web/use-with/vue/add-icons]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[leetcode 100.相同的树]]></summary></entry></feed>

@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "leetcode: 9键输入法组合",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/9_button_input/",
+      "date"     : "2023-10-04 20:42:31 +0800"
+    } ,
+  
+    {
       "title"    : "leetcode: 不同路径",
       "category" : "",
       "tags"     : "",

@@ -39,11 +39,11 @@ zip_pctools
 basic_cat = "leetcode"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "uniquePaths"
+file_name = "9_button_input"
 # 修改这里：文章标题
-title = "'%s: 不同路径'" % basic_cat
+title = "'%s: 9键输入法组合'" % basic_cat
 # 修改这里：文章介绍
-info = "'动态规划又一题'"
+info = "'记录遇到的一个简单笔试题'"
 
 
 # 文章分类，可以添加多个
