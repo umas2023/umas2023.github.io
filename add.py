@@ -36,20 +36,28 @@ zip_pctools
 '''
 
 # 修改这里：基础分类
-basic_cat = "css"
+basic_cat = "leetcode"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "aspect_ratio"
+file_name = "uniquePaths"
 # 修改这里：文章标题
-title = "'%s: 保持宽高比的简单方法'" % basic_cat
+title = "'%s: 不同路径'" % basic_cat
 # 修改这里：文章介绍
-info = "'虽然使用margin可以实现，但有更简单的方法'"
+info = "'动态规划又一题'"
 
 
 # 文章分类，可以添加多个
-categories = [basic_cat]
+categories = [basic_cat,'python']
 # md文件放在哪个目录下
 dir = basic_cat
+
+# 是否创建图片目录？
+is_img = False
+
+
+
+
+
 
 import os
 from datetime import datetime
@@ -74,6 +82,7 @@ file_name = datetime.now().strftime("%Y-%m-%d") + "-" + file_name
 file_name_md = file_name + ".md"
 file_path = os.path.normpath(os.path.join(script_path, "hello_umas/_posts", dir, file_name_md))
 with open(file_path, "w+", encoding="utf-8") as md:
+    # 写入yaml头部
     md.write("---\n")
     for key in yaml:
         md.write(str(key))
@@ -81,16 +90,24 @@ with open(file_path, "w+", encoding="utf-8") as md:
         md.write(str(yaml[key]))
         md.write("\n")
     md.write("---\n")
-    # 写入一张图片
-    md.write("\n\n![引入图片]({{site.url}}/image/%s/%s/image_1.jpg)" % (dir, file_name))
     # 写入raw代码
     md.write("\n\n{% raw %}\n")
     md.write("```\n")
     md.write("```\n")
     md.write("{% endraw %}\n")
+    # 写入一张图片
+    md.write("\n\n<!--![引入图片]({{site.url}}/image/%s/%s/image_1.jpg) -->" % (dir, file_name))
+
+# 打开新md文件
+vscode = r'"D:\p-program\vscode\Microsoft VS Code\Code.exe"'
+os.system("%s %s" % (vscode, file_path))
+
 
 
 # 创建图片目录
+if not is_img:
+    exit()
+
 image_path = os.path.normpath(os.path.join(script_path, "hello_umas/image", dir, file_name))
 gitkeep = os.path.normpath(os.path.join(image_path, ".gitkeep"))
 if not os.path.exists(image_path):
@@ -101,6 +118,4 @@ with open(gitkeep, "w+") as keep:
 # 打开图片目录
 os.system("explorer.exe %s" % image_path)
 
-# 打开新md文件
-vscode = r'"D:\p-program\vscode\Microsoft VS Code\Code.exe"'
-os.system("%s %s" % (vscode, file_path))
+

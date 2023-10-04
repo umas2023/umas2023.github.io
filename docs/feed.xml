@@ -1,4 +1,586 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-22T13:11:24+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for my new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">css: fontawesome安装</title><link href="/css/vue/fontawesome/" rel="alternate" type="text/html" title="css: fontawesome安装" /><published>2023-09-22T11:51:15+08:00</published><updated>2023-09-22T11:51:15+08:00</updated><id>/css/vue/fontawesome</id><content type="html" xml:base="/css/vue/fontawesome/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-04T19:36:06+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 不同路径</title><link href="/leetcode/python/uniquePaths/" rel="alternate" type="text/html" title="leetcode: 不同路径" /><published>2023-10-04T19:19:58+08:00</published><updated>2023-10-04T19:19:58+08:00</updated><id>/leetcode/python/uniquePaths</id><content type="html" xml:base="/leetcode/python/uniquePaths/"><![CDATA[<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
+  </li>
+  <li>
+    <p>题目：一个机器人位于一个 m x n 网格的左上角。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角。问总共有多少条不同的路径？</p>
+  </li>
+  <li>
+    <p>自解（动态规划）：易知dp[i][j] = dp[i-1][j] + dp[i][j-1]，边界是当i或j=1时dp[i][j]=1</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">uniquePaths</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">j</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">uniquePaths</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>（因为最近在刷动态规划，双眼被蒙蔽了）</li>
+  <li>想要走到右下角，总步数是固定的m+n-2，向右几步和向下几步也都是固定的，向下m-1次，向右n-1次；所以路径总是就是从m+n-2次移动中选择m-1次向下移动的方案数，即组合数：</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C(m-1)(m+n-2) = (m+n-2)! / (m-1)!(n-1)!
+</code></pre></div></div>
+
+<ul>
+  <li>一行公式就可以解决</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-04-uniquePaths/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming]]></summary></entry><entry><title type="html">leetcode: 打家劫舍</title><link href="/leetcode/python/rob/" rel="alternate" type="text/html" title="leetcode: 打家劫舍" /><published>2023-10-04T16:33:58+08:00</published><updated>2023-10-04T16:33:58+08:00</updated><id>/leetcode/python/rob</id><content type="html" xml:base="/leetcode/python/rob/"><![CDATA[<h2 id="打家劫舍">打家劫舍</h2>
+
+<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/house-robber/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
+  </li>
+  <li>
+    <p>题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：[1,2,3,1]
+输出：4
+解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+     偷窃到的最高金额 = 1 + 3 = 4 。
+</code></pre></div></div>
+
+<ul>
+  <li>首先看边界，只有一间房屋时，dp[0] = List[0]；两间房屋时dp[1] = max(List)</li>
+  <li>接下来考虑递推关系。这道题很像之前的青蛙跳阶问题，在青蛙跳阶中，跳到第10级有2种方法：9+1或8+2；在这一题中，小偷偷10家也有2种方法：偷前9家或8+1，收益最大的方法即为解，所以状态转移方程：dp[n] = max( dp[n-1], dp[n-2]+List[n] )</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">rob</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">len_s</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">len_s</span><span class="p">]</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">rob</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>注意因为向前追溯了2位到dp[i-2]，所以dp的长度增加了1位，即(len_s+1)而不是len_s，i需要从2开始循环</li>
+</ul>
+
+<!--![引入图片](/image/leetcode/2023-10-04-rob/image_1.jpg) -->
+
+<h2 id="打家劫舍plus---删除并获得点数">打家劫舍plus - 删除并获得点数</h2>
+
+<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/delete-and-earn/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
+  </li>
+  <li>
+    <p>题目：给你一个整数数组 nums ，你可以对它进行一些操作。每次操作中，选择任意一个 nums[i] ，删除它并获得 nums[i] 的点数。之后，你必须删除 所有 等于 nums[i] - 1 和 nums[i] + 1 的元素（这些元素被删除后不获得点数）。开始你拥有 0 个点数。返回你能通过这些操作获得的最大点数。</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [3,4,2]
+输出：6
+解释：
+删除 4 获得 4 个点数，因此 3 也被删除。
+之后，删除 2 获得 2 个点数。总共获得 6 个点数。
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [2,2,3,3,3,4]
+输出：9
+解释：
+删除 3 获得 3 个点数，接着要删除两个 2 和 4 。
+之后，再次删除 3 获得 3 个点数，再次删除 3 获得 3 个点数。
+总共获得 9 个点数。
+</code></pre></div></div>
+
+<ul>
+  <li>下面解释一下为什么这道题是打家劫舍plus</li>
+  <li>每次选择后都删除了所有nums[i] - 1 和 nums[i] + 1，可以理解为失去了点数sum([x for x in nums if x == nums[i] ± 1])</li>
+  <li>考虑存在多个nums[i]的情况，因为第一次选择完之后已经删除了所有满足条件的元素，所有nums[i]可以重复选择直至全部选中，也就是说选择nums[i]相当于获得了点数sum([x for x in nums if x == nums[i]])</li>
+  <li>影响最终结果的是所有相同元素的和，而不是单个的元素，因此可以以nums[i]为key，以sum([x for x in nums if x == nums[i]])为value构建新的数组，示例如下</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; [0,1,2,3,3]
+&lt;&lt;&lt; [0,1,2,6]
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; [2, 2, 3, 3, 3, 4]
+&lt;&lt;&lt; [0, 0, 4, 9, 4]
+</code></pre></div></div>
+
+<ul>
+  <li>这时删除了所有nums[i] - 1 和 nums[i] + 1即意味着在新数组中无法选中相邻数字，也就是“相邻房屋会报警”</li>
+  <li>（看到这里不得不甘拜下风）</li>
+</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[打家劫舍]]></summary></entry><entry><title type="html">leetcode: 斐波那契数列</title><link href="/leetcode/python/fib/" rel="alternate" type="text/html" title="leetcode: 斐波那契数列" /><published>2023-10-04T16:22:28+08:00</published><updated>2023-10-04T16:22:28+08:00</updated><id>/leetcode/python/fib</id><content type="html" xml:base="/leetcode/python/fib/"><![CDATA[<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/fibonacci-number/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
+  </li>
+  <li>题目就是给n求fib(n)</li>
+  <li>可以用动态规划的方法来理解</li>
+  <li>边界条件是dp(0) = 0, dp(1) = 1</li>
+  <li>
+    <p>状态转移方程是 dp(n) = dp(n-1)+dp(n-2)</p>
+  </li>
+  <li>为了节省空间，可以用p、q、r仅保留dp的后三位，滚动赋值</li>
+</ul>
+
+<!-- ![引入图片](/image/leetcode/2023-10-04-fib/image_1.jpg) -->
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="nb">int</span> <span class="nf">fib</span><span class="p">(</span><span class="nb">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">if </span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nb">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nf">for </span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span> 
+            <span class="n">q</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> 
+            <span class="n">r</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[链接：https://leetcode.cn/problems/fibonacci-number/description/?envType=study-plan-v2&amp;envId=dynamic-programming]]></summary></entry><entry><title type="html">leetcode: 正则表达式匹配</title><link href="/leetcode/python/isMatch/" rel="alternate" type="text/html" title="leetcode: 正则表达式匹配" /><published>2023-10-04T15:11:51+08:00</published><updated>2023-10-04T15:11:51+08:00</updated><id>/leetcode/python/isMatch</id><content type="html" xml:base="/leetcode/python/isMatch/"><![CDATA[<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/regular-expression-matching/</p>
+  </li>
+  <li>
+    <p>题目：</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一个字符串 s （string）和一个字符规律 p（pattern），请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
+
+'.' 匹配任意单个字符
+'*' 匹配零个或多个前面的那一个元素
+所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。
+</code></pre></div></div>
+
+<ul>
+  <li>示例</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：s = "aa", p = "a"
+输出：false
+解释："a" 无法匹配 "aa" 整个字符串。
+
+
+Input:
+s = "aab"
+p = "c*a*b"
+Output: true
+Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore it matches "aab".
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>初见没有正确率理解题意中的匹配0次，从第二个示例可以看出包含’*‘前面的字母c在内都可以不被匹配，也就是说’*‘和前面的字母必须被看作一个整体</p>
+  </li>
+  <li>
+    <p>字母和’.’的情况不多赘述，主要讨论’*‘的情况</p>
+  </li>
+  <li>
+    <p>dp矩阵dp[i][j]表示s的前i个字符可以和p的前j个字符匹配，关键问题是如何构造状态转移方程</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 匹配了1次
+                        i     
+                        ↓       
+s[i]    a       a       a       b
+p[j]    a       a       a       *       b
+                                ↑
+                                j
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 匹配了0次
+                        i
+                        ↓
+s[i]    a       a       b
+p[j]    a       a       a       *       b
+                                ↑
+                                j
+</code></pre></div></div>
+
+<ul>
+  <li>将星号（p[j]）和前一个字母（p[j-1]）视为整体，进行匹配时有2种情况：
+    <ul>
+      <li>目标字母（s[i]）和模板字母（p[j-1]）不同，即【字母+星号】匹配了0次，此时能否匹配取决于【字母+星号】前一位，即p[j-2]，判断s[i] ?= p[j-2]，如果前一位匹配，即dp[i][j-2]=True，则dp[i][j]=True</li>
+      <li>目标字母（s[i]）和模板字母（p[j-1]）相同，这里又分为两种情况：
+        <ul>
+          <li>1.虽然相同但s[i]匹配的实际上是星号后面的内容，即此处的【字母+星号】依然匹配了0次（下面图示的状态，这里i处的a实际上应该匹配j+1处的a），这种情况和上面的情况属于同一种情况，为了处理它，可以把这里的计算结果与上面计算的dp[i][j-2]进行与运算，这就是为什么题解中使用了|=而不是直接赋值
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 匹配了0次
+              i
+              ↓
+s[i]    a       a       b
+p[j]    a       a       *       a       b
+                      ↑
+                      j
+</code></pre></div>            </div>
+          </li>
+          <li>2.相同且确实匹配，此时【字母+星号】匹配了1次或多次，为了找到所有可能的匹配，需要向前追溯目标字符串，即s[i-1]，判断s[i-1] ?= p[j]。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>上述所有情况中只要有一条成立，就可以判断匹配成功，所以程序中始终在用<code class="language-plaintext highlighter-rouge">|=</code>更新dp[i][j]的值</li>
+</ul>
+
+<!-- ![引入图片](/image/leetcode/2023-10-04-isMatch/image_1.jpg) -->
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">p</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nf">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">matches</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+        <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">:</span>
+                    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nf">matches</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nf">matches</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+                        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]</span>
+
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">isMatch</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="sh">'</span><span class="s">aab</span><span class="sh">'</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="sh">'</span><span class="s">aaa*b</span><span class="sh">'</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>好的，虽然尽力理解了这么多，但其实还是没有完全理解，不愧是困难题，（这题跳过）</li>
+</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[链接：https://leetcode.cn/problems/regular-expression-matching/]]></summary></entry><entry><title type="html">python: 创建矩阵</title><link href="/python/matrix/" rel="alternate" type="text/html" title="python: 创建矩阵" /><published>2023-10-03T20:05:30+08:00</published><updated>2023-10-03T20:05:30+08:00</updated><id>/python/matrix</id><content type="html" xml:base="/python/matrix/"><![CDATA[<ul>
+  <li>使用列表乘法可以快速初始化一个列表</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="c1"># [0, 0, 0]
+</span></code></pre></div></div>
+
+<ul>
+  <li>那么嵌套一层之后就可以创建矩阵了吗</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="c1"># [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+</span></code></pre></div></div>
+
+<ul>
+  <li>上面的代码看似合理，但为矩阵赋值时就会发现问题</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+<span class="c1"># [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
+</span></code></pre></div></div>
+
+<ul>
+  <li>
+    <p>执行dp = [[0] * 3] * 3时，实际上创建了一个包含3个相同引用的列表，它们指向同一个内存地址。修改其中一个元素的值时，其他所有引用也会随之改变。</p>
+  </li>
+  <li>
+    <p>可以用列表推导式来创建矩阵</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>或者numpy</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/python/2023-10-03-matrix/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[使用列表乘法可以快速初始化一个列表]]></summary></entry><entry><title type="html">leetcode: dp-最长回文子串</title><link href="/leetcode/python/longestPalindrome/" rel="alternate" type="text/html" title="leetcode: dp-最长回文子串" /><published>2023-10-03T17:38:37+08:00</published><updated>2023-10-03T17:38:37+08:00</updated><id>/leetcode/python/longestPalindrome</id><content type="html" xml:base="/leetcode/python/longestPalindrome/"><![CDATA[<ul>
+  <li>
+    <p>原题链接：https://leetcode.cn/problems/longest-palindromic-substring/</p>
+  </li>
+  <li>
+    <p>题目：</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一个字符串 s，找到 s 中最长的回文子串。
+
+如果字符串的反序与原始字符串相同，则该字符串称为回文字符串。
+
+示例 1：
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+
+示例 2：
+输入：s = "cbbd"
+输出："bb"
+</code></pre></div></div>
+
+<ul>
+  <li>边界：字符串长度为1，是回文串；字符串长度为2，若两字符相对，则为回文串</li>
+  <li>
+    <p>递推：判断s(i,j)为回文串的两个条件：首先s[i]=s[j]；其次s(i+1,j-1)是回文串</p>
+  </li>
+  <li>用db[i,j]:bool来表示s(i,j)是否为回文串</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">longestPalindrome</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="sh">''</span>
+        <span class="n">lens</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">lens</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">lens</span><span class="p">)]</span>
+        <span class="c1"># 字串长度
+</span>        <span class="k">for</span> <span class="n">sub_len</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">lens</span><span class="p">):</span>
+            <span class="c1"># 起点
+</span>            <span class="k">for</span> <span class="n">sub_start</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">lens</span> <span class="o">-</span> <span class="n">sub_len</span><span class="p">):</span>
+                <span class="n">sub_end</span> <span class="o">=</span> <span class="n">sub_start</span> <span class="o">+</span> <span class="n">sub_len</span>
+                <span class="c1"># 边界
+</span>                <span class="k">if</span> <span class="n">sub_len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">sub_len</span><span class="p">][</span><span class="n">sub_start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">sub_len</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">sub_len</span><span class="p">][</span><span class="n">sub_start</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">sub_start</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">sub_end</span><span class="p">])</span>
+
+                <span class="c1"># 递推
+</span>                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">sub_len</span><span class="p">][</span><span class="n">sub_start</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">sub_start</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">sub_end</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">sub_len</span> <span class="o">-</span> <span class="mi">2</span><span class="p">][</span><span class="n">sub_start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+                <span class="c1"># 回文字串长度
+</span>                <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">sub_len</span><span class="p">][</span><span class="n">sub_start</span><span class="p">]</span> <span class="ow">and</span> <span class="nf">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">sub_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">ans</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">sub_start</span><span class="p">:</span><span class="n">sub_end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">longestPalindrome</span><span class="p">(</span><span class="sh">"</span><span class="s">abac</span><span class="sh">"</span><span class="p">))</span>
+
+
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/leetcode/2023-10-03-longestPalindrome/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[原题链接：https://leetcode.cn/problems/longest-palindromic-substring/]]></summary></entry><entry><title type="html">leetcode: dp-递增子序列问题</title><link href="/leetcode/python/inc_sublist/" rel="alternate" type="text/html" title="leetcode: dp-递增子序列问题" /><published>2023-09-27T19:41:57+08:00</published><updated>2023-09-27T19:41:57+08:00</updated><id>/leetcode/python/inc_sublist</id><content type="html" xml:base="/leetcode/python/inc_sublist/"><![CDATA[<h2 id="问题">问题</h2>
+
+<ul>
+  <li>接前篇青蛙跳阶问题，补充一个动态规划更有代表性的例子：递增子序列问题</li>
+  <li>给你一个整数数组 nums ，找到其中最长严格递增子序列的长度</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [10,9,2,5,3,7,101,18]
+输出：4
+解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [0,1,0,3,2,3]
+输出：4 
+解释：[0,1,2,3]不一定必须是连续子序列
+</code></pre></div></div>
+
+<h2 id="规律">规律</h2>
+
+<ul>
+  <li>首先遵循自底向上原则枚举分析分析规律：</li>
+  <li>如果新加入一个元素nums[i], 最长递增子序列要么是以nums[i]结尾的递增子序列，要么就是nums[i-1]的最长递增子序列。</li>
+  <li>对于一个以nums[i]结尾的数组nums，如果存在j属于区间[0，i-1],并且num[i]&gt;num[j]的话，则有，dp(i) =max(dp(j))+1，</li>
+</ul>
+
+<h2 id="边界">边界</h2>
+
+<ul>
+  <li>当nums数组只有一个元素时，最长递增子序列的长度dp(1)=1,当nums数组有两个元素时，dp(2) =2或者1， 因此边界就是dp(1)=1。</li>
+</ul>
+
+<h2 id="最优子结构">最优子结构</h2>
+
+<ul>
+  <li>dp(i) =max(dp(j))+1，存在j属于区间[0，i-1],并且num[i]&gt;num[j]。</li>
+  <li>max(dp(j)) 就是最优子结构。</li>
+</ul>
+
+<h2 id="代码">代码</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lengthOfList</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="c1"># 使用长度为nums长度的列表进行初始化
+</span>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">lengthOfList</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<!-- ![引入图片](/image/leetcode/2023-09-27-inc_sublist/image_1.jpg) -->
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[问题]]></summary></entry><entry><title type="html">leetcode: dp-青蛙跳阶问题</title><link href="/leetcode/python/jumpFrog/" rel="alternate" type="text/html" title="leetcode: dp-青蛙跳阶问题" /><published>2023-09-27T18:59:41+08:00</published><updated>2023-09-27T18:59:41+08:00</updated><id>/leetcode/python/jumpFrog</id><content type="html" xml:base="/leetcode/python/jumpFrog/"><![CDATA[<ul>
+  <li>
+    <p>问题：一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 10 级的台阶总共有多少种跳法</p>
+  </li>
+  <li>倒推跳到10级有2种方法：9级+1或8级+1，即通用公式为：f(n) = f(n-1) + f(n-2)</li>
+  <li>可以很简单的递归出结果</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">numWays</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>递归树的总节点数为2^n+1，即时间复杂度为O(2^n)</li>
+  <li>以10为例，分析上面的代码发现，计算f(10)时拆分出了f(9)和f(8)，而计算f(9)时拆分出了f(8)和f(7)，此时f(8)已经被计算了2次，同理有很多节点被重复计算了</li>
+  <li>因此可以通过一个哈希表作为备忘录，记录已经计算过的节点，修改后的程序如下</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HashMap</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">HashMap</span><span class="p">.</span><span class="nf">keys</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">HashMap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">HashMap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HashMap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">numWays</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>动态规划的解法从底向上，这个问题中边界是f(1) = 1, f(2) = 2；最优子结构是f(n-1)和f(n-2)；状态转移方程是f(n)= f（n-1）+f（n-2）</li>
+  <li>可以发现，f（n）只依赖前面两个数，所以只需要两个变量a和b来存储，就可以满足需求了
+    <ul>
+      <li>关于最优子结构：一道动态规划问题，其实就是一个递推问题。假设当前决策结果是f(n),则最优子结构就是要让 f(n-k) 最优,最优子结构性质就是能让转移到n的状态是最优的,并且与后面的决策没有关系,即让后面的决策安心地使用前面的局部最优解的一种性质</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">numWays</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">next</span>
+
+    <span class="k">return</span> <span class="n">b</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">numWays</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>动态规划问题的框架</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][...]</span> <span class="o">=</span> <span class="n">边界值</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">状态1</span> <span class="err">：</span><span class="n">所有状态1的值</span><span class="p">){</span>
+    <span class="nf">for</span><span class="p">(</span><span class="n">状态2</span> <span class="err">：</span><span class="n">所有状态2的值</span><span class="p">){</span>
+        <span class="nf">for</span><span class="p">(...){</span>
+          <span class="o">//</span><span class="n">状态转移方程</span>
+          <span class="n">dp</span><span class="p">[</span><span class="n">状态1</span><span class="p">][</span><span class="n">状态2</span><span class="p">][...]</span> <span class="o">=</span> <span class="n">求最值</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>其中外层for循环用来遍历f(n)，内层for循环用状态转移方程来确定最优子结构，青蛙例子中因为状态转移方程是简单的f(n)= f（n-1）+f（n-2）所以只用了一层循环</li>
+  <li>一个关于递增子序列的经典例题参见下一篇</li>
+</ul>
+
+<!-- ![引入图片](/image/leetcode/2023-09-27-jumpFrog/image_1.jpg) -->
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<ul>
+  <li>补充原题链接：https://leetcode.cn/problems/climbing-stairs/?envType=study-plan-v2&amp;envId=dynamic-programming</li>
+</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[问题：一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 10 级的台阶总共有多少种跳法]]></summary></entry><entry><title type="html">leetcode: 递归-相同的树</title><link href="/leetcode/python/isSameTree/" rel="alternate" type="text/html" title="leetcode: 递归-相同的树" /><published>2023-09-27T18:13:17+08:00</published><updated>2023-09-27T18:13:17+08:00</updated><id>/leetcode/python/isSameTree</id><content type="html" xml:base="/leetcode/python/isSameTree/"><![CDATA[<h1 id="leetcode-100相同的树">leetcode 100.相同的树</h1>
+
+<ul>
+  <li>
+    <p>给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。</p>
+  </li>
+  <li>
+    <p>如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。</p>
+  </li>
+  <li>输入：p = [1,2,3], q = [1,2,3]</li>
+  <li>输出：true</li>
+</ul>
+
+<!-- ![引入图片](/image/leetcode/2023-09-27-isSameTree/image_1.jpg) -->
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">],</span> <span class="n">q</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># 两者都为None则返回True
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="c1"># 其中一个为None则返回False
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="c1"># 都不为None则比较值
+</span>        <span class="k">if</span> <span class="n">p</span><span class="p">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">q</span><span class="p">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="c1"># 对左右子树分别进行递归比较
+</span>        <span class="k">return</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[leetcode 100.相同的树]]></summary></entry><entry><title type="html">css: fontawesome安装</title><link href="/css/vue/fontawesome/" rel="alternate" type="text/html" title="css: fontawesome安装" /><published>2023-09-22T11:51:15+08:00</published><updated>2023-09-22T11:51:15+08:00</updated><id>/css/vue/fontawesome</id><content type="html" xml:base="/css/vue/fontawesome/"><![CDATA[<ul>
   <li>在vue中引入
     <ul>
       <li>https://fontawesome.com/docs/web/use-with/vue/add-icons</li>
@@ -63,752 +645,4 @@ createApp(App)
 
 <!-- ![引入图片](/image/css/2023-09-20-bg_img/image_1.jpg) -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><category term="vue" /><summary type="html"><![CDATA[在vue中引入 https://fontawesome.com/docs/web/use-with/vue/add-icons]]></summary></entry><entry><title type="html">css: 保持宽高比的简单方法</title><link href="/css/aspect_ratio/" rel="alternate" type="text/html" title="css: 保持宽高比的简单方法" /><published>2023-09-20T18:52:11+08:00</published><updated>2023-09-20T18:52:11+08:00</updated><id>/css/aspect_ratio</id><content type="html" xml:base="/css/aspect_ratio/"><![CDATA[<ul>
-  <li>设置height=0后用padding-bottom控制比例</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box2-out"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box2-in"</span><span class="nt">&gt;</span>aspect-ratio<span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.box2-out</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">30%</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">margin</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
-    <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">15%</span><span class="p">;</span>
-    <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">div</span><span class="nc">.box2-in</span><span class="p">{</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> <span class="err">//</span> <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span>
-    <span class="nb">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> <span class="err">//</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span>
-    <span class="n">background-color</span><span class="p">:</span> <span class="no">aqua</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>也可以直接用aspect-ratio属性控制</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box1"</span><span class="nt">&gt;</span>aspect-ratio<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.box1</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">30%</span><span class="p">;</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="no">aqua</span><span class="p">;</span>
-    <span class="nl">margin</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-    <span class="py">aspect-ratio</span><span class="p">:</span> <span class="m">16</span><span class="p">/</span><span class="m">9</span><span class="p">;</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/css/2023-09-20-aspect_ratio/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><summary type="html"><![CDATA[设置height=0后用padding-bottom控制比例]]></summary></entry><entry><title type="html">vue: cors跨域不通过</title><link href="/vue/django/cors/" rel="alternate" type="text/html" title="vue: cors跨域不通过" /><published>2023-09-20T18:29:39+08:00</published><updated>2023-09-20T18:29:39+08:00</updated><id>/vue/django/cors</id><content type="html" xml:base="/vue/django/cors/"><![CDATA[<ul>
-  <li>
-    <p>跨源资源共享（CORS，或通俗地译为跨域资源共享）是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其他源（域、协议或端口），使得浏览器允许这些源访问加载自己的资源。</p>
-  </li>
-  <li>
-    <p>cors将请求分为简单请求和预检请求，cors预检的目的是为了验证CORS协议是否被理解，预检的OPTION请求包含下面三个字段</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>“Access-Control-Request-Method”
-“Access-Control-Request-Headers”
-“Origin”
-</code></pre></div></div>
-
-<ul>
-  <li>服务器响应的一个例子</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Access-Control-Allow-Origin:http://my.com
-Access-Control-ALlow-Metheds: POST
-Access-Control-Allow-Headers:a,b, content-type
-Access-Control-Max-Age: 86400
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>这些字段会被浏览器自动的发给服务器端。所以，在正常情况下，前端开发人员不需要自己指定此类请求。如果服务器允许发送请求，那么浏览器就会发送所需的HTTP数据包。</p>
-  </li>
-  <li>
-    <p>简单请求：</p>
-    <ul>
-      <li>GET、HEAD、POST</li>
-      <li>头部满足CORS安全规范（不主动去改header就是满足的）</li>
-      <li>请求头的Content-Type为以下三种</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>text/plain
-multipart/form-data
-application/x-www-form-urlencoded
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>比如在header里添加了一个json格式的token，Content-Type变成了application/json，发给后端就会被cors拦截，这是二级节点项目里曾经遇到的问题（当时的解决方法是在后端关闭了cors）</p>
-  </li>
-  <li>
-    <p>简单请求发送后，浏览器会自动加上一个包含Origin的请求头（当前页面源），服务器验证通过后返回响应头Access-Control-Allow-Credentials包含当前源（或者星号允许所有）</p>
-  </li>
-</ul>
-
-<!-- ![引入图片](/image/vue/2023-09-20-cors/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><category term="django" /><summary type="html"><![CDATA[跨源资源共享（CORS，或通俗地译为跨域资源共享）是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其他源（域、协议或端口），使得浏览器允许这些源访问加载自己的资源。]]></summary></entry><entry><title type="html">vue: 滚动监听</title><link href="/vue/css/scroll_listen/" rel="alternate" type="text/html" title="vue: 滚动监听" /><published>2023-09-20T18:10:18+08:00</published><updated>2023-09-20T18:10:18+08:00</updated><id>/vue/css/scroll_listen</id><content type="html" xml:base="/vue/css/scroll_listen/"><![CDATA[<ul>
-  <li>
-    <p>希望随滚轮的滚动，底部的条目有依次进入的动效</p>
-  </li>
-  <li>
-    <p>单个元素距顶部的高度可以用<code class="language-plaintext highlighter-rouge">element.offsetTop</code>获得，页面滚动条的位置可以用<code class="language-plaintext highlighter-rouge">window.scrollY</code>获得，如果元素高度小于滚动条当前高度+页面高度，则开始加载</p>
-  </li>
-  <li>
-    <p>下面是homepage项目中的一个例子，每个条目用v-for在card-each中遍历</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 滚动条监听</span>
-<span class="nf">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">scroll_trigger</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">card_list</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">querySelectorAll</span><span class="p">(</span><span class="dl">"</span><span class="s2">.card-each</span><span class="dl">"</span><span class="p">)</span>
-    <span class="nx">card_list</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="nx">card_each</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">let</span> <span class="nx">card_element</span> <span class="o">=</span> <span class="nx">card_each</span> <span class="k">as</span> <span class="nx">HTMLElement</span>
-      <span class="k">if</span><span class="p">(</span><span class="nx">card_element</span><span class="p">.</span><span class="nx">offsetTop</span> <span class="o">&lt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">){</span>
-        <span class="nx">card_element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">)</span>
-      <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-        <span class="nx">card_element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">})</span>
-  <span class="p">}</span>
-  <span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">scroll</span><span class="dl">"</span><span class="p">,</span> <span class="nx">scroll_trigger</span><span class="p">)</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>在另一个项目里发现window.scrollY始终是0，检查发现滚动条并不是由窗口触发的，而是在父组件的一个div中，这时需要在触发滚动事件的元素上用<code class="language-plaintext highlighter-rouge">@scroll</code>来监听。（区分 window 对象上的滚动事件和元素上的滚动事件）</p>
-  </li>
-  <li>
-    <p>@scroll触发的函数通过event获取当前滚动高度</p>
-  </li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 内容主体 --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main-box"</span> <span class="err">@</span><span class="na">scroll=</span><span class="s">"scrollTrigger"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"i in 60"</span> <span class="na">:key=</span><span class="s">"i"</span> <span class="na">class=</span><span class="s">"box"</span><span class="nt">&gt;&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">scrollTrigger</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span><span class="nx">Event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">mainBox</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">mainBox</span><span class="o">!</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
-
-    <span class="kd">let</span> <span class="nx">boxes</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">querySelectorAll</span><span class="p">(</span><span class="dl">"</span><span class="s2">.box</span><span class="dl">"</span><span class="p">)</span>
-    <span class="nx">boxes</span><span class="p">.</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">boxxx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">boxxx</span><span class="p">.</span><span class="nx">offsetTop</span> <span class="o">&lt;</span> <span class="nx">scrollTop</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">boxxx</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">boxxx</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="dl">"</span><span class="s2">active</span><span class="dl">"</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/vue/2023-09-20-scroll_listen/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="vue" /><category term="css" /><summary type="html"><![CDATA[希望随滚轮的滚动，底部的条目有依次进入的动效]]></summary></entry><entry><title type="html">css: 平铺堆叠背景图片</title><link href="/css/vue/bg_img/" rel="alternate" type="text/html" title="css: 平铺堆叠背景图片" /><published>2023-09-20T17:51:15+08:00</published><updated>2023-09-20T17:51:15+08:00</updated><id>/css/vue/bg_img</id><content type="html" xml:base="/css/vue/bg_img/"><![CDATA[<ul>
-  <li>
-    <p>想把单个svg图片循环平铺满整个窗口作为背景图片</p>
-  </li>
-  <li>
-    <p>一个很简单的方法，通过css中的background-image指定背景图片</p>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* 注意public要使用完整的相对路径 */</span>
-<span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">'../../public/background/pattern-1.svg'</span><span class="o">);</span>
-</code></pre></div></div>
-
-<ul>
-  <li>homepage项目里使用js随机选择背景图片序号，结合vue可以有这样的简单写法：</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bg-box"</span> <span class="na">:style=</span><span class="s">"{ backgroundImage: `url(${bg_url})` }"</span><span class="nt">&gt;&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.bg-box</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-  <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">;</span>
-  <span class="nl">background-size</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">-1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>没办法直接控制图片属性，如果背景图片颜色太深需要在上层再加遮罩</p>
-  </li>
-  <li>
-    <p>图片平铺在背景中</p>
-  </li>
-</ul>
-
-<p><img src="/image/css/2023-09-20-bg_img/image_1.jpg" alt="引入图片" /></p>
-
-<ul>
-  <li>backyard项目里因为svg是竖长形的，所以直接横向平铺即可，当时使用的方法是循环10次，然后关闭横向滚动条</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 背景图x10 --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bg-box"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bg-one"</span> <span class="na">v-for=</span><span class="s">"i in 10"</span> <span class="na">:key=</span><span class="s">"i"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"bg-img"</span> <span class="na">:src=</span><span class="s">bg_path</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*  背景图片 */</span>
-<span class="nt">div</span><span class="nc">.bg-box</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">-1</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-  <span class="nl">white-space</span><span class="p">:</span> <span class="nb">nowrap</span><span class="p">;</span>
-
-
-  <span class="nt">div</span><span class="nc">.bg-one</span> <span class="p">{</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
-    <span class="err">*</span><span class="nl">display</span><span class="p">:</span> <span class="nb">inline</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="nl">z-index</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nt">img</span><span class="nc">.bg-img</span> <span class="p">{</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
-    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span><span class="mi">.1</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>好处是使用img标签可以很方便的调整透明度，但隐藏横向滚动条在移动端的浏览器上并不是全都支持，华为平板在加载网页时把背景x10作为了宽度的基准</li>
-</ul>
-
-<!-- ![引入图片](/image/css/2023-09-20-bg_img/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><category term="vue" /><summary type="html"><![CDATA[想把单个svg图片循环平铺满整个窗口作为背景图片]]></summary></entry><entry><title type="html">knowhow: 设计模式</title><link href="/knowhow/knowhow_design_pattern/" rel="alternate" type="text/html" title="knowhow: 设计模式" /><published>2023-09-11T14:37:22+08:00</published><updated>2023-09-11T14:37:22+08:00</updated><id>/knowhow/knowhow_design_pattern</id><content type="html" xml:base="/knowhow/knowhow_design_pattern/"><![CDATA[<ul>
-  <li>参考：
-    <ul>
-      <li>https://www.runoob.com/design-pattern/design-pattern-intro.html</li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="设计模式">设计模式</h1>
-
-<h2 id="创建型模式">创建型模式</h2>
-<p>这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。</p>
-
-<ul>
-  <li>工厂模式（Factory Pattern）</li>
-  <li>抽象工厂模式（Abstract Factory Pattern）</li>
-  <li>单例模式（Singleton Pattern）</li>
-  <li>建造者模式（Builder Pattern）</li>
-  <li>原型模式（Prototype Pattern）</li>
-</ul>
-
-<h2 id="结构型模式">结构型模式</h2>
-<p>这些模式关注对象之间的组合和关系，旨在解决如何构建灵活且可复用的类和对象结构。</p>
-
-<ul>
-  <li>适配器模式（Adapter Pattern）</li>
-  <li>桥接模式（Bridge Pattern）</li>
-  <li>过滤器模式（Filter、Criteria Pattern）</li>
-  <li>组合模式（Composite Pattern）</li>
-  <li>装饰器模式（Decorator Pattern）</li>
-  <li>外观模式（Facade Pattern）</li>
-  <li>享元模式（Flyweight Pattern）</li>
-  <li>代理模式（Proxy Pattern）</li>
-</ul>
-
-<h2 id="行为型模式">行为型模式</h2>
-<p>这些模式关注对象之间的通信和交互，旨在解决对象之间的责任分配和算法的封装。</p>
-
-<ul>
-  <li>责任链模式（Chain of Responsibility Pattern）</li>
-  <li>命令模式（Command Pattern）</li>
-  <li>解释器模式（Interpreter Pattern）</li>
-  <li>迭代器模式（Iterator Pattern）</li>
-  <li>中介者模式（Mediator Pattern）</li>
-  <li>备忘录模式（Memento Pattern）</li>
-  <li>观察者模式（Observer Pattern）</li>
-  <li>状态模式（State Pattern）</li>
-  <li>空对象模式（Null Object Pattern）</li>
-  <li>策略模式（Strategy Pattern）</li>
-  <li>模板模式（Template Pattern）</li>
-  <li>访问者模式（Visitor Pattern）</li>
-</ul>
-
-<h2 id="j2ee-模式">J2EE 模式</h2>
-<p>这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。</p>
-
-<ul>
-  <li>MVC 模式（MVC Pattern）</li>
-  <li>业务代表模式（Business Delegate Pattern）</li>
-  <li>组合实体模式（Composite Entity Pattern）</li>
-  <li>数据访问对象模式（Data Access Object Pattern）</li>
-  <li>前端控制器模式（Front Controller Pattern）</li>
-  <li>拦截过滤器模式（Intercepting Filter Pattern）</li>
-  <li>服务定位器模式（Service Locator Pattern）</li>
-  <li>传输对象模式（Transfer Object Pattern）</li>
-</ul>
-
-<h1 id="设计模式6原则">设计模式6原则</h1>
-
-<ol>
-  <li>开闭原则（Open Close Principle）</li>
-</ol>
-
-<p>开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</p>
-
-<ol>
-  <li>里氏代换原则（Liskov Substitution Principle）</li>
-</ol>
-
-<p>里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。</p>
-
-<ol>
-  <li>依赖倒转原则（Dependence Inversion Principle）</li>
-</ol>
-
-<p>这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
-
-<ol>
-  <li>接口隔离原则（Interface Segregation Principle）</li>
-</ol>
-
-<p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
-
-<ol>
-  <li>迪米特法则，又称最少知道原则（Demeter Principle）</li>
-</ol>
-
-<p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
-
-<ol>
-  <li>合成复用原则（Composite Reuse Principle）</li>
-</ol>
-
-<p>合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。</p>
-
-<!-- ![引入图片](/image/knowhow/2023-09-11-knowhow_design_pattern/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="knowhow" /><summary type="html"><![CDATA[参考： https://www.runoob.com/design-pattern/design-pattern-intro.html]]></summary></entry><entry><title type="html">js: HTML DOM (文档对象模型)</title><link href="/js/js_dom/" rel="alternate" type="text/html" title="js: HTML DOM (文档对象模型)" /><published>2023-09-11T13:45:54+08:00</published><updated>2023-09-11T13:45:54+08:00</updated><id>/js/js_dom</id><content type="html" xml:base="/js/js_dom/"><![CDATA[<h2 id="查找html元素">查找HTML元素</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// NodeList 集合中的元素可以通过索引(以 0 为起始位置)来访问</span>
-
-<span class="c1">// 通过id</span>
-<span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">intro</span><span class="dl">"</span><span class="p">);</span>
-<span class="c1">// 通过类名</span>
-<span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByClassName</span><span class="p">(</span><span class="dl">"</span><span class="s2">intro</span><span class="dl">"</span><span class="p">);</span>
-<span class="c1">// 通过标签名</span>
-<span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="nx">x</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
-
-</code></pre></div></div>
-
-<h2 id="改变html内容">改变HTML内容</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Old</span> <span class="nx">Header</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-	<span class="kd">var</span> <span class="nx">element</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">);</span><span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="dl">"</span><span class="s2">New Header</span><span class="dl">"</span><span class="p">;</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<ul>
-  <li>结合点击事件</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">onclick</span><span class="o">=</span><span class="dl">"</span><span class="s2">this.innerHTML='Ooops!'</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">点击文本</span><span class="o">!&lt;</span><span class="sr">/h1</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<ul>
-  <li>通过函数传递dom</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">function</span> <span class="nf">changetext</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="err">    </span><span class="nx">id</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="dl">"</span><span class="s2">Ooops!</span><span class="dl">"</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/head</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">h1</span> <span class="nx">onclick</span><span class="o">=</span><span class="dl">"</span><span class="s2">changetext(this)</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">点击文本</span><span class="o">!&lt;</span><span class="sr">/h1</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<h2 id="改变html属性">改变HTML属性</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">img</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">image</span><span class="dl">"</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">smiley.gif</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">image</span><span class="dl">"</span><span class="p">).</span><span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">landscape.jpg</span><span class="dl">"</span><span class="p">;</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<h2 id="改变html样式">改变HTML样式</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="dl">"</span><span class="s2">utf-8</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nf">菜鸟教程</span><span class="p">(</span><span class="nx">runoob</span><span class="p">.</span><span class="nx">com</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/title</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/head</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
- 
-<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
-<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontFamily</span><span class="o">=</span><span class="dl">"</span><span class="s2">Arial</span><span class="dl">"</span><span class="p">;</span>
-<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="o">=</span><span class="dl">"</span><span class="s2">larger</span><span class="dl">"</span><span class="p">;</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span> 
-<span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/html</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<h2 id="事件">事件</h2>
-
-<ul>
-  <li>进入和离开页面时触发：onload/onunload</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">body</span> <span class="nx">onload</span><span class="o">=</span><span class="dl">"</span><span class="s2">checkCookies()</span><span class="dl">"</span><span class="o">&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>改变时触发：onchange</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">fname</span><span class="dl">"</span> <span class="nx">onchange</span><span class="o">=</span><span class="dl">"</span><span class="s2">upperCase()</span><span class="dl">"</span><span class="o">&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>鼠标悬停触发：onmouseover / onmouseout</p>
-  </li>
-  <li>
-    <p>鼠标点击：onmousedown / onmouseup / onclick</p>
-  </li>
-  <li>
-    <p>输入框获得焦点时触发：onfocus</p>
-  </li>
-  <li>
-    <p>监听事件 - addEventListener</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 点击时触发监听事件</span>
-<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">myBtn</span><span class="dl">"</span><span class="p">).</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">displayDate</span><span class="p">);</span>
-
-<span class="c1">// addEventListener() 方法允许向同一个元素添加多个事件，且不会覆盖已存在的事件</span>
-
-<span class="c1">// 一些常用的触发场景</span>
-<span class="nx">element</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouseover</span><span class="dl">"</span><span class="p">,</span> <span class="nx">myFunction</span><span class="p">);</span>
-<span class="nx">element</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">mySecondFunction</span><span class="p">);</span>
-<span class="nx">element</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">mouseout</span><span class="dl">"</span><span class="p">,</span> <span class="nx">myThirdFunction</span><span class="p">);</span>
-
-<span class="c1">// windows对象：窗口大小重置</span>
-<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">resize</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-<span class="err">    </span><span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">demo</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">sometext</span><span class="p">;</span>
-	<span class="p">});</span>
-
-<span class="c1">// 移除监听事件</span>
-<span class="nx">element</span><span class="p">.</span><span class="nf">removeEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">mousemove</span><span class="dl">"</span><span class="p">,</span> <span class="nx">myFunction</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h2 id="创建节点">创建节点</h2>
-
-<ul>
-  <li>添加新元素到尾部：appendChild</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span> 
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">var</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createTextNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">这是一个新的段落。</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">para</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
- 
-<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">element</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">para</span><span class="p">);</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<ul>
-  <li>添加到头部：insertBefore</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span> 
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">var</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createTextNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">这是一个新的段落。</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">para</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
- 
-<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">element</span><span class="p">.</span><span class="nf">insertBefore</span><span class="p">(</span><span class="nx">para</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<h2 id="移除元素">移除元素</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span> 
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">parent</span><span class="p">.</span><span class="nf">removeChild</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<h2 id="替换元素">替换元素</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">p2</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">这是另外一个段落</span><span class="err">。</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span> 
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">var</span> <span class="nx">para</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createTextNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">这是一个新的段落。</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">para</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
- 
-<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">div1</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">parent</span><span class="p">.</span><span class="nf">replaceChild</span><span class="p">(</span><span class="nx">para</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<!-- ![引入图片](/image/js/2023-09-11-js_dom/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[查找HTML元素]]></summary></entry><entry><title type="html">js: js对象</title><link href="/js/js_object/" rel="alternate" type="text/html" title="js: js对象" /><published>2023-09-11T13:31:08+08:00</published><updated>2023-09-11T13:31:08+08:00</updated><id>/js/js_object</id><content type="html" xml:base="/js/js_object/"><![CDATA[<ul>
-  <li>
-    <p>一种数据类型，带有属性和方法</p>
-  </li>
-  <li>
-    <p>创建新对象有两种不同的方法：</p>
-
-    <ul>
-      <li>使用 Object 定义并创建对象的实例。</li>
-      <li>使用函数来定义对象，然后创建新的对象实例。</li>
-    </ul>
-  </li>
-  <li>
-    <p>Object 构造函数，会根据给定的参数创建对象，具体有以下情况：</p>
-
-    <ul>
-      <li>如果给定值是 null 或 undefined，将会创建并返回一个空对象。</li>
-      <li>如果传进去的是一个基本类型的值，则会构造其包装类型的对象。</li>
-      <li>如果传进去的是引用类型的值，仍然会返回这个值，经他们复制的变量保有和源对象相同的引用地址。</li>
-    </ul>
-  </li>
-  <li>
-    <p>示例</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 等价于 o = new Boolean(true);</span>
-<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="o">=</span><span class="k">new</span> <span class="nc">Object</span><span class="p">();</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="mi">50</span><span class="p">;</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
-<span class="c1">// 等价于：</span>
-<span class="nx">person</span><span class="o">=</span><span class="p">{</span><span class="na">firstname</span><span class="p">:</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span><span class="na">lastname</span><span class="p">:</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span><span class="na">age</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="na">eyecolor</span><span class="p">:</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">};</span>
-</code></pre></div></div>
-
-<ul>
-  <li>使用函数（对象构造器constructor）的例子</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">person</span><span class="p">(</span><span class="nx">firstname</span><span class="p">,</span><span class="nx">lastname</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">eyecolor</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="nx">firstname</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">lastname</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="nx">age</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="nx">eyecolor</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 在JavaScript中，this通常指向的是我们正在执行的函数本身，或者是指向该函数所属的对象（运行时）</span>
-
-<span class="c1">// 创建新实例</span>
-<span class="kd">var</span> <span class="nx">myFather</span><span class="o">=</span><span class="k">new</span> <span class="nf">person</span><span class="p">(</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">myMother</span><span class="o">=</span><span class="k">new</span> <span class="nf">person</span><span class="p">(</span><span class="dl">"</span><span class="s2">Sally</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Rally</span><span class="dl">"</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="dl">"</span><span class="s2">green</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="c1">// 添加属性</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="nx">x</span><span class="o">=</span><span class="nx">person</span><span class="p">.</span><span class="nx">firstname</span><span class="p">;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>为对象添加方法</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">person</span><span class="p">(</span><span class="nx">firstname</span><span class="p">,</span><span class="nx">lastname</span><span class="p">,</span><span class="nx">age</span><span class="p">,</span><span class="nx">eyecolor</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">firstname</span><span class="o">=</span><span class="nx">firstname</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">lastname</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="o">=</span><span class="nx">age</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">eyecolor</span><span class="o">=</span><span class="nx">eyecolor</span><span class="p">;</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">changeName</span><span class="o">=</span><span class="nx">changeName</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nf">changeName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">lastname</span><span class="o">=</span><span class="nx">name</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>JavaScript for…in 语句循环遍历对象的属性。</p>
-  </li>
-  <li>
-    <p>一个已存在的构造器对象中不能添加新的属性，只能在构造器函数中添加</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 报错</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">nationality</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">English</span><span class="dl">"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>所有的 JavaScript 对象都会从一个 prototype（原型对象）中继承属性和方法，使用 prototype 属性就可以给对象的构造函数添加新的属性</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Person</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">last</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">eyecolor</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">first</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">eyeColor</span> <span class="o">=</span> <span class="nx">eyecolor</span><span class="p">;</span>
-<span class="p">}</span>
- 
-<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">nationality</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">English</span><span class="dl">"</span><span class="p">;</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<ul>
-  <li>补充，判断一个实例是否属于某种类型</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">no</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">person</span><span class="p">()</span>
-<span class="nx">no</span> <span class="k">instanceof</span> <span class="nx">person</span><span class="c1">//true</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/js/2023-09-11-js_object/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[一种数据类型，带有属性和方法]]></summary></entry><entry><title type="html">windows: 查看wifi密码</title><link href="/windows/wifi_passwd/" rel="alternate" type="text/html" title="windows: 查看wifi密码" /><published>2023-09-09T14:20:16+08:00</published><updated>2023-09-09T14:20:16+08:00</updated><id>/windows/wifi_passwd</id><content type="html" xml:base="/windows/wifi_passwd/"><![CDATA[<p><img src="/image/windows/2023-09-09-wifi_passwd/image_1.png" alt="引入图片" />
-<img src="/image/windows/2023-09-09-wifi_passwd/image_2.png" alt="引入图片" />
-<img src="/image/windows/2023-09-09-wifi_passwd/image_3.png" alt="引入图片" />
-<img src="/image/windows/2023-09-09-wifi_passwd/image_4.png" alt="引入图片" /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">windows: 局域网共享文件夹</title><link href="/windows/share_dir/" rel="alternate" type="text/html" title="windows: 局域网共享文件夹" /><published>2023-09-09T14:15:13+08:00</published><updated>2023-09-09T14:15:13+08:00</updated><id>/windows/share_dir</id><content type="html" xml:base="/windows/share_dir/"><![CDATA[<ul>
-  <li>设置 =&gt; 网络 =&gt; 网络共享中心 =&gt; 高级共享设置，全部启用</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-share_dir/image_1.png" alt="引入图片" /></p>
-
-<ul>
-  <li>控制面板 =&gt; 程序和功能 =&gt; 启用或关闭windows功能 =&gt; smb文件共享</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-share_dir/image_2.png" alt="引入图片" /></p>
-
-<ul>
-  <li>关于用户名和密码
-    <ul>
-      <li>首先在c盘users文件夹确定当前用户名</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-share_dir/image_3.png" alt="引入图片" /></p>
-
-<ul>
-  <li>使用这个名字添加用户</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-share_dir/image_4.png" alt="引入图片" /></p>
-
-<ul>
-  <li>
-    <p>手机访问时直接用outlook邮箱账号密码</p>
-  </li>
-  <li>电脑连接树莓派的smb</li>
-  <li>此电脑右键，映射网络驱动器</li>
-</ul>
-
-<p><img src="/image/windows/2023-09-09-share_dir/image_5.png" alt="引入图片" /></p>
-
-<ul>
-  <li>关于如何在树莓派开启smb，好像记在树莓派分区里了</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><summary type="html"><![CDATA[设置 =&gt; 网络 =&gt; 网络共享中心 =&gt; 高级共享设置，全部启用]]></summary></entry></feed>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="css" /><category term="vue" /><summary type="html"><![CDATA[在vue中引入 https://fontawesome.com/docs/web/use-with/vue/add-icons]]></summary></entry></feed>

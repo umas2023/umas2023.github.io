@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>leetcode: 打家劫舍 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="leetcode: 打家劫舍" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="打家劫舍" />
+<meta property="og:description" content="打家劫舍" />
+<link rel="canonical" href="/leetcode/python/rob/" />
+<meta property="og:url" content="/leetcode/python/rob/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-04T16:33:58+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="leetcode: 打家劫舍" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-04T16:33:58+08:00","datePublished":"2023-10-04T16:33:58+08:00","description":"打家劫舍","headline":"leetcode: 打家劫舍","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/rob/"},"url":"/leetcode/python/rob/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">leetcode: 打家劫舍</h1>
+    <h3>动态规划双一题</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#打家劫舍">打家劫舍</a></li>
+<li class="toc-entry toc-h2"><a href="#打家劫舍plus---删除并获得点数">打家劫舍plus - 删除并获得点数</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="打家劫舍">打家劫舍</h2>
+
+<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/house-robber/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
+  </li>
+  <li>
+    <p>题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：[1,2,3,1]
+输出：4
+解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+     偷窃到的最高金额 = 1 + 3 = 4 。
+</code></pre></div></div>
+
+<ul>
+  <li>首先看边界，只有一间房屋时，dp[0] = List[0]；两间房屋时dp[1] = max(List)</li>
+  <li>接下来考虑递推关系。这道题很像之前的青蛙跳阶问题，在青蛙跳阶中，跳到第10级有2种方法：9+1或8+2；在这一题中，小偷偷10家也有2种方法：偷前9家或8+1，收益最大的方法即为解，所以状态转移方程：dp[n] = max( dp[n-1], dp[n-2]+List[n] )</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">rob</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">len_s</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">len_s</span><span class="p">]</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">rob</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>注意因为向前追溯了2位到dp[i-2]，所以dp的长度增加了1位，即(len_s+1)而不是len_s，i需要从2开始循环</li>
+</ul>
+
+<!--![引入图片](/image/leetcode/2023-10-04-rob/image_1.jpg) -->
+
+<h2 id="打家劫舍plus---删除并获得点数">打家劫舍plus - 删除并获得点数</h2>
+
+<ul>
+  <li>
+    <p>链接：https://leetcode.cn/problems/delete-and-earn/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
+  </li>
+  <li>
+    <p>题目：给你一个整数数组 nums ，你可以对它进行一些操作。每次操作中，选择任意一个 nums[i] ，删除它并获得 nums[i] 的点数。之后，你必须删除 所有 等于 nums[i] - 1 和 nums[i] + 1 的元素（这些元素被删除后不获得点数）。开始你拥有 0 个点数。返回你能通过这些操作获得的最大点数。</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [3,4,2]
+输出：6
+解释：
+删除 4 获得 4 个点数，因此 3 也被删除。
+之后，删除 2 获得 2 个点数。总共获得 6 个点数。
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [2,2,3,3,3,4]
+输出：9
+解释：
+删除 3 获得 3 个点数，接着要删除两个 2 和 4 。
+之后，再次删除 3 获得 3 个点数，再次删除 3 获得 3 个点数。
+总共获得 9 个点数。
+</code></pre></div></div>
+
+<ul>
+  <li>下面解释一下为什么这道题是打家劫舍plus</li>
+  <li>每次选择后都删除了所有nums[i] - 1 和 nums[i] + 1，可以理解为失去了点数sum([x for x in nums if x == nums[i] ± 1])</li>
+  <li>考虑存在多个nums[i]的情况，因为第一次选择完之后已经删除了所有满足条件的元素，所有nums[i]可以重复选择直至全部选中，也就是说选择nums[i]相当于获得了点数sum([x for x in nums if x == nums[i]])</li>
+  <li>影响最终结果的是所有相同元素的和，而不是单个的元素，因此可以以nums[i]为key，以sum([x for x in nums if x == nums[i]])为value构建新的数组，示例如下</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; [0,1,2,3,3]
+&lt;&lt;&lt; [0,1,2,6]
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; [2, 2, 3, 3, 3, 4]
+&lt;&lt;&lt; [0, 0, 4, 9, 4]
+</code></pre></div></div>
+
+<ul>
+  <li>这时删除了所有nums[i] - 1 和 nums[i] + 1即意味着在新数组中无法选中相邻数字，也就是“相邻房屋会报警”</li>
+  <li>（看到这里不得不甘拜下风）</li>
+</ul>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

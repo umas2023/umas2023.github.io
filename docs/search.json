@@ -1,6 +1,78 @@
 [
   
     {
+      "title"    : "leetcode: 不同路径",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/uniquePaths/",
+      "date"     : "2023-10-04 19:19:58 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 打家劫舍",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/rob/",
+      "date"     : "2023-10-04 16:33:58 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 斐波那契数列",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/fib/",
+      "date"     : "2023-10-04 16:22:28 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 正则表达式匹配",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/isMatch/",
+      "date"     : "2023-10-04 15:11:51 +0800"
+    } ,
+  
+    {
+      "title"    : "python: 创建矩阵",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/matrix/",
+      "date"     : "2023-10-03 20:05:30 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: dp-最长回文子串",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/longestPalindrome/",
+      "date"     : "2023-10-03 17:38:37 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: dp-递增子序列问题",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/inc_sublist/",
+      "date"     : "2023-09-27 19:41:57 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: dp-青蛙跳阶问题",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/jumpFrog/",
+      "date"     : "2023-09-27 18:59:41 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 递归-相同的树",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/isSameTree/",
+      "date"     : "2023-09-27 18:13:17 +0800"
+    } ,
+  
+    {
       "title"    : "css: fontawesome安装",
       "category" : "",
       "tags"     : "",
@@ -209,7 +281,7 @@
     } ,
   
     {
-      "title"    : "leetcode: 2.两数相加",
+      "title"    : "leetcode: 递归-两数相加",
       "category" : "",
       "tags"     : "",
       "url"      : "/leetcode/leetcode_2/",
@@ -217,10 +289,10 @@
     } ,
   
     {
-      "title"    : "leetcode: 1.两数之和",
+      "title"    : "leetcode: hash-两数之和",
       "category" : "",
       "tags"     : "",
-      "url"      : "/leetcode/leetcode_1/",
+      "url"      : "/leetcode/python/leetcode_1/",
       "date"     : "2023-07-14 14:16:17 +0800"
     } ,
   
