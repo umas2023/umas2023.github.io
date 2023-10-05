@@ -36,14 +36,14 @@ zip_pctools
 '''
 
 # 修改这里：基础分类
-basic_cat = "leetcode"
+basic_cat = "python"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "9_button_input"
+file_name = "sqrt"
 # 修改这里：文章标题
-title = "'%s: 9键输入法组合'" % basic_cat
+title = "'%s: 开根号'" % basic_cat
 # 修改这里：文章介绍
-info = "'记录遇到的一个简单笔试题'"
+info = "'sqrt()居然不是内置的，记录几种开根号的方法'"
 
 
 # 文章分类，可以添加多个

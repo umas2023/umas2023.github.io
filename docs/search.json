@@ -1,6 +1,38 @@
 [
   
     {
+      "title"    : "python: 开根号",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/python/sqrt/",
+      "date"     : "2023-10-05 19:01:27 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 完全平方数",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/numSquares/",
+      "date"     : "2023-10-05 17:31:28 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 解决智力问题",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/mostPoints/",
+      "date"     : "2023-10-05 16:10:23 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 不同的二叉搜索树",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/numTrees/",
+      "date"     : "2023-10-05 13:34:41 +0800"
+    } ,
+  
+    {
       "title"    : "leetcode: 9键输入法组合",
       "category" : "",
       "tags"     : "",

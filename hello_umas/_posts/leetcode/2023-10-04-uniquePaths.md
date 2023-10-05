@@ -8,11 +8,15 @@ toc: True
 ---
 
 
+## 题目
+
 - 链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&envId=dynamic-programming
 
 
 - 题目：一个机器人位于一个 m x n 网格的左上角。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角。问总共有多少条不同的路径？
 
+
+## 题解
 
 - 自解（动态规划）：易知dp[i][j] = dp[i-1][j] + dp[i][j-1]，边界是当i或j=1时dp[i][j]=1
 

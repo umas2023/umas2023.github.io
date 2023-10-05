@@ -57,3 +57,64 @@ for line in sys.stdin:
 - （↑转义成纯字符串也通不过，妈的真是触及到知识盲区了）
 
 <!--![引入图片]({{site.url}}/image/leetcode/2023-10-04-9_button_input/image_1.jpg) -->
+
+
+## 2023.10.5补充
+
+
+- 补充：笛卡尔积
+- 两个集合X和Y的笛卡尔积 (Cartesian product)，又称直积，表示 X x Y，第一个对象是 X 的成员而第二个对象是 Y 的所有可能有序对的其中一个成员。
+
+```
+A = {a,b}, B = {0,1,2}，则
+
+A×B = {(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}
+
+B×A = {(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)}
+```
+
+
+- 内置模块itertools
+
+```py
+from itertools import product
+
+def cartesian_product(*sets):
+    return list(product(*sets))
+
+# 示例用法
+set1 = [1, 2]
+set2 = ['a', 'b', 'c']
+set3 = [True, False]
+
+result = cartesian_product(set1, set2, set3)
+print(result)
+```
+
+```
+[(1, 'a', True), (1, 'a', False), (1, 'b', True), (1, 'b', False), (1, 'c', True), (1, 'c', False), (2, 'a', True), (2, 'a', False), (2, 'b', True), (2, 'b', False), (2, 'c', True), (2, 'c', False)]
+```
+
+- 稍微修改上面的代码就可以得到题目要求的结果
+
+```py
+from itertools import product
+
+def cartesian_product(*sets):
+    result = []
+    for element in product(*sets):
+        result.append(''.join(element))
+    return result
+
+# 示例用法
+set1 = ['a', 'b']
+set2 = ['c', 'd']
+set3 = ['e', 'f']
+
+result = cartesian_product(set1, set2, set3)
+print(result)
+```
+
+```
+['ace', 'acf', 'ade', 'adf', 'bce', 'bcf', 'bde', 'bdf']
+```

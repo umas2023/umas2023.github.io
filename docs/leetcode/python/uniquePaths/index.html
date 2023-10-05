@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="leetcode: 不同路径" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming" />
-<meta property="og:description" content="链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming" />
+<meta name="description" content="题目" />
+<meta property="og:description" content="题目" />
 <link rel="canonical" href="/leetcode/python/uniquePaths/" />
 <meta property="og:url" content="/leetcode/python/uniquePaths/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="leetcode: 不同路径" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-04T19:19:58+08:00","datePublished":"2023-10-04T19:19:58+08:00","description":"链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming","headline":"leetcode: 不同路径","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/uniquePaths/"},"url":"/leetcode/python/uniquePaths/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-04T19:19:58+08:00","datePublished":"2023-10-04T19:19:58+08:00","description":"题目","headline":"leetcode: 不同路径","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/uniquePaths/"},"url":"/leetcode/python/uniquePaths/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,21 +48,28 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#题目">题目</a></li>
+<li class="toc-entry toc-h2"><a href="#题解">题解</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <ul>
+    <h2 id="题目">题目</h2>
+
+<ul>
   <li>
     <p>链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
   </li>
   <li>
     <p>题目：一个机器人位于一个 m x n 网格的左上角。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角。问总共有多少条不同的路径？</p>
   </li>
-  <li>
-    <p>自解（动态规划）：易知dp[i][j] = dp[i-1][j] + dp[i][j-1]，边界是当i或j=1时dp[i][j]=1</p>
-  </li>
+</ul>
+
+<h2 id="题解">题解</h2>
+
+<ul>
+  <li>自解（动态规划）：易知dp[i][j] = dp[i-1][j] + dp[i][j-1]，边界是当i或j=1时dp[i][j]=1</li>
 </ul>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>

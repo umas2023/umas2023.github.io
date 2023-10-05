@@ -4,12 +4,19 @@
 
 ## 目录说明
 
-- hello_umas
+- hello_umas/
   - Jekyll博客
-- inner_vue
-  - 博客内嵌vue页面
-- leetcode
-  - 刷题源码
+- docs/
+  - Jekyll博客打包
+- add.py
+  - 脚本：添加新博客
+- build.py
+  - 脚本：博客项目打包至docs/
+- serve.py
+  - 脚本：启动本地服务器
+- test.py
+  - 随便写什么都可以
+  - 一般用来本地测试leetcode题解
 
 
 ## server
@@ -26,13 +33,14 @@ python3 -m http.server 25221 --directory /root/project/umas2023.github.io/docs
 
 ## 常用命令
 
-- 新建
+- 新建一页
 ```bash
 python add.py
 ```
 
-- 启动（hello_umas目录下）
+- 启动本地服务器
 ```bash
+cd hello_umas
 jekyll serve
 # 或
 serve.py
@@ -65,6 +73,8 @@ build.py
 - 进categories的时候右上角search没了
 - categories有时候点击目录不能跳转
 - 博文显示日期
+- categories目录后加一个括号显示每个类别中的文章数量
+- 增加公式支持（比如latex）
 
 
 

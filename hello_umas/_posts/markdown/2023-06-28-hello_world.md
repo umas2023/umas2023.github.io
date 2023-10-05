@@ -121,3 +121,8 @@ toc: true
 | QStackedLayout | 堆叠 （z） 彼此前面 |
 ```
 {% endraw %}
+
+
+- 居中
+
+<center>这是居中的文字</center>

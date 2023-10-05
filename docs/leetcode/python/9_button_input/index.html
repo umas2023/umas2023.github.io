@@ -48,6 +48,7 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#2023105补充">2023.10.5补充</a></li>
 </ul>
   <hr>
 
@@ -102,6 +103,65 @@
 </ul>
 
 <!--![引入图片](/image/leetcode/2023-10-04-9_button_input/image_1.jpg) -->
+
+<h2 id="2023105补充">2023.10.5补充</h2>
+
+<ul>
+  <li>补充：笛卡尔积</li>
+  <li>两个集合X和Y的笛卡尔积 (Cartesian product)，又称直积，表示 X x Y，第一个对象是 X 的成员而第二个对象是 Y 的所有可能有序对的其中一个成员。</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A = {a,b}, B = {0,1,2}，则
+
+A×B = {(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}
+
+B×A = {(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)}
+</code></pre></div></div>
+
+<ul>
+  <li>内置模块itertools</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">def</span> <span class="nf">cartesian_product</span><span class="p">(</span><span class="o">*</span><span class="n">sets</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nf">list</span><span class="p">(</span><span class="nf">product</span><span class="p">(</span><span class="o">*</span><span class="n">sets</span><span class="p">))</span>
+
+<span class="c1"># 示例用法
+</span><span class="n">set1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">c</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">set3</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="nf">cartesian_product</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">set3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[(1, 'a', True), (1, 'a', False), (1, 'b', True), (1, 'b', False), (1, 'c', True), (1, 'c', False), (2, 'a', True), (2, 'a', False), (2, 'b', True), (2, 'b', False), (2, 'c', True), (2, 'c', False)]
+</code></pre></div></div>
+
+<ul>
+  <li>稍微修改上面的代码就可以得到题目要求的结果</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">def</span> <span class="nf">cartesian_product</span><span class="p">(</span><span class="o">*</span><span class="n">sets</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nf">product</span><span class="p">(</span><span class="o">*</span><span class="n">sets</span><span class="p">):</span>
+        <span class="n">result</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># 示例用法
+</span><span class="n">set1</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">c</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">d</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">set3</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">e</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">f</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="nf">cartesian_product</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">,</span> <span class="n">set3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['ace', 'acf', 'ade', 'adf', 'bce', 'bcf', 'bde', 'bdf']
+</code></pre></div></div>
 
   </div>
 
