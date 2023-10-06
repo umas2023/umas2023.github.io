@@ -1,4 +1,286 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-05T19:24:14+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">python: 开根号</title><link href="/python/sqrt/" rel="alternate" type="text/html" title="python: 开根号" /><published>2023-10-05T19:01:27+08:00</published><updated>2023-10-05T19:01:27+08:00</updated><id>/python/sqrt</id><content type="html" xml:base="/python/sqrt/"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 法1：math.sqrt
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-06T16:34:13+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 记某次笔试的5道题</title><link href="/leetcode/python/duozhuayu/" rel="alternate" type="text/html" title="leetcode: 记某次笔试的5道题" /><published>2023-10-06T16:14:24+08:00</published><updated>2023-10-06T16:14:24+08:00</updated><id>/leetcode/python/duozhuayu</id><content type="html" xml:base="/leetcode/python/duozhuayu/"><![CDATA[<h2 id="1-good-word">1. Good Word</h2>
+<p>字符串中出现最多的字符数量m<br />
+字符串中出现最少的字符数量n<br />
+m/n = 整数且&gt;1
+满足条件为Good Word</p>
+
+<ul>
+  <li>暴力求解：创建了一个dic，记录所有字母出现的次数</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isGoodWord</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># write code here
+</span>        <span class="n">dic</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">dic</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">letter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dic</span> <span class="k">else</span> <span class="n">dic</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="p">[</span><span class="n">dic</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">dic</span> <span class="p">]</span>
+        <span class="n">maxn</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+        <span class="n">minn</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maxn</span> <span class="o">%</span> <span class="n">minn</span> <span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">maxn</span><span class="o">/</span><span class="n">minn</span> <span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">isGoodWord</span><span class="p">(</span><span class="sh">"</span><span class="s">duozhuayu</span><span class="sh">"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="2-升序链表合并">2. 升序链表合并</h2>
+
+<ul>
+  <li>
+    <p>合并结果仍为升序链表</p>
+  </li>
+  <li>
+    <p>遍历就完了</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">next_node</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">self</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span><span class="n">ListNode</span> <span class="o">=</span> <span class="n">next_node</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">merge_orders</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">a</span><span class="p">:</span><span class="n">ListNode</span> <span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="n">ListNode</span> <span class="p">)</span> <span class="o">-&gt;</span><span class="n">ListNode</span><span class="p">:</span>
+        <span class="c1"># write code here
+</span>        <span class="n">ans</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">pointer</span> <span class="o">=</span> <span class="n">ans</span>
+        <span class="k">while</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">a</span><span class="p">.</span><span class="n">val</span><span class="o">&lt;=</span><span class="n">b</span><span class="p">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">a</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nb">next</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">b</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="nb">next</span>
+            <span class="n">pointer</span> <span class="o">=</span> <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">:</span>
+            <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">.</span><span class="nb">next</span>
+
+
+<span class="n">ln1</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nc">ListNode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nc">ListNode</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="bp">None</span><span class="p">)))</span>
+<span class="n">ln2</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nc">ListNode</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="bp">None</span><span class="p">))</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="nc">Solution</span><span class="p">().</span><span class="nf">merge_orders</span><span class="p">(</span><span class="n">ln1</span><span class="p">,</span><span class="n">ln2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="3-解压缩字符串">3. 解压缩字符串</h2>
+<p>aabb =&gt; a(2)b(2)<br />
+aabbaabb =&gt; (a(2)b(2))2<br />
+只出现一次的字母不压缩</p>
+
+<ul>
+  <li>
+    <p>这里我下面写的程序通过率只有60%</p>
+  </li>
+  <li>暴力求解：创建了一个函数get_cp，返回每个前括号对应的后括号的位置（list形式）</li>
+  <li>本来应该在更新字符串时同步更新上面那个list，但有点错位懒得改了，每次循环都调用一遍get_cp</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decompress</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">compressed_str</span><span class="p">:</span><span class="nb">str</span> <span class="p">):</span>
+        <span class="c1"># write code here
+</span>        <span class="k">def</span> <span class="nf">get_cp</span><span class="p">(</span><span class="n">str_in</span><span class="p">):</span>
+            <span class="n">cp_index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nf">len</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">letter</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span> <span class="p">:</span>
+                <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="sh">"</span><span class="s">(</span><span class="sh">"</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">letter</span> <span class="o">==</span> <span class="sh">"</span><span class="s">)</span><span class="sh">"</span><span class="p">:</span>
+                    <span class="n">cp_index</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+                    <span class="n">stack</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">cp_index</span>
+
+        <span class="n">cp_index</span> <span class="o">=</span> <span class="nf">get_cp</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span>
+        <span class="k">while</span> <span class="nf">sum</span><span class="p">(</span><span class="n">cp_index</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">cp</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">cp_index</span><span class="p">)</span> <span class="p">:</span>
+                <span class="k">if</span> <span class="n">cp</span><span class="p">:</span>
+                    <span class="n">multi</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">[</span><span class="n">cp</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">compressed_str</span> <span class="o">=</span> <span class="n">compressed_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">i</span><span class="p">]</span><span class="o">+</span> <span class="n">compressed_str</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">cp</span><span class="p">]</span> <span class="o">*</span><span class="n">multi</span> <span class="o">+</span><span class="n">compressed_str</span><span class="p">[</span><span class="n">cp</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="nf">len</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)]</span>
+                    <span class="n">cp_index</span> <span class="o">=</span> <span class="nf">get_cp</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span>
+                    <span class="k">break</span>
+        <span class="k">return</span> <span class="n">compressed_str</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">decompress</span><span class="p">(</span><span class="sh">"</span><span class="s">((a)2(b)2(c)2)2</span><span class="sh">"</span><span class="p">))</span>
+<span class="c1"># print(Solution().decompress("((a)2)2"))
+</span>
+</code></pre></div></div>
+
+<h2 id="4-货架编号">4. 货架编号</h2>
+<p>（类似N字排序，但没找到规律，所以还是用了暴力解法）</p>
+
+<p>等边直角三角形，左上起始，逆时针螺旋排序</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 6 5
+2 4
+3
+</code></pre></div></div>
+
+<p>输入三角形维度，输出横向遍历排序结果</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt; 3
+&lt;&lt; [1,6,5,2,4,3]
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>在本子上写了几圈，没找到统一的规律，决定用暴力解法，新建n维空矩阵，三个函数fill_down、fill_rightup、fill_left分别向三个方向填入数据，循环到填满左上区域为止</p>
+  </li>
+  <li>
+    <p>这里通过率只有85%</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">numberOfShelves</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">N</span> <span class="p">):</span>
+        <span class="c1"># write code here
+</span>        <span class="n">mt</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">N</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+        <span class="k">def</span> <span class="nf">fill_down</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos2</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+            <span class="k">while</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
+                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
+                <span class="n">pos1</span> <span class="o">+=</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="n">pos1</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos2</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">pos1</span> <span class="o">-=</span><span class="mi">1</span>
+                    <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+            <span class="n">pos1</span> <span class="o">-=</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+        
+        <span class="k">def</span> <span class="nf">fill_rightup</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos2</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+            <span class="k">while</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
+                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
+                <span class="n">pos1</span> <span class="o">-=</span><span class="mi">1</span>
+                <span class="n">pos2</span> <span class="o">+=</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="n">pos1</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos2</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">pos1</span> <span class="o">+=</span><span class="mi">1</span>
+                    <span class="n">pos2</span> <span class="o">-=</span><span class="mi">1</span>
+                    <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+            <span class="n">pos1</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="n">pos2</span> <span class="o">-=</span><span class="mi">1</span>    
+            <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+        
+        <span class="k">def</span> <span class="nf">fill_left</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos2</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+            <span class="k">while</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
+                <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
+                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
+                <span class="n">pos2</span> <span class="o">-=</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="n">pos1</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos2</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">pos2</span> <span class="o">+=</span><span class="mi">1</span>
+                    <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+            <span class="n">pos2</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
+        
+        <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">num0</span> <span class="o">=</span> <span class="n">num</span>
+            <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="nf">fill_down</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">pos2</span><span class="p">)</span>
+            <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="nf">fill_rightup</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">pos2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="nf">fill_left</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            
+
+            <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="n">num0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">pos1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pos2</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mt</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">i</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mt</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ans</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">numberOfShelves</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+
+</code></pre></div></div>
+
+<h2 id="5-bgp树">5. BGP树</h2>
+<ul>
+  <li>2^N字符串由01构成</li>
+  <li>字符串中全为0，节点value设为B</li>
+  <li>全1为P</li>
+  <li>都有为G</li>
+  <li>判定完当前节点后将字符串等分两半继续判定，到字符串无法二分为止</li>
+  <li>输出二叉树后序遍历结果</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"10001101"
+"PBGBBBGPPPBPGGG"
+</code></pre></div></div>
+
+<ul>
+  <li>这题显然是有规律可循的，题解里都没给TreeNode定义</li>
+  <li>但还是写了个暴力解法</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">left</span><span class="p">:</span><span class="n">TreeNode</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">right</span><span class="p">:</span><span class="n">TreeNode</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">bpg</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">s</span> <span class="p">):</span>
+        <span class="c1"># write code here
+</span>
+        <span class="k">def</span> <span class="nf">bpg_str</span><span class="p">(</span><span class="n">bpgs</span><span class="p">):</span>
+            <span class="sh">'''</span><span class="s">判断BPG</span><span class="sh">'''</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">bpgs</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sh">"</span><span class="s">B</span><span class="sh">"</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="sh">"</span><span class="s">0</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">bpgs</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sh">"</span><span class="s">P</span><span class="sh">"</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sh">"</span><span class="s">G</span><span class="sh">"</span>
+            
+        <span class="k">def</span> <span class="nf">create_tn</span><span class="p">(</span><span class="n">tns</span><span class="p">):</span>
+            <span class="sh">'''</span><span class="s">生成二叉树</span><span class="sh">'''</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span>
+            
+            <span class="n">tnp</span> <span class="o">=</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="nf">bpg_str</span><span class="p">(</span><span class="n">tns</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nf">len</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">tnp</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="nf">create_tn</span><span class="p">(</span><span class="n">tns</span><span class="p">[:</span><span class="nf">int</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)])</span>
+                <span class="n">tnp</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="nf">create_tn</span><span class="p">(</span><span class="n">tns</span><span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):])</span>
+            <span class="k">return</span> <span class="n">tnp</span>
+        
+        <span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">:</span><span class="n">TreeNode</span><span class="p">):</span>
+            <span class="sh">'''</span><span class="s">遍历</span><span class="sh">'''</span>
+            <span class="k">if</span> <span class="n">root</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sh">''</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="sh">''</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span> <span class="p">.</span><span class="n">right</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">root</span><span class="p">.</span><span class="n">val</span>
+            <span class="k">return</span> <span class="n">ans</span>
+
+        <span class="k">return</span> <span class="nf">traverse</span><span class="p">(</span><span class="nf">create_tn</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+
+    
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">bpg</span><span class="p">(</span><span class="sh">"</span><span class="s">10001101</span><span class="sh">"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-06-duozhuayu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[1. Good Word 字符串中出现最多的字符数量m 字符串中出现最少的字符数量n m/n = 整数且&gt;1 满足条件为Good Word]]></summary></entry><entry><title type="html">python: 开根号</title><link href="/python/sqrt/" rel="alternate" type="text/html" title="python: 开根号" /><published>2023-10-05T19:01:27+08:00</published><updated>2023-10-05T19:01:27+08:00</updated><id>/python/sqrt</id><content type="html" xml:base="/python/sqrt/"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 法1：math.sqrt
 </span><span class="kn">import</span> <span class="n">math</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
@@ -590,54 +872,4 @@ p[j]    a       a       *       a       b
 
 <ul>
   <li>好的，虽然尽力理解了这么多，但其实还是没有完全理解，不愧是困难题，（这题跳过）</li>
-</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry><entry><title type="html">python: 创建矩阵</title><link href="/python/matrix/" rel="alternate" type="text/html" title="python: 创建矩阵" /><published>2023-10-03T20:05:30+08:00</published><updated>2023-10-03T20:05:30+08:00</updated><id>/python/matrix</id><content type="html" xml:base="/python/matrix/"><![CDATA[<ul>
-  <li>使用列表乘法可以快速初始化一个列表</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-<span class="c1"># [0, 0, 0]
-</span></code></pre></div></div>
-
-<ul>
-  <li>那么嵌套一层之后就可以创建矩阵了吗</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-<span class="c1"># [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-</span></code></pre></div></div>
-
-<ul>
-  <li>上面的代码看似合理，但为矩阵赋值时就会发现问题</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-<span class="c1"># [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
-</span></code></pre></div></div>
-
-<ul>
-  <li>
-    <p>执行dp = [[0] * 3] * 3时，实际上创建了一个包含3个相同引用的列表，它们指向同一个内存地址。修改其中一个元素的值时，其他所有引用也会随之改变。</p>
-  </li>
-  <li>
-    <p>可以用列表推导式来创建矩阵</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
-<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>或者numpy</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">dp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-</code></pre></div></div>
-
-<!-- ![引入图片](/image/python/2023-10-03-matrix/image_1.jpg) -->
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[使用列表乘法可以快速初始化一个列表]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry></feed>

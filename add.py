@@ -36,14 +36,14 @@ zip_pctools
 '''
 
 # 修改这里：基础分类
-basic_cat = "python"
+basic_cat = "leetcode"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "sqrt"
+file_name = "duozhuayu"
 # 修改这里：文章标题
-title = "'%s: 开根号'" % basic_cat
+title = "'%s: 记某次笔试的5道题'" % basic_cat
 # 修改这里：文章介绍
-info = "'sqrt()居然不是内置的，记录几种开根号的方法'"
+info = "'据说公司每年都用这5道，所以不写公司名了'"
 
 
 # 文章分类，可以添加多个
