@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'leetcode: dp-最长回文子串'
-info: '动态规划又一题'
+info: '动态规划又一题，找到字符串中的最长回文子串'
 date: 2023-10-03 17:38:37  +0800
 categories: ['leetcode', 'python']
 toc: True

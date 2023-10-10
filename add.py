@@ -4,56 +4,66 @@
 - 每次新建文章都要手动按时间命名，还要添加yaml头，挺麻烦的
 - 添加图片创建目录也很麻烦
 - 所以做了这个
-
-- 分类快捷copy
-
-amtc
-bash
-cpp
-crawler
-css
-django
-docker
-electron
-git
-jekyll
-js
-knowhow
-leetcode
-linux
-markdown
-mysql
-nginx
-pyqt
-python
-raspberry_pi
-tampermonkey
-ts
-vue
-windows
-zip_backyard
-zip_pctools
 '''
+
+# 类别列表，类别categories必须在这个列表中
+cat_list = [
+'amtc',
+'bash',
+'cpp',
+'crawler',
+'css',
+'django',
+'docker',
+'electron',
+'git',
+'jekyll',
+'js',
+'knowhow',
+'leetcode',
+'linux',
+'markdown',
+'mysql',
+'nginx',
+'pyqt',
+'python',
+'raspberry_pi',
+'tampermonkey',
+'ts',
+'vue',
+'windows',
+'zip_backyard',
+'zip_pctools',
+]
+
 
 # 修改这里：基础分类
 basic_cat = "leetcode"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "duozhuayu"
+file_name = "dewu"
 # 修改这里：文章标题
-title = "'%s: 记某次笔试的5道题'" % basic_cat
+title = "'%s: 得物笔试'" % basic_cat
 # 修改这里：文章介绍
-info = "'据说公司每年都用这5道，所以不写公司名了'"
+info = "'js异步任务调度'"
 
 
 # 文章分类，可以添加多个
-categories = [basic_cat,'python']
+categories = [basic_cat,'js']
 # md文件放在哪个目录下
 dir = basic_cat
 
 # 是否创建图片目录？
 is_img = False
 
+
+
+
+# 验证输入的category是否在预设列表中
+for cat in categories:
+    if not cat in cat_list:
+        print("unexpected category: %s" %cat)
+        exit()
 
 
 

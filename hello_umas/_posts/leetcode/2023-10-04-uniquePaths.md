@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'leetcode: 不同路径'
-info: '动态规划又一题'
+info: '动态规划又一题，求矩阵中机器人运动的不同路径数'
 date: 2023-10-04 19:19:58  +0800
 categories: ['leetcode', 'python']
 toc: True

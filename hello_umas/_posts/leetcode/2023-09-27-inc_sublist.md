@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'leetcode: dp-递增子序列问题'
-info: '动态规划入门2'
+info: '动态规划入门2，找到数组中最长严格递增子序列'
 date: 2023-09-27 19:41:57  +0800
 categories: ['leetcode', 'python']
 toc: True

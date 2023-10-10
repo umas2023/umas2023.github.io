@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'leetcode: 解决智力问题'
-info: '动态规划又一题'
+info: '动态规划又一题，计算解决问题能获得的最高总分'
 date: 2023-10-05 16:10:23  +0800
 categories: ['leetcode', 'python']
 toc: True

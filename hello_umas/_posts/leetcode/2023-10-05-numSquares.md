@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'leetcode: 完全平方数'
-info: '动态规划又一题'
+info: '动态规划又一题，返回和为n的完全平方数的最少数量'
 date: 2023-10-05 17:31:28  +0800
 categories: ['leetcode', 'python']
 toc: True

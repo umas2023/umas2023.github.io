@@ -76,6 +76,14 @@
 </code></pre></div></div>
 
 <ul>
+  <li>或者在.d.ts中export</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">database</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./database.js</span><span class="dl">"</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">database</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
   <li>法3，js改为ts，这时可能会报错An import path can only end with a ‘.ts’ extension when ‘allowImportingTsExtensions’ is enabled.</li>
   <li>修改tsconfig.json，根据提示添加：</li>
 </ul>

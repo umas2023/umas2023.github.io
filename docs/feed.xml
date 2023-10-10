@@ -1,4 +1,194 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-06T16:34:13+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 记某次笔试的5道题</title><link href="/leetcode/python/duozhuayu/" rel="alternate" type="text/html" title="leetcode: 记某次笔试的5道题" /><published>2023-10-06T16:14:24+08:00</published><updated>2023-10-06T16:14:24+08:00</updated><id>/leetcode/python/duozhuayu</id><content type="html" xml:base="/leetcode/python/duozhuayu/"><![CDATA[<h2 id="1-good-word">1. Good Word</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-10T18:55:19+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 得物笔试</title><link href="/leetcode/js/dewu/" rel="alternate" type="text/html" title="leetcode: 得物笔试" /><published>2023-10-10T17:45:01+08:00</published><updated>2023-10-10T17:45:01+08:00</updated><id>/leetcode/js/dewu</id><content type="html" xml:base="/leetcode/js/dewu/"><![CDATA[<ul>
+  <li>接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">processTasks</span><span class="p">(</span><span class="nx">taskList</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">let</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// 执行单个任务</span>
+    <span class="k">async</span> <span class="kd">function</span> <span class="nf">runTask</span><span class="p">(</span><span class="nx">task</span><span class="p">,</span> <span class="nx">taskIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">task</span><span class="p">();</span>
+        <span class="nx">results</span><span class="p">[</span><span class="nx">taskIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 滑动窗口</span>
+    <span class="k">async</span> <span class="kd">function</span> <span class="nf">runTasksInWindow</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">while </span><span class="p">(</span><span class="nx">currentIndex</span> <span class="o">&lt;</span> <span class="nx">taskList</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">taskIndex</span> <span class="o">=</span> <span class="nx">currentIndex</span><span class="o">++</span><span class="p">;</span>
+            <span class="kd">const</span> <span class="nx">task</span> <span class="o">=</span> <span class="nx">taskList</span><span class="p">[</span><span class="nx">taskIndex</span><span class="p">];</span>
+            <span class="k">await</span> <span class="nf">runTask</span><span class="p">(</span><span class="nx">task</span><span class="p">,</span> <span class="nx">taskIndex</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 并行任务</span>
+    <span class="kd">const</span> <span class="nx">runningTasks</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">runningTasks</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nf">runTasksInWindow</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="nx">runningTasks</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 示例使用</span>
+
+<span class="kd">const</span> <span class="nx">delay</span> <span class="o">=</span> <span class="p">(</span><span class="nx">ms</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">ms</span><span class="p">));</span>
+
+<span class="kd">const</span> <span class="nx">createTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">taskName</span><span class="p">,</span> <span class="nx">duration</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`starting task </span><span class="p">${</span><span class="nx">taskName</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="nf">delay</span><span class="p">(</span><span class="nx">duration</span><span class="p">).</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`complete task </span><span class="p">${</span><span class="nx">taskName</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+            <span class="nf">resolve</span><span class="p">(</span><span class="nx">taskName</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">taskList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task1</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task2</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task3</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task4</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+<span class="p">];</span>
+
+<span class="c1">//这段代码是一个立即执行的异步函数表达式（Immediately Invoked Async Function Expression，IIFE）</span>
+<span class="c1">// 在这里，定义了一个匿名的异步函数，并立即执行它</span>
+<span class="p">(</span><span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">processTasks</span><span class="p">(</span><span class="nx">taskList</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>调用js</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node.exe .\test.js
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-10-dewu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回]]></summary></entry><entry><title type="html">leetcode: 途虎笔试</title><link href="/leetcode/tuhu/" rel="alternate" type="text/html" title="leetcode: 途虎笔试" /><published>2023-10-09T20:33:56+08:00</published><updated>2023-10-09T20:33:56+08:00</updated><id>/leetcode/tuhu</id><content type="html" xml:base="/leetcode/tuhu/"><![CDATA[<ul>
+  <li>一般来说hr拿到笔试分数之后不可能去仔细看你的代码</li>
+  <li>所以这几道笔试题就显得很弱鸡</li>
+  <li>（这几道算法题真的配得上前面的逆天选择题吗）</li>
+</ul>
+
+<h2 id="js把秒数格式化为000232格式">js,把秒数格式化为”00:02:32”格式</h2>
+
+<ul>
+  <li>这题还好，作为第一题刚刚合适</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">formatTime</span><span class="p">(</span> <span class="nx">seconds</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write code here</span>
+    <span class="kd">let</span> <span class="nx">ss</span> <span class="o">=</span> <span class="nx">seconds</span> <span class="o">%</span> <span class="mi">60</span>
+    <span class="kd">let</span> <span class="nx">mm</span> <span class="o">=</span>  <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">seconds</span> <span class="o">%</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">hh</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">seconds</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span>
+    <span class="nx">ss</span> <span class="o">=</span> <span class="nx">ss</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">mm</span> <span class="o">=</span> <span class="nx">mm</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">hh</span> <span class="o">=</span> <span class="nx">hh</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">hh</span><span class="o">+</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="o">+</span><span class="nx">mm</span><span class="o">+</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="o">+</span><span class="nx">ss</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">formatTime</span> <span class="p">:</span> <span class="nx">formatTime</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="两字符串str1str2其中str2由str1乱序重排后随机添加一个字符找出这个字符">两字符串str1,str2,其中str2由str1乱序重排后随机添加一个字符，找出这个字符</h2>
+
+<ul>
+  <li>这题就完全意义不明</li>
+  <li>我选择直接遍历</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findTheDifference</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">str1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">str2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">str2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">str1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">char</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">str1</span> <span class="o">=</span> <span class="n">str1</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="n">char</span><span class="p">,</span><span class="sh">""</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">findTheDifference</span><span class="p">(</span><span class="sh">"</span><span class="s">aa</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">aaa</span><span class="sh">"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="找车胎">找车胎</h2>
+
+<ul>
+  <li>题目给了一个场景，从一堆车胎里找胎</li>
+  <li>list1是车胎宽度</li>
+  <li>list2是宽度对应的数量</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[145,175,215,235],[8,7,2,10]
+
+排序list1
+max(list1) = a
+找出list2中max所在index对应list1中的数值b
+输出[排序list1][a,b]
+</code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">searchTreadWidth</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">treadWidths</span><span class="p">,</span> <span class="n">tireCounts</span><span class="p">):</span>
+        <span class="n">maxCount</span> <span class="o">=</span> <span class="n">treadWidths</span><span class="p">[</span><span class="n">tireCounts</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">tireCounts</span><span class="p">))]</span>
+        <span class="n">treadWidthsSort</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">treadWidths</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">treadWidthsSort</span><span class="p">,[</span><span class="n">treadWidthsSort</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">maxCount</span><span class="p">]]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">searchTreadWidth</span><span class="p">([</span><span class="mi">155</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span><span class="mi">165</span><span class="p">,</span><span class="mi">195</span><span class="p">,</span><span class="mi">215</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-09-tuhu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[一般来说hr拿到笔试分数之后不可能去仔细看你的代码 所以这几道笔试题就显得很弱鸡 （这几道算法题真的配得上前面的逆天选择题吗）]]></summary></entry><entry><title type="html">js: 列表扩展</title><link href="/js/list_unshift/" rel="alternate" type="text/html" title="js: 列表扩展" /><published>2023-10-08T14:39:03+08:00</published><updated>2023-10-08T14:39:03+08:00</updated><id>/js/list_unshift</id><content type="html" xml:base="/js/list_unshift/"><![CDATA[<ul>
+  <li>unshift函数扩展列表，三点（扩展运算符）拆分列表</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">show_list</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(...</span><span class="nx">image_urls</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>关于扩展运算符</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">array1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span> <span class="na">x</span><span class="p">:</span> <span class="mi">42</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">10</span> <span class="p">};</span> <span class="c1">// { foo: 'bar', x: 42, y: 10 }</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/js/2023-10-08-list_unshift/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[unshift函数扩展列表，三点（扩展运算符）拆分列表]]></summary></entry><entry><title type="html">vue: 读取router参数</title><link href="/vue/router_parameter/" rel="alternate" type="text/html" title="vue: 读取router参数" /><published>2023-10-08T14:36:17+08:00</published><updated>2023-10-08T14:36:17+08:00</updated><id>/vue/router_parameter</id><content type="html" xml:base="/vue/router_parameter/"><![CDATA[<ul>
+  <li>
+    <p>vue读取router参数</p>
+  </li>
+  <li>比如通过这样的链接访问网页：http://localhost:8080/#/home?id_input=10001</li>
+  <li>希望读取到id_input的值并赋给变量</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useRouter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue-router</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nf">useRouter</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">currentRoute</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">id_input</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>在 Vue 3 中，router.currentRoute.value.query 返回的是一个包含查询参数的对象，其中每个查询参数的值是一个字符串数组（string[]）或单个字符串（string）</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">id_input</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">currentRoute</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">id_input</span> <span class="k">as</span> <span class="nx">string</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-08-router_parameter/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[vue读取router参数]]></summary></entry><entry><title type="html">leetcode: 记某鱼笔试的5道题</title><link href="/leetcode/python/duozhuayu/" rel="alternate" type="text/html" title="leetcode: 记某鱼笔试的5道题" /><published>2023-10-06T16:14:24+08:00</published><updated>2023-10-06T16:14:24+08:00</updated><id>/leetcode/python/duozhuayu</id><content type="html" xml:base="/leetcode/python/duozhuayu/"><![CDATA[<ul>
+  <li>据说这个公司每年都用这5道，所以不写公司名了</li>
+</ul>
+
+<h2 id="1-good-word">1. Good Word</h2>
 <p>字符串中出现最多的字符数量m<br />
 字符串中出现最少的字符数量n<br />
 m/n = 整数且&gt;1
@@ -280,7 +470,7 @@ aabbaabb =&gt; (a(2)b(2))2<br />
 <span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">bpg</span><span class="p">(</span><span class="sh">"</span><span class="s">10001101</span><span class="sh">"</span><span class="p">))</span>
 </code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-06-duozhuayu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[1. Good Word 字符串中出现最多的字符数量m 字符串中出现最少的字符数量n m/n = 整数且&gt;1 满足条件为Good Word]]></summary></entry><entry><title type="html">python: 开根号</title><link href="/python/sqrt/" rel="alternate" type="text/html" title="python: 开根号" /><published>2023-10-05T19:01:27+08:00</published><updated>2023-10-05T19:01:27+08:00</updated><id>/python/sqrt</id><content type="html" xml:base="/python/sqrt/"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 法1：math.sqrt
+<!--![引入图片](/image/leetcode/2023-10-06-duozhuayu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[据说这个公司每年都用这5道，所以不写公司名了]]></summary></entry><entry><title type="html">python: 开根号</title><link href="/python/sqrt/" rel="alternate" type="text/html" title="python: 开根号" /><published>2023-10-05T19:01:27+08:00</published><updated>2023-10-05T19:01:27+08:00</updated><id>/python/sqrt</id><content type="html" xml:base="/python/sqrt/"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 法1：math.sqrt
 </span><span class="kn">import</span> <span class="n">math</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
@@ -471,7 +661,7 @@ B×A = {(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)}</li>
 
 <p>上面dp的函数被称为【卡塔兰数Cn】<br />
 C0 = 1
-C(n+1) = Cn * 2(2n+1)/(n+2)</p>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry><entry><title type="html">leetcode: 9键输入法组合</title><link href="/leetcode/python/9_button_input/" rel="alternate" type="text/html" title="leetcode: 9键输入法组合" /><published>2023-10-04T20:42:31+08:00</published><updated>2023-10-04T20:42:31+08:00</updated><id>/leetcode/python/9_button_input</id><content type="html" xml:base="/leetcode/python/9_button_input/"><![CDATA[<ul>
+C(n+1) = Cn * 2(2n+1)/(n+2)</p>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry><entry><title type="html">Klook笔试 - 9键输入法组合</title><link href="/leetcode/python/9_button_input/" rel="alternate" type="text/html" title="Klook笔试 - 9键输入法组合" /><published>2023-10-04T20:42:31+08:00</published><updated>2023-10-04T20:42:31+08:00</updated><id>/leetcode/python/9_button_input</id><content type="html" xml:base="/leetcode/python/9_button_input/"><![CDATA[<ul>
   <li>Klook笔试题，因为原题是英文给的，事后没有找到完全一样的原题</li>
   <li>简述一下题目大意：9键输入法，给定按键序列，返回所有组合</li>
 </ul>
@@ -578,298 +768,4 @@ B×A = {(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)}
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['ace', 'acf', 'ade', 'adf', 'bce', 'bcf', 'bde', 'bdf']
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[Klook笔试题，因为原题是英文给的，事后没有找到完全一样的原题 简述一下题目大意：9键输入法，给定按键序列，返回所有组合]]></summary></entry><entry><title type="html">leetcode: 不同路径</title><link href="/leetcode/python/uniquePaths/" rel="alternate" type="text/html" title="leetcode: 不同路径" /><published>2023-10-04T19:19:58+08:00</published><updated>2023-10-04T19:19:58+08:00</updated><id>/leetcode/python/uniquePaths</id><content type="html" xml:base="/leetcode/python/uniquePaths/"><![CDATA[<h2 id="题目">题目</h2>
-
-<ul>
-  <li>
-    <p>链接：https://leetcode.cn/problems/unique-paths/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
-  </li>
-  <li>
-    <p>题目：一个机器人位于一个 m x n 网格的左上角。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角。问总共有多少条不同的路径？</p>
-  </li>
-</ul>
-
-<h2 id="题解">题解</h2>
-
-<ul>
-  <li>自解（动态规划）：易知dp[i][j] = dp[i-1][j] + dp[i][j-1]，边界是当i或j=1时dp[i][j]=1</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">uniquePaths</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="n">j</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">uniquePaths</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>（因为最近在刷动态规划，双眼被蒙蔽了）</li>
-  <li>想要走到右下角，总步数是固定的m+n-2，向右几步和向下几步也都是固定的，向下m-1次，向右n-1次；所以路径总是就是从m+n-2次移动中选择m-1次向下移动的方案数，即组合数：</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C(m-1)(m+n-2) = (m+n-2)! / (m-1)!(n-1)!
-</code></pre></div></div>
-
-<ul>
-  <li>一行公式就可以解决</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-04-uniquePaths/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry><entry><title type="html">leetcode: 打家劫舍</title><link href="/leetcode/python/rob/" rel="alternate" type="text/html" title="leetcode: 打家劫舍" /><published>2023-10-04T16:33:58+08:00</published><updated>2023-10-04T16:33:58+08:00</updated><id>/leetcode/python/rob</id><content type="html" xml:base="/leetcode/python/rob/"><![CDATA[<h2 id="打家劫舍">打家劫舍</h2>
-
-<ul>
-  <li>
-    <p>链接：https://leetcode.cn/problems/house-robber/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
-  </li>
-  <li>
-    <p>题目：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：[1,2,3,1]
-输出：4
-解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
-     偷窃到的最高金额 = 1 + 3 = 4 。
-</code></pre></div></div>
-
-<ul>
-  <li>首先看边界，只有一间房屋时，dp[0] = List[0]；两间房屋时dp[1] = max(List)</li>
-  <li>接下来考虑递推关系。这道题很像之前的青蛙跳阶问题，在青蛙跳阶中，跳到第10级有2种方法：9+1或8+2；在这一题中，小偷偷10家也有2种方法：偷前9家或8+1，收益最大的方法即为解，所以状态转移方程：dp[n] = max( dp[n-1], dp[n-2]+List[n] )</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">rob</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">len_s</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">len_s</span><span class="p">]</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">rob</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>注意因为向前追溯了2位到dp[i-2]，所以dp的长度增加了1位，即(len_s+1)而不是len_s，i需要从2开始循环</li>
-</ul>
-
-<!--![引入图片](/image/leetcode/2023-10-04-rob/image_1.jpg) -->
-
-<h2 id="打家劫舍plus---删除并获得点数">打家劫舍plus - 删除并获得点数</h2>
-
-<ul>
-  <li>
-    <p>链接：https://leetcode.cn/problems/delete-and-earn/description/?envType=study-plan-v2&amp;envId=dynamic-programming</p>
-  </li>
-  <li>
-    <p>题目：给你一个整数数组 nums ，你可以对它进行一些操作。每次操作中，选择任意一个 nums[i] ，删除它并获得 nums[i] 的点数。之后，你必须删除 所有 等于 nums[i] - 1 和 nums[i] + 1 的元素（这些元素被删除后不获得点数）。开始你拥有 0 个点数。返回你能通过这些操作获得的最大点数。</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [3,4,2]
-输出：6
-解释：
-删除 4 获得 4 个点数，因此 3 也被删除。
-之后，删除 2 获得 2 个点数。总共获得 6 个点数。
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：nums = [2,2,3,3,3,4]
-输出：9
-解释：
-删除 3 获得 3 个点数，接着要删除两个 2 和 4 。
-之后，再次删除 3 获得 3 个点数，再次删除 3 获得 3 个点数。
-总共获得 9 个点数。
-</code></pre></div></div>
-
-<ul>
-  <li>下面解释一下为什么这道题是打家劫舍plus</li>
-  <li>每次选择后都删除了所有nums[i] - 1 和 nums[i] + 1，可以理解为失去了点数sum([x for x in nums if x == nums[i] ± 1])</li>
-  <li>考虑存在多个nums[i]的情况，因为第一次选择完之后已经删除了所有满足条件的元素，所有nums[i]可以重复选择直至全部选中，也就是说选择nums[i]相当于获得了点数sum([x for x in nums if x == nums[i]])</li>
-  <li>影响最终结果的是所有相同元素的和，而不是单个的元素，因此可以以nums[i]为key，以sum([x for x in nums if x == nums[i]])为value构建新的数组，示例如下</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; [0,1,2,3,3]
-&lt;&lt;&lt; [0,1,2,6]
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; [2, 2, 3, 3, 3, 4]
-&lt;&lt;&lt; [0, 0, 4, 9, 4]
-</code></pre></div></div>
-
-<ul>
-  <li>这时删除了所有nums[i] - 1 和 nums[i] + 1即意味着在新数组中无法选中相邻数字，也就是“相邻房屋会报警”</li>
-  <li>（看到这里不得不甘拜下风）</li>
-</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[打家劫舍]]></summary></entry><entry><title type="html">leetcode: 斐波那契数列</title><link href="/leetcode/python/fib/" rel="alternate" type="text/html" title="leetcode: 斐波那契数列" /><published>2023-10-04T16:22:28+08:00</published><updated>2023-10-04T16:22:28+08:00</updated><id>/leetcode/python/fib</id><content type="html" xml:base="/leetcode/python/fib/"><![CDATA[<h2 id="题目">题目</h2>
-
-<ul>
-  <li>链接：https://leetcode.cn/problems/fibonacci-number/description/?envType=study-plan-v2&amp;envId=dynamic-programming</li>
-</ul>
-
-<h2 id="题解">题解</h2>
-
-<ul>
-  <li>题目就是给n求fib(n)</li>
-  <li>可以用动态规划的方法来理解</li>
-  <li>边界条件是dp(0) = 0, dp(1) = 1</li>
-  <li>
-    <p>状态转移方程是 dp(n) = dp(n-1)+dp(n-2)</p>
-  </li>
-  <li>为了节省空间，可以用p、q、r仅保留dp的后三位，滚动赋值</li>
-</ul>
-
-<!-- ![引入图片](/image/leetcode/2023-10-04-fib/image_1.jpg) -->
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-    <span class="n">public</span> <span class="nb">int</span> <span class="nf">fib</span><span class="p">(</span><span class="nb">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nf">if </span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="nb">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="nf">for </span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span> 
-            <span class="n">q</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> 
-            <span class="n">r</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry><entry><title type="html">leetcode: 正则表达式匹配</title><link href="/leetcode/python/isMatch/" rel="alternate" type="text/html" title="leetcode: 正则表达式匹配" /><published>2023-10-04T15:11:51+08:00</published><updated>2023-10-04T15:11:51+08:00</updated><id>/leetcode/python/isMatch</id><content type="html" xml:base="/leetcode/python/isMatch/"><![CDATA[<h2 id="题目">题目</h2>
-
-<ul>
-  <li>
-    <p>链接：https://leetcode.cn/problems/regular-expression-matching/</p>
-  </li>
-  <li>
-    <p>题目：</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一个字符串 s （string）和一个字符规律 p（pattern），请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
-
-'.' 匹配任意单个字符
-'*' 匹配零个或多个前面的那一个元素
-所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。
-</code></pre></div></div>
-
-<ul>
-  <li>示例</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：s = "aa", p = "a"
-输出：false
-解释："a" 无法匹配 "aa" 整个字符串。
-
-
-Input:
-s = "aab"
-p = "c*a*b"
-Output: true
-Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore it matches "aab".
-</code></pre></div></div>
-
-<h2 id="题解">题解</h2>
-
-<ul>
-  <li>
-    <p>初见没有正确率理解题意中的匹配0次，从第二个示例可以看出包含’*‘前面的字母c在内都可以不被匹配，也就是说’*‘和前面的字母必须被看作一个整体</p>
-  </li>
-  <li>
-    <p>字母和’.’的情况不多赘述，主要讨论’*‘的情况</p>
-  </li>
-  <li>
-    <p>dp矩阵dp[i][j]表示s的前i个字符可以和p的前j个字符匹配，关键问题是如何构造状态转移方程</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 匹配了1次
-                        i     
-                        ↓       
-s[i]    a       a       a       b
-p[j]    a       a       a       *       b
-                                ↑
-                                j
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 匹配了0次
-                        i
-                        ↓
-s[i]    a       a       b
-p[j]    a       a       a       *       b
-                                ↑
-                                j
-</code></pre></div></div>
-
-<ul>
-  <li>将星号（p[j]）和前一个字母（p[j-1]）视为整体，进行匹配时有2种情况：
-    <ul>
-      <li>目标字母（s[i]）和模板字母（p[j-1]）不同，即【字母+星号】匹配了0次，此时能否匹配取决于【字母+星号】前一位，即p[j-2]，判断s[i] ?= p[j-2]，如果前一位匹配，即dp[i][j-2]=True，则dp[i][j]=True</li>
-      <li>目标字母（s[i]）和模板字母（p[j-1]）相同，这里又分为两种情况：
-        <ul>
-          <li>1.虽然相同但s[i]匹配的实际上是星号后面的内容，即此处的【字母+星号】依然匹配了0次（下面图示的状态，这里i处的a实际上应该匹配j+1处的a），这种情况和上面的情况属于同一种情况，为了处理它，可以把这里的计算结果与上面计算的dp[i][j-2]进行与运算，这就是为什么题解中使用了|=而不是直接赋值
-            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 匹配了0次
-              i
-              ↓
-s[i]    a       a       b
-p[j]    a       a       *       a       b
-                      ↑
-                      j
-</code></pre></div>            </div>
-          </li>
-          <li>2.相同且确实匹配，此时【字母+星号】匹配了1次或多次，为了找到所有可能的匹配，需要向前追溯目标字符串，即s[i-1]，判断s[i-1] ?= p[j]。</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>上述所有情况中只要有一条成立，就可以判断匹配成功，所以程序中始终在用<code class="language-plaintext highlighter-rouge">|=</code>更新dp[i][j]的值</li>
-</ul>
-
-<!-- ![引入图片](/image/leetcode/2023-10-04-isMatch/image_1.jpg) -->
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">isMatch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">p</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nf">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">matches</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">True</span>
-            <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">f</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-        <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">:</span>
-                    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="nf">matches</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-                        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nf">matches</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-                        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">n</span><span class="p">]</span>
-
-
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">isMatch</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="sh">'</span><span class="s">aab</span><span class="sh">'</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="sh">'</span><span class="s">aaa*b</span><span class="sh">'</span><span class="p">))</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>好的，虽然尽力理解了这么多，但其实还是没有完全理解，不愧是困难题，（这题跳过）</li>
-</ul>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[Klook笔试题，因为原题是英文给的，事后没有找到完全一样的原题 简述一下题目大意：9键输入法，给定按键序列，返回所有组合]]></summary></entry></feed>

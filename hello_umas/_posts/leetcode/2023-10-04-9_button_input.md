@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'leetcode: 9键输入法组合'
-info: '记录遇到的一个简单笔试题'
+title: 'Klook笔试 - 9键输入法组合'
+info: '记录遇到的一个简单笔试题，返回按下后所有可能的组合情况'
 date: 2023-10-04 20:42:31  +0800
 categories: ['leetcode', 'python']
 toc: True

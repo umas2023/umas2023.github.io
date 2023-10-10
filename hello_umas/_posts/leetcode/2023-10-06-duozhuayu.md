@@ -1,13 +1,14 @@
 ---
 layout: post
-title: 'leetcode: 记某次笔试的5道题'
-info: '据说这个公司每年都用这5道，所以不写公司名了'
+title: 'leetcode: 记某鱼笔试的5道题'
+info: 'Good Word、链表合并、解压缩字符串、货架编号、BGP树'
 date: 2023-10-06 16:14:24  +0800
 categories: ['leetcode', 'python']
 toc: True
 ---
 
 
+- 据说这个公司每年都用这5道，所以不写公司名了
 
 
 ## 1. Good Word  
