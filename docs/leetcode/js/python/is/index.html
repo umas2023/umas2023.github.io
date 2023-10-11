@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>leetcode: 58同城前年笔试 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="leetcode: 58同城前年笔试" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" />
+<meta property="og:description" content="链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" />
+<link rel="canonical" href="/leetcode/js/python/is/" />
+<meta property="og:url" content="/leetcode/js/python/is/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-11T14:01:57+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="leetcode: 58同城前年笔试" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T14:01:57+08:00","datePublished":"2023-10-11T14:01:57+08:00","description":"链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91","headline":"leetcode: 58同城前年笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/python/is/"},"url":"/leetcode/js/python/is/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">leetcode: 58同城前年笔试</h1>
+    <h3>选择题和算法题都在这了</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#选择题">选择题</a></li>
+<li class="toc-entry toc-h2"><a href="#编程题">编程题</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91</li>
+</ul>
+
+<h2 id="选择题">选择题</h2>
+
+<ol>
+  <li>以下代码输出</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nf">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">].</span><span class="nf">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="p">[</span> <span class="mi">2</span> <span class="p">]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>解析</li>
+</ul>
+
+<p>使用 splice() 方法会改变原始数组，返回被删除的元素组成的数组。<br />
+起始索引为 1，要删除的元素数量为 2（即删除了索引位置 1 和 2 的元素），并在该位置插入元素 [3, 4, 5]。splice() 方法返回被删除的元素组成的数组，所以输出结果是 [2, 3]，表示被删除的元素为 2 和 3。</p>
+
+<p>slice() 方法用于从数组中提取指定范围的元素，返回一个新数组，不会修改原始数组。它接受两个参数：
+第一个参数 1 表示起始索引，指定了要提取的起始位置。
+第二个参数表示要提取的结束位置。结束位置为 2,3,4,5（但 slice() 方法只接受两个参数，多余的参数会被忽略）</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>root元素的高 (通过getComputedStyle(root).height计算) 为？</li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"root"</span> <span class="na">style=</span><span class="s">"border:1px solid red;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"width:10px;height:10px;margin:10px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"width:10px;height:10px;margin:20px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>直接在console打印结果是70px</li>
+  <li>(10 + 10x2) + (10 + 20x2) - 10px</li>
+  <li>根据CSS规范中的外边距合并（Margin Collapsing）规则，当两个垂直相邻的元素具有外边距时，它们的外边距会发生合并，产生一个新的外边距。合并后的外边距的大小取决于两个元素中较大的外边距值。</li>
+  <li>上面div的下边距10被合并到下面div的上边距20中了，所以要减去10</li>
+  <li>由结果来看border边框是不计入高度的</li>
+</ul>
+
+<hr />
+<hr />
+
+<ol>
+  <li>假定某次上线，1小时内出bug的概率为50%，那么3小时内出bug的概率是？</li>
+</ol>
+
+<ul>
+  <li>答案：87.5</li>
+  <li>解析：</li>
+</ul>
+
+<p>P3 = 在3小时内出现bug
+noP3 = 在3小时内没有出现bug</p>
+
+<p>P1b = 第1小时内 …
+P1n = 第1 …</p>
+
+<p>则 P3b = 1 - noP3 = 1 - ( P1n x P2n x P3n ) = 1 - 0.5x0.5x0.5 = 0.875</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>以下代码执行返回？</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">parseInt</span><span class="p">(</span><span class="dl">'</span><span class="s1">0x111</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案：273</li>
+  <li>
+    <p>解析：当字符串以 ‘0x’ 开头时，它被解释为十六进制数</p>
+  </li>
+  <li>补充：其他转换16进制的方法</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nf">parseInt</span><span class="p">(</span><span class="dl">'</span><span class="s1">0x111</span><span class="dl">'</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nc">Number</span><span class="p">(</span><span class="dl">'</span><span class="s1">0x111</span><span class="dl">'</span><span class="p">).</span><span class="nf">valueOf</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="dl">'</span><span class="s1">0x111</span><span class="dl">'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<hr />
+<hr />
+
+<ol>
+  <li>下边关于https描述正确的是:</li>
+</ol>
+
+<p>A 客户端会对服务器下发的证书进行域名校验
+B 客户端和服务器交互使用的是服务器下发的私钥
+C 黑客拦截服务器下发的证书后就可以伪造服务器和客户端进行通信
+D 手机只信任CA颁发的证书</p>
+
+<ul>
+  <li>答案A</li>
+  <li>解析：</li>
+</ul>
+
+<p>A：HTTPS 使用了公钥加密和证书来确保通信的机密性和身份验证。在建立 HTTPS 连接时，服务器会发送一个包含公钥的数字证书给客户端。客户端会对这个证书进行域名校验，以确保证书上的域名与客户端请求的域名匹配。这是为了防止中间人攻击，确保客户端与正确的服务器进行通信。</p>
+
+<p>B：服务器使用私钥进行解密，客户端使用服务器的公钥进行加密。在 HTTPS 连接建立过程中，服务器会发送一个数字证书给客户端。这个证书包含了服务器的公钥以及其他相关信息，如证书的颁发机构、有效期等。</p>
+
+<p>客户端在收到证书后，会使用证书中的公钥来加密生成一个对称密钥（也称为会话密钥或对话密钥）。这个对称密钥用于后续的通信加密和解密。</p>
+
+<p>客户端随后将加密后的对称密钥发送给服务器。服务器在接收到加密的对称密钥后，使用自己的私钥进行解密，获取到对称密钥。</p>
+
+<p>接下来的通信过程中，客户端和服务器会使用这个对称密钥来进行加密和解密，以保证通信的机密性和完整性。</p>
+
+<p>C：如果黑客能够拦截服务器的证书，但无法伪造有效的证书，他们仍然无法成功伪造服务器和客户端之间的通信。证书的有效性取决于其由受信任的证书颁发机构（CA）签署。如果黑客试图伪造服务器和客户端之间的通信，他们需要拦截服务器的私钥，以便使用私钥解密客户端发送的对称密钥。但是，私钥是服务器保密的，并且应该妥善保护。只有服务器才能使用私钥进行解密操作。</p>
+
+<p>D：手机或其他设备可以配置信任的根证书颁发机构列表，这些根证书颁发机构的证书将被信任。因此，不仅限于 CA 颁发的证书可以被手机信任。</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>下边关于XSS描述正确的是</li>
+</ol>
+
+<p>A XSS又名跨站脚本攻击，是利用服务器查询漏洞，在提交数据中注入sql语句，从而破坏网站数据</p>
+
+<p>B 防范XSS攻击只要前端对数据进行Base64就可以解决</p>
+
+<p>C XSS攻击需要也服务器对接口进行防护</p>
+
+<p>D XSS攻击仅在表单提交时使用</p>
+
+<ul>
+  <li>答案：C</li>
+  <li>解析：</li>
+</ul>
+
+<p>A. XSS（跨站脚本攻击）是一种利用网站漏洞，向用户的浏览器注入恶意脚本的攻击方式。A这是对 SQL 注入攻击的描述，不是 XSS 攻击。SQL 注入是通过在用户输入中注入恶意 SQL 语句来攻击数据库。</p>
+
+<p>B. Base64 编码可以用于在数据传输过程中对数据进行编码，但它并不能完全解决 XSS 攻击。XSS 攻击是在网站中插入恶意脚本，而 Base64 编码只是一种编码方式，无法阻止恶意脚本的注入。</p>
+
+<p>D. XSS 攻击并不仅限于表单提交。XSS 可以发生在任何用户输入的地方，包括 URL 参数、Cookie、HTTP 头和其他用户可控制的数据输入点。</p>
+
+<ul>
+  <li>补充：关于XSS</li>
+</ul>
+
+<p>XSS（跨站脚本攻击）是一种常见的网络安全漏洞，攻击者通过在受信任的网页中插入恶意脚本，使其在用户的浏览器上执行。这种攻击利用了网页应用程序对用户输入的不充分过滤和验证。</p>
+
+<p>XSS 攻击的原理是攻击者将恶意的脚本代码注入到网页的输出内容中，当用户浏览该页面时，浏览器会执行这些恶意脚本，导致攻击者可以获取用户的敏感信息、篡改网页内容、劫持用户会话等恶意行为。</p>
+
+<p>XSS 攻击可以分为三种类型：</p>
+
+<p>存储型 XSS：攻击者将恶意脚本注入到目标网站的数据库中，当用户浏览受影响的页面时，恶意脚本从数据库中被提取并执行。</p>
+
+<p>反射型 XSS：攻击者将恶意脚本作为参数附加在 URL 中，当用户点击包含恶意脚本的链接时，网站会将恶意脚本作为响应返回并在用户浏览器上执行。</p>
+
+<p>DOM 型 XSS：攻击者利用 JavaScript 动态修改网页的 DOM 结构，将恶意脚本注入到页面中，当用户浏览该页面时，恶意脚本被执行。</p>
+
+<p>防范 XSS 攻击的关键在于对用户输入进行有效的过滤和转义。以下是一些常见的防御措施：</p>
+
+<p>1.输入验证和过滤：对用户输入进行严格的验证和过滤，确保只接受预期的数据格式，并剔除潜在的恶意脚本。</p>
+
+<p>2.输出转义：在将用户输入插入到网页内容中之前，对特殊字符进行转义，确保它们被当作文本而不是脚本代码处理。</p>
+
+<p>3.使用安全的编码方式：对于特定的上下文，使用适当的编码方式，如 HTML 实体编码、URL 编码等，以防止脚本被解析执行。</p>
+
+<p>4.设置安全响应头：通过设置合适的安全响应头，如 Content-Security-Policy (CSP)，可以限制脚本的执行和资源加载，提供额外的安全保护。</p>
+
+<p>5.定期更新和修复漏洞：及时更新和修复网站的软件和组件，以减少存在已知漏洞的风险。</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>以下运行结果:</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案：10个10</li>
+  <li>这题我会，不用解析了</li>
+</ul>
+
+<hr />
+<hr />
+
+<ol>
+  <li>在跨域请求中，下列请求头中哪种content-type一定会触发cors预检查</li>
+</ol>
+
+<p>A text/plain</p>
+
+<p>B multipart/form-data</p>
+
+<p>C application/x-www-form-unlencoded</p>
+
+<p>D application/json</p>
+
+<ul>
+  <li>答案：D</li>
+  <li>解析：如果 Content-Type 不属于以下几种类型之一，就会触发 CORS 预检查：</li>
+</ul>
+
+<p>1.application/x-www-form-urlencoded
+2.multipart/form-data
+3.text/plain</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>下面代码输出结果正确的是</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Setcount</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="nx">count</span>
+<span class="p">}</span>
+
+<span class="nx">Setcount</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">printCount</span> <span class="o">=</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Setcount</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nf">printCount</span><span class="p">()</span>
+<span class="nx">a</span><span class="p">.</span><span class="nf">printCount</span><span class="p">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案：300,200</li>
+  <li>解析：</li>
+</ul>
+
+<p>调用 a._proto__.printCount() 会输出 300，因为在 printCount 方法中，this.count 引用的是原型对象上的 count 属性，而原型对象的 count 属性已经被修改为 300</p>
+
+<p>调用 a.printCount() 会输出 200，因为在 printCount 方法中，this.count 引用的是实例对象 a 上的 count 属性，而实例对象的 count 属性值为 200。</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>关于position定位，下列说法正确的是</li>
+</ol>
+
+<p>A  relative，absolute, fixed都会脱离当前文档流，并相对于当前位置设置偏移量</p>
+
+<p>B absolute元素如果其父级设置了fixed属性，则其会相对于浏览器窗口设置偏移</p>
+
+<p>C z-index属性对元素position属性为relative，absolute, fixed都可以做层级设置</p>
+
+<p>D relative元素以它原来的位置为基准偏移，在其移动后，原来的位置不再占据空间</p>
+
+<ul>
+  <li>
+    <p>答案：C</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>A. 这个说法是不正确的。虽然relative、absolute和fixed定位可以脱离当前文档流，并相对于当前位置设置偏移量，但它们之间的具体行为和影响是不同的。</p>
+
+<p>relative（相对定位）：</p>
+
+<p>相对于元素在文档流中的原始位置进行定位。
+通过设置top、right、bottom和left属性来指定相对于原始位置的偏移量。
+元素在文档流中保留其原有的空间，其他元素不会填充该元素的位置。
+相对定位不会影响其他元素的布局。</p>
+
+<p>absolute（绝对定位）：</p>
+
+<p>相对于最近的具有定位属性（relative、absolute或fixed）的祖先元素进行定位。
+通过设置top、right、bottom和left属性来指定相对于定位祖先的偏移量。
+元素从文档流中脱离，不保留原有的空间，其他元素会填充该元素的位置。
+绝对定位会影响其他元素的布局，其他元素会根据绝对定位元素的位置进行调整。</p>
+
+<p>fixed（固定定位）：</p>
+
+<p>相对于浏览器窗口进行定位。
+通过设置top、right、bottom和left属性来指定相对于窗口的偏移量。
+元素从文档流中脱离，不保留原有的空间，其他元素会填充该元素的位置。
+固定定位会影响其他元素的布局，其他元素会根据固定定位元素的位置进行调整。
+固定定位的元素会随着页面滚动而保持在固定的位置，不受滚动影响。</p>
+
+<p>B. 这个说法是不正确的。absolute定位元素的偏移是相对于最近的具有定位属性（relative、absolute或fixed）的祖先元素，而不是相对于浏览器窗口设置偏移。父级fixed不一定是浏览器窗口</p>
+
+<p>C. 这个说法是正确的。z-index属性用于控制元素的层级关系，可以应用于position属性为relative、absolute和fixed的元素，以确定元素在堆叠顺序中的显示顺序。</p>
+
+<p>D. 这个说法是不正确的。relative定位元素以它原来的位置为基准进行偏移，但是在其移动后，原来的位置仍然会占据空间。也就是说，相对定位的元素在文档流中仍然保留其原来的空间，不会被其他元素填充。</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>请选择console打印的正确值</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Object</span><span class="dl">'</span><span class="p">;</span>
+<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Function</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">Animal</span> <span class="p">()</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">cat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Animal</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">Animal</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>答案：Object Function</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>在 JavaScript 中，创建对象的方式有多种，包括使用构造函数、字面量、Object.create() 等。不同的创建方式会影响对象的原型链。</p>
+
+<p>对于 Animal 函数来说，它是一个构造函数，同时也是一个函数对象。函数对象在 JavaScript 中有一个特殊的原型 Function.prototype。所以 Animal 的原型链是 Animal -&gt; Function.prototype -&gt; Object.prototype -&gt; null。</p>
+
+<p>由于 Animal 函数本身没有 foo 属性，JavaScript 会在原型链上查找。首先查找 Animal.prototype，再查找 Function.prototype</p>
+
+<p>对于 cat 对象来说，它的原型链是 cat -&gt; Animal.prototype -&gt; Object.prototype -&gt; null。这是因为在创建 cat 对象时，使用了 new Animal()，这会将 Animal.prototype 设置为 cat 对象的原型。而 Animal.prototype 的原型是 Object.prototype。Animal.prototype 的原型是 Object.prototype，这是因为在 JavaScript 中，构造函数的原型对象默认继承自 Object.prototype</p>
+
+<p>由于 cat 对象本身没有 foo 属性，JavaScript 会在原型链上查找。首先查找 Animal.prototype，再查找 Object.prototype</p>
+
+<hr />
+<hr />
+
+<ol>
+  <li>请选择正确的输出结果</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span> 
+<span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">bar</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">setTimeout</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">bar</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">bar</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>答案 123和333</p>
+  </li>
+  <li>
+    <p>这题我会</p>
+  </li>
+</ul>
+
+<hr />
+<hr />
+
+<ol>
+  <li>下列哪个属性不会引起浏览器重排（reflow）:</li>
+</ol>
+
+<p>A</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">@keyframes</span> <span class="n">animate</span> <span class="p">{</span>
+        <span class="err">0</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+            <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="err">25</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+            <span class="nl">left</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="err">50</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">top</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+            <span class="nl">left</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="err">75</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">top</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+            <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>B</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">@keyframes</span> <span class="n">animate</span> <span class="p">{</span>
+        <span class="err">0</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">25</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">200px</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">50</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">200px</span><span class="p">,</span> <span class="m">200px</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">75</span><span class="o">%</span> <span class="p">{</span>
+            <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">200px</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>C</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.hide</span> <span class="p">{</span>
+        <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>D</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">.hide</span> <span class="p">{</span>
+        <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案：B</li>
+  <li>解析：使用 transform 属性的动画不会引起浏览器重排（reflow）</li>
+</ul>
+
+<p>transform 属性是通过 GPU 加速进行处理的，不会引起浏览器重排。</p>
+
+<p>GPU（图形处理单元）加速是一种利用计算机的图形处理硬件来加速图形渲染和动画的技术。在Web开发中，通过使用一些特定的CSS属性，如transform、opacity、filter等，可以触发GPU加速。</p>
+
+<p>当使用GPU加速时，浏览器会将特定的渲染操作委托给GPU来处理，而不是由CPU来计算和渲染。由于GPU在处理图形计算方面具有强大的性能和并行处理能力，因此能够更快地完成渲染操作，提高动画的流畅性和性能。</p>
+
+<hr />
+<hr />
+
+<p>14.关于javascript，以下选项描述错误的是哪几个</p>
+
+<p>A 在原型上扩展的可枚举方法，会被for in循环出来
+B 通过hasOwnProperty可判断一个对象以及其原型链上是否具有指定名称的属性
+C 每个函数对象都有prototype属性，返回对象类型原型的引用
+D For循环是按顺序的，for in 循环是不一定按顺序的
+E for…of 循环可遍历普通对象，如{a:’1’, b:2}</p>
+
+<ul>
+  <li>答案：E</li>
+  <li>解析：for…of 循环不能直接遍历普通对象（plain object）</li>
+</ul>
+
+<p>A. 在原型上扩展的可枚举方法会被 for…in 循环遍历出来。for…in 循环会遍历对象自身和继承的可枚举属性（包括原型链上的属性）。</p>
+
+<p>B. 通过 hasOwnProperty 方法可以判断一个对象是否具有指定名称的属性，并且该属性必须是对象自身拥有的，不包括继承的属性。</p>
+
+<p>C. 每个函数对象都有 prototype 属性，它是一个指向该函数类型的原型对象的引用。该原型对象包含了函数类型所创建的对象实例共享的属性和方法。</p>
+
+<p>D. for 循环是按顺序迭代的，而 for…in 循环是不保证按顺序迭代的，它可能会以任意顺序遍历对象的属性。比如for…in 循环在遍历对象属性时，不保证按照特定顺序进行迭代，这是因为 JavaScript 中对象的属性没有固定的顺序。</p>
+
+<p>E. 正确的是，for…of 循环不能直接遍历普通对象（plain object）。for…of 循环适用于可迭代对象（iterable objects），如数组、字符串、Set、Map 等，可以按顺序遍历它们的元素值。但普通对象并不是可迭代对象，所以无法使用 for…of 循环遍历普通对象的属性。</p>
+
+<hr />
+<hr />
+
+<p>15.下列关于js事件的描述中，正确的有哪些</p>
+
+<p>A 事件冒泡是指当一个元素上的事件被触发的时候，比如说鼠标点击了一个按钮，同样的事件将会在那个元素的所有祖先元素中被触发。
+B 不支持冒泡的事件有blur、focus、load、resize、mouseleave
+C 事件委托不依赖于事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。
+D 通过addEventListener方法给Dom添加事件监听，addEventListener形参中的第三个参数控制是捕获传递触发还是冒泡传递触发。</p>
+
+<ul>
+  <li>
+    <p>答案：ACD</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>A. 事件冒泡是指当一个元素上的事件被触发时，同样的事件将在该元素的所有祖先元素中被触发。事件会从最内层的元素开始触发，然后逐级向上冒泡至最外层的元素。</p>
+
+<p>选项 B 描述错误，因为 blur、focus、load、resize、mouseleave 等事件是支持冒泡的，它们可以在父元素中触发相应的事件处理程序。</p>
+
+<p>C. 事件委托不依赖于事件冒泡，它指的是将事件处理程序绑定到父元素（或更上层元素），通过事件冒泡的机制来管理某一类型的所有子元素的事件。这样可以减少事件处理程序的数量，提高性能和代码简洁性。</p>
+
+<p>D. 通过 addEventListener 方法给 DOM 添加事件监听，其中形参中的第三个参数控制是捕获传递触发还是冒泡传递触发。该参数是一个布尔值，为 true 表示使用捕获传递，为 false（默认值）表示使用冒泡传递。</p>
+
+<ul>
+  <li>补充：捕获传递（Capture Phase）和冒泡传递（Bubbling Phase）是指在事件处理过程中，事件在 DOM 树中传递的两个阶段。</li>
+</ul>
+
+<p>捕获传递（Capture Phase）：
+在捕获阶段，事件从文档根节点开始向下传递，直到达到目标元素的父级元素。在这个阶段，父级元素的事件处理程序有机会先于目标元素的事件处理程序被调用。捕获传递阶段的目的是为了在事件到达目标元素之前进行一些前置处理。</p>
+
+<p>目标阶段（Target Phase）：
+当事件到达目标元素时，即触发了事件的元素本身，进入目标阶段。在目标阶段，目标元素上绑定的事件处理程序被调用。</p>
+
+<p>冒泡传递（Bubbling Phase）：
+在冒泡阶段，事件从目标元素开始向上冒泡，依次触发目标元素的父级元素的事件处理程序，直到达到文档根节点。在这个阶段，父级元素的事件处理程序有机会对事件进行响应或进一步处理。</p>
+
+<p>一个例子：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"outer"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"button"</span><span class="nt">&gt;</span>Click me<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">outer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">outer</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">inner</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">inner</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">outer</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Capture Phase: Outer</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// 使用捕获传递</span>
+
+<span class="nx">inner</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Capture Phase: Inner</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// 使用捕获传递</span>
+
+<span class="nx">button</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Target Phase: Button</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">inner</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Bubble Phase: Inner</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span> <span class="c1">// 默认使用冒泡传递</span>
+
+<span class="nx">outer</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Bubble Phase: Outer</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span> <span class="c1">// 默认使用冒泡传递</span>
+</code></pre></div></div>
+
+<ul>
+  <li>点击按钮时</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capture Phase: Outer
+Capture Phase: Inner
+Target Phase: Button
+Bubble Phase: Inner
+Bubble Phase: Outer
+</code></pre></div></div>
+
+<p>可以看到，事件首先经过捕获阶段，从外层容器元素（outer）开始，然后逐级向下传递到内层容器元素（inner），最后到达目标元素（button）。接着，事件进入目标阶段，触发了目标元素上的事件处理程序。最后，事件进入冒泡阶段，从内层容器元素（inner）开始向上冒泡，直到外层容器元素（outer）。</p>
+
+<hr />
+<hr />
+
+<p>16.css中哪些属性可以继承</p>
+
+<p>A font-size
+B margin
+C border
+D color</p>
+
+<ul>
+  <li>答案：ABD</li>
+  <li>解析：</li>
+</ul>
+
+<p>A. font-size（字体大小）：子元素会继承父元素的字体大小，除非子元素自身定义了自己的字体大小。</p>
+
+<p>B. margin（外边距）：垂直方向的外边距（margin-top、margin-bottom）会被子元素继承。水平方向的外边距（margin-left、margin-right）不会被继承。</p>
+
+<p>D. color（文本颜色）：子元素会继承父元素的文本颜色，除非子元素自身定义了自己的文本颜色。</p>
+
+<p>所以，选项 A、B、D 中的属性可以被继承，而选项 C 中的 border（边框）属性不会被继承。</p>
+
+<hr />
+<hr />
+
+<p>17.BFC（Block Formatting Context）格式化上下文，是Web页面中盒模型布局的CSS渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。形成BFC的条件有哪些</p>
+
+<p>A display 为以下其中之一的值 inline-block，table-cell，table-caption、flex
+B 浮动元素，float 除 none 以外的值
+C overflow 除了 visible 以外的值（hidden，auto，scroll）
+D 绝对定位元素，position（absolute，fixed）</p>
+
+<ul>
+  <li>答案：ABCD</li>
+  <li>
+    <p>解析：无</p>
+  </li>
+  <li>补充：BFC作用</li>
+</ul>
+
+<p>清除浮动：当父元素包含浮动元素时，会导致父元素塌陷或无法正确包裹浮动元素。通过创建 BFC，可以使父元素包含浮动元素的高度得到正确计算，从而解决浮动问题。</p>
+
+<p>防止边距重叠：在普通流中，相邻的垂直边距会发生重叠现象，导致边距计算不符合预期。在 BFC 中，垂直边距会被隔离，不会重叠。</p>
+
+<p>自适应两栏布局：通过在容器中创建 BFC，可以使得容器内的两个元素分别处于左右两栏，实现自适应的两栏布局。</p>
+
+<p>阻止文字环绕：当元素浮动时，周围的文字会环绕在其周围。通过创建 BFC，可以阻止文字环绕浮动元素，让其他内容不会受到浮动元素的影响。</p>
+
+<p>控制元素的布局方式：BFC 中的元素按照一定的规则进行布局，例如，块级元素会垂直排列，宽度自动撑开，不与浮动元素重叠等。</p>
+
+<ul>
+  <li>补充：什么是浮动元素</li>
+</ul>
+
+<p>浮动元素是指通过设置 CSS 属性 float 为除 none 以外的值，使元素脱离正常的文档流，并沿着其容器的左侧或右侧浮动。浮动元素可以向左或向右浮动，周围的内容会环绕在其周围。</p>
+
+<p>浮动元素常用于创建多栏布局、图像排列等情况。当元素浮动时，其宽度会根据内容自动收缩，使得其他元素可以占据其原本的位置。浮动元素会影响其他非浮动元素的布局，导致它们围绕浮动元素重新排列。</p>
+
+<ul>
+  <li>补充：高度塌陷</li>
+</ul>
+
+<p>高度塌陷（或称为“坍塌”）指的是当一个父元素（容器）包含了浮动元素，并且没有设置明确的高度或清除浮动的机制时，父元素的高度无法正确地包裹其内部的浮动元素，导致父元素的高度变为零或异常小。</p>
+
+<p>高度塌陷的原因是，浮动元素脱离了文档流，不再占据正常的空间，而父元素没有考虑浮动元素的高度，因此无法正确计算父元素的高度。</p>
+
+<hr />
+<hr />
+
+<p>18.下列会导致页面回流reflow的操作有哪些</p>
+
+<p>A 添加或者删除可见的DOM元素
+B 仅修改DOM元素的字体颜色、背景色
+C resize浏览器窗口
+D 设置可见元素为display: none
+E 读取元素的属性offsetWidth和offsetHeight</p>
+
+<ul>
+  <li>
+    <p>答案：ADE</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>A. 添加或删除可见的 DOM 元素：当添加或删除可见的 DOM 元素时，会影响页面的布局，导致页面回流。</p>
+
+<p>D. 设置可见元素为 display: none：将可见元素的 CSS 属性 display 设置为 none，会导致元素从页面中消失，从而影响整个页面的布局，触发页面回流。</p>
+
+<p>E. 读取元素的属性 offsetWidth 和 offsetHeight：当读取元素的尺寸属性（如 offsetWidth 和 offsetHeight）时，浏览器需要计算元素的大小，并可能触发页面回流。</p>
+
+<p>选项 B（仅修改字体颜色、背景色）和 C（resize 浏览器窗口）不会直接引起页面回流，但可能会触发其他的重绘操作（repaint），从而影响页面的性能。</p>
+
+<ul>
+  <li>补充：页面回流</li>
+</ul>
+
+<p>页面回流（reflow）是指浏览器为了重新计算元素的几何属性（如位置、尺寸等），而导致整个页面布局发生变化的过程。当页面中的元素发生改变，需要重新计算它们的位置和大小时，浏览器会执行回流操作。</p>
+
+<p>页面回流是一种相对耗费计算资源的操作，因为它需要对页面的每个可见元素进行重新布局计算。当页面中的元素发生变化时，浏览器会进行回流操作来确保元素的几何属性正确计算和渲染。</p>
+
+<hr />
+<hr />
+
+<p>19.关于position定位，下列说法正确的是哪些</p>
+
+<p>A absolute的元素，如果它的父容器设置了position属性，并且position的属性值为absolute或者relative，那么就会依据父容器进行偏移
+B relative元素以它原来的位置为基准偏移，在其移动后，原来的位置不再占据空间
+C fixed元素，可定位于相对于浏览器窗口的指定坐标，它始终是以 body 为依据
+D relative元素是参照父级的原始点为原始点，无父级则以BODY的原始点为原始点，配合TOP、RIGHT、BOTTOM、LEFT进行定位，当父级内有padding等CSS属性时，当前级的原始点则参照父级内容区的原始点进行定位</p>
+
+<ul>
+  <li>答案：ACD</li>
+  <li>解析：</li>
+</ul>
+
+<p>absolute 元素能够根据其最近的已定位的祖先元素进行偏移，relative 元素以其原来的位置为基准进行偏移，fixed 元素相对于浏览器窗口进行定位。</p>
+
+<p>relative 元素会参考父级元素的原始点进行定位，如果没有父级元素，则以 body 元素为依据。当父级元素有 padding 等 CSS 属性时，relative 元素的原始点参考的是父级内容区的原始点进行定位。</p>
+
+<p>relative 元素在移动后，仍然占据原来的位置，不会改变其他元素的布局。它的偏移会影响其他元素的位置，但原来的位置仍然会保留，占据空间。</p>
+
+<p>在这里，移动指的是通过设置 relative 元素的偏移属性（如 top、right、bottom、left）来改变其在页面上的位置。</p>
+
+<hr />
+<hr />
+
+<p>20.请选择结果为真的表达式</p>
+
+<p>A null instanceof Object
+B null === undefined
+C null == undefined
+D undefined === undefined
+E null == null
+F null === null</p>
+
+<ul>
+  <li>答案：BCEF</li>
+  <li>解析：</li>
+</ul>
+
+<p>在 JavaScript 中，null 表示一个空值，而 undefined 表示一个未定义的值。</p>
+
+<p>A. null instanceof Object 的结果为假。instanceof 运算符用于检查对象是否属于某个类或构造函数的实例。null 不是任何类或构造函数的实例，因此结果为假。</p>
+
+<p>B. null === undefined 的结果为假。=== 严格相等运算符要求值和类型都相等，null 和 undefined 的类型不同，因此结果为假。</p>
+
+<p>C. null == undefined 的结果为真。== 相等运算符在进行比较时会进行类型转换，null 和 undefined 在进行类型转换后会被视为相等，因此结果为真。</p>
+
+<p>D. undefined === undefined 的结果为真。=== 严格相等运算符要求值和类型都相等，undefined 的类型是 undefined，因此结果为真。</p>
+
+<p>E. null == null 的结果为真。null 和它自身是相等的，因此结果为真。</p>
+
+<p>F. null === null 的结果为真。null 和它自身是严格相等的，因此结果为真。</p>
+
+<hr />
+<hr />
+
+<h2 id="编程题">编程题</h2>
+
+<p>21.统计一个字符串出现最多的字母</p>
+
+<p>输入例子：
+aab
+输出例子：
+a</p>
+
+<p>22.查找字符串中的最长公共前缀</p>
+
+<p>输入例子：
+flower,flow,flight
+输出例子：
+fl
+例子说明：
+fl为数组中最长公共前缀字符串</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-11-is/image_1.jpg) -->
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

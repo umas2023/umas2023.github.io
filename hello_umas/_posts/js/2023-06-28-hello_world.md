@@ -8,10 +8,8 @@ toc: true
 ---
 
 
-## 基本语法
 
-
-### 数据类型
+## 数据类型
 
 - Map 和 Set
 
@@ -94,7 +92,7 @@ function unique(arr) {
 
 
 
-### 变量声明
+## 变量声明
 
 - var ——ES5 变量声明方式
 1. 在变量未赋值时，变量undefined（为使用声明变量时也为undefined）
@@ -111,7 +109,7 @@ function unique(arr) {
 2. const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动
 
 
-### 两种for循环
+## 两种for循环
 
 {% raw %}
 ```js
@@ -123,6 +121,9 @@ for (let item of tableData.value) {
 }
 ```
 {% endraw %}
+
+
+- 在使用querySelectorAll获得了一个 Array - HTMLelement 对象后，用for of可以遍历其中的所有HTMLelement，但如果使用for in，得到的结果是：[0,1,2,...,entries,keys,values,forEach,length,item]，也就是说对象的属性不只是内部元素的序号，也包括方法
 
 
 

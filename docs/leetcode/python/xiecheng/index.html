@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>leetcode: 携程笔试 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="leetcode: 携程笔试" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="三位回文串" />
+<meta property="og:description" content="三位回文串" />
+<link rel="canonical" href="/leetcode/python/xiecheng/" />
+<meta property="og:url" content="/leetcode/python/xiecheng/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-11T12:04:54+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="leetcode: 携程笔试" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T12:04:54+08:00","datePublished":"2023-10-11T12:04:54+08:00","description":"三位回文串","headline":"leetcode: 携程笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/xiecheng/"},"url":"/leetcode/python/xiecheng/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">leetcode: 携程笔试</h1>
+    <h3>三位回文串、坐标排序，字符串相邻不等、三色树</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#三位回文串">三位回文串</a></li>
+<li class="toc-entry toc-h2"><a href="#坐标排序">坐标排序</a></li>
+<li class="toc-entry toc-h2"><a href="#字符串相邻不等">字符串相邻不等</a></li>
+<li class="toc-entry toc-h2"><a href="#三色树">三色树</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <h2 id="三位回文串">三位回文串</h2>
+
+<p>01串，修改一位，包含尽可能多的长度为3的回文子串<br />
+输入 01101 <br />
+输出 2<br />
+解释 11101包含111和101</p>
+
+<p>通过率23%</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 暴力遍历
+</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">def</span> <span class="nf">sub_count</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">计算回文子串的数量</span><span class="sh">'''</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="n">count</span> <span class="o">+=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+
+<span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span><span class="o">==</span><span class="sh">"</span><span class="s">0</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span>
+    <span class="k">return</span> <span class="sh">"</span><span class="s">0</span><span class="sh">"</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span> <span class="o">==</span> <span class="p">[]</span> <span class="p">:</span> <span class="nf">exit</span><span class="p">()</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">a_list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">change</span><span class="p">(</span><span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">new_a</span> <span class="o">=</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="nf">sub_count</span><span class="p">(</span><span class="n">new_a</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="坐标排序">坐标排序</h2>
+
+<p>n个坐标点，查找第x个</p>
+
+<p>排序：横坐标从小到大，纵坐标从小到大，拆分两部分（左比右少），查找x在做还是右，返回：左L右R<br />
+排序：纵坐标从小到大，横坐标从小到大。。。返回LR<br />
+循环<br />
+只剩一个时结束，输出O<br />
+4 2
+-1 3
+3 5
+2 6
+4 3
+输出RRO</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># sorted函数直接对二维数组进行二维排序
+# 要先对纵坐标排序时，把原数组横纵坐标对调就行了
+</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="n">input_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ans_str</span> <span class="o">=</span> <span class="sh">""</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">break</span>
+    <span class="n">input_list</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="nf">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nf">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">point_list</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">point_list</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">point_list</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span>
+    <span class="n">half</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">left_list</span> <span class="o">=</span> <span class="n">point_list</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">half</span><span class="p">]</span>
+    <span class="n">right_list</span> <span class="o">=</span> <span class="n">point_list</span><span class="p">[</span><span class="n">half</span><span class="p">:</span><span class="nf">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">left_list</span><span class="p">:</span>
+        <span class="n">ans_str</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">L</span><span class="sh">"</span>
+        <span class="n">point_list</span> <span class="o">=</span> <span class="n">left_list</span>
+    <span class="k">elif</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">right_list</span><span class="p">:</span>
+        <span class="n">ans_str</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">R</span><span class="sh">"</span>
+        <span class="n">point_list</span> <span class="o">=</span> <span class="n">right_list</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">error: target not find</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="n">point_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="ow">in</span> <span class="n">point_list</span><span class="p">]</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">ans_str</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">O</span><span class="sh">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ans_str</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="字符串相邻不等">字符串相邻不等</h2>
+
+<p>字符串，每次把一个字符改为字母表上相邻的字符（左或右）
+修改结果每个相邻字符串都不相等
+求最少操作多少次</p>
+
+<p>输入 aabcc</p>
+
+<p>输出
+2
+babcb</p>
+
+<p>因为我的结果是babdc所以判挂了，但理论上没问题，不知道有没有人工判卷 ← 大概不可能吧</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 每个字母修改次数只能是1次或2次，不存在需要修改3次的情况
+# 考虑两种情况：aab和baa，在遍历到当前字母和后面一位字母相同时，要根据情况判断修改当前一位还是后面一位
+</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">str_list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">返回一次改变可能的字母列表</span><span class="sh">'''</span>
+    <span class="n">letter_num</span> <span class="o">=</span> <span class="nf">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">letter_num</span> <span class="o">&lt;=</span> <span class="mi">97</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sh">"</span><span class="s">b</span><span class="sh">"</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">letter_num</span> <span class="o">&gt;=</span> <span class="mi">122</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nf">chr</span><span class="p">(</span><span class="n">letter_num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="nf">chr</span><span class="p">(</span><span class="n">letter_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">get_replace_list_deep</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">返回两次改变后可能的字母列表</span><span class="sh">'''</span>
+    <span class="n">replace_list_deep</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">replace_list</span><span class="p">:</span>
+        <span class="n">replace_list_deep</span> <span class="o">+=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">replace_list_deep</span>
+
+
+<span class="n">ans_num</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">str_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">):</span>
+        <span class="k">break</span>
+    <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+        <span class="c1"># 改本项
+</span>        <span class="n">both_side</span> <span class="o">=</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
+        <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+        <span class="n">replace_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">replace_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">both_side</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">replace_list</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">ans_num</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">continue</span>
+        <span class="c1"># 改后项
+</span>        <span class="n">both_side</span> <span class="o">=</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span> <span class="k">else</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]]</span>
+        <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+        <span class="n">replace_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">replace_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">both_side</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">replace_list</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">ans_num</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list_deep</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+            <span class="n">replace_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">replace_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">both_side</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ans_num</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">ans_num</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">str_list</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="三色树">三色树</h2>
+
+<p>树的每个节点被染为rgb三色，求删掉一条边，满足分成两个连通块都恰好包含三种颜色的边的数量</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>示例
+7
+rgbrgbg
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+
+1
+</code></pre></div></div>
+
+<p>因为到这里时间不多了，所以没做</p>
+
+<p>贴一个网上的思路：统计子树中含有的rgb的数量，判断是否包含三种颜色，然后再用总的rgb数减去子树中的rgb数量，判断是否包含三种颜色。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-11-xiecheng/image_1.jpg) -->
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

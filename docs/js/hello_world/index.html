@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="js: hello_world JavaScript基础语法" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="基本语法" />
-<meta property="og:description" content="基本语法" />
+<meta name="description" content="数据类型" />
+<meta property="og:description" content="数据类型" />
 <link rel="canonical" href="/js/hello_world/" />
 <meta property="og:url" content="/js/hello_world/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="js: hello_world JavaScript基础语法" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T08:20:00+08:00","datePublished":"2023-06-28T08:20:00+08:00","description":"基本语法","headline":"js: hello_world JavaScript基础语法","mainEntityOfPage":{"@type":"WebPage","@id":"/js/hello_world/"},"url":"/js/hello_world/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T08:20:00+08:00","datePublished":"2023-06-28T08:20:00+08:00","description":"数据类型","headline":"js: hello_world JavaScript基础语法","mainEntityOfPage":{"@type":"WebPage","@id":"/js/hello_world/"},"url":"/js/hello_world/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -48,13 +48,9 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
-<li class="toc-entry toc-h2"><a href="#基本语法">基本语法</a>
-<ul class="toc__sublist">
-<li class="toc-entry toc-h3"><a href="#数据类型">数据类型</a></li>
-<li class="toc-entry toc-h3"><a href="#变量声明">变量声明</a></li>
-<li class="toc-entry toc-h3"><a href="#两种for循环">两种for循环</a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h2"><a href="#数据类型">数据类型</a></li>
+<li class="toc-entry toc-h2"><a href="#变量声明">变量声明</a></li>
+<li class="toc-entry toc-h2"><a href="#两种for循环">两种for循环</a></li>
 <li class="toc-entry toc-h2"><a href="#常用函数">常用函数</a>
 <ul class="toc__sublist">
 <li class="toc-entry toc-h3"><a href="#定时器">定时器</a></li>
@@ -66,9 +62,7 @@
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="基本语法">基本语法</h2>
-
-<h3 id="数据类型">数据类型</h3>
+    <h2 id="数据类型">数据类型</h2>
 
 <ul>
   <li>Map 和 Set</li>
@@ -154,7 +148,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="变量声明">变量声明</h3>
+<h2 id="变量声明">变量声明</h2>
 
 <ul>
   <li>var ——ES5 变量声明方式
@@ -179,7 +173,7 @@
   </li>
 </ul>
 
-<h3 id="两种for循环">两种for循环</h3>
+<h2 id="两种for循环">两种for循环</h2>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// for...in 循环适用于遍历对象的属性，而不是用于遍历数组的元素。</span>
 <span class="c1">// 使用 for...of 循环来遍历它的元素。</span>
@@ -188,6 +182,10 @@
   <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
+<ul>
+  <li>在使用querySelectorAll获得了一个 Array - HTMLelement 对象后，用for of可以遍历其中的所有HTMLelement，但如果使用for in，得到的结果是：[0,1,2,…,entries,keys,values,forEach,length,item]，也就是说对象的属性不只是内部元素的序号，也包括方法</li>
+</ul>
 
 <h2 id="常用函数">常用函数</h2>
 

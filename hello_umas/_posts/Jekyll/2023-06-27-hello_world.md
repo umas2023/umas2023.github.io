@@ -15,22 +15,25 @@ toc: true
 
 1. 安装Ruby  
 - https://rubyinstaller.org/downloads/  
+```bash
+sudo apt install ruby-full
+```
 - 查看安装：```ruby -v ```
 
-2. 安装 Jekyll 和 bundler gems（要很久）
+1. 安装 Jekyll 和 bundler gems（要很久）
    
     ```
     gem install jekyll bundler
     ```
 
-3. 创建并启动项目
+2. 创建并启动项目
   ```
   jekyll new hello_umas
   cd hello_umas
   bundle exec jekyll serve
   ```
 
-4. 在浏览器中打开 http://localhost:4000 网址
+1. 在浏览器中打开 http://localhost:4000 网址
 
 
 5. 添加markdown文件

@@ -8,6 +8,44 @@ toc: true
 ---
 
 
+## 常用的属性
+
+
+### 圆角
+
+```css
+border-radius: 20px;
+border-radius: 50% / 100% 100% 0 0;
+/* 表示水平和垂直方向上的四个角都具有相同的圆角半径，半径的大小是元素宽度和高度的50%。 */
+/* 100% 100% 0 0：表示分别设置了左上角、右上角、右下角和左下角的圆角半径。具体数值表示的是相对于元素宽度和高度的百分比 */
+/* 上面这行生成一个半圆形 */
+```
+
+### 旋转
+
+```
+transform = rotate(180deg)
+```
+
+
+### 运动
+
+- 使用keyframes定义关键帧
+```css
+@keyframes dance-animation {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(100px, 0); }
+  50% { transform: translate(100px, 100px); }
+  75% { transform: translate(0, 100px); }
+  100% { transform: translate(0, 0); }
+}
+
+
+animation: dance-animation 4s infinite;
+```
+
+
+
 
 ## scss基本语法
 {:toc}
