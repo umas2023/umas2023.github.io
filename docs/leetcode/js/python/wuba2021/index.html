@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>leetcode: 58同城前年笔试 | umas’ awesome title</title>
+<title>leetcode: 58同城2021笔试 | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="leetcode: 58同城前年笔试" />
+<meta property="og:title" content="leetcode: 58同城2021笔试" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" />
 <meta property="og:description" content="链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" />
-<link rel="canonical" href="/leetcode/js/python/is/" />
-<meta property="og:url" content="/leetcode/js/python/is/" />
+<link rel="canonical" href="/leetcode/js/python/wuba2021/" />
+<meta property="og:url" content="/leetcode/js/python/wuba2021/" />
 <meta property="og:site_name" content="umas’ awesome title" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-10-11T14:01:57+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="leetcode: 58同城前年笔试" />
+<meta property="twitter:title" content="leetcode: 58同城2021笔试" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T14:01:57+08:00","datePublished":"2023-10-11T14:01:57+08:00","description":"链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91","headline":"leetcode: 58同城前年笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/python/is/"},"url":"/leetcode/js/python/is/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T14:01:57+08:00","datePublished":"2023-10-11T14:01:57+08:00","description":"链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91","headline":"leetcode: 58同城2021笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/python/wuba2021/"},"url":"/leetcode/js/python/wuba2021/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body><header class="site-header" role="banner">
@@ -41,7 +41,7 @@
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">leetcode: 58同城前年笔试</h1>
+    <h1 class="post-title">leetcode: 58同城2021笔试</h1>
     <h3>选择题和算法题都在这了</h3>
   </header>
 
@@ -782,14 +782,183 @@ aab
 输出例子：
 a</p>
 
-<p>22.查找字符串中的最长公共前缀</p>
+<ul>
+  <li>
+    <p>哈希表
+```py
+def find_most_frequent_character(string):
+  counter = {}
+  max_count = 0
+  most_frequent_char = None</p>
 
-<p>输入例子：
+    <p>for char in string:
+      if char in counter:
+          counter[char] += 1
+      else:
+          counter[char] = 1</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  if counter[char] &gt; max_count:
+      max_count = counter[char]
+      most_frequent_char = char
+</code></pre></div>    </div>
+
+    <p>return most_frequent_char, max_count</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+---
+
+
+22.查找字符串中的最长公共前缀
+
+输入例子：
 flower,flow,flight
 输出例子：
 fl
 例子说明：
-fl为数组中最长公共前缀字符串</p>
+fl为数组中最长公共前缀字符串
+
+
+</code></pre></div></div>
+<p>略</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+--- 
+---
+
+23.五八文字碰碰消
+
+  帮帮同学在设计一个文字碰碰消游戏，规定"五"和"八"形成"五八"组合碰到一起即会消除，("八五" 不会消除)。
+
+  例如 "五八", "五八五八", "五五八八"。说明: "五五八八" 是内层的"五八"碰在一起消除后，外层的"五八"会碰在一起消除。
+
+  帮帮同学想知道n个"五"和"八"组成的字符串中，有多少种组合可以满足消除为空字符串。
+
+  现为帮帮同学设计一个方法，输入整数n，表示"五"和"八"的数量，返回n个"五"和n个"八"组成的字符串中，满足消除为空字符串的组合数。
+
+
+</code></pre></div></div>
+<p>输入例子：
+2
+输出例子：
+2
+例子说明：
+满足的组合  [ ‘五五八八’, ‘五八五八’ ]</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+- 力扣22题：括号生成 - 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+
+</code></pre></div></div>
+<p>输入：n = 3
+输出：[”((()))”,”(()())”,”(())()”,”()(())”,”()()()”]</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+---
+
+
+23.
+
+
+
+
+- 思路1：动态规划
+
+
+第一项必然为左括号，与它匹配的右括号设为第i项，定义它为第1组括号
+还剩下n-1组括号，分布在第1组括号的内部或外部
+拆分子问题：
+( + [i=p时所有括号组合] + ) + [i=q时所有括号组合]
+其中 p+q=n-1
+p遍历从0到n-1即可包含所有情况
+
+```py
+class Solution:
+    def generateParenthesis(self, n: int) -&gt; List[str]:
+        if n == 0:
+            return []
+        total_l = []
+        total_l.append([None])    # 0组括号时记为None
+        total_l.append(["()"])    # 1组括号只有一种情况
+        for i in range(2,n+1):    # 开始计算i组括号时的括号组合
+            l = []        
+            for j in range(i):    # 开始遍历 p q ，其中p+q=i-1 , j 作为索引
+                now_list1 = total_l[j]    # p = j 时的括号组合情况
+                now_list2 = total_l[i-1-j]    # q = (i-1) - j 时的括号组合情况
+                for k1 in now_list1:  
+                    for k2 in now_list2:
+                        if k1 == None:
+                            k1 = ""
+                        if k2 == None:
+                            k2 = ""
+                        el = "(" + k1 + ")" + k2
+                        l.append(el)    # 把所有可能的情况添加到 l 中
+            total_l.append(l)    # l这个list就是i组括号的所有情况，添加到total_l中，继续求解i=i+1的情况
+        return total_l[n]
+</code></pre></div></div>
+
+<ul>
+  <li>官方解法：回溯</li>
+</ul>
+
+<p>由暴力遍历法引出</p>
+
+<p>定义函数判断序列是否有效：定义变量balance表示左括号数量减去右括号数量，遍历过程中如果balance小于0 或者结束时balance值不为0，说明序列无效（栈的思想，但并不需要真的定义一个栈）</p>
+
+<p>递归遍历所有可能性：二叉树生成的方法，append左括号之后递归，然后pop，再尝试右括号</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nf">valid</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                    <span class="n">ans</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">(</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">generate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">)</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">generate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">bal</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="sh">'</span><span class="s">(</span><span class="sh">'</span><span class="p">:</span> <span class="n">bal</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span> <span class="n">bal</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">bal</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="n">bal</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="nf">generate</span><span class="p">([])</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+</code></pre></div></div>
+
+<p>↑改善上面的算法可以得到回溯法
+并不是列出所有可能性再依次检查valid，而是在原序列有效的前提下再添加一组有效的括号，也就是把valid函数优化掉</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">(</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">)</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+
+        <span class="nf">backtrack</span><span class="p">([],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+</code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 

@@ -41,15 +41,15 @@ cat_list = [
 basic_cat = "leetcode"
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "is"
+file_name = "wuba2020"
 # 修改这里：文章标题
-title = "'%s: 58同城前年笔试'" % basic_cat
+title = "'%s: 58同城2020前端笔试'" % basic_cat
 # 修改这里：文章介绍
-info = "'选择题和算法题都在这了'"
+info = "'学不完了。。。'"
 
 
 # 文章分类，可以添加多个
-categories = [basic_cat,'js','python']
+categories = [basic_cat,"js"]
 # md文件放在哪个目录下
 dir = basic_cat
 

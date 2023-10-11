@@ -1,4 +1,318 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-11T17:18:10+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 58同城前年笔试</title><link href="/leetcode/js/python/is/" rel="alternate" type="text/html" title="leetcode: 58同城前年笔试" /><published>2023-10-11T14:01:57+08:00</published><updated>2023-10-11T14:01:57+08:00</updated><id>/leetcode/js/python/is</id><content type="html" xml:base="/leetcode/js/python/is/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-11T22:43:47+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 58同城2020前端笔试</title><link href="/leetcode/js/wuba2020/" rel="alternate" type="text/html" title="leetcode: 58同城2020前端笔试" /><published>2023-10-11T21:35:36+08:00</published><updated>2023-10-11T21:35:36+08:00</updated><id>/leetcode/js/wuba2020</id><content type="html" xml:base="/leetcode/js/wuba2020/"><![CDATA[<ul>
+  <li>链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91</li>
+</ul>
+
+<h2 id="1-以下代码图形">1. 以下代码图形</h2>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s2">''</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">border-left</span><span class="p">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+    <span class="nl">border-top</span><span class="p">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+    <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="nb">transparent</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案是上直角梯形</li>
+  <li>经过测试发现在四个边框都设置了的情况下，四边是以四个梯形拼接的，但如果某一条边没有边框，梯形的尖角将被抹去，下面的图可以很好的理解</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"solution"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">html test</span><span class="dl">'</span><span class="p">)</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;style&gt;</span>
+    <span class="nt">div</span><span class="nf">#solution</span><span class="p">{</span>
+        <span class="nl">padding-top</span><span class="p">:</span><span class="m">30px</span><span class="p">;</span>
+        <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+        <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+        <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">div</span><span class="nf">#solution</span><span class="nd">::before</span> <span class="p">{</span>
+        <span class="nl">content</span><span class="p">:</span> <span class="s2">'test'</span><span class="p">;</span>
+        <span class="nl">width</span><span class="p">:</span> <span class="m">10000px</span><span class="p">;</span>
+        <span class="nl">height</span><span class="p">:</span> <span class="m">100000px</span><span class="p">;</span>
+        <span class="nl">border-top</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">green</span><span class="p">;</span>
+        <span class="nl">border-left</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+        <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">blue</span><span class="p">;</span>
+        <span class="nl">border-right</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">black</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/image/leetcode/2023-10-11-wuba2020/image_1.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>题目中因为底边框设置为透明，所以显示出了左边框的尖角</p>
+  </li>
+  <li>
+    <p>补充：伪元素的宽高不能直接设置，而是根据内部包含的内容决定的，所以在content为空的情况下before元素宽度永远为0，也就是说题目中设置的top边框实际上是梯形退化成了三角形。根据默认字体大小，before元素会有一个高度，这就是为什么删掉上边框后梯形只是矮了一点，但删除左边框后梯形会完全消失</p>
+  </li>
+</ul>
+
+<h2 id="2-请给出563324代码的运行结果">2. 请给出[5&lt;6&lt;3,3&lt;2&lt;4]代码的运行结果</h2>
+
+<ul>
+  <li>
+    <p>答案是[true, true]</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>我们逐个解析这些表达式：</p>
+
+<p>5 &lt; 6 &lt; 3:</p>
+
+<p>首先，5 &lt; 6 会返回布尔值 true，因为 5 小于 6。
+然后，true &lt; 3 会将布尔值 true 隐式转换为数字 1，因为在 JavaScript 中，true 被当作数字 1，false 被当作数字 0。
+最后，判断 1 &lt; 3，这是一个比较运算，结果为 true。</p>
+
+<p>3 &lt; 2 &lt; 4:</p>
+
+<p>首先，3 &lt; 2 会返回布尔值 false，因为 3 不小于 2。
+然后，false &lt; 4 会将布尔值 false 隐式转换为数字 0。
+最后，判断 0 &lt; 4，这是一个比较运算，结果为 true。</p>
+
+<h2 id="3-下面代码输出为true的是">3. 下面代码输出为true的是?</h2>
+
+<p>A console.log([] === []);
+B console.log(undefined == 0);
+C console.log(undefined == false);
+D console.log(false == ‘’);</p>
+
+<ul>
+  <li>
+    <p>答案：D</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>A. console.log([] === []); 输出为 false。这是因为数组是引用类型，在比较时会比较引用地址，而这两个空数组是不同的引用，因此结果为 false。
+B. console.log(undefined == 0); 输出为 false。这是因为 undefined 和数字 0 是不同的类型，它们之间没有隐式的类型转换，因此不相等。
+C. console.log(undefined == false); 输出为 false。这是因为 undefined 和 false 是不同的类型，它们之间没有隐式的类型转换，因此不相等。
+D. console.log(false == ‘’); 输出为 true。这是因为在比较相等性时，布尔值和字符串会被转换为数字。在转换过程中，false 被转换为数字 0，空字符串被转换为数字 0，因此它们相等。</p>
+
+<h2 id="4-以下哪个不是伪类的属性">4. 以下哪个不是伪类的属性?</h2>
+
+<p>A :before
+B :active
+C :hover
+D :focus</p>
+
+<ul>
+  <li>答案：A: :before 是 CSS 伪元素，而不是伪类。它用于在元素内容之前插入生成的内容。</li>
+</ul>
+
+<p>伪元素用于创建一个在文档中不存在的虚拟元素，并对其进行样式化。</p>
+
+<p>伪类用于选择元素的特定状态或状态的子集。</p>
+
+<h2 id="5-以下哪个方法返回匹配的子字符串">5. 以下哪个方法返回匹配的子字符串？</h2>
+
+<p>A contact()
+B match()
+C indexOf()
+D search()</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: contact() 方法用于将两个字符串连接起来，而不是返回匹配的子字符串。
+B: match() 方法用于在字符串中查找匹配某个正则表达式的子字符串，并将匹配的结果作为数组返回。可以使用正则表达式或字符串作为参数。
+C: indexOf() 方法返回指定字符串在原字符串中第一次出现的索引位置，而不是返回匹配的子字符串。
+D: search() 方法用于在字符串中查找与正则表达式匹配的子字符串，并返回第一个匹配的索引位置，而不是返回匹配的子字符串。</p>
+
+<h2 id="6-以下关于javascript描述正确的是">6. 以下关于javascript描述正确的是？</h2>
+
+<p>A javascript是一门面向对象的语言
+B 变量使用之前必须声明
+C javascript是一种编译性脚本语言
+D javascript是由LiveScript语言发展而来</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A. JavaScript 是一门多范式的语言，支持面向对象编程、函数式编程和基于原型的编程等多种编程范式。
+B. 在 JavaScript 中，变量在使用之前必须先进行声明。可以使用 var、let 或 const 关键字来声明变量。
+C. JavaScript 是一种解释性脚本语言，而非编译性脚本语言。JavaScript 代码在运行时逐行解释执行，而不是事先编译为二进制代码。
+D. JavaScript 最初是由 LiveScript 语言发展而来，但在发布时更名为 JavaScript。它与 Java 语言没有直接的关系，只是在命名上有些相似。</p>
+
+<h2 id="7-以下哪个nodetype值对应的是文本节点">7. 以下哪个nodeType值对应的是文本节点？</h2>
+
+<p>A 1
+B 2
+C 3
+D 8</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: 1 对应的是元素节点（Element Node）的 nodeType 值。
+B: 2 对应的是属性节点（Attribute Node）的 nodeType 值。
+C: 3 对应的是文本节点（Text Node）的 nodeType 值。
+D: 8 对应的是注释节点（Comment Node）的 nodeType 值。</p>
+
+<ul>
+  <li>补充：</li>
+</ul>
+
+<p>nodeType 是 DOM（文档对象模型）中的一个属性，用于表示节点的类型。</p>
+
+<p>在 DOM 中，每个节点都有一个 nodeType 属性，它是一个整数值，用于标识节点的类型。这个值是一个预定义的常量，可以通过访问节点的 nodeType 属性来获取。</p>
+
+<p>1: 元素节点（Element Node），表示 HTML 元素。
+2: 属性节点（Attribute Node），表示 HTML 元素的属性。
+3: 文本节点（Text Node），表示 HTML 元素中的文本内容。
+4: CDATA 节点（CDATA Section Node），表示不会被解析为实体的文本块。
+5: 实体引用节点（Entity Reference Node），表示实体引用。
+6: 实体节点（Entity Node），表示实体。
+7: 处理指令节点（Processing Instruction Node），表示处理指令。
+8: 注释节点（Comment Node），表示注释。
+9: 文档节点（Document Node），表示整个文档。
+10: 文档类型节点（Document Type Node），表示文档类型。
+11: 文档片段节点（Document Fragment Node），表示文档片段。
+12: 表示 Notation 节点（Notation Node），表示符号。</p>
+
+<h2 id="8-下列哪个不是块级元素">8. 下列哪个不是块级元素</h2>
+
+<p>A div
+B img
+C h1
+D ol</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: div 是块级元素，它是一个通用的块级容器。
+B: img 是内联元素（行内元素），它用于在网页中插入图像。
+C: h1 是块级元素，它表示标题级别 1 的标题。
+D: ol 是块级元素，它表示有序列表。</p>
+
+<h2 id="9-在javascript中下面哪个不属于数组的方法">9. 在javascript中，下面哪个不属于数组的方法</h2>
+
+<p>A sort
+B length
+C reverse
+D concat</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: sort 是数组的方法，用于对数组元素进行排序。
+B: length 是数组的属性，而不是方法。它用于获取数组的长度（即数组中元素的数量）。
+C: reverse 是数组的方法，用于反转数组中元素的顺序。
+D: concat 是数组的方法，用于将多个数组或值连接成一个新数组。</p>
+
+<h2 id="10-编写高性能javascript以下描述错误的是">10. 编写高性能JavaScript，以下描述错误的是</h2>
+
+<p>A 遵循严格模式：”use strict”
+B 将js脚本放在页面顶部，加快渲染页面
+C 将js脚本成组打包，减少请求，尽量减少使用闭包
+D 使用非阻塞方式下载js脚本，最小化重绘(repaint)和回流(reflow)</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: 遵循严格模式（”use strict”）可以提高代码的性能和安全性，它启用了一些限制和优化，帮助编写更高效的 JavaScript 代码。
+B: 将 JavaScript 脚本放在页面底部，而不是顶部，可以加快页面的初始渲染速度。将脚本放在底部可以确保 HTML 内容优先加载和显示，避免阻塞页面渲染。
+C: 将 JavaScript 脚本进行打包可以减少请求次数，从而提高性能。同时，尽量减少使用闭包可以避免额外的内存消耗和性能问题。
+D: 使用非阻塞方式下载 JavaScript 脚本可以避免阻塞页面的渲染和加载。这可以通过将脚本放在 script 标签中的 async 或 defer 属性来实现，或者使用动态创建脚本元素的方式。</p>
+
+<ul>
+  <li>补充：</li>
+</ul>
+
+<p>关于严格模式：</p>
+
+<p>使用严格模式可以通过在脚本或函数的开头添加特定的语句来启用，例如在脚本的开头添加 “use strict”; 或在函数的开头使用 “use strict”;。</p>
+
+<p>严格模式的特点包括：</p>
+
+<p>变量必须先声明：在严格模式下，使用未声明的变量会抛出错误。
+禁止使用全局变量：在严格模式下，无法将变量或函数隐式声明为全局变量，避免了意外地污染全局命名空间。
+禁止删除变量或函数：在严格模式下，无法使用 delete 运算符删除变量、函数或函数的参数。
+禁止使用重复的参数名：在严格模式下，函数的参数名不能重复。
+禁止使用八进制字面量：在严格模式下，八进制字面量（如 0123）会被视为无效，避免了一些令人困惑的行为。
+禁止使用 eval：在严格模式下，eval 函数的作用域被限制在当前作用域内，无法访问外部作用域的变量。
+限制 this 值：在严格模式下，全局作用域中的 this 值为 undefined，而不是指向全局对象。</p>
+
+<p>关于闭包：</p>
+
+<p>闭包（Closure）是指在一个函数内部创建的函数以及该函数能够访问的外部函数作用域中的变量，即使外部函数已经执行完毕，这些变量依然可以被内部函数访问和操作。</p>
+
+<h2 id="11-如何最小化重绘repaint和回流reflow以下哪个是错的">11. 如何最小化重绘(repaint)和回流(reflow)，以下哪个是错的？</h2>
+
+<p>A 需要对元素进行复杂的操作时，可以先隐藏(display:”none”)，操作完成后再显示
+B 需要创建多个DOM节点时，使用DocumentFragment创建完后一次性的加入document
+C 尽量避免用table布局（table元素一旦触发回流就会导致table里所有的其它元素回流）
+D 尽量不要使用 css 属性简写，如：用border-width, border-style, border-color代替border</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: 当需要对元素进行复杂的操作时，例如修改多个样式属性或添加多个子元素，可以先将元素设置为隐藏（display: none），进行操作完成后再显示。这样可以避免在操作过程中多次触发重绘和回流，只在最后一次显示时触发一次重绘和回流。
+B: 使用 DocumentFragment 可以减少回流次数。DocumentFragment 是一个轻量级的文档片段，可以在其中添加多个 DOM 节点，然后将整个文档片段一次性地加入到文档中，减少了多次回流。
+C: 表格布局（table 元素）会触发一次回流，会导致表格内的其他元素也进行回流。因此，尽量避免过度使用表格布局，以减少回流的次数。
+D: 使用 CSS 属性简写可以提高开发效率，但是会增加解析和计算的复杂性，可能导致额外的回流。因此，尽量使用单独的 CSS 属性来代替简写属性，例如使用 border-width、border-style 和 border-color 来代替 border 简写。</p>
+
+<!--![引入图片](/image/leetcode/2023-10-11-wuba2020/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91]]></summary></entry><entry><title type="html">windows: vscode配置c++开发环境</title><link href="/windows/cpp/vscode_cpp/" rel="alternate" type="text/html" title="windows: vscode配置c++开发环境" /><published>2023-10-11T20:39:41+08:00</published><updated>2023-10-11T20:39:41+08:00</updated><id>/windows/cpp/vscode_cpp</id><content type="html" xml:base="/windows/cpp/vscode_cpp/"><![CDATA[<ul>
+  <li>网上清一色安装MinGW，看起来超麻烦</li>
+  <li>试一试vscode推荐的方法，新建窗口时欢迎页右侧有C++开发入门，介绍了环境的设置方法
+    <ol>
+      <li>安装MSVC，在下载页面搜索【Visual Studio 2022 生成工具】，页面：https://visualstudio.microsoft.com/zh-hans/downloads/</li>
+      <li>安装程序中选择C++ 生成工具，我没找到，把c++全选了</li>
+      <li>安装完成后终端键入cl，检查MSVC安装</li>
+    </ol>
+  </li>
+</ul>
+
+<p>（直接运行cpp时右下角会报错：仅当从 VS 开发人员命令提示符处运行 VS Code 时，cl.exe 生成和调试才可用。）</p>
+
+<ol>
+  <li>
+    <p>开始菜单搜索developer，会找到Developer Powershell for VS 2022，打开它，在这个终端里输入code，会启动一个新的vscode界面，在这里写hello_world，点击F5或者右上角运行，选择C++什么调试器忘了，没及时记录</p>
+  </li>
+  <li>
+    <p>但有一说一实际上这里编译运行的速度依然很美，还会生成许多中间文件，不如直接使用visual studio；或者在wsl里手动<code class="language-plaintext highlighter-rouge">gcc test.cpp -o test</code>，测试时发现报错找不到标准库，可以手动链接<code class="language-plaintext highlighter-rouge">g++ test.cpp -o test -lstdc++</code></p>
+  </li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"hello"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">"pause"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<!--![引入图片](/image/windows/2023-10-11-vscode_cpp/image_1.jpg) -->]]></content><author><name></name></author><category term="windows" /><category term="cpp" /><summary type="html"><![CDATA[网上清一色安装MinGW，看起来超麻烦 试一试vscode推荐的方法，新建窗口时欢迎页右侧有C++开发入门，介绍了环境的设置方法 安装MSVC，在下载页面搜索【Visual Studio 2022 生成工具】，页面：https://visualstudio.microsoft.com/zh-hans/downloads/ 安装程序中选择C++ 生成工具，我没找到，把c++全选了 安装完成后终端键入cl，检查MSVC安装]]></summary></entry><entry><title type="html">leetcode: 58同城2021笔试</title><link href="/leetcode/js/python/wuba2021/" rel="alternate" type="text/html" title="leetcode: 58同城2021笔试" /><published>2023-10-11T14:01:57+08:00</published><updated>2023-10-11T14:01:57+08:00</updated><id>/leetcode/js/python/wuba2021</id><content type="html" xml:base="/leetcode/js/python/wuba2021/"><![CDATA[<ul>
   <li>链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91</li>
 </ul>
 
@@ -725,14 +1039,183 @@ aab
 输出例子：
 a</p>
 
-<p>22.查找字符串中的最长公共前缀</p>
+<ul>
+  <li>
+    <p>哈希表
+```py
+def find_most_frequent_character(string):
+  counter = {}
+  max_count = 0
+  most_frequent_char = None</p>
 
-<p>输入例子：
+    <p>for char in string:
+      if char in counter:
+          counter[char] += 1
+      else:
+          counter[char] = 1</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  if counter[char] &gt; max_count:
+      max_count = counter[char]
+      most_frequent_char = char
+</code></pre></div>    </div>
+
+    <p>return most_frequent_char, max_count</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+---
+
+
+22.查找字符串中的最长公共前缀
+
+输入例子：
 flower,flow,flight
 输出例子：
 fl
 例子说明：
-fl为数组中最长公共前缀字符串</p>
+fl为数组中最长公共前缀字符串
+
+
+</code></pre></div></div>
+<p>略</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+--- 
+---
+
+23.五八文字碰碰消
+
+  帮帮同学在设计一个文字碰碰消游戏，规定"五"和"八"形成"五八"组合碰到一起即会消除，("八五" 不会消除)。
+
+  例如 "五八", "五八五八", "五五八八"。说明: "五五八八" 是内层的"五八"碰在一起消除后，外层的"五八"会碰在一起消除。
+
+  帮帮同学想知道n个"五"和"八"组成的字符串中，有多少种组合可以满足消除为空字符串。
+
+  现为帮帮同学设计一个方法，输入整数n，表示"五"和"八"的数量，返回n个"五"和n个"八"组成的字符串中，满足消除为空字符串的组合数。
+
+
+</code></pre></div></div>
+<p>输入例子：
+2
+输出例子：
+2
+例子说明：
+满足的组合  [ ‘五五八八’, ‘五八五八’ ]</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+- 力扣22题：括号生成 - 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+
+</code></pre></div></div>
+<p>输入：n = 3
+输出：[”((()))”,”(()())”,”(())()”,”()(())”,”()()()”]</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+---
+
+
+23.
+
+
+
+
+- 思路1：动态规划
+
+
+第一项必然为左括号，与它匹配的右括号设为第i项，定义它为第1组括号
+还剩下n-1组括号，分布在第1组括号的内部或外部
+拆分子问题：
+( + [i=p时所有括号组合] + ) + [i=q时所有括号组合]
+其中 p+q=n-1
+p遍历从0到n-1即可包含所有情况
+
+```py
+class Solution:
+    def generateParenthesis(self, n: int) -&gt; List[str]:
+        if n == 0:
+            return []
+        total_l = []
+        total_l.append([None])    # 0组括号时记为None
+        total_l.append(["()"])    # 1组括号只有一种情况
+        for i in range(2,n+1):    # 开始计算i组括号时的括号组合
+            l = []        
+            for j in range(i):    # 开始遍历 p q ，其中p+q=i-1 , j 作为索引
+                now_list1 = total_l[j]    # p = j 时的括号组合情况
+                now_list2 = total_l[i-1-j]    # q = (i-1) - j 时的括号组合情况
+                for k1 in now_list1:  
+                    for k2 in now_list2:
+                        if k1 == None:
+                            k1 = ""
+                        if k2 == None:
+                            k2 = ""
+                        el = "(" + k1 + ")" + k2
+                        l.append(el)    # 把所有可能的情况添加到 l 中
+            total_l.append(l)    # l这个list就是i组括号的所有情况，添加到total_l中，继续求解i=i+1的情况
+        return total_l[n]
+</code></pre></div></div>
+
+<ul>
+  <li>官方解法：回溯</li>
+</ul>
+
+<p>由暴力遍历法引出</p>
+
+<p>定义函数判断序列是否有效：定义变量balance表示左括号数量减去右括号数量，遍历过程中如果balance小于0 或者结束时balance值不为0，说明序列无效（栈的思想，但并不需要真的定义一个栈）</p>
+
+<p>递归遍历所有可能性：二叉树生成的方法，append左括号之后递归，然后pop，再尝试右括号</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nf">valid</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                    <span class="n">ans</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">(</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">generate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">)</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">generate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+                <span class="n">A</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">bal</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="sh">'</span><span class="s">(</span><span class="sh">'</span><span class="p">:</span> <span class="n">bal</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span> <span class="n">bal</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">bal</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="n">bal</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="nf">generate</span><span class="p">([])</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+</code></pre></div></div>
+
+<p>↑改善上面的算法可以得到回溯法
+并不是列出所有可能性再依次检查valid，而是在原序列有效的前提下再添加一组有效的括号，也就是把valid函数优化掉</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">generateParenthesis</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">(</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">'</span><span class="s">)</span><span class="sh">'</span><span class="p">)</span>
+                <span class="nf">backtrack</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">S</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+
+        <span class="nf">backtrack</span><span class="p">([],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+</code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
@@ -1419,110 +1902,4 @@ aabbaabb =&gt; (a(2)b(2))2<br />
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/python/2023-10-05-sqrt/image_1.jpg) -->]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[```py 法1：math.sqrt import math x = math.sqrt(n)]]></summary></entry><entry><title type="html">leetcode: 完全平方数</title><link href="/leetcode/python/numSquares/" rel="alternate" type="text/html" title="leetcode: 完全平方数" /><published>2023-10-05T17:31:28+08:00</published><updated>2023-10-05T17:31:28+08:00</updated><id>/leetcode/python/numSquares</id><content type="html" xml:base="/leetcode/python/numSquares/"><![CDATA[<h2 id="题目">题目</h2>
-
-<ul>
-  <li>链接：https://leetcode.cn/problems/perfect-squares/?envType=study-plan-v2&amp;envId=dynamic-programming</li>
-</ul>
-
-<p>给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。</p>
-
-<p>完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：n = 12
-输出：3 
-解释：12 = 4 + 4 + 4
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入：n = 13
-输出：2
-解释：13 = 4 + 9
-</code></pre></div></div>
-
-<h2 id="题解">题解</h2>
-
-<ul>
-  <li>难点在于dp矩阵如何构建，以及如何拆分子问题</li>
-  <li>设dp[i]表示最少需要多少个数的平方来表示整数i</li>
-  <li>遍历[1,i]（实际上只需遍历[1,sqrt(i)]），设当前遍历到j，认为i中拆分出的平方数中包含j，那么只需找到i-j^2包含多少平方数即可，即有dp[i] = 1 + dp[i-j^2]；对于遍历的每一个j都可以得出一个解，其中的最小值即为对i的解</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">numSquares</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">minn</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">inf</span><span class="sh">'</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nf">int</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-                <span class="n">minn</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">minn</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">*</span><span class="n">j</span><span class="p">])</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">minn</span> <span class="o">+</span><span class="mi">1</span>
-        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-    
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">numSquares</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-05-numSquares/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry><entry><title type="html">leetcode: 解决智力问题</title><link href="/leetcode/python/mostPoints/" rel="alternate" type="text/html" title="leetcode: 解决智力问题" /><published>2023-10-05T16:10:23+08:00</published><updated>2023-10-05T16:10:23+08:00</updated><id>/leetcode/python/mostPoints</id><content type="html" xml:base="/leetcode/python/mostPoints/"><![CDATA[<h2 id="题目">题目</h2>
-
-<ul>
-  <li>链接：https://leetcode.cn/problems/solving-questions-with-brainpower/?envType=study-plan-v2&amp;envId=dynamic-programming</li>
-</ul>
-
-<p>给你一个下标从 0 开始的二维整数数组 questions ，其中 questions[i] = [points_i, brainpower_i] 。</p>
-
-<p>这个数组表示一场考试里的一系列题目，你需要 按顺序 （也就是从问题 0 开始依次解决），针对每个问题选择 解决 或者 跳过 操作。解决问题 i 将让你 获得  points_i 的分数，但是你将 无法 解决接下来的 brainpower_i 个问题（即只能跳过接下来的 brainpower_i 个问题）。如果你跳过问题 i ，你可以对下一个问题决定使用哪种操作。</p>
-
-<p>比方说，给你 questions = [[3, 2], [4, 3], [4, 4], [2, 5]] ：<br />
-如果问题 0 被解决了， 那么你可以获得 3 分，但你不能解决问题 1 和 2 。<br />
-如果你跳过问题 0 ，且解决问题 1 ，你将获得 4 分但是不能解决问题 2 和 3 。<br />
-请你返回这场考试里你能获得的 最高 分数。</p>
-
-<h2 id="题解">题解</h2>
-
-<ul>
-  <li>dp[i]表示解决前i道问题的最高分数，边界dp[0] = 0，dp[1] = points_0</li>
-  <li>类似打家劫舍问题，只不过打劫间隔不是固定的1，而是由brainpower决定</li>
-  <li>类比打家劫舍可得dp[i] = max( dp[i-1], dp[i-?]+points_i )，其中dp[i-?]表示满足条件【解决问题i】最近的前一项，（注意满足条件的dp[i-?]可能不只有一项），为找出dp[i-?]可以遍历原数组，找出每一项在删除brainpower后对应的后一项，以此构建索引字典，比如下面的例子</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
-<span class="c1"># 第0，1，2，3项对应的后一项分别是第3,3,3,4项，因此可以构建字典如下
-</span><span class="p">{</span>
-    <span class="mi">0</span><span class="p">:[],</span>
-    <span class="mi">1</span><span class="p">:[],</span>
-    <span class="mi">2</span><span class="p">:[],</span>
-    <span class="mi">3</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
-    <span class="mi">4</span><span class="p">:[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># index&gt;3没有意义
-</span><span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>但显然这样会提高时间复杂度，官方题解采用了另一种思路</li>
-  <li>构建状态转移方程的意义在于找出相邻两项dp之间的关系，并不一定是dp[i]和dp[i-1]，也可以是dp[i]和dp[i+1]；我们可以反向思考：</li>
-  <li>如果不解决第1道题目，dp[i] = dp[i+1]</li>
-  <li>如果解决，下一道题目是<code class="language-plaintext highlighter-rouge">i + brainpower_i + 1</code>，也就是说此时有</li>
-</ul>
-
-<center>dp[i] = points_i + dp[i + brainpower_i + 1]</center>
-
-<ul>
-  <li>状态转移方程如下</li>
-</ul>
-
-<center>dp[i] = max( dp[i+1], points_i + dp[i + brainpower_i + 1] )</center>
-
-<ul>
-  <li>此时边界为dp[n] = 0，表示没有做任何题目，所求结果为dp[0]</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">mostPoints</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">questions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">questions</span><span class="p">)</span>
-        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># 解决每道题及以后题目的最高分数
-</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">questions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="nf">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">questions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
-        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</code></pre></div></div>
-
-<ul>
-  <li>因为i + questions[i][1] + 1有可能超出边界，即后面没有可以解的题目，此时可以认为dp[i + brainpower_i + 1] = dp[n] = 0，所以例程中使用了min直接把0赋值给算式</li>
-</ul>
-
-<!--![引入图片](/image/leetcode/2023-10-05-mostPoints/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[题目]]></summary></entry></feed>
+<!--![引入图片](/image/python/2023-10-05-sqrt/image_1.jpg) -->]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[```py 法1：math.sqrt import math x = math.sqrt(n)]]></summary></entry></feed>

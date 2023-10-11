@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>leetcode: 58同城2020前端笔试 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="leetcode: 58同城2020前端笔试" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" />
+<meta property="og:description" content="链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91" />
+<link rel="canonical" href="/leetcode/js/wuba2020/" />
+<meta property="og:url" content="/leetcode/js/wuba2020/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-11T21:35:36+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="leetcode: 58同城2020前端笔试" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T21:35:36+08:00","datePublished":"2023-10-11T21:35:36+08:00","description":"链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91","headline":"leetcode: 58同城2020前端笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/wuba2020/"},"url":"/leetcode/js/wuba2020/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">leetcode: 58同城2020前端笔试</h1>
+    <h3>学不完了。。。</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#1-以下代码图形">1. 以下代码图形</a></li>
+<li class="toc-entry toc-h2"><a href="#2-请给出563324代码的运行结果">2. 请给出[5&lt;6&lt;3,3&lt;2&lt;4]代码的运行结果</a></li>
+<li class="toc-entry toc-h2"><a href="#3-下面代码输出为true的是">3. 下面代码输出为true的是?</a></li>
+<li class="toc-entry toc-h2"><a href="#4-以下哪个不是伪类的属性">4. 以下哪个不是伪类的属性?</a></li>
+<li class="toc-entry toc-h2"><a href="#5-以下哪个方法返回匹配的子字符串">5. 以下哪个方法返回匹配的子字符串？</a></li>
+<li class="toc-entry toc-h2"><a href="#6-以下关于javascript描述正确的是">6. 以下关于javascript描述正确的是？</a></li>
+<li class="toc-entry toc-h2"><a href="#7-以下哪个nodetype值对应的是文本节点">7. 以下哪个nodeType值对应的是文本节点？</a></li>
+<li class="toc-entry toc-h2"><a href="#8-下列哪个不是块级元素">8. 下列哪个不是块级元素</a></li>
+<li class="toc-entry toc-h2"><a href="#9-在javascript中下面哪个不属于数组的方法">9. 在javascript中，下面哪个不属于数组的方法</a></li>
+<li class="toc-entry toc-h2"><a href="#10-编写高性能javascript以下描述错误的是">10. 编写高性能JavaScript，以下描述错误的是</a></li>
+<li class="toc-entry toc-h2"><a href="#11-如何最小化重绘repaint和回流reflow以下哪个是错的">11. 如何最小化重绘(repaint)和回流(reflow)，以下哪个是错的？</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91</li>
+</ul>
+
+<h2 id="1-以下代码图形">1. 以下代码图形</h2>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s2">''</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">border-left</span><span class="p">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+    <span class="nl">border-top</span><span class="p">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+    <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="nb">transparent</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>答案是上直角梯形</li>
+  <li>经过测试发现在四个边框都设置了的情况下，四边是以四个梯形拼接的，但如果某一条边没有边框，梯形的尖角将被抹去，下面的图可以很好的理解</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"solution"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">html test</span><span class="dl">'</span><span class="p">)</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;style&gt;</span>
+    <span class="nt">div</span><span class="nf">#solution</span><span class="p">{</span>
+        <span class="nl">padding-top</span><span class="p">:</span><span class="m">30px</span><span class="p">;</span>
+        <span class="nl">height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+        <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+        <span class="nl">border</span><span class="p">:</span> <span class="nb">solid</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">div</span><span class="nf">#solution</span><span class="nd">::before</span> <span class="p">{</span>
+        <span class="nl">content</span><span class="p">:</span> <span class="s2">'test'</span><span class="p">;</span>
+        <span class="nl">width</span><span class="p">:</span> <span class="m">10000px</span><span class="p">;</span>
+        <span class="nl">height</span><span class="p">:</span> <span class="m">100000px</span><span class="p">;</span>
+        <span class="nl">border-top</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">green</span><span class="p">;</span>
+        <span class="nl">border-left</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;</span>
+        <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">blue</span><span class="p">;</span>
+        <span class="nl">border-right</span><span class="p">:</span> <span class="m">30px</span> <span class="nb">solid</span> <span class="no">black</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/image/leetcode/2023-10-11-wuba2020/image_1.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>
+    <p>题目中因为底边框设置为透明，所以显示出了左边框的尖角</p>
+  </li>
+  <li>
+    <p>补充：伪元素的宽高不能直接设置，而是根据内部包含的内容决定的，所以在content为空的情况下before元素宽度永远为0，也就是说题目中设置的top边框实际上是梯形退化成了三角形。根据默认字体大小，before元素会有一个高度，这就是为什么删掉上边框后梯形只是矮了一点，但删除左边框后梯形会完全消失</p>
+  </li>
+</ul>
+
+<h2 id="2-请给出563324代码的运行结果">2. 请给出[5&lt;6&lt;3,3&lt;2&lt;4]代码的运行结果</h2>
+
+<ul>
+  <li>
+    <p>答案是[true, true]</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>我们逐个解析这些表达式：</p>
+
+<p>5 &lt; 6 &lt; 3:</p>
+
+<p>首先，5 &lt; 6 会返回布尔值 true，因为 5 小于 6。
+然后，true &lt; 3 会将布尔值 true 隐式转换为数字 1，因为在 JavaScript 中，true 被当作数字 1，false 被当作数字 0。
+最后，判断 1 &lt; 3，这是一个比较运算，结果为 true。</p>
+
+<p>3 &lt; 2 &lt; 4:</p>
+
+<p>首先，3 &lt; 2 会返回布尔值 false，因为 3 不小于 2。
+然后，false &lt; 4 会将布尔值 false 隐式转换为数字 0。
+最后，判断 0 &lt; 4，这是一个比较运算，结果为 true。</p>
+
+<h2 id="3-下面代码输出为true的是">3. 下面代码输出为true的是?</h2>
+
+<p>A console.log([] === []);
+B console.log(undefined == 0);
+C console.log(undefined == false);
+D console.log(false == ‘’);</p>
+
+<ul>
+  <li>
+    <p>答案：D</p>
+  </li>
+  <li>
+    <p>解析：</p>
+  </li>
+</ul>
+
+<p>A. console.log([] === []); 输出为 false。这是因为数组是引用类型，在比较时会比较引用地址，而这两个空数组是不同的引用，因此结果为 false。
+B. console.log(undefined == 0); 输出为 false。这是因为 undefined 和数字 0 是不同的类型，它们之间没有隐式的类型转换，因此不相等。
+C. console.log(undefined == false); 输出为 false。这是因为 undefined 和 false 是不同的类型，它们之间没有隐式的类型转换，因此不相等。
+D. console.log(false == ‘’); 输出为 true。这是因为在比较相等性时，布尔值和字符串会被转换为数字。在转换过程中，false 被转换为数字 0，空字符串被转换为数字 0，因此它们相等。</p>
+
+<h2 id="4-以下哪个不是伪类的属性">4. 以下哪个不是伪类的属性?</h2>
+
+<p>A :before
+B :active
+C :hover
+D :focus</p>
+
+<ul>
+  <li>答案：A: :before 是 CSS 伪元素，而不是伪类。它用于在元素内容之前插入生成的内容。</li>
+</ul>
+
+<p>伪元素用于创建一个在文档中不存在的虚拟元素，并对其进行样式化。</p>
+
+<p>伪类用于选择元素的特定状态或状态的子集。</p>
+
+<h2 id="5-以下哪个方法返回匹配的子字符串">5. 以下哪个方法返回匹配的子字符串？</h2>
+
+<p>A contact()
+B match()
+C indexOf()
+D search()</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: contact() 方法用于将两个字符串连接起来，而不是返回匹配的子字符串。
+B: match() 方法用于在字符串中查找匹配某个正则表达式的子字符串，并将匹配的结果作为数组返回。可以使用正则表达式或字符串作为参数。
+C: indexOf() 方法返回指定字符串在原字符串中第一次出现的索引位置，而不是返回匹配的子字符串。
+D: search() 方法用于在字符串中查找与正则表达式匹配的子字符串，并返回第一个匹配的索引位置，而不是返回匹配的子字符串。</p>
+
+<h2 id="6-以下关于javascript描述正确的是">6. 以下关于javascript描述正确的是？</h2>
+
+<p>A javascript是一门面向对象的语言
+B 变量使用之前必须声明
+C javascript是一种编译性脚本语言
+D javascript是由LiveScript语言发展而来</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A. JavaScript 是一门多范式的语言，支持面向对象编程、函数式编程和基于原型的编程等多种编程范式。
+B. 在 JavaScript 中，变量在使用之前必须先进行声明。可以使用 var、let 或 const 关键字来声明变量。
+C. JavaScript 是一种解释性脚本语言，而非编译性脚本语言。JavaScript 代码在运行时逐行解释执行，而不是事先编译为二进制代码。
+D. JavaScript 最初是由 LiveScript 语言发展而来，但在发布时更名为 JavaScript。它与 Java 语言没有直接的关系，只是在命名上有些相似。</p>
+
+<h2 id="7-以下哪个nodetype值对应的是文本节点">7. 以下哪个nodeType值对应的是文本节点？</h2>
+
+<p>A 1
+B 2
+C 3
+D 8</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: 1 对应的是元素节点（Element Node）的 nodeType 值。
+B: 2 对应的是属性节点（Attribute Node）的 nodeType 值。
+C: 3 对应的是文本节点（Text Node）的 nodeType 值。
+D: 8 对应的是注释节点（Comment Node）的 nodeType 值。</p>
+
+<ul>
+  <li>补充：</li>
+</ul>
+
+<p>nodeType 是 DOM（文档对象模型）中的一个属性，用于表示节点的类型。</p>
+
+<p>在 DOM 中，每个节点都有一个 nodeType 属性，它是一个整数值，用于标识节点的类型。这个值是一个预定义的常量，可以通过访问节点的 nodeType 属性来获取。</p>
+
+<p>1: 元素节点（Element Node），表示 HTML 元素。
+2: 属性节点（Attribute Node），表示 HTML 元素的属性。
+3: 文本节点（Text Node），表示 HTML 元素中的文本内容。
+4: CDATA 节点（CDATA Section Node），表示不会被解析为实体的文本块。
+5: 实体引用节点（Entity Reference Node），表示实体引用。
+6: 实体节点（Entity Node），表示实体。
+7: 处理指令节点（Processing Instruction Node），表示处理指令。
+8: 注释节点（Comment Node），表示注释。
+9: 文档节点（Document Node），表示整个文档。
+10: 文档类型节点（Document Type Node），表示文档类型。
+11: 文档片段节点（Document Fragment Node），表示文档片段。
+12: 表示 Notation 节点（Notation Node），表示符号。</p>
+
+<h2 id="8-下列哪个不是块级元素">8. 下列哪个不是块级元素</h2>
+
+<p>A div
+B img
+C h1
+D ol</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: div 是块级元素，它是一个通用的块级容器。
+B: img 是内联元素（行内元素），它用于在网页中插入图像。
+C: h1 是块级元素，它表示标题级别 1 的标题。
+D: ol 是块级元素，它表示有序列表。</p>
+
+<h2 id="9-在javascript中下面哪个不属于数组的方法">9. 在javascript中，下面哪个不属于数组的方法</h2>
+
+<p>A sort
+B length
+C reverse
+D concat</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: sort 是数组的方法，用于对数组元素进行排序。
+B: length 是数组的属性，而不是方法。它用于获取数组的长度（即数组中元素的数量）。
+C: reverse 是数组的方法，用于反转数组中元素的顺序。
+D: concat 是数组的方法，用于将多个数组或值连接成一个新数组。</p>
+
+<h2 id="10-编写高性能javascript以下描述错误的是">10. 编写高性能JavaScript，以下描述错误的是</h2>
+
+<p>A 遵循严格模式：”use strict”
+B 将js脚本放在页面顶部，加快渲染页面
+C 将js脚本成组打包，减少请求，尽量减少使用闭包
+D 使用非阻塞方式下载js脚本，最小化重绘(repaint)和回流(reflow)</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: 遵循严格模式（”use strict”）可以提高代码的性能和安全性，它启用了一些限制和优化，帮助编写更高效的 JavaScript 代码。
+B: 将 JavaScript 脚本放在页面底部，而不是顶部，可以加快页面的初始渲染速度。将脚本放在底部可以确保 HTML 内容优先加载和显示，避免阻塞页面渲染。
+C: 将 JavaScript 脚本进行打包可以减少请求次数，从而提高性能。同时，尽量减少使用闭包可以避免额外的内存消耗和性能问题。
+D: 使用非阻塞方式下载 JavaScript 脚本可以避免阻塞页面的渲染和加载。这可以通过将脚本放在 script 标签中的 async 或 defer 属性来实现，或者使用动态创建脚本元素的方式。</p>
+
+<ul>
+  <li>补充：</li>
+</ul>
+
+<p>关于严格模式：</p>
+
+<p>使用严格模式可以通过在脚本或函数的开头添加特定的语句来启用，例如在脚本的开头添加 “use strict”; 或在函数的开头使用 “use strict”;。</p>
+
+<p>严格模式的特点包括：</p>
+
+<p>变量必须先声明：在严格模式下，使用未声明的变量会抛出错误。
+禁止使用全局变量：在严格模式下，无法将变量或函数隐式声明为全局变量，避免了意外地污染全局命名空间。
+禁止删除变量或函数：在严格模式下，无法使用 delete 运算符删除变量、函数或函数的参数。
+禁止使用重复的参数名：在严格模式下，函数的参数名不能重复。
+禁止使用八进制字面量：在严格模式下，八进制字面量（如 0123）会被视为无效，避免了一些令人困惑的行为。
+禁止使用 eval：在严格模式下，eval 函数的作用域被限制在当前作用域内，无法访问外部作用域的变量。
+限制 this 值：在严格模式下，全局作用域中的 this 值为 undefined，而不是指向全局对象。</p>
+
+<p>关于闭包：</p>
+
+<p>闭包（Closure）是指在一个函数内部创建的函数以及该函数能够访问的外部函数作用域中的变量，即使外部函数已经执行完毕，这些变量依然可以被内部函数访问和操作。</p>
+
+<h2 id="11-如何最小化重绘repaint和回流reflow以下哪个是错的">11. 如何最小化重绘(repaint)和回流(reflow)，以下哪个是错的？</h2>
+
+<p>A 需要对元素进行复杂的操作时，可以先隐藏(display:”none”)，操作完成后再显示
+B 需要创建多个DOM节点时，使用DocumentFragment创建完后一次性的加入document
+C 尽量避免用table布局（table元素一旦触发回流就会导致table里所有的其它元素回流）
+D 尽量不要使用 css 属性简写，如：用border-width, border-style, border-color代替border</p>
+
+<ul>
+  <li>解析：</li>
+</ul>
+
+<p>A: 当需要对元素进行复杂的操作时，例如修改多个样式属性或添加多个子元素，可以先将元素设置为隐藏（display: none），进行操作完成后再显示。这样可以避免在操作过程中多次触发重绘和回流，只在最后一次显示时触发一次重绘和回流。
+B: 使用 DocumentFragment 可以减少回流次数。DocumentFragment 是一个轻量级的文档片段，可以在其中添加多个 DOM 节点，然后将整个文档片段一次性地加入到文档中，减少了多次回流。
+C: 表格布局（table 元素）会触发一次回流，会导致表格内的其他元素也进行回流。因此，尽量避免过度使用表格布局，以减少回流的次数。
+D: 使用 CSS 属性简写可以提高开发效率，但是会增加解析和计算的复杂性，可能导致额外的回流。因此，尽量使用单独的 CSS 属性来代替简写属性，例如使用 border-width、border-style 和 border-color 来代替 border 简写。</p>
+
+<!--![引入图片](/image/leetcode/2023-10-11-wuba2020/image_1.jpg) -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

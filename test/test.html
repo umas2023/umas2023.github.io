@@ -1,24 +1,28 @@
 <html>
 
 <body>
-    <div id="root" style="border:1px solid red;">
-        <div style="width:10px;height:10px;margin:10px;"></div>
-        <div style="width:10px;height:10px;margin:20px;"></div>
-    </div>
+    <div id="solution"></div>
 </body>
-<!-- <script>
-    console.log(getComputedStyle(root).height)
-</script> -->
+<script>
+    console.log('html test')
+</script>
 
 <style>
-
-
-
-
-    
-
-
-
+    div#solution{
+        padding-top:30px;
+        height: 200px;
+        width: 200px;
+        border: solid 1px;
+    }
+    div#solution::before {
+        content: 'test';
+        width: 10000px;
+        height: 100000px;
+        border-top: 30px solid green;
+        border-left: 30px solid red;
+        border-bottom: 30px solid blue;
+        border-right: 30px solid black;
+    }
 </style>
 
 </html>
