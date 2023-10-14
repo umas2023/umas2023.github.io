@@ -72,6 +72,9 @@ asyncFunc();
 ```
 
 
+- async 函数本身并不是一个 Promise 对象。async 函数是一种特殊的函数语法，它的目的是简化基于 Promises 的异步操作。
+- async 函数在执行时会返回一个 Promise 对象。这个 Promise 对象的最终结果取决于 async 函数内部的执行情况。如果 async 函数内部显式地返回一个值，那么这个 Promise 将会被解析为该值。如果 async 函数内部抛出一个异常，那么这个 Promise 将会被拒绝，并且捕获到的异常将成为拒绝的原因。
+
 
 <!-- ![引入图片]({{site.url}}/image/js/2023-07-13-async_await/image_1.jpg) -->
 

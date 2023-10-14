@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang=" en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>vue: webpack loader | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="vue: webpack loader" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考：https://juejin.cn/post/6992754161221632030 参考：https://zhuanlan.zhihu.com/p/104205895" />
+<meta property="og:description" content="参考：https://juejin.cn/post/6992754161221632030 参考：https://zhuanlan.zhihu.com/p/104205895" />
+<link rel="canonical" href="/vue/knowhow/webpack_loader/" />
+<meta property="og:url" content="/vue/knowhow/webpack_loader/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-14T16:01:56+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="vue: webpack loader" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-14T16:01:56+08:00","datePublished":"2023-10-14T16:01:56+08:00","description":"参考：https://juejin.cn/post/6992754161221632030 参考：https://zhuanlan.zhihu.com/p/104205895","headline":"vue: webpack loader","mainEntityOfPage":{"@type":"WebPage","@id":"/vue/knowhow/webpack_loader/"},"url":"/vue/knowhow/webpack_loader/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body>
+  <!-- 背景图 -->
+  <div class="bg-img"></div><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post">
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">vue: webpack loader</h1>
+    
+    <!-- 分类tag -->
+    
+    <div class="category">vue</div>
+    
+    <div class="category">knowhow</div>
+    
+
+    <h3>记一个得物面试问题，关于什么是webpack和loader，以及Vite</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#webpack">webpack</a></li>
+<li class="toc-entry toc-h2"><a href="#vite和webpack">vite和webpack</a></li>
+<li class="toc-entry toc-h2"><a href="#loader">loader</a></li>
+<li class="toc-entry toc-h2"><a href="#写一个loader">写一个loader</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>参考：https://juejin.cn/post/6992754161221632030</li>
+  <li>参考：https://zhuanlan.zhihu.com/p/104205895</li>
+</ul>
+
+<h2 id="webpack">webpack</h2>
+
+<ul>
+  <li>
+    <p>Webpack 是一个模块化打包工具，它被广泛地应用在前端领域的大多数项目中。利用 Webpack 我们不仅可以打包 JS 文件，还可以打包图片、CSS、字体等其他类型的资源文件。而支持打包非 JS 文件的特性是基于 Loader 机制来实现的。</p>
+  </li>
+  <li>
+    <p>webpack做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。</p>
+  </li>
+</ul>
+
+<h2 id="vite和webpack">vite和webpack</h2>
+
+<ul>
+  <li>vite</li>
+</ul>
+
+<p>基于原生 ES-Module 的前端构建工具
+Vite，一个基于浏览器原生 ES imports 的开发服务器。利用浏览器去解析 imports，在服务器端按需编译返回，完全跳过了打包这个概念，服务器随起随用。</p>
+
+<p>vite是基于es modules的，因为vite不允许commonjs的规范，所以vite就不会将所有的依赖读取一遍，也就提升了运行效率；而webpack则更多的关注兼容性，webpack在启动的时候需要读取所有的依赖，统一模块化代码，再启动服务器；而vite则是直接启动服务器按需加载，未用到的模块不会加载。webpack更关注兼容性，vite关注浏览器端的开发体验。</p>
+
+<ul>
+  <li>vite和vue-cli</li>
+</ul>
+
+<p>vue-cli 基于 webpack 封装，生产环境和开发环境都是基于 Webpack 打包。</p>
+
+<h2 id="loader">loader</h2>
+
+<ul>
+  <li>
+    <p>Loader 本质上是导出函数的 JavaScript 模块</p>
+  </li>
+  <li>常见的loader：
+    <ul>
+      <li>image-loader：加载并且压缩图片文件</li>
+      <li>css-loader：帮助webpack打包处理css文件，使用css-loader必须要配合使用style-loader</li>
+      <li>style-loader：用于将css编译完成的样式，挂载到页面的style标签上。但是要注意loader执行顺序，style-loader要放在第一位，loader都是从后往前执行</li>
+      <li>babel-loader：把 ES6 转换成 ES5</li>
+      <li>sass-loader: css预处理器，能更好的编写css</li>
+      <li>postcss-loader: 用于补充css样式在各种浏览器的前缀，很方便，不需要手动写了</li>
+      <li>eslint-loader:用于检查代码是否符合规范，是否存在语法错误</li>
+      <li>url-loader:处理图片类型资源，可以根据图片的大小进行不同的操作，如果图片大小大于指定大小，则将图片进行资源打包，否则将图片转换为base64格式字符串，再把这个字符串打包到 JS文件里。</li>
+    </ul>
+  </li>
+  <li>loader接收三个输入参数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * @param {string|Buffer} content 源文件的内容
+ * @param {object} [map] 可以被 https://github.com/mozilla/source-map 使用的 SourceMap 数据
+ * @param {any} [meta] meta 数据，可以是任何内容
+ */</span>
+<span class="kd">function</span> <span class="nf">webpackLoader</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 你的webpack loader代码</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">webpackLoader</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>自定义一个简单的loader</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">simpleLoader</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">我是 SimpleLoader</span><span class="dl">"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">content</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">simpleLoader</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>-以上的 simpleLoader 并不会对输入的内容进行任何处理，只是在该 Loader 执行时输出相应的信息。Webpack 允许用户为某些资源文件配置多个不同的 Loader，比如在处理 .css 文件的时候，我们用到了 style-loader 和 css-loader，具体配置方式如下所示：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// webpack.config.js</span>
+
+<span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./src/index.js</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+     <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bundle.js</span><span class="dl">'</span><span class="p">,</span>
+     <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nf">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dist</span><span class="dl">'</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/i</span><span class="p">,</span>
+        <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">style-loader</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">css-loader</span><span class="dl">'</span><span class="p">],</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Webpack 这样设计的好处，是可以保证每个 Loader 的职责单一。同时，也方便后期 Loader 的组合和扩展。比如，你想让 Webpack 能够处理 Scss 文件，你只需先安装 sass-loader，然后在配置 Scss 文件的处理规则时，设置 rule 对象的 use 属性为 [‘style-loader’, ‘css-loader’, ‘sass-loader’] 即可。</li>
+</ul>
+
+<h2 id="写一个loader">写一个loader</h2>
+
+<ul>
+  <li>参考：https://www.cnblogs.com/yincheng/p/webpack-loader.html</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-14-webpack_loader/image_1.jpg) -->
+
+  </div>
+
+</article>
+
+
+<style scoped>
+
+div.category{
+    display: inline-block;
+    padding: 2px 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 0.5em;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+</style>
+    </div>
+  </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+<style scoped>
+  /* 背景图片 */
+  div.bg-img {
+    background-image: url("/static/background.svg");
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    background-size: 400px;
+    z-index: -2;
+    opacity: 0.1;
+  }
+</style>
+
+</html>

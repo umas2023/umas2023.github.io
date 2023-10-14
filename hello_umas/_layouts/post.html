@@ -6,6 +6,12 @@ layout: base
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">{{ page.title | escape }}</h1>
+    
+    <!-- 分类tag -->
+    {% for category in page.categories %}
+    <div class="category">{{ category }}</div>
+    {% endfor %}
+
     <h3>{{ page.info | escape }}</h3>
   </header>
 
@@ -20,3 +26,18 @@ layout: base
   </div>
 
 </article>
+
+
+<style scoped>
+
+div.category{
+    display: inline-block;
+    padding: 2px 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 0.5em;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+</style>

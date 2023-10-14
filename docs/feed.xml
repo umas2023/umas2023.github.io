@@ -1,4 +1,725 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-11T22:43:47+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 58同城2020前端笔试</title><link href="/leetcode/js/wuba2020/" rel="alternate" type="text/html" title="leetcode: 58同城2020前端笔试" /><published>2023-10-11T21:35:36+08:00</published><updated>2023-10-11T21:35:36+08:00</updated><id>/leetcode/js/wuba2020</id><content type="html" xml:base="/leetcode/js/wuba2020/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-14T22:08:26+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">jekyll: 添加背景图片</title><link href="/jekyll/background/" rel="alternate" type="text/html" title="jekyll: 添加背景图片" /><published>2023-10-14T22:06:39+08:00</published><updated>2023-10-14T22:06:39+08:00</updated><id>/jekyll/background</id><content type="html" xml:base="/jekyll/background/"><![CDATA[<ul>
+  <li>一开始想加在home.html中发现没有效果，查看发现home.html上面还有一行layout: base，也就是说base.html才是真正的根节点</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"{{ page.lang | default: site.lang | default: "</span> <span class="na">en</span><span class="err">"</span> <span class="err">}}"</span><span class="nt">&gt;</span>
+
+{%- include head.html -%}
+
+<span class="nt">&lt;body&gt;</span>
+  <span class="c">&lt;!-- 背景图 --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bg-img"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+  {%- include header.html -%}
+
+  <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"page-content"</span> <span class="na">aria-label=</span><span class="s">"Content"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
+      {{ content }}
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+
+  {%- include footer.html -%}
+
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;style </span><span class="na">scoped</span><span class="nt">&gt;</span>
+  <span class="c">/* 背景图片 */</span>
+  <span class="nt">div</span><span class="nc">.bg-img</span> <span class="p">{</span>
+    <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url("{{site.url}}/static/background.svg")</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">;</span>
+    <span class="nl">background-size</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">-2</span><span class="p">;</span>
+    <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/jekyll/2023-10-14-background/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[一开始想加在home.html中发现没有效果，查看发现home.html上面还有一行layout: base，也就是说base.html才是真正的根节点]]></summary></entry><entry><title type="html">leetcode: 58笔试</title><link href="/leetcode/js/function_call/" rel="alternate" type="text/html" title="leetcode: 58笔试" /><published>2023-10-14T21:00:04+08:00</published><updated>2023-10-14T21:00:04+08:00</updated><id>/leetcode/js/function_call</id><content type="html" xml:base="/leetcode/js/function_call/"><![CDATA[<ul>
+  <li>依旧是算法题不难，选择题逆天</li>
+  <li>因为是第一次用js写算法题，所以记录一下</li>
+</ul>
+
+<h2 id="查找出现次数最多的字符">查找出现次数最多的字符</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+
+<span class="c1">// 查找字符串中出现次数最多的字符</span>
+<span class="c1">// 可能有多个重复字符</span>
+
+<span class="cm">/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 返回给定字符串中出现频率最高的字符
+ * @param str string字符串 给定的字符串
+ * @return string字符串一维数组
+ */</span>
+<span class="kd">function</span> <span class="nf">findChar</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write code here</span>
+    <span class="kd">let</span> <span class="nx">charCount</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">chr</span> <span class="k">of</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]){</span>
+            <span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+            <span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+    <span class="nx">maxList</span> <span class="o">=</span> <span class="p">[</span><span class="nx">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">chr</span> <span class="k">in</span> <span class="nx">charCount</span><span class="p">){</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">charCount</span><span class="p">[</span><span class="nx">maxList</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="p">){</span>
+            <span class="nx">maxList</span> <span class="o">=</span> <span class="p">[</span><span class="nx">chr</span><span class="p">]</span>
+        <span class="p">}</span> 
+        <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">==</span> <span class="nx">charCount</span><span class="p">[</span><span class="nx">maxList</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">&amp;&amp;</span> <span class="nx">chr</span><span class="o">!=</span><span class="nx">maxList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">){</span>
+            <span class="nx">maxList</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">chr</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">maxList</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">findChar</span><span class="p">:</span> <span class="nx">findChar</span>
+<span class="p">};</span>
+
+
+<span class="nf">findChar</span><span class="p">(</span><span class="dl">"</span><span class="s2">asdfghjklaqwertyuiopiaia135</span><span class="dl">"</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<h2 id="斐波那契数列">斐波那契数列</h2>
+
+<ul>
+  <li>使用递归法超时了，改用迭代</li>
+  <li>也可以用动态规划的思想迭代</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="c1">// 斐波那契数列</span>
+
+
+<span class="cm">/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 返回斐波那契数列第n项的数字
+ * @param n long长整型 数列中的第n项
+ * @return long长整型
+ */</span>
+<span class="kd">function</span> <span class="nf">fib</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// 递归法超时</span>
+    <span class="c1">// if(n&lt;=1){</span>
+    <span class="c1">//     return 1</span>
+    <span class="c1">// }</span>
+    <span class="c1">// return fib(n-1) + fib(n-2)</span>
+
+
+    <span class="c1">// 试试迭代</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nx">pre</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">cur</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">pre</span> <span class="o">+</span> <span class="nx">cur</span>
+        <span class="nx">pre</span> <span class="o">=</span> <span class="nx">cur</span>
+        <span class="nx">cur</span> <span class="o">=</span> <span class="nx">next</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">cur</span>
+
+
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">fib</span><span class="p">:</span> <span class="nx">fib</span>
+<span class="p">};</span>
+
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-14-function_call/image_1.jpg) -->
+
+<h2 id="中文转数字">中文转数字</h2>
+
+<ul>
+  <li>这题比较有意思</li>
+  <li>关键在于对零的判断</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入 "二百零五万三千三百三十三"
+输出 2053333
+</code></pre></div></div>
+
+<ul>
+  <li>通过率只有85%，没有找到问题</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="c1">// 中文转数字</span>
+
+<span class="c1">// "二百零五万三千三百三十三"</span>
+<span class="c1">// 2053333</span>
+
+<span class="c1">// 通过率85%</span>
+
+
+
+<span class="cm">/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 请实现一个将中文数字转换为阿拉伯数字的方法
+ * @param chineseNumber string字符串 中文数字字符串
+ * @return int整型
+ */</span>
+<span class="kd">function</span> <span class="nf">chineseToNumber</span><span class="p">(</span><span class="nx">chineseNumber</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write code here</span>
+    <span class="kd">const</span> <span class="nx">numberMap</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">零</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">一</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="na">二</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="na">三</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="na">四</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="na">五</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="na">六</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="na">七</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="na">八</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="na">九</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="na">十</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="na">百</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="na">千</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="na">万</span><span class="p">:</span> <span class="mi">10000</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">ansNumber</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="kd">let</span> <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="kd">let</span> <span class="nx">lastNumber</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">cnNum</span> <span class="k">of</span> <span class="nx">chineseNumber</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">intNum</span> <span class="o">=</span> <span class="nx">numberMap</span><span class="p">[</span><span class="nx">cnNum</span><span class="p">]</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">curNumber</span> <span class="o">+=</span> <span class="nx">intNum</span>
+            <span class="c1">// 一万零二这种情况</span>
+            <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">curNumber</span> <span class="o">=</span> <span class="nx">ansNumber</span>
+                <span class="nx">ansNumber</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+            <span class="c1">// 一万零二十这种情况要记住二，再在下面处理十</span>
+            <span class="k">if </span><span class="p">(</span><span class="nx">curNumber</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">lastNumber</span> <span class="o">=</span> <span class="nx">intNum</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if </span><span class="p">(</span><span class="nx">curNumber</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// "十七"这种情况</span>
+                <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">10</span>
+                <span class="p">}</span>
+                <span class="c1">// 一千万这种情况</span>
+                <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">){</span>
+                    <span class="nx">ansNumber</span> <span class="o">*=</span> <span class="mi">10000</span>
+                <span class="p">}</span>
+
+            <span class="p">}</span>
+            <span class="c1">// 处理一万零二十的十</span>
+            <span class="k">else</span> <span class="k">if </span><span class="p">((</span><span class="nx">lastNumber</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">intNum</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">ansNumber</span> <span class="o">=</span> <span class="nx">curNumber</span> <span class="o">-</span> <span class="nx">lastNumber</span>
+                <span class="nx">curNumber</span> <span class="o">=</span> <span class="nx">lastNumber</span> <span class="o">*</span> <span class="nx">intNum</span>
+                <span class="nx">ansNumber</span> <span class="o">+=</span> <span class="nx">curNumber</span>
+                <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="nx">lastNumber</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">curNumber</span> <span class="o">*=</span> <span class="nx">intNum</span>
+                <span class="nx">ansNumber</span> <span class="o">+=</span> <span class="nx">curNumber</span>
+                <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="nx">lastNumber</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">cnNum</span><span class="p">,</span> <span class="nx">curNumber</span><span class="p">,</span> <span class="nx">ansNumber</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">curNumber</span> <span class="o">+</span> <span class="nx">ansNumber</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">chineseToNumber</span><span class="p">:</span> <span class="nx">chineseToNumber</span>
+<span class="p">};</span>
+
+
+<span class="c1">// console.log(chineseToNumber("二百零五万三千三百三十三"))</span>
+<span class="c1">// console.log(chineseToNumber("一万零二"))</span>
+<span class="c1">// console.log(chineseToNumber("一万零二十"))</span>
+<span class="c1">// console.log(chineseToNumber("一千万"))</span>
+<span class="c1">// console.log(chineseToNumber("一千万零一百"))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">chineseToNumber</span><span class="p">(</span><span class="dl">"</span><span class="s2">一千零一万零一十一</span><span class="dl">"</span><span class="p">))</span>
+
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[依旧是算法题不难，选择题逆天 因为是第一次用js写算法题，所以记录一下]]></summary></entry><entry><title type="html">js: call函数</title><link href="/js/function_call/" rel="alternate" type="text/html" title="js: call函数" /><published>2023-10-14T17:08:42+08:00</published><updated>2023-10-14T17:08:42+08:00</updated><id>/js/function_call</id><content type="html" xml:base="/js/function_call/"><![CDATA[<h2 id="首先了解什么是call">首先了解什么是call</h2>
+
+<ul>
+  <li>在 JavaScript 中，函数是对象的方法。如果一个函数不是 JavaScript 对象的方法，那么它就是全局对象的函数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bill</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gates</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">fullName</span><span class="p">:</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nf">fullName</span><span class="p">();</span>		<span class="c1">// 将返回 "Bill Gates"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>上面的例子中fullName 属性是一个方法。person 对象是该方法的拥有者。fullName 属性属于 person 对象的方法。</p>
+  </li>
+  <li>
+    <p>call() 方法是预定义的 JavaScript 方法。它可以用来调用所有者对象作为参数的方法。通过 call()，您能够使用属于另一个对象的方法。下例调用 person 的 fullName 方法，并用于 person1：</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">fullName</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bill</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gates</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Steve</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jobs</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">fullName</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nx">person1</span><span class="p">);</span>  <span class="c1">// 将返回 "Bill Gates"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>call方法可以接受参数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">fullName</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">city</span><span class="p">,</span> <span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">city</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">country</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bill</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gates</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">fullName</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nx">person1</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Seattle</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">USA</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="然后自己实现一个call">然后自己实现一个call</h2>
+
+<ul>
+  <li>下面是gpt写的，但我觉得hr要的应该不是这个</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 自定义的 call 函数实现</span>
+<span class="kd">function</span> <span class="nf">myCall</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 检查 fn 是否为函数</span>
+  <span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">fn</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">myCall 只能用于函数</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 将函数作为上下文对象的一个属性</span>
+  <span class="kd">const</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="nc">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">temp</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">context</span><span class="p">[</span><span class="nx">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
+
+  <span class="c1">// 使用 eval 执行函数并获取结果</span>
+  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nf">eval</span><span class="p">(</span><span class="dl">'</span><span class="s1">context[symbol](...args)</span><span class="dl">'</span><span class="p">);</span>
+
+  <span class="c1">// 删除添加的属性</span>
+  <span class="k">delete</span> <span class="nx">context</span><span class="p">[</span><span class="nx">symbol</span><span class="p">];</span>
+
+  <span class="c1">// 返回函数执行的结果</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 示例用法</span>
+<span class="kd">function</span> <span class="nf">greet</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span> <span class="p">};</span>
+
+<span class="nf">myCall</span><span class="p">(</span><span class="nx">greet</span><span class="p">,</span> <span class="nx">person</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>Symbol是JavaScript中的一种原始数据类型，引入于ES6（ECMAScript 2015）标准。它是一种唯一且不可变的数据类型，用于表示一个独一无二的标识符。</p>
+  </li>
+  <li>
+    <p>与其他原始数据类型（如字符串、数字和布尔值）不同，Symbol值在内存中是唯一的。每个Symbol值都是独一无二的，即使它们具有相同的描述。</p>
+  </li>
+  <li>
+    <p>在示例代码中，我们使用Symbol(‘temp’)创建了一个带有描述符为”temp”的Symbol值，并将其作为临时属性名添加到上下文对象中。通过这种方式，我们确保了该属性名的唯一性，不会与上下文对象中的其他属性名冲突。</p>
+  </li>
+  <li>
+    <p>context[symbol] = fn 这行代码的意思是将一个函数 fn 赋值给对象 context 的一个属性，而该属性的名称是 symbol 所表示的 Symbol 值。</p>
+  </li>
+  <li>
+    <p>在 JavaScript 中，eval 函数接受一个字符串参数，并将该字符串作为 JavaScript 代码进行解析和执行。在这个特定的表达式中，我们使用 eval 函数来执行一个动态生成的函数调用。</p>
+  </li>
+  <li>
+    <p>在上面的示例中，greet 函数是要调用的函数，person 对象是作为上下文对象传递给 myCall 函数的参数，也就是说在myCall中context = person</p>
+  </li>
+  <li>
+    <p>根据对代码的理解，简化了gpt的代码如下：</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">myCall</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">fn</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">myCall 只能用于函数</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 创建一个唯一的属性名</span>
+  <span class="kd">const</span> <span class="nx">propertyName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">__myCall__</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="c1">// 将函数赋值给上下文对象的属性</span>
+  <span class="nx">context</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
+
+  <span class="c1">// 使用属性名调用函数并获取结果</span>
+  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">context</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">]();</span>
+
+  <span class="c1">// 删除临时属性</span>
+  <span class="k">delete</span> <span class="nx">context</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">];</span>
+
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 示例用法</span>
+<span class="kd">function</span> <span class="nf">greet</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span> <span class="p">};</span>
+
+<span class="nf">myCall</span><span class="p">(</span><span class="nx">greet</span><span class="p">,</span> <span class="nx">person</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>简单来说就是，person内部没有greet方法，在myCall里把greet方法加入到person中，调用完后再删掉</li>
+  <li>因为greet加入了person，所以可以共享this</li>
+</ul>
+
+<!--![引入图片](/image/js/2023-10-14-function_call/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[首先了解什么是call]]></summary></entry><entry><title type="html">leetcode: js反转二叉树</title><link href="/leetcode/js/invertBinaryTree/" rel="alternate" type="text/html" title="leetcode: js反转二叉树" /><published>2023-10-14T17:01:33+08:00</published><updated>2023-10-14T17:01:33+08:00</updated><id>/leetcode/js/invertBinaryTree</id><content type="html" xml:base="/leetcode/js/invertBinaryTree/"><![CDATA[<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">TreeNode</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="kd">function</span> <span class="nf">invertBinaryTree</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+  
+    <span class="c1">// 交换左右子节点</span>
+    <span class="kd">let</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+  
+    <span class="c1">// 递归反转左子树和右子树</span>
+    <span class="nf">invertBinaryTree</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+    <span class="nf">invertBinaryTree</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+  
+    <span class="k">return</span> <span class="nx">root</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="c1">// 示例用例</span>
+  <span class="kd">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+  
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">原始二叉树:</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
+  
+  <span class="kd">const</span> <span class="nx">invertedRoot</span> <span class="o">=</span> <span class="nf">invertBinaryTree</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
+  
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">反转后的二叉树:</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">invertedRoot</span><span class="p">);</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-14-category_tag/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[class TreeNode { constructor(val) { this.val = val; this.left = null; this.right = null; } } function invertBinaryTree(root) { if (!root) { return null; } // 交换左右子节点 let temp = root.left; root.left = root.right; root.right = temp; // 递归反转左子树和右子树 invertBinaryTree(root.left); invertBinaryTree(root.right); return root; } // 示例用例 const root = new TreeNode(4); root.left = new TreeNode(2); root.right = new TreeNode(7); root.left.left = new TreeNode(1); root.left.right = new TreeNode(3); root.right.left = new TreeNode(6); root.right.right = new TreeNode(9); console.log('原始二叉树:'); console.log(root); const invertedRoot = invertBinaryTree(root); console.log('反转后的二叉树:'); console.log(invertedRoot);]]></summary></entry><entry><title type="html">jekyll: jekyll首页添加分类tag标签</title><link href="/jekyll/category_tag/" rel="alternate" type="text/html" title="jekyll: jekyll首页添加分类tag标签" /><published>2023-10-14T16:45:18+08:00</published><updated>2023-10-14T16:45:18+08:00</updated><id>/jekyll/category_tag</id><content type="html" xml:base="/jekyll/category_tag/"><![CDATA[<ul>
+  <li>
+    <p>首先找到主页的模板，比如我的是./_layouts/home.html</p>
+  </li>
+  <li>
+    <p>查找里面的for循环就可以定位每条post的格式了</p>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    {%- for post in posts -%}
+    <span class="nt">&lt;li&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;</span>{{ post.date | date: date_format }}<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;h3&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-link"</span> <span class="na">href=</span><span class="s">"{{ post.url | relative_url }}"</span><span class="nt">&gt;</span>
+          {{ post.title | escape }}
+        <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;h5&gt;</span>{{ post.info | escape }}<span class="nt">&lt;/h5&gt;</span>
+      {%- if site.show_excerpts -%}
+      {{ post.excerpt }}
+      {%- endif -%}
+    <span class="nt">&lt;/li&gt;</span>
+    {%- endfor -%}
+</code></pre></div></div>
+
+<ul>
+  <li>在上面的title和info之间添加分类tag</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    {%- for post in posts -%}
+    <span class="nt">&lt;li&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;</span>{{ post.date | date: date_format }}<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;h3&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-link"</span> <span class="na">href=</span><span class="s">"{{ post.url | relative_url }}"</span><span class="nt">&gt;</span>
+          {{ post.title | escape }}
+        <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/h3&gt;</span>
+
+      <span class="c">&lt;!-- 添加分类标签 --&gt;</span>
+      {% for category in post.categories %}
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"category"</span><span class="nt">&gt;</span>{{ category }}<span class="nt">&lt;/span&gt;</span>
+      {% endfor %}
+
+      <span class="nt">&lt;h5&gt;</span>{{ post.info | escape }}<span class="nt">&lt;/h5&gt;</span>
+      {%- if site.show_excerpts -%}
+      {{ post.excerpt }}
+      {%- endif -%}
+    <span class="nt">&lt;/li&gt;</span>
+    {%- endfor -%}
+</code></pre></div></div>
+
+<ul>
+  <li>底部再定义一些格式</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;style </span><span class="na">scoped</span><span class="nt">&gt;</span>
+
+  <span class="nt">span</span><span class="nc">.category</span><span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">2px</span> <span class="m">5px</span> <span class="m">2px</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">0.4</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/image/jekyll/2023-10-14-category_tag/image_1.jpg" alt="引入图片" /></p>
+
+<ul>
+  <li>文章内添加tag也一样，找到文章的模板后添加，我的是post.html</li>
+  <li>注意这里是page.categories而不是post.categories</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: base
+---
+<span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- 标题 --&gt;</span>
+  <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">"post-header"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"post-title"</span><span class="nt">&gt;</span>{{ page.title | escape }}<span class="nt">&lt;/h1&gt;</span>
+    
+    <span class="c">&lt;!-- 分类tag --&gt;</span>
+    {% for category in page.categories %}
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"category"</span><span class="nt">&gt;</span>{{ category }}<span class="nt">&lt;/span&gt;</span>
+    {% endfor %}
+
+    <span class="nt">&lt;h3&gt;</span>{{ page.info | escape }}<span class="nt">&lt;/h3&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+
+  <span class="c">&lt;!-- 目录 --&gt;</span>
+  <span class="nt">&lt;hr&gt;</span>
+  {% toc %}
+  <span class="nt">&lt;hr&gt;</span>
+
+  <span class="c">&lt;!-- 内容主体 --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"post-content"</span><span class="nt">&gt;</span>
+    {{ content }}
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;/article&gt;</span>
+
+
+<span class="nt">&lt;style </span><span class="na">scoped</span><span class="nt">&gt;</span>
+
+  <span class="nt">span</span><span class="nc">.category</span><span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">2px</span> <span class="m">5px</span> <span class="m">2px</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">0.4</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[首先找到主页的模板，比如我的是./_layouts/home.html]]></summary></entry><entry><title type="html">vue: vue双向绑定</title><link href="/vue/knowhow/mvvm/" rel="alternate" type="text/html" title="vue: vue双向绑定" /><published>2023-10-14T16:25:39+08:00</published><updated>2023-10-14T16:25:39+08:00</updated><id>/vue/knowhow/mvvm</id><content type="html" xml:base="/vue/knowhow/mvvm/"><![CDATA[<h2 id="vue双向绑定原理">vue双向绑定原理</h2>
+
+<ul>
+  <li>vue.js是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调来渲染视图。</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MVC模式：Model，View，Control，单项绑定，js更新model，view就会更新
+MVVM模式：Model–View–ViewModel，它实现了View的变动，自动反映在 ViewModel，反之亦然。
+对于双向绑定的理解，就是用户更新了View，Model的数据也自动被更新了，这种情况就是双向绑定
+</code></pre></div></div>
+
+<ul>
+  <li>监听器Observer，用来劫持并监听所有属性，如果有变动的，就通知订阅者</li>
+  <li>订阅者Watcher，每一个Watcher都绑定一个更新函数，watcher可以收到属性的变化通知并执行相应的函数，从而更新视图</li>
+  <li>解析器Compile，可以扫描和解析每个节点的相关指令（v-model，v-on等指令），如果节点存在v-model，v-on等指令，则解析器Compile初始化这类节点的模板数据，使之可以显示在视图上，然后初始化相应的订阅者（Watcher）</li>
+</ul>
+
+<p>v-model是vue的一个语法糖，用于表单控件或者在组件上创建双向绑定。</p>
+
+<h2 id="步骤">步骤</h2>
+
+<p>第一步： 需要observer(观察者)对数据对象进行递归遍历，包括子属性对象的属性，都加上 setter和getter
+这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化</p>
+
+<p>第二步： compile(模板解析器)解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图</p>
+
+<p>第三步： Watcher(订阅者)是Observer和Compile之间通信的桥梁，主要做的事情是:
+1、在自身实例化时往属性订阅器(dep)里面添加自己
+2、自身必须有一个update()方法
+3、待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退。</p>
+
+<p>第四步： MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -&gt; 视图更新；视图交互变化(input) -&gt; 数据model变更的双向绑定效果。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-14-mvvm/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="knowhow" /><summary type="html"><![CDATA[vue双向绑定原理]]></summary></entry><entry><title type="html">vue: webpack loader</title><link href="/vue/knowhow/webpack_loader/" rel="alternate" type="text/html" title="vue: webpack loader" /><published>2023-10-14T16:01:56+08:00</published><updated>2023-10-14T16:01:56+08:00</updated><id>/vue/knowhow/webpack_loader</id><content type="html" xml:base="/vue/knowhow/webpack_loader/"><![CDATA[<ul>
+  <li>参考：https://juejin.cn/post/6992754161221632030</li>
+  <li>参考：https://zhuanlan.zhihu.com/p/104205895</li>
+</ul>
+
+<h2 id="webpack">webpack</h2>
+
+<ul>
+  <li>
+    <p>Webpack 是一个模块化打包工具，它被广泛地应用在前端领域的大多数项目中。利用 Webpack 我们不仅可以打包 JS 文件，还可以打包图片、CSS、字体等其他类型的资源文件。而支持打包非 JS 文件的特性是基于 Loader 机制来实现的。</p>
+  </li>
+  <li>
+    <p>webpack做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。</p>
+  </li>
+</ul>
+
+<h2 id="vite和webpack">vite和webpack</h2>
+
+<ul>
+  <li>vite</li>
+</ul>
+
+<p>基于原生 ES-Module 的前端构建工具
+Vite，一个基于浏览器原生 ES imports 的开发服务器。利用浏览器去解析 imports，在服务器端按需编译返回，完全跳过了打包这个概念，服务器随起随用。</p>
+
+<p>vite是基于es modules的，因为vite不允许commonjs的规范，所以vite就不会将所有的依赖读取一遍，也就提升了运行效率；而webpack则更多的关注兼容性，webpack在启动的时候需要读取所有的依赖，统一模块化代码，再启动服务器；而vite则是直接启动服务器按需加载，未用到的模块不会加载。webpack更关注兼容性，vite关注浏览器端的开发体验。</p>
+
+<ul>
+  <li>vite和vue-cli</li>
+</ul>
+
+<p>vue-cli 基于 webpack 封装，生产环境和开发环境都是基于 Webpack 打包。</p>
+
+<h2 id="loader">loader</h2>
+
+<ul>
+  <li>
+    <p>Loader 本质上是导出函数的 JavaScript 模块</p>
+  </li>
+  <li>常见的loader：
+    <ul>
+      <li>image-loader：加载并且压缩图片文件</li>
+      <li>css-loader：帮助webpack打包处理css文件，使用css-loader必须要配合使用style-loader</li>
+      <li>style-loader：用于将css编译完成的样式，挂载到页面的style标签上。但是要注意loader执行顺序，style-loader要放在第一位，loader都是从后往前执行</li>
+      <li>babel-loader：把 ES6 转换成 ES5</li>
+      <li>sass-loader: css预处理器，能更好的编写css</li>
+      <li>postcss-loader: 用于补充css样式在各种浏览器的前缀，很方便，不需要手动写了</li>
+      <li>eslint-loader:用于检查代码是否符合规范，是否存在语法错误</li>
+      <li>url-loader:处理图片类型资源，可以根据图片的大小进行不同的操作，如果图片大小大于指定大小，则将图片进行资源打包，否则将图片转换为base64格式字符串，再把这个字符串打包到 JS文件里。</li>
+    </ul>
+  </li>
+  <li>loader接收三个输入参数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * @param {string|Buffer} content 源文件的内容
+ * @param {object} [map] 可以被 https://github.com/mozilla/source-map 使用的 SourceMap 数据
+ * @param {any} [meta] meta 数据，可以是任何内容
+ */</span>
+<span class="kd">function</span> <span class="nf">webpackLoader</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 你的webpack loader代码</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">webpackLoader</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>自定义一个简单的loader</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">simpleLoader</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">我是 SimpleLoader</span><span class="dl">"</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">content</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">simpleLoader</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>-以上的 simpleLoader 并不会对输入的内容进行任何处理，只是在该 Loader 执行时输出相应的信息。Webpack 允许用户为某些资源文件配置多个不同的 Loader，比如在处理 .css 文件的时候，我们用到了 style-loader 和 css-loader，具体配置方式如下所示：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// webpack.config.js</span>
+
+<span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./src/index.js</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+     <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bundle.js</span><span class="dl">'</span><span class="p">,</span>
+     <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nf">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dist</span><span class="dl">'</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/i</span><span class="p">,</span>
+        <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">style-loader</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">css-loader</span><span class="dl">'</span><span class="p">],</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Webpack 这样设计的好处，是可以保证每个 Loader 的职责单一。同时，也方便后期 Loader 的组合和扩展。比如，你想让 Webpack 能够处理 Scss 文件，你只需先安装 sass-loader，然后在配置 Scss 文件的处理规则时，设置 rule 对象的 use 属性为 [‘style-loader’, ‘css-loader’, ‘sass-loader’] 即可。</li>
+</ul>
+
+<h2 id="写一个loader">写一个loader</h2>
+
+<ul>
+  <li>参考：https://www.cnblogs.com/yincheng/p/webpack-loader.html</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-14-webpack_loader/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="knowhow" /><summary type="html"><![CDATA[参考：https://juejin.cn/post/6992754161221632030 参考：https://zhuanlan.zhihu.com/p/104205895]]></summary></entry><entry><title type="html">leetcode: 58同城2020前端笔试</title><link href="/leetcode/js/wuba2020/" rel="alternate" type="text/html" title="leetcode: 58同城2020前端笔试" /><published>2023-10-11T21:35:36+08:00</published><updated>2023-10-11T21:35:36+08:00</updated><id>/leetcode/js/wuba2020</id><content type="html" xml:base="/leetcode/js/wuba2020/"><![CDATA[<ul>
   <li>链接：https://www.nowcoder.com/exam/test/74831907/detail?pid=30359331&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91</li>
 </ul>
 
@@ -1219,687 +1940,4 @@ class Solution:
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-11-is/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><category term="python" /><summary type="html"><![CDATA[链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91]]></summary></entry><entry><title type="html">leetcode: 携程笔试</title><link href="/leetcode/python/xiecheng/" rel="alternate" type="text/html" title="leetcode: 携程笔试" /><published>2023-10-11T12:04:54+08:00</published><updated>2023-10-11T12:04:54+08:00</updated><id>/leetcode/python/xiecheng</id><content type="html" xml:base="/leetcode/python/xiecheng/"><![CDATA[<h2 id="三位回文串">三位回文串</h2>
-
-<p>01串，修改一位，包含尽可能多的长度为3的回文子串<br />
-输入 01101 <br />
-输出 2<br />
-解释 11101包含111和101</p>
-
-<p>通过率23%</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 暴力遍历
-</span>
-<span class="kn">import</span> <span class="n">sys</span>
-
-<span class="k">def</span> <span class="nf">sub_count</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">计算回文子串的数量</span><span class="sh">'''</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]:</span>
-            <span class="n">count</span> <span class="o">+=</span><span class="mi">1</span>
-    <span class="k">return</span> <span class="n">count</span>
-
-<span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">s</span><span class="o">==</span><span class="sh">"</span><span class="s">0</span><span class="sh">"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span>
-    <span class="k">return</span> <span class="sh">"</span><span class="s">0</span><span class="sh">"</span>
-
-<span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span> <span class="o">==</span> <span class="p">[]</span> <span class="p">:</span> <span class="nf">exit</span><span class="p">()</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">num</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="n">a_list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-        <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">change</span><span class="p">(</span><span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">new_a</span> <span class="o">=</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="nf">sub_count</span><span class="p">(</span><span class="n">new_a</span><span class="p">))</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="坐标排序">坐标排序</h2>
-
-<p>n个坐标点，查找第x个</p>
-
-<p>排序：横坐标从小到大，纵坐标从小到大，拆分两部分（左比右少），查找x在做还是右，返回：左L右R<br />
-排序：纵坐标从小到大，横坐标从小到大。。。返回LR<br />
-循环<br />
-只剩一个时结束，输出O<br />
-4 2
--1 3
-3 5
-2 6
-4 3
-输出RRO</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># sorted函数直接对二维数组进行二维排序
-# 要先对纵坐标排序时，把原数组横纵坐标对调就行了
-</span>
-<span class="kn">import</span> <span class="n">sys</span>
-
-<span class="n">input_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">ans_str</span> <span class="o">=</span> <span class="sh">""</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="p">[]:</span>
-        <span class="k">break</span>
-    <span class="n">input_list</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="nf">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nf">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
-
-<span class="n">n</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">point_list</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">point_list</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">point_list</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span>
-    <span class="n">half</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">left_list</span> <span class="o">=</span> <span class="n">point_list</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">half</span><span class="p">]</span>
-    <span class="n">right_list</span> <span class="o">=</span> <span class="n">point_list</span><span class="p">[</span><span class="n">half</span><span class="p">:</span><span class="nf">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">if</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">left_list</span><span class="p">:</span>
-        <span class="n">ans_str</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">L</span><span class="sh">"</span>
-        <span class="n">point_list</span> <span class="o">=</span> <span class="n">left_list</span>
-    <span class="k">elif</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">right_list</span><span class="p">:</span>
-        <span class="n">ans_str</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">R</span><span class="sh">"</span>
-        <span class="n">point_list</span> <span class="o">=</span> <span class="n">right_list</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">error: target not find</span><span class="sh">"</span><span class="p">)</span>
-
-    <span class="n">point_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="ow">in</span> <span class="n">point_list</span><span class="p">]</span>
-    <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-
-<span class="n">ans_str</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">O</span><span class="sh">"</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans_str</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="字符串相邻不等">字符串相邻不等</h2>
-
-<p>字符串，每次把一个字符改为字母表上相邻的字符（左或右）
-修改结果每个相邻字符串都不相等
-求最少操作多少次</p>
-
-<p>输入 aabcc</p>
-
-<p>输出
-2
-babcb</p>
-
-<p>因为我的结果是babdc所以判挂了，但理论上没问题，不知道有没有人工判卷 ← 大概不可能吧</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 每个字母修改次数只能是1次或2次，不存在需要修改3次的情况
-# 考虑两种情况：aab和baa，在遍历到当前字母和后面一位字母相同时，要根据情况判断修改当前一位还是后面一位
-</span>
-<span class="kn">import</span> <span class="n">sys</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="p">[]:</span>
-        <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">str_list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-
-<span class="k">def</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">返回一次改变可能的字母列表</span><span class="sh">'''</span>
-    <span class="n">letter_num</span> <span class="o">=</span> <span class="nf">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">letter_num</span> <span class="o">&lt;=</span> <span class="mi">97</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="sh">"</span><span class="s">b</span><span class="sh">"</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">letter_num</span> <span class="o">&gt;=</span> <span class="mi">122</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="nf">chr</span><span class="p">(</span><span class="n">letter_num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="nf">chr</span><span class="p">(</span><span class="n">letter_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-
-
-<span class="k">def</span> <span class="nf">get_replace_list_deep</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">返回两次改变后可能的字母列表</span><span class="sh">'''</span>
-    <span class="n">replace_list_deep</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">replace_list</span><span class="p">:</span>
-        <span class="n">replace_list_deep</span> <span class="o">+=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">replace_list_deep</span>
-
-
-<span class="n">ans_num</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">str_list</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">):</span>
-        <span class="k">break</span>
-    <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
-        <span class="c1"># 改本项
-</span>        <span class="n">both_side</span> <span class="o">=</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
-        <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-        <span class="n">replace_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">replace_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">both_side</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">replace_list</span> <span class="o">==</span> <span class="p">[]:</span>
-            <span class="n">ans_num</span> <span class="o">+=</span><span class="mi">1</span>
-            <span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">continue</span>
-        <span class="c1"># 改后项
-</span>        <span class="n">both_side</span> <span class="o">=</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span> <span class="k">else</span> <span class="p">[</span><span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]]</span>
-        <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-        <span class="n">replace_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">replace_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">both_side</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">replace_list</span> <span class="o">==</span> <span class="p">[]:</span>
-            <span class="n">ans_num</span> <span class="o">+=</span> <span class="mi">2</span>
-            <span class="n">replace_list</span> <span class="o">=</span> <span class="nf">get_replace_list_deep</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-            <span class="n">replace_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">replace_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">both_side</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ans_num</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="n">ans_num</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">str_list</span><span class="p">))</span>
-</code></pre></div></div>
-
-<h2 id="三色树">三色树</h2>
-
-<p>树的每个节点被染为rgb三色，求删掉一条边，满足分成两个连通块都恰好包含三种颜色的边的数量</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>示例
-7
-rgbrgbg
-1 2
-2 3
-3 4
-4 5
-5 6
-6 7
-
-1
-</code></pre></div></div>
-
-<p>因为到这里时间不多了，所以没做</p>
-
-<p>贴一个网上的思路：统计子树中含有的rgb的数量，判断是否包含三种颜色，然后再用总的rgb数减去子树中的rgb数量，判断是否包含三种颜色。</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-11-xiecheng/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[三位回文串]]></summary></entry><entry><title type="html">leetcode: 得物笔试</title><link href="/leetcode/js/dewu/" rel="alternate" type="text/html" title="leetcode: 得物笔试" /><published>2023-10-10T17:45:01+08:00</published><updated>2023-10-10T17:45:01+08:00</updated><id>/leetcode/js/dewu</id><content type="html" xml:base="/leetcode/js/dewu/"><![CDATA[<ul>
-  <li>接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">processTasks</span><span class="p">(</span><span class="nx">taskList</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="kd">let</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="c1">// 执行单个任务</span>
-    <span class="k">async</span> <span class="kd">function</span> <span class="nf">runTask</span><span class="p">(</span><span class="nx">task</span><span class="p">,</span> <span class="nx">taskIndex</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">task</span><span class="p">();</span>
-        <span class="nx">results</span><span class="p">[</span><span class="nx">taskIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 滑动窗口</span>
-    <span class="k">async</span> <span class="kd">function</span> <span class="nf">runTasksInWindow</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">while </span><span class="p">(</span><span class="nx">currentIndex</span> <span class="o">&lt;</span> <span class="nx">taskList</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">taskIndex</span> <span class="o">=</span> <span class="nx">currentIndex</span><span class="o">++</span><span class="p">;</span>
-            <span class="kd">const</span> <span class="nx">task</span> <span class="o">=</span> <span class="nx">taskList</span><span class="p">[</span><span class="nx">taskIndex</span><span class="p">];</span>
-            <span class="k">await</span> <span class="nf">runTask</span><span class="p">(</span><span class="nx">task</span><span class="p">,</span> <span class="nx">taskIndex</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 并行任务</span>
-    <span class="kd">const</span> <span class="nx">runningTasks</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">runningTasks</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nf">runTasksInWindow</span><span class="p">());</span>
-    <span class="p">}</span>
-
-    <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="nx">runningTasks</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 示例使用</span>
-
-<span class="kd">const</span> <span class="nx">delay</span> <span class="o">=</span> <span class="p">(</span><span class="nx">ms</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">ms</span><span class="p">));</span>
-
-<span class="kd">const</span> <span class="nx">createTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">taskName</span><span class="p">,</span> <span class="nx">duration</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`starting task </span><span class="p">${</span><span class="nx">taskName</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-        <span class="nf">delay</span><span class="p">(</span><span class="nx">duration</span><span class="p">).</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`complete task </span><span class="p">${</span><span class="nx">taskName</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-            <span class="nf">resolve</span><span class="p">(</span><span class="nx">taskName</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">taskList</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task1</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
-    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task2</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
-    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task3</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
-    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">createTask</span><span class="p">(</span><span class="dl">"</span><span class="s2">task4</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
-<span class="p">];</span>
-
-<span class="c1">//这段代码是一个立即执行的异步函数表达式（Immediately Invoked Async Function Expression，IIFE）</span>
-<span class="c1">// 在这里，定义了一个匿名的异步函数，并立即执行它</span>
-<span class="p">(</span><span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">processTasks</span><span class="p">(</span><span class="nx">taskList</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
-<span class="p">})();</span>
-</code></pre></div></div>
-
-<ul>
-  <li>调用js</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node.exe .\test.js
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-10-dewu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回]]></summary></entry><entry><title type="html">leetcode: 途虎笔试</title><link href="/leetcode/tuhu/" rel="alternate" type="text/html" title="leetcode: 途虎笔试" /><published>2023-10-09T20:33:56+08:00</published><updated>2023-10-09T20:33:56+08:00</updated><id>/leetcode/tuhu</id><content type="html" xml:base="/leetcode/tuhu/"><![CDATA[<ul>
-  <li>一般来说hr拿到笔试分数之后不可能去仔细看你的代码</li>
-  <li>所以这几道笔试题就显得很弱鸡</li>
-  <li>（这几道算法题真的配得上前面的逆天选择题吗）</li>
-</ul>
-
-<h2 id="js把秒数格式化为000232格式">js,把秒数格式化为”00:02:32”格式</h2>
-
-<ul>
-  <li>这题还好，作为第一题刚刚合适</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">formatTime</span><span class="p">(</span> <span class="nx">seconds</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-    <span class="kd">let</span> <span class="nx">ss</span> <span class="o">=</span> <span class="nx">seconds</span> <span class="o">%</span> <span class="mi">60</span>
-    <span class="kd">let</span> <span class="nx">mm</span> <span class="o">=</span>  <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">seconds</span> <span class="o">%</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nx">hh</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">seconds</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span>
-    <span class="nx">ss</span> <span class="o">=</span> <span class="nx">ss</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span>
-    <span class="nx">mm</span> <span class="o">=</span> <span class="nx">mm</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span>
-    <span class="nx">hh</span> <span class="o">=</span> <span class="nx">hh</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">padStart</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">hh</span><span class="o">+</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="o">+</span><span class="nx">mm</span><span class="o">+</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="o">+</span><span class="nx">ss</span>
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">formatTime</span> <span class="p">:</span> <span class="nx">formatTime</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h2 id="两字符串str1str2其中str2由str1乱序重排后随机添加一个字符找出这个字符">两字符串str1,str2,其中str2由str1乱序重排后随机添加一个字符，找出这个字符</h2>
-
-<ul>
-  <li>这题就完全意义不明</li>
-  <li>我选择直接遍历</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findTheDifference</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">str1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">str2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">str2</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">str1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">char</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">str1</span> <span class="o">=</span> <span class="n">str1</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="n">char</span><span class="p">,</span><span class="sh">""</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">findTheDifference</span><span class="p">(</span><span class="sh">"</span><span class="s">aa</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">aaa</span><span class="sh">"</span><span class="p">))</span>
-</code></pre></div></div>
-
-<h2 id="找车胎">找车胎</h2>
-
-<ul>
-  <li>题目给了一个场景，从一堆车胎里找胎</li>
-  <li>list1是车胎宽度</li>
-  <li>list2是宽度对应的数量</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[145,175,215,235],[8,7,2,10]
-
-排序list1
-max(list1) = a
-找出list2中max所在index对应list1中的数值b
-输出[排序list1][a,b]
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">searchTreadWidth</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">treadWidths</span><span class="p">,</span> <span class="n">tireCounts</span><span class="p">):</span>
-        <span class="n">maxCount</span> <span class="o">=</span> <span class="n">treadWidths</span><span class="p">[</span><span class="n">tireCounts</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">tireCounts</span><span class="p">))]</span>
-        <span class="n">treadWidthsSort</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">treadWidths</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">treadWidthsSort</span><span class="p">,[</span><span class="n">treadWidthsSort</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">maxCount</span><span class="p">]]</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">searchTreadWidth</span><span class="p">([</span><span class="mi">155</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span><span class="mi">165</span><span class="p">,</span><span class="mi">195</span><span class="p">,</span><span class="mi">215</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-09-tuhu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><summary type="html"><![CDATA[一般来说hr拿到笔试分数之后不可能去仔细看你的代码 所以这几道笔试题就显得很弱鸡 （这几道算法题真的配得上前面的逆天选择题吗）]]></summary></entry><entry><title type="html">js: 列表扩展</title><link href="/js/list_unshift/" rel="alternate" type="text/html" title="js: 列表扩展" /><published>2023-10-08T14:39:03+08:00</published><updated>2023-10-08T14:39:03+08:00</updated><id>/js/list_unshift</id><content type="html" xml:base="/js/list_unshift/"><![CDATA[<ul>
-  <li>unshift函数扩展列表，三点（扩展运算符）拆分列表</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">show_list</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(...</span><span class="nx">image_urls</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>关于扩展运算符</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">array1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bar</span><span class="dl">'</span><span class="p">,</span> <span class="na">x</span><span class="p">:</span> <span class="mi">42</span> <span class="p">};</span>
-<span class="kd">const</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">10</span> <span class="p">};</span> <span class="c1">// { foo: 'bar', x: 42, y: 10 }</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/js/2023-10-08-list_unshift/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[unshift函数扩展列表，三点（扩展运算符）拆分列表]]></summary></entry><entry><title type="html">vue: 读取router参数</title><link href="/vue/router_parameter/" rel="alternate" type="text/html" title="vue: 读取router参数" /><published>2023-10-08T14:36:17+08:00</published><updated>2023-10-08T14:36:17+08:00</updated><id>/vue/router_parameter</id><content type="html" xml:base="/vue/router_parameter/"><![CDATA[<ul>
-  <li>
-    <p>vue读取router参数</p>
-  </li>
-  <li>比如通过这样的链接访问网页：http://localhost:8080/#/home?id_input=10001</li>
-  <li>希望读取到id_input的值并赋给变量</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useRouter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue-router</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nf">useRouter</span><span class="p">();</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">currentRoute</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">id_input</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>在 Vue 3 中，router.currentRoute.value.query 返回的是一个包含查询参数的对象，其中每个查询参数的值是一个字符串数组（string[]）或单个字符串（string）</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">id_input</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">router</span><span class="p">.</span><span class="nx">currentRoute</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">id_input</span> <span class="k">as</span> <span class="nx">string</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-08-router_parameter/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[vue读取router参数]]></summary></entry><entry><title type="html">leetcode: 记某鱼笔试的5道题</title><link href="/leetcode/python/duozhuayu/" rel="alternate" type="text/html" title="leetcode: 记某鱼笔试的5道题" /><published>2023-10-06T16:14:24+08:00</published><updated>2023-10-06T16:14:24+08:00</updated><id>/leetcode/python/duozhuayu</id><content type="html" xml:base="/leetcode/python/duozhuayu/"><![CDATA[<ul>
-  <li>据说这个公司每年都用这5道，所以不写公司名了</li>
-</ul>
-
-<h2 id="1-good-word">1. Good Word</h2>
-<p>字符串中出现最多的字符数量m<br />
-字符串中出现最少的字符数量n<br />
-m/n = 整数且&gt;1
-满足条件为Good Word</p>
-
-<ul>
-  <li>暴力求解：创建了一个dic，记录所有字母出现的次数</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">isGoodWord</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="c1"># write code here
-</span>        <span class="n">dic</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
-            <span class="n">dic</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">letter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dic</span> <span class="k">else</span> <span class="n">dic</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-        <span class="n">ct</span> <span class="o">=</span> <span class="p">[</span><span class="n">dic</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">dic</span> <span class="p">]</span>
-        <span class="n">maxn</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
-        <span class="n">minn</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">maxn</span> <span class="o">%</span> <span class="n">minn</span> <span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">maxn</span><span class="o">/</span><span class="n">minn</span> <span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">True</span>
-        <span class="k">return</span> <span class="bp">False</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">isGoodWord</span><span class="p">(</span><span class="sh">"</span><span class="s">duozhuayu</span><span class="sh">"</span><span class="p">))</span>
-</code></pre></div></div>
-
-<h2 id="2-升序链表合并">2. 升序链表合并</h2>
-
-<ul>
-  <li>
-    <p>合并结果仍为升序链表</p>
-  </li>
-  <li>
-    <p>遍历就完了</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">next_node</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="n">self</span><span class="p">.</span><span class="nb">next</span><span class="p">:</span><span class="n">ListNode</span> <span class="o">=</span> <span class="n">next_node</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">merge_orders</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">a</span><span class="p">:</span><span class="n">ListNode</span> <span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="n">ListNode</span> <span class="p">)</span> <span class="o">-&gt;</span><span class="n">ListNode</span><span class="p">:</span>
-        <span class="c1"># write code here
-</span>        <span class="n">ans</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
-        <span class="n">pointer</span> <span class="o">=</span> <span class="n">ans</span>
-        <span class="k">while</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">a</span><span class="p">.</span><span class="n">val</span><span class="o">&lt;=</span><span class="n">b</span><span class="p">.</span><span class="n">val</span><span class="p">:</span>
-                <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">a</span>
-                <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nb">next</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">b</span>
-                <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="nb">next</span>
-            <span class="n">pointer</span> <span class="o">=</span> <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span>
-        <span class="k">if</span> <span class="n">a</span><span class="p">:</span>
-            <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">a</span>
-        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-            <span class="n">pointer</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">b</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">.</span><span class="nb">next</span>
-
-
-<span class="n">ln1</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nc">ListNode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nc">ListNode</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="bp">None</span><span class="p">)))</span>
-<span class="n">ln2</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nc">ListNode</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="bp">None</span><span class="p">))</span>
-<span class="n">ans</span> <span class="o">=</span> <span class="nc">Solution</span><span class="p">().</span><span class="nf">merge_orders</span><span class="p">(</span><span class="n">ln1</span><span class="p">,</span><span class="n">ln2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="3-解压缩字符串">3. 解压缩字符串</h2>
-<p>aabb =&gt; a(2)b(2)<br />
-aabbaabb =&gt; (a(2)b(2))2<br />
-只出现一次的字母不压缩</p>
-
-<ul>
-  <li>
-    <p>这里我下面写的程序通过率只有60%</p>
-  </li>
-  <li>暴力求解：创建了一个函数get_cp，返回每个前括号对应的后括号的位置（list形式）</li>
-  <li>本来应该在更新字符串时同步更新上面那个list，但有点错位懒得改了，每次循环都调用一遍get_cp</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">decompress</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">compressed_str</span><span class="p">:</span><span class="nb">str</span> <span class="p">):</span>
-        <span class="c1"># write code here
-</span>        <span class="k">def</span> <span class="nf">get_cp</span><span class="p">(</span><span class="n">str_in</span><span class="p">):</span>
-            <span class="n">cp_index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nf">len</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span>
-            <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">letter</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span> <span class="p">:</span>
-                <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="sh">"</span><span class="s">(</span><span class="sh">"</span><span class="p">:</span>
-                    <span class="n">stack</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">letter</span> <span class="o">==</span> <span class="sh">"</span><span class="s">)</span><span class="sh">"</span><span class="p">:</span>
-                    <span class="n">cp_index</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
-                    <span class="n">stack</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">cp_index</span>
-
-        <span class="n">cp_index</span> <span class="o">=</span> <span class="nf">get_cp</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span>
-        <span class="k">while</span> <span class="nf">sum</span><span class="p">(</span><span class="n">cp_index</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">cp</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">cp_index</span><span class="p">)</span> <span class="p">:</span>
-                <span class="k">if</span> <span class="n">cp</span><span class="p">:</span>
-                    <span class="n">multi</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">[</span><span class="n">cp</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-                    <span class="n">compressed_str</span> <span class="o">=</span> <span class="n">compressed_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">i</span><span class="p">]</span><span class="o">+</span> <span class="n">compressed_str</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">cp</span><span class="p">]</span> <span class="o">*</span><span class="n">multi</span> <span class="o">+</span><span class="n">compressed_str</span><span class="p">[</span><span class="n">cp</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="nf">len</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)]</span>
-                    <span class="n">cp_index</span> <span class="o">=</span> <span class="nf">get_cp</span><span class="p">(</span><span class="n">compressed_str</span><span class="p">)</span>
-                    <span class="k">break</span>
-        <span class="k">return</span> <span class="n">compressed_str</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">decompress</span><span class="p">(</span><span class="sh">"</span><span class="s">((a)2(b)2(c)2)2</span><span class="sh">"</span><span class="p">))</span>
-<span class="c1"># print(Solution().decompress("((a)2)2"))
-</span>
-</code></pre></div></div>
-
-<h2 id="4-货架编号">4. 货架编号</h2>
-<p>（类似N字排序，但没找到规律，所以还是用了暴力解法）</p>
-
-<p>等边直角三角形，左上起始，逆时针螺旋排序</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 6 5
-2 4
-3
-</code></pre></div></div>
-
-<p>输入三角形维度，输出横向遍历排序结果</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt; 3
-&lt;&lt; [1,6,5,2,4,3]
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>在本子上写了几圈，没找到统一的规律，决定用暴力解法，新建n维空矩阵，三个函数fill_down、fill_rightup、fill_left分别向三个方向填入数据，循环到填满左上区域为止</p>
-  </li>
-  <li>
-    <p>这里通过率只有85%</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">numberOfShelves</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">N</span> <span class="p">):</span>
-        <span class="c1"># write code here
-</span>        <span class="n">mt</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">N</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-        <span class="k">def</span> <span class="nf">fill_down</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos2</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-            <span class="k">while</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
-                <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
-                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
-                <span class="n">pos1</span> <span class="o">+=</span><span class="mi">1</span>
-                <span class="k">if</span> <span class="n">pos1</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos2</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
-                    <span class="n">pos1</span> <span class="o">-=</span><span class="mi">1</span>
-                    <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-            <span class="n">pos1</span> <span class="o">-=</span><span class="mi">1</span>
-            <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-        
-        <span class="k">def</span> <span class="nf">fill_rightup</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos2</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-            <span class="k">while</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
-                <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
-                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
-                <span class="n">pos1</span> <span class="o">-=</span><span class="mi">1</span>
-                <span class="n">pos2</span> <span class="o">+=</span><span class="mi">1</span>
-                <span class="k">if</span> <span class="n">pos1</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos2</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
-                    <span class="n">pos1</span> <span class="o">+=</span><span class="mi">1</span>
-                    <span class="n">pos2</span> <span class="o">-=</span><span class="mi">1</span>
-                    <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-            <span class="n">pos1</span> <span class="o">+=</span><span class="mi">1</span>
-            <span class="n">pos2</span> <span class="o">-=</span><span class="mi">1</span>    
-            <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-        
-        <span class="k">def</span> <span class="nf">fill_left</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">pos2</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-            <span class="k">while</span> <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span> <span class="p">:</span>
-                <span class="n">mt</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
-                <span class="n">num</span> <span class="o">+=</span><span class="mi">1</span>
-                <span class="n">pos2</span> <span class="o">-=</span><span class="mi">1</span>
-                <span class="k">if</span> <span class="n">pos1</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pos2</span><span class="o">&gt;=</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
-                    <span class="n">pos2</span> <span class="o">+=</span><span class="mi">1</span>
-                    <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-            <span class="n">pos2</span> <span class="o">+=</span><span class="mi">1</span>
-            <span class="k">return</span> <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span>
-        
-        <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span>
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="n">num0</span> <span class="o">=</span> <span class="n">num</span>
-            <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="nf">fill_down</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">pos2</span><span class="p">)</span>
-            <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="nf">fill_rightup</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">pos2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span> <span class="o">=</span> <span class="nf">fill_left</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">pos1</span><span class="p">,</span><span class="n">pos2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-            
-
-            <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="n">num0</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="k">if</span> <span class="n">pos1</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pos2</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span>
-
-        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mt</span><span class="p">:</span>
-            <span class="n">ans</span> <span class="o">+=</span> <span class="n">i</span>
-
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mt</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ans</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="o">==</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">numberOfShelves</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-
-
-</code></pre></div></div>
-
-<h2 id="5-bgp树">5. BGP树</h2>
-<ul>
-  <li>2^N字符串由01构成</li>
-  <li>字符串中全为0，节点value设为B</li>
-  <li>全1为P</li>
-  <li>都有为G</li>
-  <li>判定完当前节点后将字符串等分两半继续判定，到字符串无法二分为止</li>
-  <li>输出二叉树后序遍历结果</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"10001101"
-"PBGBBBGPPPBPGGG"
-</code></pre></div></div>
-
-<ul>
-  <li>这题显然是有规律可循的，题解里都没给TreeNode定义</li>
-  <li>但还是写了个暴力解法</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TreeNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">left</span><span class="p">:</span><span class="n">TreeNode</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">right</span><span class="p">:</span><span class="n">TreeNode</span> <span class="o">=</span> <span class="bp">None</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">bpg</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">s</span> <span class="p">):</span>
-        <span class="c1"># write code here
-</span>
-        <span class="k">def</span> <span class="nf">bpg_str</span><span class="p">(</span><span class="n">bpgs</span><span class="p">):</span>
-            <span class="sh">'''</span><span class="s">判断BPG</span><span class="sh">'''</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">bpgs</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sh">"</span><span class="s">B</span><span class="sh">"</span>
-            <span class="k">elif</span> <span class="ow">not</span> <span class="sh">"</span><span class="s">0</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">bpgs</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sh">"</span><span class="s">P</span><span class="sh">"</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sh">"</span><span class="s">G</span><span class="sh">"</span>
-            
-        <span class="k">def</span> <span class="nf">create_tn</span><span class="p">(</span><span class="n">tns</span><span class="p">):</span>
-            <span class="sh">'''</span><span class="s">生成二叉树</span><span class="sh">'''</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span>
-            
-            <span class="n">tnp</span> <span class="o">=</span> <span class="nc">TreeNode</span><span class="p">(</span><span class="nf">bpg_str</span><span class="p">(</span><span class="n">tns</span><span class="p">))</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nf">len</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">tnp</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="nf">create_tn</span><span class="p">(</span><span class="n">tns</span><span class="p">[:</span><span class="nf">int</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)])</span>
-                <span class="n">tnp</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="nf">create_tn</span><span class="p">(</span><span class="n">tns</span><span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">tns</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):])</span>
-            <span class="k">return</span> <span class="n">tnp</span>
-        
-        <span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">:</span><span class="n">TreeNode</span><span class="p">):</span>
-            <span class="sh">'''</span><span class="s">遍历</span><span class="sh">'''</span>
-            <span class="k">if</span> <span class="n">root</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sh">''</span>
-            <span class="n">ans</span> <span class="o">=</span> <span class="sh">''</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="n">ans</span> <span class="o">+=</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span> <span class="p">.</span><span class="n">right</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="n">ans</span> <span class="o">+=</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
-            <span class="n">ans</span> <span class="o">+=</span> <span class="n">root</span><span class="p">.</span><span class="n">val</span>
-            <span class="k">return</span> <span class="n">ans</span>
-
-        <span class="k">return</span> <span class="nf">traverse</span><span class="p">(</span><span class="nf">create_tn</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
-
-    
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">bpg</span><span class="p">(</span><span class="sh">"</span><span class="s">10001101</span><span class="sh">"</span><span class="p">))</span>
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-06-duozhuayu/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[据说这个公司每年都用这5道，所以不写公司名了]]></summary></entry><entry><title type="html">python: 开根号</title><link href="/python/sqrt/" rel="alternate" type="text/html" title="python: 开根号" /><published>2023-10-05T19:01:27+08:00</published><updated>2023-10-05T19:01:27+08:00</updated><id>/python/sqrt</id><content type="html" xml:base="/python/sqrt/"><![CDATA[<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 法1：math.sqrt
-</span><span class="kn">import</span> <span class="n">math</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># 法2：pow
-</span><span class="n">x</span> <span class="o">=</span> <span class="nf">pow</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="c1"># 法3：**
-</span><span class="n">x</span> <span class="o">=</span> <span class="n">n</span><span class="o">**</span><span class="mf">0.5</span>
-
-<span class="c1"># 补充：cmath.sqrt支持复数
-</span><span class="kn">import</span> <span class="n">cmath</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">cmath</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1">#类型为complex
-</span></code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/python/2023-10-05-sqrt/image_1.jpg) -->]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[```py 法1：math.sqrt import math x = math.sqrt(n)]]></summary></entry></feed>
+<!--![引入图片](/image/leetcode/2023-10-11-is/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><category term="python" /><summary type="html"><![CDATA[链接：https://www.nowcoder.com/exam/test/74802082/detail?pid=36048429&amp;examPageSource=Company&amp;testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26keyword%3D58%E5%90%8C%E5%9F%8E%26selectStatus%3D0&amp;testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91]]></summary></entry></feed>

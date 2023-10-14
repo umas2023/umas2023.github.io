@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang=" en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -20,7 +20,9 @@
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T20:39:41+08:00","datePublished":"2023-10-11T20:39:41+08:00","description":"网上清一色安装MinGW，看起来超麻烦 试一试vscode推荐的方法，新建窗口时欢迎页右侧有C++开发入门，介绍了环境的设置方法 安装MSVC，在下载页面搜索【Visual Studio 2022 生成工具】，页面：https://visualstudio.microsoft.com/zh-hans/downloads/ 安装程序中选择C++ 生成工具，我没找到，把c++全选了 安装完成后终端键入cl，检查MSVC安装","headline":"windows: vscode配置c++开发环境","mainEntityOfPage":{"@type":"WebPage","@id":"/windows/cpp/vscode_cpp/"},"url":"/windows/cpp/vscode_cpp/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
-<body><header class="site-header" role="banner">
+<body>
+  <!-- 背景图 -->
+  <div class="bg-img"></div><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -36,12 +38,20 @@
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+    <div class="wrapper">
+      <article class="post">
 
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">windows: vscode配置c++开发环境</h1>
+    
+    <!-- 分类tag -->
+    
+    <div class="category">windows</div>
+    
+    <div class="category">cpp</div>
+    
+
     <h3>好麻烦的，建议直接使用visual studio</h3>
   </header>
 
@@ -92,8 +102,23 @@
   </div>
 
 </article>
-      </div>
-    </main><footer class="site-footer h-card">
+
+
+<style scoped>
+
+div.category{
+    display: inline-block;
+    padding: 2px 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 0.5em;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+</style>
+    </div>
+  </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -118,5 +143,19 @@
 
 </footer>
 </body>
+
+<style scoped>
+  /* 背景图片 */
+  div.bg-img {
+    background-image: url("/static/background.svg");
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    background-size: 400px;
+    z-index: -2;
+    opacity: 0.1;
+  }
+</style>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang=" en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -20,7 +20,9 @@
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-13T10:35:05+08:00","datePublished":"2023-07-13T10:35:05+08:00","description":"站点上传到github.io后，由于GitHub Pages 默认基于静态文件，在 /show 页面刷新时，GitHub Pages 服务器会尝试查找对应的静态文件 /show/index.html ，当然找不到，所以会报404 解决方法是使用hash模式路由（也称为锚点路由），在 URL 中使用 # 符号，并不会触发页面刷新，因此可以绕过 GitHub Pages 的限制。","headline":"zip_backyard: hash模式路由","mainEntityOfPage":{"@type":"WebPage","@id":"/zip_backyard/vue/hash-router/"},"url":"/zip_backyard/vue/hash-router/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
-<body><header class="site-header" role="banner">
+<body>
+  <!-- 背景图 -->
+  <div class="bg-img"></div><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -36,12 +38,20 @@
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+    <div class="wrapper">
+      <article class="post">
 
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">zip_backyard: hash模式路由</h1>
+    
+    <!-- 分类tag -->
+    
+    <div class="category">zip_backyard</div>
+    
+    <div class="category">vue</div>
+    
+
     <h3>解决/show页刷新404</h3>
   </header>
 
@@ -87,8 +97,23 @@
   </div>
 
 </article>
-      </div>
-    </main><footer class="site-footer h-card">
+
+
+<style scoped>
+
+div.category{
+    display: inline-block;
+    padding: 2px 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 0.5em;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+</style>
+    </div>
+  </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -113,5 +138,19 @@
 
 </footer>
 </body>
+
+<style scoped>
+  /* 背景图片 */
+  div.bg-img {
+    background-image: url("/static/background.svg");
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    background-size: 400px;
+    z-index: -2;
+    opacity: 0.1;
+  }
+</style>
 
 </html>

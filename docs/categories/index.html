@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang=" en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -19,7 +19,9 @@
 {"@context":"https://schema.org","@type":"WebPage","description":"umas’ awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.","headline":"Categories","url":"/categories/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
-<body><header class="site-header" role="banner">
+<body>
+  <!-- 背景图 -->
+  <div class="bg-img"></div><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -35,8 +37,8 @@
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+    <div class="wrapper">
+      <article class="post">
 
   <header class="post-header">
     <h1 class="post-title">Categories</h1>
@@ -448,6 +450,14 @@
       <a name="jekyll"></a>
       
         <article class="archive-item">
+          <h4><a href="/jekyll/background/">jekyll: 添加背景图片</a></h4>
+        </article>
+      
+        <article class="archive-item">
+          <h4><a href="/jekyll/category_tag/">jekyll: jekyll首页添加分类tag标签</a></h4>
+        </article>
+      
+        <article class="archive-item">
           <h4><a href="/jekyll/inner_vue/">jekyll: 内嵌vue页面</a></h4>
         </article>
       
@@ -492,6 +502,18 @@
 
       <h3 class="category-head">js</h3>
       <a name="js"></a>
+      
+        <article class="archive-item">
+          <h4><a href="/leetcode/js/function_call/">leetcode: 58笔试</a></h4>
+        </article>
+      
+        <article class="archive-item">
+          <h4><a href="/js/function_call/">js: call函数</a></h4>
+        </article>
+      
+        <article class="archive-item">
+          <h4><a href="/leetcode/js/invertBinaryTree/">leetcode: js反转二叉树</a></h4>
+        </article>
       
         <article class="archive-item">
           <h4><a href="/leetcode/js/wuba2020/">leetcode: 58同城2020前端笔试</a></h4>
@@ -544,6 +566,14 @@
       <a name="knowhow"></a>
       
         <article class="archive-item">
+          <h4><a href="/vue/knowhow/mvvm/">vue: vue双向绑定</a></h4>
+        </article>
+      
+        <article class="archive-item">
+          <h4><a href="/vue/knowhow/webpack_loader/">vue: webpack loader</a></h4>
+        </article>
+      
+        <article class="archive-item">
           <h4><a href="/knowhow/knowhow_design_pattern/">knowhow: 设计模式</a></h4>
         </article>
       
@@ -560,6 +590,14 @@
 
       <h3 class="category-head">leetcode</h3>
       <a name="leetcode"></a>
+      
+        <article class="archive-item">
+          <h4><a href="/leetcode/js/function_call/">leetcode: 58笔试</a></h4>
+        </article>
+      
+        <article class="archive-item">
+          <h4><a href="/leetcode/js/invertBinaryTree/">leetcode: js反转二叉树</a></h4>
+        </article>
       
         <article class="archive-item">
           <h4><a href="/leetcode/js/wuba2020/">leetcode: 58同城2020前端笔试</a></h4>
@@ -1126,6 +1164,14 @@
       <a name="vue"></a>
       
         <article class="archive-item">
+          <h4><a href="/vue/knowhow/mvvm/">vue: vue双向绑定</a></h4>
+        </article>
+      
+        <article class="archive-item">
+          <h4><a href="/vue/knowhow/webpack_loader/">vue: webpack loader</a></h4>
+        </article>
+      
+        <article class="archive-item">
           <h4><a href="/vue/router_parameter/">vue: 读取router参数</a></h4>
         </article>
       
@@ -1354,8 +1400,8 @@
   </div>
 
 </article>
-      </div>
-    </main><footer class="site-footer h-card">
+    </div>
+  </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -1380,5 +1426,19 @@
 
 </footer>
 </body>
+
+<style scoped>
+  /* 背景图片 */
+  div.bg-img {
+    background-image: url("/static/background.svg");
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    background-size: 400px;
+    z-index: -2;
+    opacity: 0.1;
+  }
+</style>
 
 </html>

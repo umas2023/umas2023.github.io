@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang=" en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -20,7 +20,9 @@
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-28T09:22:00+08:00","datePublished":"2023-06-28T09:22:00+08:00","description":"一个例子 subprocess.run([&quot;npm&quot;, &quot;run&quot;, &quot;electron:serve&quot;], cwd=&quot;./desktop_electron&quot;, stdout=subprocess.PIPE,shell=True) 其中cwd指定程序运行的位置, shell=True使用与在命令提示符中相同的shell来运行命令,否则会找不到npm命令 stdout=subprocess.PIPE 表示子进程的标准输出将被捕获,不设置的默认情况下子进程的输出将直接发送到控制台窗口,使用result = subprocess.run(…),print(result.stdout)可以获取捕获的输出 上面的程序会等待subprocess运行结束之后再继续,而os.system()不会等待","headline":"python: subprocess 多线程函数","mainEntityOfPage":{"@type":"WebPage","@id":"/python/subprocess/"},"url":"/python/subprocess/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
-<body><header class="site-header" role="banner">
+<body>
+  <!-- 背景图 -->
+  <div class="bg-img"></div><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -36,12 +38,18 @@
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+    <div class="wrapper">
+      <article class="post">
 
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">python: subprocess 多线程函数</h1>
+    
+    <!-- 分类tag -->
+    
+    <div class="category">python</div>
+    
+
     <h3>python多线程函数subprocess</h3>
   </header>
 
@@ -68,8 +76,23 @@
   </div>
 
 </article>
-      </div>
-    </main><footer class="site-footer h-card">
+
+
+<style scoped>
+
+div.category{
+    display: inline-block;
+    padding: 2px 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 0.5em;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+</style>
+    </div>
+  </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -94,5 +117,19 @@
 
 </footer>
 </body>
+
+<style scoped>
+  /* 背景图片 */
+  div.bg-img {
+    background-image: url("/static/background.svg");
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    background-size: 400px;
+    z-index: -2;
+    opacity: 0.1;
+  }
+</style>
 
 </html>
