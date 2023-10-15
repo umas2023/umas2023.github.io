@@ -8,65 +8,61 @@
 
 # 类别列表，类别categories必须在这个列表中
 cat_list = [
-'amtc',
-'bash',
-'cpp',
-'crawler',
-'css',
-'django',
-'docker',
-'electron',
-'git',
-'jekyll',
-'js',
-'knowhow',
-'leetcode',
-'linux',
-'markdown',
-'mysql',
-'nginx',
-'pyqt',
-'python',
-'raspberry_pi',
-'tampermonkey',
-'ts',
-'vue',
-'windows',
-'zip_backyard',
-'zip_pctools',
+    'amtc',
+    'bash',
+    'cpp',
+    'crawler',
+    'css',
+    'django',
+    'docker',
+    'electron',
+    'git',
+    'jekyll',
+    'js',
+    'knowhow',
+    'leetcode',
+    'linux',
+    'markdown',
+    'mysql',
+    'nginx',
+    'pyqt',
+    'python',
+    'raspberry_pi',
+    'tampermonkey',
+    'ts',
+    'vue',
+    'windows',
+    'zip_backyard',
+    'zip_pctools',
 ]
 
 
 # 修改这里：基础分类
-basic_cat = "jekyll"
+basic_cat = "windows"
+# 修改这题：附加分类
+add_cat = []
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "background"
+file_name = "hyperv_win10"
 # 修改这里：文章标题
-title = "'%s: 添加背景图片'" % basic_cat
+title = "'%s: hyperv添加win10虚拟机'" % basic_cat
 # 修改这里：文章介绍
-info = "'找准目标模板就没问题，路径仿照文章中的图片引用路径即可'"
+info = "'性能比VMware稍好'"
+# 是否创建图片目录？
+# is_img = False
+is_img = True
+
 
 
 # 文章分类，可以添加多个
-categories = [basic_cat]
+categories = [basic_cat] + add_cat
 # md文件放在哪个目录下
 dir = basic_cat
-
-# 是否创建图片目录？
-is_img = False
-
-
-
-
 # 验证输入的category是否在预设列表中
 for cat in categories:
     if not cat in cat_list:
-        print("unexpected category: %s" %cat)
+        print("unexpected category: %s" % cat)
         exit()
-
-
-
 
 
 import os
@@ -113,7 +109,6 @@ vscode = r'"D:\p-program\vscode\Microsoft VS Code\Code.exe"'
 os.system("%s %s" % (vscode, file_path))
 
 
-
 # 创建图片目录
 if not is_img:
     exit()
@@ -127,5 +122,3 @@ with open(gitkeep, "w+") as keep:
 
 # 打开图片目录
 os.system("explorer.exe %s" % image_path)
-
-
