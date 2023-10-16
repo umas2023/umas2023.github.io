@@ -1,6 +1,38 @@
 [
   
     {
+      "title"    : "jekyll: 页面添加日期显示",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/jekyll/add_date/",
+      "date"     : "2023-10-16 20:05:47 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 记瑞幸笔试",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/js/ruixing/",
+      "date"     : "2023-10-16 19:49:56 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 记tplink笔试",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/tp_link/",
+      "date"     : "2023-10-16 18:26:22 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 学习工厂项目echart图表加载错误",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/amtc/learningfactory_echart/",
+      "date"     : "2023-10-16 13:43:44 +0800"
+    } ,
+  
+    {
       "title"    : "js: 构造函数",
       "category" : "",
       "tags"     : "",
@@ -193,7 +225,7 @@
     } ,
   
     {
-      "title"    : "Klook笔试 - 9键输入法组合",
+      "title"    : "leetcode: Klook笔试 - 9键输入法组合",
       "category" : "",
       "tags"     : "",
       "url"      : "/leetcode/python/9_button_input/",

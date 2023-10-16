@@ -53,6 +53,9 @@ toc: True
 {% endraw %}
 
 
+- 2023.10.16修改：position应该为fixed，设为fixed后背景图片不随滚动条滚动，始终占满整个页面
+- 而absolute仅能填满一个vh的高度，滚动到下面就没了
+
 
 
 {% raw %}

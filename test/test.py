@@ -1,11 +1,15 @@
-class Solution:
-    def numSquares(self, n: int) -> int:
-        dp = [0] * (n+1)
-        for i in range(1,n+1):
-            minn = float('inf')
-            for j in range(1,int(i**0.5)+1):
-                minn = min(minn,dp[i-j*j])
-            dp[i] = minn +1
-        return dp[n]
+def find_max_product(nums):
+    if len(nums) < 2:
+        return None
     
-print(Solution().numSquares(12))
+    max_product = float('-inf')
+    
+    for i in range(len(nums)-1):
+        product = nums[i] * nums[i+1]
+        if product > max_product:
+            max_product = product
+            
+    return max_product
+
+
+print(find_max_product([1,2,3,4]))

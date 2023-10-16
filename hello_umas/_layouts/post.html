@@ -3,10 +3,13 @@ layout: base
 ---
 <article class="post">
 
+  <!-- 这里是日期 -->
+  <span class="post-meta">{{ page.date | date: date_format }}</span>
+
   <!-- 标题 -->
   <header class="post-header">
     <h1 class="post-title">{{ page.title | escape }}</h1>
-    
+
     <!-- 分类tag -->
     {% for category in page.categories %}
     <div class="category">{{ category }}</div>
@@ -29,15 +32,13 @@ layout: base
 
 
 <style scoped>
-
-div.category{
+  div.category {
     display: inline-block;
     padding: 2px 5px 5px 5px;
     margin-bottom: 5px;
     border-radius: 5px;
-    font-size: 0.5em;
+    font-size: 0.7em;
     color: white;
     background-color: rgba(0, 0, 255, 0.4);
   }
-
 </style>

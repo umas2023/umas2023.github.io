@@ -38,19 +38,19 @@ cat_list = [
 
 
 # 修改这里：基础分类
-basic_cat = "windows"
+basic_cat = "jekyll"
 # 修改这题：附加分类
 add_cat = []
 
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "hyperv_win10"
+file_name = "add_date"
 # 修改这里：文章标题
-title = "'%s: hyperv添加win10虚拟机'" % basic_cat
+title = "'%s: 页面添加日期显示'" % basic_cat
 # 修改这里：文章介绍
-info = "'性能比VMware稍好'"
+info = "'home默认是显示日期的，但单页博客默认不显示'"
 # 是否创建图片目录？
-# is_img = False
-is_img = True
+is_img = False
+# is_img = True
 
 
 

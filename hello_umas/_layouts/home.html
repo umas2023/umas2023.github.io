@@ -33,7 +33,11 @@ layout: base
     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     {%- for post in posts -%}
     <li>
+
+      <!-- 这里是日期 -->
       <span class="post-meta">{{ post.date | date: date_format }}</span>
+
+      <!-- 这里是title -->
       <h3>
         <a class="post-link" href="{{ post.url | relative_url }}">
           {{ post.title | escape }}
@@ -45,6 +49,7 @@ layout: base
       <div class="category">{{ category }}</div>
       {% endfor %}
 
+      <!-- 这里是info -->
       <h5>{{ post.info | escape }}</h5>
       {%- if site.show_excerpts -%}
       {{ post.excerpt }}
@@ -92,7 +97,7 @@ layout: base
     padding: 2px 5px 5px 5px;
     margin-bottom: 5px;
     border-radius: 5px;
-    font-size: 0.5em;
+    font-size: 0.7em;
     color: white;
     background-color: rgba(0, 0, 255, 0.4);
   }
