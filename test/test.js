@@ -1,17 +1,11 @@
-function Person() {
-  //构造函数体内的属性
-  this.name = 'Jack'
+function findMethod(chokoNum,nutList){
+  let nutLength = nutList.length
+  let dp = new Array(n).fill(0)
+  dp[0] = 0
+  dp[1] = 1
+  for(let n=2;n<nutLength;i++){
+      for(let i=0;i<n;i++)
+      dp[n] = dp[i]+dp[n-i]
+  }
+  return dp[netLength]
 }
-// Person.prototype 原型 上的方法
-Person.prototype = {
-  a: function () {
-    console.log('我是一个a方法')
-  },
-  b: function () { },
-  // ...
-}
-
-var p = new Person()
-console.log(p)
-console.log(p.name)// Jack
-p.a()// 我是一个a方法

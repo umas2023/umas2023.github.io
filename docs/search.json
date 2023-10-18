@@ -1,6 +1,46 @@
 [
   
     {
+      "title"    : "jekyll: 添加图标",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/jekyll/favicon/",
+      "date"     : "2023-10-18 18:34:02 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 广联达",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/sort_list_25/",
+      "date"     : "2023-10-18 18:31:23 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 众安笔试，01数组拆分",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/cut01list/",
+      "date"     : "2023-10-18 18:29:39 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 无重复字符的最长子串",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/LongestSubstring/",
+      "date"     : "2023-10-17 18:35:54 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: windows安装gcc",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/cpp/install_mingw/",
+      "date"     : "2023-10-17 13:04:31 +0800"
+    } ,
+  
+    {
       "title"    : "jekyll: 页面添加日期显示",
       "category" : "",
       "tags"     : "",

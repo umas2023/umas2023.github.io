@@ -1,4 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-16T20:12:32+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">jekyll: 页面添加日期显示</title><link href="/jekyll/add_date/" rel="alternate" type="text/html" title="jekyll: 页面添加日期显示" /><published>2023-10-16T20:05:47+08:00</published><updated>2023-10-16T20:05:47+08:00</updated><id>/jekyll/add_date</id><content type="html" xml:base="/jekyll/add_date/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-18T18:36:57+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">jekyll: 添加图标</title><link href="/jekyll/favicon/" rel="alternate" type="text/html" title="jekyll: 添加图标" /><published>2023-10-18T18:34:02+08:00</published><updated>2023-10-18T18:34:02+08:00</updated><id>/jekyll/favicon</id><content type="html" xml:base="/jekyll/favicon/"><![CDATA[<ul>
+  <li>
+    <p>如题，favicon.ico放根目录就行了</p>
+  </li>
+  <li>起因是在页面f12时发现favicon.ico报404，但默认模板中根本就没有favicon，全文搜索也找不到哪里引用了favicon</li>
+  <li>搞了一个放在根目录下了</li>
+  <li>刚放进去可能不会马上显示出来，多刷新几次就能显示出来（或者重启浏览器，重启电脑）</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/jekyll/2023-10-18-favicon/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[如题，favicon.ico放根目录就行了]]></summary></entry><entry><title type="html">leetcode: 广联达</title><link href="/leetcode/python/sort_list_25/" rel="alternate" type="text/html" title="leetcode: 广联达" /><published>2023-10-18T18:31:23+08:00</published><updated>2023-10-18T18:31:23+08:00</updated><id>/leetcode/python/sort_list_25</id><content type="html" xml:base="/leetcode/python/sort_list_25/"><![CDATA[<ul>
+  <li>广联达，数组排序，后一项是前一项的1/2或者5倍,输入第一行是长度和首项，第二行是列表</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5 16
+8 20 16 10 4
+</code></pre></div></div>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="n">input_lines</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="nf">readlines</span><span class="p">()</span>
+<span class="n">line1</span> <span class="o">=</span> <span class="n">input_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">split</span><span class="p">()</span>
+<span class="n">line2</span> <span class="o">=</span> <span class="n">input_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">split</span><span class="p">()</span>
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line1</span><span class="p">]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line2</span><span class="p">]</span>
+
+<span class="n">length</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">list2</span><span class="p">[</span><span class="n">list2</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">first</span><span class="p">)]</span>
+<span class="n">ans_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">first</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">check_2</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">num_list</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">检查x/2是否存在</span><span class="sh">'''</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">num</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nf">int</span><span class="p">((</span><span class="n">num</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">False</span>
+    
+<span class="k">def</span> <span class="nf">check_5</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">num_list</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">检查x*5是否存在</span><span class="sh">'''</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">False</span>
+    
+<span class="k">def</span> <span class="nf">find_next</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">):</span>
+    <span class="sh">'''</span><span class="s">递归检查所有排列</span><span class="sh">'''</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">res_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># print(ans_list)
+</span>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ans_list</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> 
+    
+    <span class="c1"># 除2
+</span>    <span class="k">if</span> <span class="nf">check_2</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">ans_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">res_list</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span><span class="o">+</span><span class="n">res_list</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="nf">find_next</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">)</span>
+    <span class="c1"># 乘5
+</span>    <span class="k">elif</span> <span class="nf">check_5</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">ans_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">5</span><span class="p">))</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">res_list</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span><span class="o">+</span><span class="n">res_list</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="nf">find_next</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ans_list</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
+
+<span class="nf">find_next</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">list2</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-18-sort_list_25/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[广联达，数组排序，后一项是前一项的1/2或者5倍,输入第一行是长度和首项，第二行是列表]]></summary></entry><entry><title type="html">leetcode: 众安笔试，01数组拆分</title><link href="/leetcode/python/cut01list/" rel="alternate" type="text/html" title="leetcode: 众安笔试，01数组拆分" /><published>2023-10-18T18:29:39+08:00</published><updated>2023-10-18T18:29:39+08:00</updated><id>/leetcode/python/cut01list</id><content type="html" xml:base="/leetcode/python/cut01list/"><![CDATA[<ul>
+  <li>众安笔试两题</li>
+</ul>
+
+<ol>
+  <li>树形结构部门，递归查找员工在哪个部门</li>
+</ol>
+
+<p>很简单的一个递归</p>
+
+<ol>
+  <li>01数组拆分，每个子组必须含一个1，不多不少，求有多少种拆分方法</li>
+</ol>
+
+<p>今天先下班，明天补上</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-18-cut01list/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[众安笔试两题]]></summary></entry><entry><title type="html">leetcode: 无重复字符的最长子串</title><link href="/leetcode/python/LongestSubstring/" rel="alternate" type="text/html" title="leetcode: 无重复字符的最长子串" /><published>2023-10-17T18:35:54+08:00</published><updated>2023-10-17T18:35:54+08:00</updated><id>/leetcode/python/LongestSubstring</id><content type="html" xml:base="/leetcode/python/LongestSubstring/"><![CDATA[<ul>
+  <li>地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/</li>
+  <li>
+    <p>给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+  </li>
+  <li>暴力自解：遍历所有子串</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">sub_len</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">sub_string</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span><span class="o">+</span><span class="n">sub_len</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">sub_string</span><span class="p">):</span>
+                    <span class="n">max_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span><span class="n">sub_len</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">max_len</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="sh">"</span><span class="s">abcabcbb</span><span class="sh">"</span><span class="p">))</span>
+
+<span class="c1"># 虽然超时了，但has_duplicate_chars函数的实现方法还是值得一记的（毕竟gpt写的）
+</span></code></pre></div></div>
+
+<ul>
+  <li>↑意料之中的超时了</li>
+  <li>实际上不应该遍历所有子串，当已经判定过一个子串的子串不符合条件后，就不用判断包含这个子串的所有父级子串了</li>
+  <li>
+    <p>应该用滑动窗口，窗口右侧添加新的字符，不满足条件时窗口左侧第一位弹出（窗口右滑）</p>
+  </li>
+  <li>判断是否有重复字符时，创建了一个哈希集合（set），左指针右移时从集合中移出一个字符，右指针右移时添加一个字符</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 哈希集合，记录每个字符是否出现过
+</span>        <span class="n">occ</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="c1"># 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
+</span>        <span class="n">rk</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># 左指针向右移动一格，移除一个字符
+</span>                <span class="n">occ</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">while</span> <span class="n">rk</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">rk</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">occ</span><span class="p">:</span>
+                <span class="c1"># 不断地移动右指针
+</span>                <span class="n">occ</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">rk</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">rk</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># 第 i 到 rk 个字符是一个极长的无重复字符子串
+</span>            <span class="n">ans</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">rk</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-17-LongestSubstring/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/ 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。]]></summary></entry><entry><title type="html">windows: windows安装gcc</title><link href="/windows/cpp/install_mingw/" rel="alternate" type="text/html" title="windows: windows安装gcc" /><published>2023-10-17T13:04:31+08:00</published><updated>2023-10-17T13:04:31+08:00</updated><id>/windows/cpp/install_mingw</id><content type="html" xml:base="/windows/cpp/install_mingw/"><![CDATA[<ul>
+  <li>
+    <p>下载：https://sourceforge.net/projects/mingw/</p>
+  </li>
+  <li>
+    <p>一路next，等待MinGW Installation Manager启动，勾选mingw-gcc-g++-bin，点击左上角Installation -&gt; Apply Changes</p>
+  </li>
+  <li>
+    <p>环境变量添加C:\MinGW\bin、C:\MinGW\lib、C:\MinGW\include</p>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"hello world"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc .\test.cpp -o test -lstdc++
+</code></pre></div></div>
+
+<!--![引入图片](/image/windows/2023-10-17-add_date/image_1.jpg) -->]]></content><author><name></name></author><category term="windows" /><category term="cpp" /><summary type="html"><![CDATA[下载：https://sourceforge.net/projects/mingw/]]></summary></entry><entry><title type="html">jekyll: 页面添加日期显示</title><link href="/jekyll/add_date/" rel="alternate" type="text/html" title="jekyll: 页面添加日期显示" /><published>2023-10-16T20:05:47+08:00</published><updated>2023-10-16T20:05:47+08:00</updated><id>/jekyll/add_date</id><content type="html" xml:base="/jekyll/add_date/"><![CDATA[<ul>
   <li>
     <p>把home.html的代码拷贝到post.html就行了</p>
   </li>
@@ -357,649 +530,4 @@ i：不区分大小写的标志，表示在匹配时忽略字符的大小写。
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/js/2023-10-15-constructor/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[面向对象编程（Object Oriented Programming，缩写为 OOP）是目前主流的编程范式。它将真实世界各种复杂的关系，抽象为一个个对象，然后由对象之间的分工与合作，完成对真实世界的模拟。]]></summary></entry><entry><title type="html">js: 箭头函数</title><link href="/js/knowhow/Arrow_Function/" rel="alternate" type="text/html" title="js: 箭头函数" /><published>2023-10-15T19:53:21+08:00</published><updated>2023-10-15T19:53:21+08:00</updated><id>/js/knowhow/Arrow_Function</id><content type="html" xml:base="/js/knowhow/Arrow_Function/"><![CDATA[<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 表达式函数</span>
-<span class="kd">var</span> <span class="nx">fn1</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">fn1</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-
-<span class="c1">// 声明式函数</span>
-<span class="kd">function</span> <span class="nf">fn2</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-
-<span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="区分箭头函数和匿名函数">区分箭头函数和匿名函数</h2>
-
-<ul>
-  <li>箭头函数没有自己的 this 值，它会继承上下文中的 this 值。这意味着箭头函数内部的 this 始终指向定义该函数时的对象，而不是调用时的对象。</li>
-  <li>箭头函数没有自己的 arguments 对象，但可以访问外部作用域中的 arguments 对象。</li>
-  <li>箭头函数不能用作构造函数，不能使用 new 关键字实例化。</li>
-  <li>箭头函数没有 prototype 属性。</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 箭头函数</span>
-<span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// 输出: 5</span>
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 匿名函数</span>
-<span class="kd">const</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// 输出: 6</span>
-</code></pre></div></div>
-
-<ul>
-  <li>下面的例子可以说明二者的区别</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Alice</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">arrowFunc</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-  <span class="p">},</span>
-  <span class="na">anonymousFunc</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">obj</span><span class="p">.</span><span class="nf">arrowFunc</span><span class="p">();</span> <span class="c1">// 输出: Hello, undefined!</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nf">anonymousFunc</span><span class="p">();</span> <span class="c1">// 输出: Hello, Alice!</span>
-</code></pre></div></div>
-
-<ul>
-  <li>在上面的例子中，arrowFunc继承自外部上下文的 this 值，即全局上下文，并且无法被修改。在全局上下文中并没有定义 name 属性，因此输出结果为 “undefined”。</li>
-</ul>
-
-<h2 id="详解箭头函数">详解箭头函数</h2>
-
-<ul>
-  <li>
-    <p>函数对象是一个支持[[Call]]、[[Construct]]内部方法的对象。每个支持[[Construct]]的对象必须支持[[Call]]，也就是说，每个构造函数必须是一个函数对象。因此，构造函数也可以被称为构造函数函数或构造函数对象。所以，想要对某个对象使用new，就得确保该对象具有[[Construct]]这个内部方法。而箭头函数没有[[Construct]]。</p>
-  </li>
-  <li>
-    <p>同时因为没有构造原型的需求，所以箭头函数不存在 prototype 属性</p>
-  </li>
-  <li>
-    <p>用call()或者apply()调用箭头函数时，无法对this进行绑定，即传入的第一个参数被忽略。</p>
-  </li>
-</ul>
-
-<h2 id="什么时候不使用箭头函数">什么时候不使用箭头函数</h2>
-
-<ul>
-  <li>定义对象上的方法</li>
-</ul>
-
-<p>由上面的例子可以看到this.name输出undefined</p>
-
-<ul>
-  <li>动态上下文的回调函数</li>
-</ul>
-
-<p>在客户端编程中，将事件侦听器附加到DOM元素是一项常见的任务。事件触发处理程序函数，并将this作为目标元素,这里如果使用箭头函数就不够灵活。</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">myButton</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">button</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">);</span> <span class="c1">// =&gt; true</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Clicked button</span><span class="dl">'</span><span class="p">;</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<p>在全局上下文中 this 指向 window。 当发生单击事件时，浏览器尝试使用按钮上下文调用处理函数，但箭头函数不会更改其预定义的上下文。this.innerHTML相当于window.innerHTML，没有任何意义。</p>
-
-<p>必须应用函数表达式，该表达式允许根据目标元素更改 this：</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">myButton</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">button</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nx">button</span><span class="p">);</span> <span class="c1">// =&gt; true</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Clicked button</span><span class="dl">'</span><span class="p">;</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<p>当用户单击按钮时，处理程序函数中的 this 指向 button。因此这个问题。innerHTML = ‘已单击按钮’正确地修改按钮文本以反映已单击状态。</p>
-
-<ul>
-  <li>调用构造函数</li>
-</ul>
-
-<p>this 在构造调用中是新创建的对象。当执行new MyFunction()时，构造函数MyFunction的上下文是一个新对象:this instanceof MyFunction === true。</p>
-
-<p>箭头函数不能用作构造函数。 JavaScript通过抛出异常隐式阻止这样做。</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Message</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">text</span><span class="p">;</span>
-<span class="p">};</span>
-<span class="c1">// Throws "TypeError: Message is not a constructor"</span>
-<span class="kd">const</span> <span class="nx">helloMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Message</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/js/2023-10-15-Arrow_Function/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[```js // 表达式函数 var fn1 = function(a, b) { return a + b }]]></summary></entry><entry><title type="html">vue: 模板语法</title><link href="/vue/knowhow/gramatic/" rel="alternate" type="text/html" title="vue: 模板语法" /><published>2023-10-15T19:47:48+08:00</published><updated>2023-10-15T19:47:48+08:00</updated><id>/vue/knowhow/gramatic</id><content type="html" xml:base="/vue/knowhow/gramatic/"><![CDATA[<h2 id="插值">插值</h2>
-
-<ul>
-  <li>双大括号文本插值</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;p&gt;</span>{{ message }}<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>v-html输出html代码</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">v-html=</span><span class="s">"message"</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-    
-<span class="nt">&lt;script&gt;</span>
-<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;h1&gt;菜鸟教程&lt;/h1&gt;</span><span class="dl">'</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>v-bind为属性赋值</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">v-bind:class=</span><span class="s">"{'class1': use}"</span><span class="nt">&gt;</span>
-    v-bind:class 指令
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>表达式</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
-    {{5+5}}<span class="nt">&lt;br&gt;</span>
-    {{ ok ? 'YES' : 'NO' }}<span class="nt">&lt;br&gt;</span>
-    {{ message.split('').reverse().join('') }}
-    <span class="nt">&lt;div</span> <span class="na">v-bind:id=</span><span class="s">"'list-' + id"</span><span class="nt">&gt;</span>菜鸟教程<span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<h2 id="过滤器">过滤器</h2>
-
-<ul>
-  <li>管道符定义过滤器,过滤器函数接受表达式的值作为第一个参数，过滤器可以串联</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 在两个大括号中 --&gt;</span>
-{{ message | capitalize }}
-
-<span class="c">&lt;!-- 在 v-bind 指令中 --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">v-bind:id=</span><span class="s">"rawId | formatId"</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-</code></pre></div></div>
-
-<ul>
-  <li>以下实例对输入的字符串第一个字母转为大写</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
-  {{ message | capitalize }}
-<span class="nt">&lt;/div&gt;</span>
-    
-<span class="nt">&lt;script&gt;</span>
-<span class="k">new</span> <span class="nc">Vue</span><span class="p">({</span>
-  <span class="na">el</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">runoob</span><span class="dl">'</span>
-  <span class="p">},</span>
-  <span class="na">filters</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">capitalize</span><span class="p">:</span> <span class="nf">function </span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">)</span> <span class="k">return</span> <span class="dl">''</span>
-      <span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>
-      <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nf">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">value</span><span class="p">.</span><span class="nf">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div></div>
-
-<h2 id="暂时记录这么多">暂时记录这么多</h2>
-
-<ul>
-  <li>官方：https://cn.vuejs.org/guide/essentials/template-syntax.html#attribute-bindings</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-15-gramatic/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="knowhow" /><summary type="html"><![CDATA[插值]]></summary></entry><entry><title type="html">jekyll: 添加背景图片</title><link href="/jekyll/background/" rel="alternate" type="text/html" title="jekyll: 添加背景图片" /><published>2023-10-14T22:06:39+08:00</published><updated>2023-10-14T22:06:39+08:00</updated><id>/jekyll/background</id><content type="html" xml:base="/jekyll/background/"><![CDATA[<ul>
-  <li>一开始想加在home.html中发现没有效果，查看发现home.html上面还有一行layout: base，也就是说base.html才是真正的根节点</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"{{ page.lang | default: site.lang | default: "</span> <span class="na">en</span><span class="err">"</span> <span class="err">}}"</span><span class="nt">&gt;</span>
-
-{%- include head.html -%}
-
-<span class="nt">&lt;body&gt;</span>
-  <span class="c">&lt;!-- 背景图 --&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bg-img"</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-  {%- include header.html -%}
-
-  <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"page-content"</span> <span class="na">aria-label=</span><span class="s">"Content"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
-      {{ content }}
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/main&gt;</span>
-
-  {%- include footer.html -%}
-
-<span class="nt">&lt;/body&gt;</span>
-
-<span class="nt">&lt;style </span><span class="na">scoped</span><span class="nt">&gt;</span>
-  <span class="c">/* 背景图片 */</span>
-  <span class="nt">div</span><span class="nc">.bg-img</span> <span class="p">{</span>
-    <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url("{{site.url}}/static/background.svg")</span><span class="p">;</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">;</span>
-    <span class="nl">background-size</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
-    <span class="nl">z-index</span><span class="p">:</span> <span class="m">-2</span><span class="p">;</span>
-    <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.1</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>2023.10.16修改：position应该为fixed，设为fixed后背景图片不随滚动条滚动，始终占满整个页面</li>
-  <li>而absolute仅能填满一个vh的高度，滚动到下面就没了</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/jekyll/2023-10-14-background/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[一开始想加在home.html中发现没有效果，查看发现home.html上面还有一行layout: base，也就是说base.html才是真正的根节点]]></summary></entry><entry><title type="html">leetcode: 58笔试</title><link href="/leetcode/js/function_call/" rel="alternate" type="text/html" title="leetcode: 58笔试" /><published>2023-10-14T21:00:04+08:00</published><updated>2023-10-14T21:00:04+08:00</updated><id>/leetcode/js/function_call</id><content type="html" xml:base="/leetcode/js/function_call/"><![CDATA[<ul>
-  <li>依旧是算法题不难，选择题逆天</li>
-  <li>因为是第一次用js写算法题，所以记录一下</li>
-</ul>
-
-<h2 id="查找出现次数最多的字符">查找出现次数最多的字符</h2>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-
-
-<span class="c1">// 查找字符串中出现次数最多的字符</span>
-<span class="c1">// 可能有多个重复字符</span>
-
-<span class="cm">/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- * 返回给定字符串中出现频率最高的字符
- * @param str string字符串 给定的字符串
- * @return string字符串一维数组
- */</span>
-<span class="kd">function</span> <span class="nf">findChar</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-    <span class="kd">let</span> <span class="nx">charCount</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">chr</span> <span class="k">of</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]){</span>
-            <span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-            <span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="p">}</span>
-
-    <span class="p">}</span>
-    <span class="nx">maxList</span> <span class="o">=</span> <span class="p">[</span><span class="nx">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">chr</span> <span class="k">in</span> <span class="nx">charCount</span><span class="p">){</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">charCount</span><span class="p">[</span><span class="nx">maxList</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="p">){</span>
-            <span class="nx">maxList</span> <span class="o">=</span> <span class="p">[</span><span class="nx">chr</span><span class="p">]</span>
-        <span class="p">}</span> 
-        <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="nx">charCount</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">==</span> <span class="nx">charCount</span><span class="p">[</span><span class="nx">maxList</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">&amp;&amp;</span> <span class="nx">chr</span><span class="o">!=</span><span class="nx">maxList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">){</span>
-            <span class="nx">maxList</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">chr</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">maxList</span>
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">findChar</span><span class="p">:</span> <span class="nx">findChar</span>
-<span class="p">};</span>
-
-
-<span class="nf">findChar</span><span class="p">(</span><span class="dl">"</span><span class="s2">asdfghjklaqwertyuiopiaia135</span><span class="dl">"</span><span class="p">)</span>
-
-
-</code></pre></div></div>
-
-<h2 id="斐波那契数列">斐波那契数列</h2>
-
-<ul>
-  <li>使用递归法超时了，改用迭代</li>
-  <li>也可以用动态规划的思想迭代</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-
-<span class="c1">// 斐波那契数列</span>
-
-
-<span class="cm">/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- * 返回斐波那契数列第n项的数字
- * @param n long长整型 数列中的第n项
- * @return long长整型
- */</span>
-<span class="kd">function</span> <span class="nf">fib</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="c1">// 递归法超时</span>
-    <span class="c1">// if(n&lt;=1){</span>
-    <span class="c1">//     return 1</span>
-    <span class="c1">// }</span>
-    <span class="c1">// return fib(n-1) + fib(n-2)</span>
-
-
-    <span class="c1">// 试试迭代</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="p">}</span>
-
-    <span class="kd">let</span> <span class="nx">pre</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">cur</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">n</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="kd">let</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">pre</span> <span class="o">+</span> <span class="nx">cur</span>
-        <span class="nx">pre</span> <span class="o">=</span> <span class="nx">cur</span>
-        <span class="nx">cur</span> <span class="o">=</span> <span class="nx">next</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">cur</span>
-
-
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">fib</span><span class="p">:</span> <span class="nx">fib</span>
-<span class="p">};</span>
-
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-14-function_call/image_1.jpg) -->
-
-<h2 id="中文转数字">中文转数字</h2>
-
-<ul>
-  <li>这题比较有意思</li>
-  <li>关键在于对零的判断</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入 "二百零五万三千三百三十三"
-输出 2053333
-</code></pre></div></div>
-
-<ul>
-  <li>通过率只有85%，没有找到问题</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-
-<span class="c1">// 中文转数字</span>
-
-<span class="c1">// "二百零五万三千三百三十三"</span>
-<span class="c1">// 2053333</span>
-
-<span class="c1">// 通过率85%</span>
-
-
-
-<span class="cm">/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- * 请实现一个将中文数字转换为阿拉伯数字的方法
- * @param chineseNumber string字符串 中文数字字符串
- * @return int整型
- */</span>
-<span class="kd">function</span> <span class="nf">chineseToNumber</span><span class="p">(</span><span class="nx">chineseNumber</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-    <span class="kd">const</span> <span class="nx">numberMap</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">零</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="na">一</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="na">二</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="na">三</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="na">四</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="na">五</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="na">六</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
-        <span class="na">七</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-        <span class="na">八</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-        <span class="na">九</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-        <span class="na">十</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="na">百</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="na">千</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-        <span class="na">万</span><span class="p">:</span> <span class="mi">10000</span>
-    <span class="p">}</span>
-    <span class="kd">let</span> <span class="nx">ansNumber</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="kd">let</span> <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="kd">let</span> <span class="nx">lastNumber</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">cnNum</span> <span class="k">of</span> <span class="nx">chineseNumber</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">intNum</span> <span class="o">=</span> <span class="nx">numberMap</span><span class="p">[</span><span class="nx">cnNum</span><span class="p">]</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">curNumber</span> <span class="o">+=</span> <span class="nx">intNum</span>
-            <span class="c1">// 一万零二这种情况</span>
-            <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">curNumber</span> <span class="o">=</span> <span class="nx">ansNumber</span>
-                <span class="nx">ansNumber</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="p">}</span>
-            <span class="c1">// 一万零二十这种情况要记住二，再在下面处理十</span>
-            <span class="k">if </span><span class="p">(</span><span class="nx">curNumber</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">lastNumber</span> <span class="o">=</span> <span class="nx">intNum</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="k">if </span><span class="p">(</span><span class="nx">curNumber</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// "十七"这种情况</span>
-                <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">10</span>
-                <span class="p">}</span>
-                <span class="c1">// 一千万这种情况</span>
-                <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">intNum</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">){</span>
-                    <span class="nx">ansNumber</span> <span class="o">*=</span> <span class="mi">10000</span>
-                <span class="p">}</span>
-
-            <span class="p">}</span>
-            <span class="c1">// 处理一万零二十的十</span>
-            <span class="k">else</span> <span class="k">if </span><span class="p">((</span><span class="nx">lastNumber</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">intNum</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">ansNumber</span> <span class="o">=</span> <span class="nx">curNumber</span> <span class="o">-</span> <span class="nx">lastNumber</span>
-                <span class="nx">curNumber</span> <span class="o">=</span> <span class="nx">lastNumber</span> <span class="o">*</span> <span class="nx">intNum</span>
-                <span class="nx">ansNumber</span> <span class="o">+=</span> <span class="nx">curNumber</span>
-                <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="nx">lastNumber</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">curNumber</span> <span class="o">*=</span> <span class="nx">intNum</span>
-                <span class="nx">ansNumber</span> <span class="o">+=</span> <span class="nx">curNumber</span>
-                <span class="nx">curNumber</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="nx">lastNumber</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">cnNum</span><span class="p">,</span> <span class="nx">curNumber</span><span class="p">,</span> <span class="nx">ansNumber</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">curNumber</span> <span class="o">+</span> <span class="nx">ansNumber</span>
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">chineseToNumber</span><span class="p">:</span> <span class="nx">chineseToNumber</span>
-<span class="p">};</span>
-
-
-<span class="c1">// console.log(chineseToNumber("二百零五万三千三百三十三"))</span>
-<span class="c1">// console.log(chineseToNumber("一万零二"))</span>
-<span class="c1">// console.log(chineseToNumber("一万零二十"))</span>
-<span class="c1">// console.log(chineseToNumber("一千万"))</span>
-<span class="c1">// console.log(chineseToNumber("一千万零一百"))</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">chineseToNumber</span><span class="p">(</span><span class="dl">"</span><span class="s2">一千零一万零一十一</span><span class="dl">"</span><span class="p">))</span>
-
-
-</code></pre></div></div>]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[依旧是算法题不难，选择题逆天 因为是第一次用js写算法题，所以记录一下]]></summary></entry><entry><title type="html">js: call函数</title><link href="/js/function_call/" rel="alternate" type="text/html" title="js: call函数" /><published>2023-10-14T17:08:42+08:00</published><updated>2023-10-14T17:08:42+08:00</updated><id>/js/function_call</id><content type="html" xml:base="/js/function_call/"><![CDATA[<h2 id="首先了解什么是call">首先了解什么是call</h2>
-
-<ul>
-  <li>在 JavaScript 中，函数是对象的方法。如果一个函数不是 JavaScript 对象的方法，那么它就是全局对象的函数</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bill</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gates</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">fullName</span><span class="p">:</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nf">fullName</span><span class="p">();</span>		<span class="c1">// 将返回 "Bill Gates"</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>上面的例子中fullName 属性是一个方法。person 对象是该方法的拥有者。fullName 属性属于 person 对象的方法。</p>
-  </li>
-  <li>
-    <p>call() 方法是预定义的 JavaScript 方法。它可以用来调用所有者对象作为参数的方法。通过 call()，您能够使用属于另一个对象的方法。下例调用 person 的 fullName 方法，并用于 person1：</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">fullName</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bill</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gates</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">person2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Steve</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jobs</span><span class="dl">"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">fullName</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nx">person1</span><span class="p">);</span>  <span class="c1">// 将返回 "Bill Gates"</span>
-</code></pre></div></div>
-
-<ul>
-  <li>call方法可以接受参数</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">fullName</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">city</span><span class="p">,</span> <span class="nx">country</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">city</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">country</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">firstName</span><span class="p">:</span><span class="dl">"</span><span class="s2">Bill</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">lastName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Gates</span><span class="dl">"</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">fullName</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nx">person1</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Seattle</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">USA</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h2 id="然后自己实现一个call">然后自己实现一个call</h2>
-
-<ul>
-  <li>下面是gpt写的，但我觉得hr要的应该不是这个</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 自定义的 call 函数实现</span>
-<span class="kd">function</span> <span class="nf">myCall</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// 检查 fn 是否为函数</span>
-  <span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">fn</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">myCall 只能用于函数</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="c1">// 将函数作为上下文对象的一个属性</span>
-  <span class="kd">const</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="nc">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">temp</span><span class="dl">'</span><span class="p">);</span>
-  <span class="nx">context</span><span class="p">[</span><span class="nx">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
-
-  <span class="c1">// 使用 eval 执行函数并获取结果</span>
-  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nf">eval</span><span class="p">(</span><span class="dl">'</span><span class="s1">context[symbol](...args)</span><span class="dl">'</span><span class="p">);</span>
-
-  <span class="c1">// 删除添加的属性</span>
-  <span class="k">delete</span> <span class="nx">context</span><span class="p">[</span><span class="nx">symbol</span><span class="p">];</span>
-
-  <span class="c1">// 返回函数执行的结果</span>
-  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 示例用法</span>
-<span class="kd">function</span> <span class="nf">greet</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span> <span class="p">};</span>
-
-<span class="nf">myCall</span><span class="p">(</span><span class="nx">greet</span><span class="p">,</span> <span class="nx">person</span><span class="p">);</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>Symbol是JavaScript中的一种原始数据类型，引入于ES6（ECMAScript 2015）标准。它是一种唯一且不可变的数据类型，用于表示一个独一无二的标识符。</p>
-  </li>
-  <li>
-    <p>与其他原始数据类型（如字符串、数字和布尔值）不同，Symbol值在内存中是唯一的。每个Symbol值都是独一无二的，即使它们具有相同的描述。</p>
-  </li>
-  <li>
-    <p>在示例代码中，我们使用Symbol(‘temp’)创建了一个带有描述符为”temp”的Symbol值，并将其作为临时属性名添加到上下文对象中。通过这种方式，我们确保了该属性名的唯一性，不会与上下文对象中的其他属性名冲突。</p>
-  </li>
-  <li>
-    <p>context[symbol] = fn 这行代码的意思是将一个函数 fn 赋值给对象 context 的一个属性，而该属性的名称是 symbol 所表示的 Symbol 值。</p>
-  </li>
-  <li>
-    <p>在 JavaScript 中，eval 函数接受一个字符串参数，并将该字符串作为 JavaScript 代码进行解析和执行。在这个特定的表达式中，我们使用 eval 函数来执行一个动态生成的函数调用。</p>
-  </li>
-  <li>
-    <p>在上面的示例中，greet 函数是要调用的函数，person 对象是作为上下文对象传递给 myCall 函数的参数，也就是说在myCall中context = person</p>
-  </li>
-  <li>
-    <p>根据对代码的理解，简化了gpt的代码如下：</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">myCall</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">fn</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">myCall 只能用于函数</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="c1">// 创建一个唯一的属性名</span>
-  <span class="kd">const</span> <span class="nx">propertyName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">__myCall__</span><span class="dl">'</span><span class="p">;</span>
-
-  <span class="c1">// 将函数赋值给上下文对象的属性</span>
-  <span class="nx">context</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
-
-  <span class="c1">// 使用属性名调用函数并获取结果</span>
-  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">context</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">]();</span>
-
-  <span class="c1">// 删除临时属性</span>
-  <span class="k">delete</span> <span class="nx">context</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">];</span>
-
-  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 示例用法</span>
-<span class="kd">function</span> <span class="nf">greet</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hello, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">!`</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span> <span class="p">};</span>
-
-<span class="nf">myCall</span><span class="p">(</span><span class="nx">greet</span><span class="p">,</span> <span class="nx">person</span><span class="p">);</span>
-</code></pre></div></div>
-
-<ul>
-  <li>简单来说就是，person内部没有greet方法，在myCall里把greet方法加入到person中，调用完后再删掉</li>
-  <li>因为greet加入了person，所以可以共享this</li>
-</ul>
-
-<!--![引入图片](/image/js/2023-10-14-function_call/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[首先了解什么是call]]></summary></entry></feed>
+<!--![引入图片](/image/js/2023-10-15-constructor/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[面向对象编程（Object Oriented Programming，缩写为 OOP）是目前主流的编程范式。它将真实世界各种复杂的关系，抽象为一个个对象，然后由对象之间的分工与合作，完成对真实世界的模拟。]]></summary></entry></feed>

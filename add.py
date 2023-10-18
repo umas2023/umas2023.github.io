@@ -38,20 +38,18 @@ cat_list = [
 
 
 # 修改这里：基础分类
-basic_cat = "jekyll"
+basic_cat = "windows"
 # 修改这题：附加分类
-add_cat = []
-
+add_cat = ["cpp"]
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "add_date"
+file_name = "mingw_install"
 # 修改这里：文章标题
-title = "'%s: 页面添加日期显示'" % basic_cat
+title = "'%s: 安装gcc'" % basic_cat
 # 修改这里：文章介绍
-info = "'home默认是显示日期的，但单页博客默认不显示'"
+info = "'MinGW工具'"
 # 是否创建图片目录？
 is_img = False
 # is_img = True
-
 
 
 # 文章分类，可以添加多个
