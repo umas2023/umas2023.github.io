@@ -1,4 +1,163 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-18T18:36:57+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">jekyll: 添加图标</title><link href="/jekyll/favicon/" rel="alternate" type="text/html" title="jekyll: 添加图标" /><published>2023-10-18T18:34:02+08:00</published><updated>2023-10-18T18:34:02+08:00</updated><id>/jekyll/favicon</id><content type="html" xml:base="/jekyll/favicon/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-20T20:41:13+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 信也笔试</title><link href="/leetcode/js/xinye/" rel="alternate" type="text/html" title="leetcode: 信也笔试" /><published>2023-10-20T20:02:55+08:00</published><updated>2023-10-20T20:02:55+08:00</updated><id>/leetcode/js/xinye</id><content type="html" xml:base="/leetcode/js/xinye/"><![CDATA[<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>js保留两位小数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ans</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>ascii码相互转换</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ascii</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">.</span><span class="nf">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nx">chr</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nf">fromCharCode</span><span class="p">(</span><span class="nx">ascii</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="计算利息">计算利息</h2>
+
+<ul>
+  <li>触及到知识盲区了</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 等额本金：每月还款 = （本金/贷款月数）+（本金-已还金额）*月利率
+- 输入：120000,0.048,5,"principal"
+- 输出：14640.00
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 等额本息：每月还款 = 本金*月利率*（1+月利率）^ 贷款月数 / [(1+月利率) ^ 贷款月数 -1]
+- 输入：120000,0.048,5,"amortized"
+- 输出：15214.14
+</code></pre></div></div>
+
+<ul>
+  <li>生搬硬套题目公式得到的结果完全不对，gpt给的程序也算不对</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 利息计算，保留2位小数
+ * @param amount int整型 借款金额
+ * @param annualRate float浮点型 年化利率
+ * @param years int整型 借款期限
+ * @param repaymentType string字符串 还款方式：等额本金（principal）、等额本息（amortized）
+ * @return float浮点型
+ */</span>
+<span class="kd">function</span> <span class="nf">calculateInterest</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">annualRate</span><span class="p">,</span> <span class="nx">years</span><span class="p">,</span> <span class="nx">repaymentType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write code here</span>
+    <span class="kd">let</span> <span class="nx">ans</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="kd">const</span> <span class="nx">totalMonth</span> <span class="o">=</span> <span class="nx">years</span> <span class="o">*</span> <span class="mi">12</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">month</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">month</span> <span class="o">&lt;=</span> <span class="nx">totalMonth</span><span class="p">;</span> <span class="nx">month</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">repaymentType</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">principal</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">/</span> <span class="nx">totalMonth</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">-</span> <span class="nx">ans</span><span class="p">)</span> <span class="o">*</span> <span class="nx">annualRate</span>
+            <span class="nx">ans</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">ans</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span> <span class="c1">// 两位小数</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">repaymentType</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">amortized</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">amount</span> <span class="o">*</span> <span class="nx">annualRate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nx">annualRate</span><span class="p">)</span> <span class="o">**</span> <span class="nx">totalMonth</span> <span class="o">/</span> <span class="p">[(</span><span class="mi">1</span> <span class="o">+</span> <span class="nx">annualRate</span><span class="p">)</span> <span class="o">**</span> <span class="nx">totalMonth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="nx">ans</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">ans</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span> <span class="c1">// 两位小数</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="dl">"</span><span class="s2">error: unexpected repaymentType</span><span class="dl">"</span>
+        <span class="p">}</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">month</span><span class="p">,</span> <span class="nx">ans</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// return ans.toFixed(2) // 答题系统里没有这个方法</span>
+    <span class="k">return</span> <span class="nx">ans</span><span class="o">-</span><span class="nx">amount</span>
+
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">calculateInterest</span><span class="p">:</span> <span class="nx">calculateInterest</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">calculateInterest</span><span class="p">(</span><span class="mi">120000</span><span class="p">,</span> <span class="mf">0.048</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="dl">"</span><span class="s2">principal</span><span class="dl">"</span><span class="p">))</span>
+<span class="c1">// console.log(calculateInterest(120000, 0.048, 5, "amortized"))</span>
+</code></pre></div></div>
+
+<h2 id="判断回文串">判断回文串</h2>
+
+<ul>
+  <li>忽略大小写、空格、标点</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入："A man, a plan, a canal,            Panama"
+输出：true
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param input string字符串 
+ * @return bool布尔型
+ */</span>
+<span class="kd">function</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write code here</span>
+
+    <span class="c1">// 转换为基本格式</span>
+    <span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nf">toLowerCase</span><span class="p">()</span>
+    <span class="nx">raw_string</span> <span class="o">=</span> <span class="dl">""</span>
+    <span class="nx">rm_list</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">!</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="p">,</span><span class="dl">'</span><span class="s1">"</span><span class="dl">'</span><span class="p">,</span><span class="dl">"</span><span class="s2">'</span><span class="dl">"</span><span class="p">];</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">letter</span> <span class="k">of</span> <span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">rm_list</span><span class="p">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">raw_string</span> <span class="o">+=</span> <span class="nx">letter</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 判断回文</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">raw_string</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">raw_string</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">raw_string</span><span class="p">[</span><span class="nx">raw_string</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">raw_string</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">,</span> <span class="nx">raw_string</span><span class="p">[</span><span class="nx">raw_string</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">return</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">isPalindrome</span><span class="p">:</span> <span class="nx">isPalindrome</span>
+<span class="p">};</span>
+
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">isPalindrome</span><span class="p">(</span><span class="dl">"</span><span class="s2">A man, a plan, a canal,            Panama</span><span class="dl">"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>rm_list显然是不合理的，第一次只写了一个逗号，通过率是80%，加长rm_list之后勉强100%通过了</li>
+</ul>
+
+<h2 id="字符串ascii1">字符串ascii+1</h2>
+
+<ul>
+  <li>（凯撒密码）</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param input string字符串 
+ * @return string字符串
+ */</span>
+<span class="kd">function</span> <span class="nf">shiftCharacters</span><span class="p">(</span> <span class="nx">input</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write code here</span>
+    <span class="kd">let</span> <span class="nx">ans</span> <span class="o">=</span> <span class="dl">""</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">chr</span> <span class="k">of</span> <span class="nx">input</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="nx">ascii</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">.</span><span class="nf">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nx">ans</span> <span class="o">+=</span> <span class="nb">String</span><span class="p">.</span><span class="nf">fromCharCode</span><span class="p">(</span><span class="nx">ascii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">ans</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">shiftCharacters</span> <span class="p">:</span> <span class="nx">shiftCharacters</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">shiftCharacters</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">))</span> <span class="c1">//"ifmmp"</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-10-20-xinye/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">jekyll: 添加图标</title><link href="/jekyll/favicon/" rel="alternate" type="text/html" title="jekyll: 添加图标" /><published>2023-10-18T18:34:02+08:00</published><updated>2023-10-18T18:34:02+08:00</updated><id>/jekyll/favicon</id><content type="html" xml:base="/jekyll/favicon/"><![CDATA[<ul>
   <li>
     <p>如题，favicon.ico放根目录就行了</p>
   </li>
@@ -9,9 +168,13 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/jekyll/2023-10-18-favicon/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[如题，favicon.ico放根目录就行了]]></summary></entry><entry><title type="html">leetcode: 广联达</title><link href="/leetcode/python/sort_list_25/" rel="alternate" type="text/html" title="leetcode: 广联达" /><published>2023-10-18T18:31:23+08:00</published><updated>2023-10-18T18:31:23+08:00</updated><id>/leetcode/python/sort_list_25</id><content type="html" xml:base="/leetcode/python/sort_list_25/"><![CDATA[<ul>
-  <li>广联达，数组排序，后一项是前一项的1/2或者5倍,输入第一行是长度和首项，第二行是列表</li>
+<!--![引入图片](/image/jekyll/2023-10-18-favicon/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[如题，favicon.ico放根目录就行了]]></summary></entry><entry><title type="html">leetcode: 广联达</title><link href="/leetcode/python/sort_list_25/" rel="alternate" type="text/html" title="leetcode: 广联达" /><published>2023-10-18T18:31:23+08:00</published><updated>2023-10-18T18:31:23+08:00</updated><id>/leetcode/python/sort_list_25</id><content type="html" xml:base="/leetcode/python/sort_list_25/"><![CDATA[<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>递归</li>
 </ul>
+
+<h2 id="广联达数组排序后一项是前一项的12或者5倍输入第一行是长度和首项第二行是列表">广联达，数组排序，后一项是前一项的1/2或者5倍,输入第一行是长度和首项，第二行是列表</h2>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5 16
 8 20 16 10 4
@@ -73,7 +236,7 @@
 
 </code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-18-sort_list_25/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[广联达，数组排序，后一项是前一项的1/2或者5倍,输入第一行是长度和首项，第二行是列表]]></summary></entry><entry><title type="html">leetcode: 众安笔试，01数组拆分</title><link href="/leetcode/python/cut01list/" rel="alternate" type="text/html" title="leetcode: 众安笔试，01数组拆分" /><published>2023-10-18T18:29:39+08:00</published><updated>2023-10-18T18:29:39+08:00</updated><id>/leetcode/python/cut01list</id><content type="html" xml:base="/leetcode/python/cut01list/"><![CDATA[<ul>
+<!--![引入图片](/image/leetcode/2023-10-18-sort_list_25/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">leetcode: 众安笔试，01数组拆分</title><link href="/leetcode/python/cut01list/" rel="alternate" type="text/html" title="leetcode: 众安笔试，01数组拆分" /><published>2023-10-18T18:29:39+08:00</published><updated>2023-10-18T18:29:39+08:00</updated><id>/leetcode/python/cut01list</id><content type="html" xml:base="/leetcode/python/cut01list/"><![CDATA[<ul>
   <li>众安笔试两题</li>
 </ul>
 
@@ -91,7 +254,24 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-18-cut01list/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[众安笔试两题]]></summary></entry><entry><title type="html">leetcode: 无重复字符的最长子串</title><link href="/leetcode/python/LongestSubstring/" rel="alternate" type="text/html" title="leetcode: 无重复字符的最长子串" /><published>2023-10-17T18:35:54+08:00</published><updated>2023-10-17T18:35:54+08:00</updated><id>/leetcode/python/LongestSubstring</id><content type="html" xml:base="/leetcode/python/LongestSubstring/"><![CDATA[<ul>
+<!--![引入图片](/image/leetcode/2023-10-18-cut01list/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[众安笔试两题]]></summary></entry><entry><title type="html">leetcode: 无重复字符的最长子串</title><link href="/leetcode/python/LongestSubstring/" rel="alternate" type="text/html" title="leetcode: 无重复字符的最长子串" /><published>2023-10-17T18:35:54+08:00</published><updated>2023-10-17T18:35:54+08:00</updated><id>/leetcode/python/LongestSubstring</id><content type="html" xml:base="/leetcode/python/LongestSubstring/"><![CDATA[<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>
+    <p>滑动窗口</p>
+  </li>
+  <li>
+    <p>判断数组中是否有重复元素</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="题目">题目</h2>
+
+<ul>
   <li>地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/</li>
   <li>
     <p>给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p>
@@ -146,7 +326,7 @@
 
 </code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-17-LongestSubstring/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/ 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。]]></summary></entry><entry><title type="html">windows: windows安装gcc</title><link href="/windows/cpp/install_mingw/" rel="alternate" type="text/html" title="windows: windows安装gcc" /><published>2023-10-17T13:04:31+08:00</published><updated>2023-10-17T13:04:31+08:00</updated><id>/windows/cpp/install_mingw</id><content type="html" xml:base="/windows/cpp/install_mingw/"><![CDATA[<ul>
+<!--![引入图片](/image/leetcode/2023-10-17-LongestSubstring/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">windows: windows安装gcc</title><link href="/windows/cpp/install_mingw/" rel="alternate" type="text/html" title="windows: windows安装gcc" /><published>2023-10-17T13:04:31+08:00</published><updated>2023-10-17T13:04:31+08:00</updated><id>/windows/cpp/install_mingw</id><content type="html" xml:base="/windows/cpp/install_mingw/"><![CDATA[<ul>
   <li>
     <p>下载：https://sourceforge.net/projects/mingw/</p>
   </li>
@@ -228,6 +408,39 @@
   <li>选择题里竟然有我会做的</li>
 </ul>
 
+<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>py判断列表中是否包含某项</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">e</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">o</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">u</span><span class="sh">"</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>python，replace函数</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str.replace(old, new[, max])
+</code></pre></div></div>
+
+<p>Python replace() 方法把字符串中的 old（旧字符串） 替换成 new(新字符串)，如果指定第三个参数max，则替换不超过 max 次。</p>
+
+<p>当count参数省略时，<strong>在字符串中匹配到的全部old_str将会被替换成new_str</strong></p>
+
+<ul>
+  <li>js，replace函数</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string.replace(regexp, replacement)
+</code></pre></div></div>
+
+<p>regexp：必需。要搜索的值或正则表达式。</p>
+
+<p>replacement：必需。字符串。指定替换文本或生成替换文本的函数。</p>
+
+<p><strong>仅能替换匹配到的第一次，替换所有需要使用正则表达式</strong></p>
+
 <h2 id="字符串替换">字符串替换</h2>
 
 <ul>
@@ -237,7 +450,7 @@
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">replaceVowelsWithV</span><span class="p">(</span> <span class="nx">inputString</span> <span class="p">)</span> <span class="p">{</span>
     <span class="c1">// write code here</span>
 
-    <span class="c1">// replace只能匹配一次，不能替换所有（正则表达式？）</span>
+    <span class="c1">// replace只能匹配一次，不能替换所有？（正则表达式？）</span>
     <span class="c1">// for(let chr of ["a","e","i","o","u"]){</span>
     <span class="c1">//     inputString = inputString.replace(chr,"V")</span>
     <span class="c1">// }</span>
@@ -374,9 +587,21 @@ i：不区分大小写的标志，表示在匹配时忽略字符的大小写。
 <span class="c1"># print(Solution().repeatedDNA("AAAAAAAAAAA"))
 </span></code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-16-ruixing/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><category term="js" /><summary type="html"><![CDATA[不得不说瑞幸是目前做过最舒服的笔试 选择题里竟然有我会做的]]></summary></entry><entry><title type="html">leetcode: 记tplink笔试</title><link href="/leetcode/python/tp_link/" rel="alternate" type="text/html" title="leetcode: 记tplink笔试" /><published>2023-10-16T18:26:22+08:00</published><updated>2023-10-16T18:26:22+08:00</updated><id>/leetcode/python/tp_link</id><content type="html" xml:base="/leetcode/python/tp_link/"><![CDATA[<ul>
-  <li>链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出</li>
+<!--![引入图片](/image/leetcode/2023-10-16-ruixing/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><category term="js" /><summary type="html"><![CDATA[不得不说瑞幸是目前做过最舒服的笔试 选择题里竟然有我会做的]]></summary></entry><entry><title type="html">leetcode: 记tplink笔试</title><link href="/leetcode/python/tp_link/" rel="alternate" type="text/html" title="leetcode: 记tplink笔试" /><published>2023-10-16T18:26:22+08:00</published><updated>2023-10-16T18:26:22+08:00</updated><id>/leetcode/python/tp_link</id><content type="html" xml:base="/leetcode/python/tp_link/"><![CDATA[<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>
+    <p>链表逆置：遍历把每个链表的next指向前一项</p>
+  </li>
+  <li>
+    <p>初始化变量为无穷小</p>
+  </li>
 </ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">-inf</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="链表创建销毁打印和单链表逆置输入为0-99的链表打印输出">链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出</h2>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -436,9 +661,7 @@ i：不区分大小写的标志，表示在匹配时忽略字符的大小写。
 
 </code></pre></div></div>
 
-<ul>
-  <li>给定列表，返回乘积最大的连续两项</li>
-</ul>
+<h2 id="给定列表返回乘积最大的连续两项">给定列表，返回乘积最大的连续两项</h2>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_max_product</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
     <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -457,7 +680,7 @@ i：不区分大小写的标志，表示在匹配时忽略字符的大小写。
 <span class="nf">print</span><span class="p">(</span><span class="nf">find_max_product</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
 </code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-16-tp_link/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出]]></summary></entry><entry><title type="html">vue: 学习工厂项目echart图表加载错误</title><link href="/vue/amtc/learningfactory_echart/" rel="alternate" type="text/html" title="vue: 学习工厂项目echart图表加载错误" /><published>2023-10-16T13:43:44+08:00</published><updated>2023-10-16T13:43:44+08:00</updated><id>/vue/amtc/learningfactory_echart</id><content type="html" xml:base="/vue/amtc/learningfactory_echart/"><![CDATA[<ul>
+<!--![引入图片](/image/leetcode/2023-10-16-tp_link/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">vue: 学习工厂项目echart图表加载错误</title><link href="/vue/amtc/learningfactory_echart/" rel="alternate" type="text/html" title="vue: 学习工厂项目echart图表加载错误" /><published>2023-10-16T13:43:44+08:00</published><updated>2023-10-16T13:43:44+08:00</updated><id>/vue/amtc/learningfactory_echart</id><content type="html" xml:base="/vue/amtc/learningfactory_echart/"><![CDATA[<ul>
   <li>学习工厂首页在搜索栏下面用onMounted加入了一张饼图</li>
 </ul>
 
@@ -495,39 +718,4 @@ i：不区分大小写的标志，表示在匹配时忽略字符的大小写。
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/vue/2023-10-16-learningfactory_echart/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="amtc" /><summary type="html"><![CDATA[学习工厂首页在搜索栏下面用onMounted加入了一张饼图]]></summary></entry><entry><title type="html">js: 构造函数</title><link href="/js/knowhow/constructor/" rel="alternate" type="text/html" title="js: 构造函数" /><published>2023-10-15T20:21:36+08:00</published><updated>2023-10-15T20:21:36+08:00</updated><id>/js/knowhow/constructor</id><content type="html" xml:base="/js/knowhow/constructor/"><![CDATA[<ul>
-  <li>
-    <p>面向对象编程（Object Oriented Programming，缩写为 OOP）是目前主流的编程范式。它将真实世界各种复杂的关系，抽象为一个个对象，然后由对象之间的分工与合作，完成对真实世界的模拟。</p>
-  </li>
-  <li>
-    <p>JavaScript 语言使用构造函数（constructor）作为对象的模板。所谓”构造函数”，就是专门用来生成实例对象的函数。它就是对象的模板，描述实例对象的基本结构。</p>
-  </li>
-  <li>
-    <p>new 就是创造对象/实例化对象的过程，new 创造出来的对象叫做构造函数的 实例对象</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Person</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">//构造函数体内的属性</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Jack</span><span class="dl">'</span>
-<span class="p">}</span>
-
-<span class="c1">// Person.prototype 原型 上的方法</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">a</span><span class="p">:</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">我是一个a方法</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">},</span>
-  <span class="na">b</span><span class="p">:</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="p">()</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span><span class="c1">// Jack</span>
-<span class="nx">p</span><span class="p">.</span><span class="nf">a</span><span class="p">()</span><span class="c1">// 我是一个a方法</span>
-
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/js/2023-10-15-constructor/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[面向对象编程（Object Oriented Programming，缩写为 OOP）是目前主流的编程范式。它将真实世界各种复杂的关系，抽象为一个个对象，然后由对象之间的分工与合作，完成对真实世界的模拟。]]></summary></entry></feed>
+<!--![引入图片](/image/vue/2023-10-16-learningfactory_echart/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="amtc" /><summary type="html"><![CDATA[学习工厂首页在搜索栏下面用onMounted加入了一张饼图]]></summary></entry></feed>

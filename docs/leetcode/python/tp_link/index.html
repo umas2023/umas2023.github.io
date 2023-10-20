@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="leetcode: 记tplink笔试" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出" />
-<meta property="og:description" content="链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出" />
+<meta name="description" content="知识总结" />
+<meta property="og:description" content="知识总结" />
 <link rel="canonical" href="/leetcode/python/tp_link/" />
 <meta property="og:url" content="/leetcode/python/tp_link/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="leetcode: 记tplink笔试" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-16T18:26:22+08:00","datePublished":"2023-10-16T18:26:22+08:00","description":"链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出","headline":"leetcode: 记tplink笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/tp_link/"},"url":"/leetcode/python/tp_link/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-16T18:26:22+08:00","datePublished":"2023-10-16T18:26:22+08:00","description":"知识总结","headline":"leetcode: 记tplink笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/tp_link/"},"url":"/leetcode/python/tp_link/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body>
@@ -61,14 +61,29 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#知识总结">知识总结</a></li>
+<li class="toc-entry toc-h2"><a href="#链表创建销毁打印和单链表逆置输入为0-99的链表打印输出">链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出</a></li>
+<li class="toc-entry toc-h2"><a href="#给定列表返回乘积最大的连续两项">给定列表，返回乘积最大的连续两项</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <ul>
-  <li>链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出</li>
+    <h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>
+    <p>链表逆置：遍历把每个链表的next指向前一项</p>
+  </li>
+  <li>
+    <p>初始化变量为无穷小</p>
+  </li>
 </ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">-inf</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="链表创建销毁打印和单链表逆置输入为0-99的链表打印输出">链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出</h2>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -128,9 +143,7 @@
 
 </code></pre></div></div>
 
-<ul>
-  <li>给定列表，返回乘积最大的连续两项</li>
-</ul>
+<h2 id="给定列表返回乘积最大的连续两项">给定列表，返回乘积最大的连续两项</h2>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_max_product</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
     <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>

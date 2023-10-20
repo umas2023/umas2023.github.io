@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="leetcode: 无重复字符的最长子串" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/ 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。" />
-<meta property="og:description" content="地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/ 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。" />
+<meta name="description" content="知识总结" />
+<meta property="og:description" content="知识总结" />
 <link rel="canonical" href="/leetcode/python/LongestSubstring/" />
 <meta property="og:url" content="/leetcode/python/LongestSubstring/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="leetcode: 无重复字符的最长子串" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-17T18:35:54+08:00","datePublished":"2023-10-17T18:35:54+08:00","description":"地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/ 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。","headline":"leetcode: 无重复字符的最长子串","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/LongestSubstring/"},"url":"/leetcode/python/LongestSubstring/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-17T18:35:54+08:00","datePublished":"2023-10-17T18:35:54+08:00","description":"知识总结","headline":"leetcode: 无重复字符的最长子串","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/LongestSubstring/"},"url":"/leetcode/python/LongestSubstring/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body>
@@ -61,12 +61,31 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#知识总结">知识总结</a></li>
+<li class="toc-entry toc-h2"><a href="#题目">题目</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <ul>
+    <h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>
+    <p>滑动窗口</p>
+  </li>
+  <li>
+    <p>判断数组中是否有重复元素</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="题目">题目</h2>
+
+<ul>
   <li>地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/</li>
   <li>
     <p>给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p>

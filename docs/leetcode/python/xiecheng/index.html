@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="leetcode: 携程笔试" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="三位回文串" />
-<meta property="og:description" content="三位回文串" />
+<meta name="description" content="知识总结" />
+<meta property="og:description" content="知识总结" />
 <link rel="canonical" href="/leetcode/python/xiecheng/" />
 <meta property="og:url" content="/leetcode/python/xiecheng/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="leetcode: 携程笔试" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T12:04:54+08:00","datePublished":"2023-10-11T12:04:54+08:00","description":"三位回文串","headline":"leetcode: 携程笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/xiecheng/"},"url":"/leetcode/python/xiecheng/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-11T12:04:54+08:00","datePublished":"2023-10-11T12:04:54+08:00","description":"知识总结","headline":"leetcode: 携程笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/python/xiecheng/"},"url":"/leetcode/python/xiecheng/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body>
@@ -61,6 +61,7 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#知识总结">知识总结</a></li>
 <li class="toc-entry toc-h2"><a href="#三位回文串">三位回文串</a></li>
 <li class="toc-entry toc-h2"><a href="#坐标排序">坐标排序</a></li>
 <li class="toc-entry toc-h2"><a href="#字符串相邻不等">字符串相邻不等</a></li>
@@ -70,7 +71,25 @@
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <h2 id="三位回文串">三位回文串</h2>
+    <h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>py对数组排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">point_list</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span>
+<span class="c1"># 多维数组也可以直接多维排序
+</span></code></pre></div></div>
+
+<ul>
+  <li>py，acsii互换</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">letter_num</span> <span class="o">=</span> <span class="nf">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+<span class="n">letter</span> <span class="o">=</span> <span class="nf">chr</span><span class="p">(</span><span class="n">letter_num</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="三位回文串">三位回文串</h2>
 
 <p>01串，修改一位，包含尽可能多的长度为3的回文子串<br />
 输入 01101 <br />

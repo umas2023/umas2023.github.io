@@ -38,15 +38,15 @@ cat_list = [
 
 
 # 修改这里：基础分类
-basic_cat = "windows"
+basic_cat = "leetcode"
 # 修改这题：附加分类
-add_cat = ["cpp"]
+add_cat = ["js"]
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "mingw_install"
+file_name = "xinye"
 # 修改这里：文章标题
-title = "'%s: 安装gcc'" % basic_cat
+title = "'%s: 信也笔试'" % basic_cat
 # 修改这里：文章介绍
-info = "'MinGW工具'"
+info = "'计算利息、判断回文串、字符串ascii+1'"
 # 是否创建图片目录？
 is_img = False
 # is_img = True

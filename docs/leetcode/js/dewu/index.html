@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="leetcode: 得物笔试" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回" />
-<meta property="og:description" content="接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回" />
+<meta name="description" content="知识总结" />
+<meta property="og:description" content="知识总结" />
 <link rel="canonical" href="/leetcode/js/dewu/" />
 <meta property="og:url" content="/leetcode/js/dewu/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="leetcode: 得物笔试" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-10T17:45:01+08:00","datePublished":"2023-10-10T17:45:01+08:00","description":"接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回","headline":"leetcode: 得物笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/dewu/"},"url":"/leetcode/js/dewu/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-10T17:45:01+08:00","datePublished":"2023-10-10T17:45:01+08:00","description":"知识总结","headline":"leetcode: 得物笔试","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/dewu/"},"url":"/leetcode/js/dewu/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body>
@@ -61,12 +61,30 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#知识总结">知识总结</a></li>
+<li class="toc-entry toc-h2"><a href="#代码">代码</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    <ul>
+    <h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>
+    <p>滑动窗口</p>
+  </li>
+  <li>
+    <p>js等待所有Promise</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="nx">runningTasks</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="代码">代码</h2>
+
+<ul>
   <li>接受一个以Promise形式提供的任务列表和一个表示同时发起的任务数量的参数，所有任务完成后把结果按序放入数组返回</li>
 </ul>
 

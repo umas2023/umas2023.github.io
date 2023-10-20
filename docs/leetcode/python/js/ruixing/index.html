@@ -63,6 +63,7 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#知识总结">知识总结</a></li>
 <li class="toc-entry toc-h2"><a href="#字符串替换">字符串替换</a></li>
 <li class="toc-entry toc-h2"><a href="#计算时间差">计算时间差</a></li>
 <li class="toc-entry toc-h2"><a href="#字串查找">字串查找</a></li>
@@ -76,6 +77,39 @@
   <li>选择题里竟然有我会做的</li>
 </ul>
 
+<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>py判断列表中是否包含某项</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">e</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">o</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">u</span><span class="sh">"</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>python，replace函数</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str.replace(old, new[, max])
+</code></pre></div></div>
+
+<p>Python replace() 方法把字符串中的 old（旧字符串） 替换成 new(新字符串)，如果指定第三个参数max，则替换不超过 max 次。</p>
+
+<p>当count参数省略时，<strong>在字符串中匹配到的全部old_str将会被替换成new_str</strong></p>
+
+<ul>
+  <li>js，replace函数</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string.replace(regexp, replacement)
+</code></pre></div></div>
+
+<p>regexp：必需。要搜索的值或正则表达式。</p>
+
+<p>replacement：必需。字符串。指定替换文本或生成替换文本的函数。</p>
+
+<p><strong>仅能替换匹配到的第一次，替换所有需要使用正则表达式</strong></p>
+
 <h2 id="字符串替换">字符串替换</h2>
 
 <ul>
@@ -85,7 +119,7 @@
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">replaceVowelsWithV</span><span class="p">(</span> <span class="nx">inputString</span> <span class="p">)</span> <span class="p">{</span>
     <span class="c1">// write code here</span>
 
-    <span class="c1">// replace只能匹配一次，不能替换所有（正则表达式？）</span>
+    <span class="c1">// replace只能匹配一次，不能替换所有？（正则表达式？）</span>
     <span class="c1">// for(let chr of ["a","e","i","o","u"]){</span>
     <span class="c1">//     inputString = inputString.replace(chr,"V")</span>
     <span class="c1">// }</span>

@@ -7,6 +7,19 @@ categories: ['leetcode', 'python']
 toc: True
 ---
 
+## 知识总结
+
+- 滑动窗口
+
+- 判断数组中是否有重复元素
+
+```py
+def has_duplicate_chars(s):
+    return len(set(s)) < len(s)
+```
+
+## 题目
+
 - 地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/
 - 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
 

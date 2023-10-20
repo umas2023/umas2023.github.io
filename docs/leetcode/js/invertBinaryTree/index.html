@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="leetcode: js反转二叉树" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="class TreeNode { constructor(val) { this.val = val; this.left = null; this.right = null; } } function invertBinaryTree(root) { if (!root) { return null; } // 交换左右子节点 let temp = root.left; root.left = root.right; root.right = temp; // 递归反转左子树和右子树 invertBinaryTree(root.left); invertBinaryTree(root.right); return root; } // 示例用例 const root = new TreeNode(4); root.left = new TreeNode(2); root.right = new TreeNode(7); root.left.left = new TreeNode(1); root.left.right = new TreeNode(3); root.right.left = new TreeNode(6); root.right.right = new TreeNode(9); console.log(&#39;原始二叉树:&#39;); console.log(root); const invertedRoot = invertBinaryTree(root); console.log(&#39;反转后的二叉树:&#39;); console.log(invertedRoot);" />
-<meta property="og:description" content="class TreeNode { constructor(val) { this.val = val; this.left = null; this.right = null; } } function invertBinaryTree(root) { if (!root) { return null; } // 交换左右子节点 let temp = root.left; root.left = root.right; root.right = temp; // 递归反转左子树和右子树 invertBinaryTree(root.left); invertBinaryTree(root.right); return root; } // 示例用例 const root = new TreeNode(4); root.left = new TreeNode(2); root.right = new TreeNode(7); root.left.left = new TreeNode(1); root.left.right = new TreeNode(3); root.right.left = new TreeNode(6); root.right.right = new TreeNode(9); console.log(&#39;原始二叉树:&#39;); console.log(root); const invertedRoot = invertBinaryTree(root); console.log(&#39;反转后的二叉树:&#39;); console.log(invertedRoot);" />
+<meta name="description" content="知识总结" />
+<meta property="og:description" content="知识总结" />
 <link rel="canonical" href="/leetcode/js/invertBinaryTree/" />
 <meta property="og:url" content="/leetcode/js/invertBinaryTree/" />
 <meta property="og:site_name" content="umas’ awesome title" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="leetcode: js反转二叉树" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-14T17:01:33+08:00","datePublished":"2023-10-14T17:01:33+08:00","description":"class TreeNode { constructor(val) { this.val = val; this.left = null; this.right = null; } } function invertBinaryTree(root) { if (!root) { return null; } // 交换左右子节点 let temp = root.left; root.left = root.right; root.right = temp; // 递归反转左子树和右子树 invertBinaryTree(root.left); invertBinaryTree(root.right); return root; } // 示例用例 const root = new TreeNode(4); root.left = new TreeNode(2); root.right = new TreeNode(7); root.left.left = new TreeNode(1); root.left.right = new TreeNode(3); root.right.left = new TreeNode(6); root.right.right = new TreeNode(9); console.log(&#39;原始二叉树:&#39;); console.log(root); const invertedRoot = invertBinaryTree(root); console.log(&#39;反转后的二叉树:&#39;); console.log(invertedRoot);","headline":"leetcode: js反转二叉树","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/invertBinaryTree/"},"url":"/leetcode/js/invertBinaryTree/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-14T17:01:33+08:00","datePublished":"2023-10-14T17:01:33+08:00","description":"知识总结","headline":"leetcode: js反转二叉树","mainEntityOfPage":{"@type":"WebPage","@id":"/leetcode/js/invertBinaryTree/"},"url":"/leetcode/js/invertBinaryTree/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body>
@@ -61,12 +61,21 @@
   <!-- 目录 -->
   <hr>
   <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#知识总结">知识总结</a></li>
+<li class="toc-entry toc-h2"><a href="#代码">代码</a></li>
 </ul>
   <hr>
 
   <!-- 内容主体 -->
   <div class="post-content">
-    
+    <h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>反转二叉树只需要递归每个节点然后互换左右子节点</li>
+</ul>
+
+<h2 id="代码">代码</h2>
+
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">TreeNode</span> <span class="p">{</span>
     <span class="nf">constructor</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
