@@ -1,6 +1,62 @@
 [
   
     {
+      "title"    : "js: 正则表达式",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/js/knowhow/regular_expression/",
+      "date"     : "2023-10-23 13:18:39 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 前端性能优化之关于视图的更新方式",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/js/knowhow/view_update/",
+      "date"     : "2023-10-23 12:59:59 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 前端性能优化之节流函数",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/js/Throttling_function/",
+      "date"     : "2023-10-23 12:39:42 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: 前端性能优化之will-change",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/js/wil_change/",
+      "date"     : "2023-10-23 12:27:01 +0800"
+    } ,
+  
+    {
+      "title"    : "vue: video手动刷新",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/vue/video_ref/",
+      "date"     : "2023-10-23 12:17:48 +0800"
+    } ,
+  
+    {
+      "title"    : "zip_backyard: 重绘优化",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/zip_backyard/vue/repaint_/",
+      "date"     : "2023-10-21 11:54:56 +0800"
+    } ,
+  
+    {
+      "title"    : "windows: edge浏览器查看页面repaint",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/windows/vue/zip_backyard/repaint_gif/",
+      "date"     : "2023-10-20 21:04:31 +0800"
+    } ,
+  
+    {
       "title"    : "leetcode: 信也笔试",
       "category" : "",
       "tags"     : "",

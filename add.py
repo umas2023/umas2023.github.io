@@ -38,15 +38,15 @@ cat_list = [
 
 
 # 修改这里：基础分类
-basic_cat = "leetcode"
-# 修改这题：附加分类
-add_cat = ["js"]
+basic_cat = "vue"
+# 修改这里：附加分类
+add_cat = ["knowhow"]
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "xinye"
+file_name = "regular_expression"
 # 修改这里：文章标题
-title = "'%s: 信也笔试'" % basic_cat
+title = "'%s: 正则表达式'" % basic_cat
 # 修改这里：文章介绍
-info = "'计算利息、判断回文串、字符串ascii+1'"
+info = "'整理一些常用的，以js的replace函数为例'"
 # 是否创建图片目录？
 is_img = False
 # is_img = True
@@ -120,3 +120,7 @@ with open(gitkeep, "w+") as keep:
 
 # 打开图片目录
 os.system("explorer.exe %s" % image_path)
+
+
+
+

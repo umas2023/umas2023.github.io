@@ -37,6 +37,15 @@ let obj: Props = {
 {% endraw %}
 
 
+
+- 函数类型
+
+```js
+// 一个inject的例子
+const body_box_init: () => void = inject("body_box_init")!
+```
+
+
 - vue的ref类型
 {% raw %}
 ```ts

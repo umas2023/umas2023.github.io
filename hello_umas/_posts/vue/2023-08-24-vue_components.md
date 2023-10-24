@@ -87,6 +87,36 @@ module.exports = {
 {% endraw %}
 
 
+- 具名插槽
+
+{% raw %}
+```html
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+{% endraw %}
+
+
+
+{% raw %}
+```html
+<BaseLayout>
+  <template v-slot:header>
+    <!-- header 插槽的内容放这里 -->
+  </template>
+</BaseLayout>
+```
+{% endraw %}
+
 
 
 ## 动态导入文件夹下所有组件

@@ -1,4 +1,355 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-20T20:41:13+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 信也笔试</title><link href="/leetcode/js/xinye/" rel="alternate" type="text/html" title="leetcode: 信也笔试" /><published>2023-10-20T20:02:55+08:00</published><updated>2023-10-20T20:02:55+08:00</updated><id>/leetcode/js/xinye</id><content type="html" xml:base="/leetcode/js/xinye/"><![CDATA[<h2 id="知识总结">知识总结</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-24T11:41:52+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">js: 正则表达式</title><link href="/js/knowhow/regular_expression/" rel="alternate" type="text/html" title="js: 正则表达式" /><published>2023-10-23T13:18:39+08:00</published><updated>2023-10-23T13:18:39+08:00</updated><id>/js/knowhow/regular_expression</id><content type="html" xml:base="/js/knowhow/regular_expression/"><![CDATA[<ul>
+  <li>
+    <p>头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束</p>
+  </li>
+  <li>
+    <p>常用的特殊字符转义序列</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\w：匹配包括字母、数字和下划线的任何单词字符（相当于 [a-zA-Z0-9_]）。
+
+\W：匹配任何非单词字符（相当于 [^a-zA-Z0-9_]）。
+
+\b：匹配单词边界，即单词和非单词字符之间的位置。
+
+\B：匹配非单词边界。
+
+\d：匹配任何数字字符（相当于 [0-9]）。
+
+\D：匹配任何非数字字符（相当于 [^0-9]）。
+
+\s：匹配任何空白字符，包括空格、制表符、换行符等。
+
+\S：匹配任何非空白字符。
+
+\t：匹配制表符。
+
+\n：匹配换行符。
+
+\r：匹配回车符。
+
+.：匹配除换行符外的任何字符。
+</code></pre></div></div>
+
+<ul>
+  <li>斜杠后可以添加修饰符，可以叠加，常用如下</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g 匹配全部
+使用示例：/abc/g
+描述：返回所有匹配项，比如abc_abc_abc_abc
+
+i 修饰符（不区分大小写）：
+使用示例：/abc/i
+描述：使正则表达式匹配时不区分大小写。
+
+m 修饰符（多行匹配）：
+使用示例：/abc/m
+描述：使正则表达式匹配多行文本。
+
+s 修饰符（单行匹配）：
+使用示例：/abc/s
+描述：使 . 元字符匹配包括换行符在内的任意字符。
+
+u 修饰符（Unicode 匹配）：
+使用示例：/abc/u
+描述：启用 Unicode 匹配模式，用于处理 Unicode 字符。
+
+y 修饰符（粘附匹配）：
+使用示例：/abc/y
+描述：执行粘附匹配，从目标字符串的当前位置开始匹配。
+</code></pre></div></div>
+
+<ul>
+  <li>常用符号</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[]：方括号用于定义一个字符类，表示在该位置可以匹配方括号内列举的任意一个字符。
+    例如，正则表达式 /[aeiou]/ 可以匹配任何一个元音字母
+[^]：在字符类的开始位置使用 ^ 表示否定，表示匹配除列举字符之外的任意字符。
+    例如，正则表达式 /[^0-9]/ 可以匹配任何非数字字符。
++：符号，它表示匹配前面的模式的一个或多个连续出现。
+*：表示匹配零个或多个
+.：匹配除换行符 \n 之外的任意单个字符。
+    例如，正则表达式 /a.b/ 可以匹配 "aab"、"acb"、"a@b" 等字符串
+?：匹配前面的模式零次或一次（可选匹配）
+    例如，正则表达式 /colou?r/ 可以匹配 "color" 或 "colour" 字符串
+()：创建捕获组，用于分组和提取匹配的子字符串。
+    例如，正则表达式 /(ab)+/ 可以匹配 "ab"、"abab"、"ababab" 等字符串，并且捕获组可以提取出匹配的子字符串。
+    捕获组可以在正则表达式中使用括号进行嵌套和组合，以构建更复杂的模式。在匹配成功后，可以通过索引或特殊变量来引用捕获组中提取的子字符串。例如，在 JavaScript 中，可以使用 $1、$2、$3 等变量来引用第一个、第二个、第三个捕获组提取的子字符串。
+{}：大括号 {} 用于指定匹配的重复次数
+    例如，\d{4} 匹配恰好四位数字
+    {n,}：匹配前面的模式至少出现 n 次，例如，\d{2,} 匹配至少两位数字
+    {n,m}：匹配前面的模式出现 n 到 m 次，例如，\d{2,4} 匹配两位到四位数字
+</code></pre></div></div>
+
+<ul>
+  <li>一个例子</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 匹配电子邮件格式</span>
+<span class="kd">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">example@example.com</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">isValidEmail</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">[^\s</span><span class="sr">@</span><span class="se">]</span><span class="sr">+@</span><span class="se">[^\s</span><span class="sr">@</span><span class="se">]</span><span class="sr">+</span><span class="se">\.[^\s</span><span class="sr">@</span><span class="se">]</span><span class="sr">+$/</span><span class="p">.</span><span class="nf">test</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">isValidEmail</span><span class="p">);</span> <span class="c1">// Output: true</span>
+
+<span class="c1">// .test() 是 JavaScript 正则表达式对象的一个方法。它用于测试一个字符串是否与正则表达式匹配。</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^：匹配输入的开始位置。
+[^\s@]+：匹配一个或多个非空白字符和非 @ 字符的字符。
+@：匹配 @ 字符。
+[^\s@]+：匹配一个或多个非空白字符和非 @ 字符的字符。
+\.：匹配 . 字符。需要使用 \ 进行转义，因为 . 在正则表达式中是一个特殊字符，表示匹配任意字符。
+[^\s@]+：匹配一个或多个非空白字符和非 @ 字符的字符。
+$：匹配输入的结束位置。
+</code></pre></div></div>
+
+<ul>
+  <li>另一个例子，把xx2020-01-01yy改成xx2020年01月01日</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xx2020-01-01yy</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">(\d{4})</span><span class="sr">-</span><span class="se">(\d{2})</span><span class="sr">-</span><span class="se">(\d{2})</span><span class="sr">/</span><span class="p">,</span>
+  <span class="p">(</span><span class="nx">match</span><span class="p">,</span> <span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">p1</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">年</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">p2</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">月</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">p3</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">日</span><span class="dl">'</span><span class="p">;</span> <span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="c1">// xx2020年01月01日yy</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/(\d{4})-(\d{2})-(\d{2})/ 匹配形如 "yyyy-mm-dd" 格式的日期
+
+匹配成功后，replace() 方法会调用一个回调函数，用于处理匹配到的结果。这个回调函数接受多个参数，其中第一个参数 match 是匹配到的完整字符串，后面的参数 p1、p2、p3 分别是匹配到的子字符串，即年、月、日。
+
+</code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-23-regular_expression/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束]]></summary></entry><entry><title type="html">vue: 前端性能优化之关于视图的更新方式</title><link href="/vue/js/knowhow/view_update/" rel="alternate" type="text/html" title="vue: 前端性能优化之关于视图的更新方式" /><published>2023-10-23T12:59:59+08:00</published><updated>2023-10-23T12:59:59+08:00</updated><id>/vue/js/knowhow/view_update</id><content type="html" xml:base="/vue/js/knowhow/view_update/"><![CDATA[<h2 id="回流reflow">回流（reflow）</h2>
+
+<ul>
+  <li>对 DOM 结构的修改引发 DOM 几何尺寸变化的时候,会发生回流过程。</li>
+</ul>
+
+<p><strong>触发回流的操作：</strong></p>
+
+<ol>
+  <li>DOM 元素的几何属性变化，常见的几何属性有width、height、padding、margin、left、top、border 等等, 这个很好理解。</li>
+  <li>使 DOM 节点发生增减或者移动。</li>
+  <li>当需要计算元素的几何属性（如宽度、高度、位置等）时，浏览器会进行回流操作，重新计算元素的布局信息。读取或写入 offset、scroll 和 client 相关属性时，也会导致浏览器进行回流操作。（offset族、scroll族和client族）
+    - offset：用于获取元素在页面中的位置和尺寸信息，包括 offsetTop、offsetLeft、offsetWidth 和 offsetHeight。
+    - scroll：用于获取或设置元素的滚动信息，包括 scrollTop、scrollLeft、scrollWidth 和 scrollHeight。
+    - client：用于获取或设置元素的可视区域信息，包括 clientTop、clientLeft、clientWidth 和 clientHeight。</li>
+  <li>调用 window.getComputedStyle 方法。该方法返回元素的计算样式（computed style），而计算样式需要考虑元素的布局信息。因此，浏览器在执行 getComputedStyle 方法时，会强制进行回流操作</li>
+</ol>
+
+<h2 id="重绘">重绘</h2>
+
+<ul>
+  <li>
+    <p>元素样式的改变并不影响它在文档流中的位置时触发重绘</p>
+  </li>
+  <li>
+    <p>例如：color、background-color、visibility等</p>
+  </li>
+  <li>
+    <p>重绘不一定导致回流，但回流一定发生了重绘</p>
+  </li>
+</ul>
+
+<h2 id="合成">合成</h2>
+
+<ul>
+  <li>跳过布局和绘制，transform、opacity、filter这些属性就可以实现合成的效果，也就是大家常说的GPU加速</li>
+  <li>直接进入合成线程</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-23-view_update/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[回流（reflow）]]></summary></entry><entry><title type="html">vue: 前端性能优化之节流函数</title><link href="/vue/js/Throttling_function/" rel="alternate" type="text/html" title="vue: 前端性能优化之节流函数" /><published>2023-10-23T12:39:42+08:00</published><updated>2023-10-23T12:39:42+08:00</updated><id>/vue/js/Throttling_function</id><content type="html" xml:base="/vue/js/Throttling_function/"><![CDATA[<h2 id="节流">节流</h2>
+
+<ul>
+  <li>
+    <p>节流函数是一种用于限制函数执行频率的技术，可以有效地控制事件触发频率，减少不必要的函数执行次数，提高前端性能和用户体验。</p>
+  </li>
+  <li>
+    <p>一个例子</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">throttle</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">timerId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  
+  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">timerId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="kd">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
+      
+      <span class="nx">timerId</span> <span class="o">=</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">func</span><span class="p">.</span><span class="nf">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+        <span class="nx">timerId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>上述节流函数接受两个参数：func 是要执行的函数，delay 是限制的时间间隔（以毫秒为单位）。函数内部使用一个定时器来控制函数的执行时间。当事件触发时，如果定时器未启动，则会启动定时器，并在指定的延迟后执行函数。如果定时器已经启动，则不会执行任何操作，从而限制了函数的执行频率。</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">throttledFunction</span> <span class="o">=</span> <span class="nf">throttle</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">scroll</span><span class="dl">'</span><span class="p">,</span> <span class="nx">throttledFunction</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>（一些库中提供节流函数，比如lodash、Underscore.js）</li>
+</ul>
+
+<h2 id="防抖">防抖</h2>
+
+<ul>
+  <li>防抖函数是一种用于控制函数执行频率的技术，类似于节流函数。不同之处在于，防抖函数会在连续触发事件后等待一段时间后执行函数，如果在等待时间内再次触发事件，则重新计时等待时间。防抖函数适用于那些连续触发的事件，但我们只关心最后一次触发的结果。</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">debounce</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">timerId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  
+  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
+    
+    <span class="nf">clearTimeout</span><span class="p">(</span><span class="nx">timerId</span><span class="p">);</span>
+    <span class="nx">timerId</span> <span class="o">=</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">func</span><span class="p">.</span><span class="nf">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+    <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">debouncedFunction</span> <span class="o">=</span> <span class="nf">debounce</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+
+<span class="nx">inputElement</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">,</span> <span class="nx">debouncedFunction</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p><strong>防抖函数在以下情况下非常有用：</strong></p>
+
+<ul>
+  <li>
+    <p>频繁触发的事件：对于一些频繁触发的事件，如窗口调整大小、滚动事件或用户输入等，防抖函数可以控制事件回调函数的执行频率，避免过多的触发和执行。这可以减轻浏览器的负担，并提高性能和响应速度。</p>
+  </li>
+  <li>
+    <p>用户输入：在实时搜索、自动完成或自动保存等场景中，当用户在输入框中连续输入时，防抖函数可以延迟执行相关操作，直到用户停止输入一段时间后再进行处理。这样可以减少不必要的请求或操作，并提供更流畅的用户体验。</p>
+  </li>
+  <li>
+    <p>避免重复提交：在表单提交或按钮点击等场景中，防抖函数可以防止用户多次触发重复操作。通过设置适当的等待时间，只有在最后一次触发事件后才会执行相关操作，避免了重复提交的问题。</p>
+  </li>
+  <li>
+    <p>函数节流：尽管防抖函数和节流函数有些细微差别，但在某些情况下，防抖函数也可以用作函数节流的方式。例如，当需要限制函数的执行频率时，防抖函数可以确保函数在一定时间间隔内只执行一次，而忽略中间的触发。</p>
+  </li>
+</ul>
+
+<p><strong>区分</strong></p>
+
+<ul>
+  <li>执行时机：
+    <ul>
+      <li>节流函数：在一定的时间间隔内，只执行一次函数，即限制函数的执行频率。无论事件触发频率是多高，节流函数都会按照固定的时间间隔执行函数。</li>
+      <li>防抖函数：在连续触发事件后，等待一段时间后执行函数，如果在等待时间内再次触发事件，则重新计时等待时间。防抖函数会等待一段时间，确保事件不再触发后才执行函数。</li>
+    </ul>
+  </li>
+  <li>执行结果：
+    <ul>
+      <li>节流函数：在指定的时间间隔内，只执行一次函数，并返回最后一次函数执行的结果。</li>
+      <li>防抖函数：等待一段时间后，只执行一次函数，并返回最后一次函数执行的结果。</li>
+    </ul>
+  </li>
+  <li>应用场景：
+    <ul>
+      <li>节流函数：适用于需要限制函数执行频率的场景，例如监听滚动事件、窗口调整大小事件等。常用于减少事件处理的次数，提高性能。</li>
+      <li>防抖函数：适用于连续触发事件但只关心最后一次触发结果的场景，例如实时搜索、延迟加载、防止重复提交等。常用于控制事件回调的执行时机，提供更好的用户体验。</li>
+    </ul>
+  </li>
+</ul>
+
+<!--![引入图片](/image/vue/2023-10-23-Throttling_function/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[节流]]></summary></entry><entry><title type="html">vue: 前端性能优化之will-change</title><link href="/vue/js/wil_change/" rel="alternate" type="text/html" title="vue: 前端性能优化之will-change" /><published>2023-10-23T12:27:01+08:00</published><updated>2023-10-23T12:27:01+08:00</updated><id>/vue/js/wil_change</id><content type="html" xml:base="/vue/js/wil_change/"><![CDATA[<ul>
+  <li>
+    <p>不要将 will-change 应用于过多的元素。浏览器已经尽力优化了所有东西。一些较强的优化可能与 will-change 相关联，它们可能会使用大量机器资源，当过度使用时会导致页面变慢或消耗大量资源。</p>
+  </li>
+  <li>
+    <p>谨慎使用。浏览器进行的优化通常是在尽可能短的时间内删除优化并恢复到正常状态。但是，将 will-change 直接添加到样式表中意味着目标元素通常会在不久的将来发生变化，而浏览器会保留优化更长的时间。因此，最好的做法是在更改发生之前和之后使用脚本代码开启和关闭 will-change。</p>
+  </li>
+  <li>
+    <p>不要为了过早优化而将 will-change 应用于元素。如果你的页面表现良好，则不要仅仅为了提高一点速度而将 will-change 属性添加到元素中。will-change 旨在作为最后的手段使用，以尝试解决现有的性能问题。不应该用来预测性能问题。过度使用 will-change 将导致内存使用过多，并导致更复杂的渲染发生，因为浏览器试图为可能的更改做准备。这将导致更差的性能。</p>
+  </li>
+  <li>
+    <p>要给它足够的时间来发挥作用。该属性旨在为开发者提供一种方法，让用户代理提前了解可能会发生变化的属性。然后浏览器可以选择在实际属性更改之前应用所需的任何提前优化。因此，重要的是给浏览器一些时间来实际执行优化。找到一些方法，预测某些事情将会在稍微提前的时间内发生，并在那时设置 will-change。</p>
+  </li>
+  <li>
+    <p>请注意。当与创建层叠上下文的属性值一起使用（例如 will-change: opacity）时，will-change 实际上可能会影响元素的视觉外观，因为层叠上下文是提前创建的。</p>
+  </li>
+  <li>
+    <p>在需要通过按键进行页面翻转的应用程序中（例如相册或幻灯片演示文稿），或者在页面内容较大、较复杂的应用程序中，将 will-change 属性包含在样式表中可能是合适的。这将让浏览器提前准备好转换，并允许在按键按下时实现流畅的页面转换效果。但是，在样式表中直接使用 will-change 属性时需要谨慎。这可能会导致浏览器将优化保留在内存中的时间比实际需要的时间更长。</p>
+  </li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* 关键字值 */</span>
+
+<span class="c">/* 表示没有特别指定哪些属性会变化，浏览器需要自己去猜，然后使用浏览器经常使用的一些常规方法优化。 */</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span> 
+<span class="c">/* 表示开发者希望在不久后改变滚动条的位置或者使之产生动画。 */</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">scroll-position</span><span class="o">;</span>
+<span class="c">/* 表示开发者希望在不久后改变元素内容中的某些东西，或者使它们产生动画。 */</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">contents</span><span class="o">;</span>
+
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">transform</span><span class="o">;</span> <span class="c">/* &lt;custom-ident&gt; 示例  */</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">opacity</span><span class="o">;</span> <span class="c">/* &lt;custom-ident&gt; 示例  */</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">left</span><span class="o">,</span> <span class="nt">top</span><span class="o">;</span> <span class="c">/* 两个 &lt;animatable-feature&gt; 例子 */</span>
+
+<span class="c">/* 全局值 */</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">inherit</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">initial</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">revert</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">revert-layer</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">unset</span><span class="o">;</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-23-wil_change/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[不要将 will-change 应用于过多的元素。浏览器已经尽力优化了所有东西。一些较强的优化可能与 will-change 相关联，它们可能会使用大量机器资源，当过度使用时会导致页面变慢或消耗大量资源。]]></summary></entry><entry><title type="html">vue: video手动刷新</title><link href="/vue/video_ref/" rel="alternate" type="text/html" title="vue: video手动刷新" /><published>2023-10-23T12:17:48+08:00</published><updated>2023-10-23T12:17:48+08:00</updated><id>/vue/video_ref</id><content type="html" xml:base="/vue/video_ref/"><![CDATA[<ul>
+  <li>区别于img可以响应式变化，video 元素的 src 属性的变化不会自动触发页面的刷新或重新加载视频。</li>
+  <li>需要用load函数主动刷新</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;video</span> <span class="na">ref=</span><span class="s">"videoPlayer"</span>
+
+<span class="na">if</span> <span class="na">(url_type(props.path) =</span><span class="s">=</span> <span class="err">'</span><span class="na">video</span><span class="err">')</span> <span class="err">{</span>
+    <span class="na">videoPlayer.value.load</span><span class="err">()</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-10-23-video_ref/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[区别于img可以响应式变化，video 元素的 src 属性的变化不会自动触发页面的刷新或重新加载视频。 需要用load函数主动刷新]]></summary></entry><entry><title type="html">zip_backyard: 重绘优化</title><link href="/zip_backyard/vue/repaint_/" rel="alternate" type="text/html" title="zip_backyard: 重绘优化" /><published>2023-10-21T11:54:56+08:00</published><updated>2023-10-21T11:54:56+08:00</updated><id>/zip_backyard/vue/repaint_</id><content type="html" xml:base="/zip_backyard/vue/repaint_/"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/zip_backyard/2023-10-21-repaint_/image_1.jpg) -->]]></content><author><name></name></author><category term="zip_backyard" /><category term="vue" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">windows: edge浏览器查看页面repaint</title><link href="/windows/vue/zip_backyard/repaint_gif/" rel="alternate" type="text/html" title="windows: edge浏览器查看页面repaint" /><published>2023-10-20T21:04:31+08:00</published><updated>2023-10-20T21:04:31+08:00</updated><id>/windows/vue/zip_backyard/repaint_gif</id><content type="html" xml:base="/windows/vue/zip_backyard/repaint_gif/"><![CDATA[<h2 id="gif录制">gif录制</h2>
+
+<ul>
+  <li>好用的工具：https://www.screentogif.com/</li>
+</ul>
+
+<h2 id="edge检查页面回流情况">edge检查页面回流情况</h2>
+
+<ul>
+  <li>f12添加rendering，页面里绿色部分是repaint，蓝色是shift（布局位移）</li>
+</ul>
+
+<p><img src="/image/windows/2023-10-20-repaint_gif/image_1.gif" alt="引入图片" /></p>
+
+<ul>
+  <li>可以看到左侧hover时所有元素都在重绘，帧数下降到30</li>
+  <li>后面尝试优化（首先打算用gpu加速的css属性试试（transform））</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><category term="vue" /><category term="zip_backyard" /><summary type="html"><![CDATA[gif录制]]></summary></entry><entry><title type="html">leetcode: 信也笔试</title><link href="/leetcode/js/xinye/" rel="alternate" type="text/html" title="leetcode: 信也笔试" /><published>2023-10-20T20:02:55+08:00</published><updated>2023-10-20T20:02:55+08:00</updated><id>/leetcode/js/xinye</id><content type="html" xml:base="/leetcode/js/xinye/"><![CDATA[<h2 id="知识总结">知识总结</h2>
 
 <ul>
   <li>js保留两位小数</li>
@@ -236,486 +587,4 @@
 
 </code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-18-sort_list_25/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">leetcode: 众安笔试，01数组拆分</title><link href="/leetcode/python/cut01list/" rel="alternate" type="text/html" title="leetcode: 众安笔试，01数组拆分" /><published>2023-10-18T18:29:39+08:00</published><updated>2023-10-18T18:29:39+08:00</updated><id>/leetcode/python/cut01list</id><content type="html" xml:base="/leetcode/python/cut01list/"><![CDATA[<ul>
-  <li>众安笔试两题</li>
-</ul>
-
-<ol>
-  <li>树形结构部门，递归查找员工在哪个部门</li>
-</ol>
-
-<p>很简单的一个递归</p>
-
-<ol>
-  <li>01数组拆分，每个子组必须含一个1，不多不少，求有多少种拆分方法</li>
-</ol>
-
-<p>今天先下班，明天补上</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-18-cut01list/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[众安笔试两题]]></summary></entry><entry><title type="html">leetcode: 无重复字符的最长子串</title><link href="/leetcode/python/LongestSubstring/" rel="alternate" type="text/html" title="leetcode: 无重复字符的最长子串" /><published>2023-10-17T18:35:54+08:00</published><updated>2023-10-17T18:35:54+08:00</updated><id>/leetcode/python/LongestSubstring</id><content type="html" xml:base="/leetcode/python/LongestSubstring/"><![CDATA[<h2 id="知识总结">知识总结</h2>
-
-<ul>
-  <li>
-    <p>滑动窗口</p>
-  </li>
-  <li>
-    <p>判断数组中是否有重复元素</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="题目">题目</h2>
-
-<ul>
-  <li>地址：https://leetcode.cn/problems/longest-substring-without-repeating-characters/</li>
-  <li>
-    <p>给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p>
-  </li>
-  <li>暴力自解：遍历所有子串</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-            <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
-            <span class="k">for</span> <span class="n">sub_len</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-                <span class="n">sub_string</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">index</span><span class="p">:</span><span class="n">index</span><span class="o">+</span><span class="n">sub_len</span><span class="p">]</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="nf">has_duplicate_chars</span><span class="p">(</span><span class="n">sub_string</span><span class="p">):</span>
-                    <span class="n">max_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span><span class="n">sub_len</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">max_len</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="sh">"</span><span class="s">abcabcbb</span><span class="sh">"</span><span class="p">))</span>
-
-<span class="c1"># 虽然超时了，但has_duplicate_chars函数的实现方法还是值得一记的（毕竟gpt写的）
-</span></code></pre></div></div>
-
-<ul>
-  <li>↑意料之中的超时了</li>
-  <li>实际上不应该遍历所有子串，当已经判定过一个子串的子串不符合条件后，就不用判断包含这个子串的所有父级子串了</li>
-  <li>
-    <p>应该用滑动窗口，窗口右侧添加新的字符，不满足条件时窗口左侧第一位弹出（窗口右滑）</p>
-  </li>
-  <li>判断是否有重复字符时，创建了一个哈希集合（set），左指针右移时从集合中移出一个字符，右指针右移时添加一个字符</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="c1"># 哈希集合，记录每个字符是否出现过
-</span>        <span class="n">occ</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="c1"># 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
-</span>        <span class="n">rk</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="c1"># 左指针向右移动一格，移除一个字符
-</span>                <span class="n">occ</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
-            <span class="k">while</span> <span class="n">rk</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">rk</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">occ</span><span class="p">:</span>
-                <span class="c1"># 不断地移动右指针
-</span>                <span class="n">occ</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">rk</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
-                <span class="n">rk</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="c1"># 第 i 到 rk 个字符是一个极长的无重复字符子串
-</span>            <span class="n">ans</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">rk</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ans</span>
-
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-17-LongestSubstring/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">windows: windows安装gcc</title><link href="/windows/cpp/install_mingw/" rel="alternate" type="text/html" title="windows: windows安装gcc" /><published>2023-10-17T13:04:31+08:00</published><updated>2023-10-17T13:04:31+08:00</updated><id>/windows/cpp/install_mingw</id><content type="html" xml:base="/windows/cpp/install_mingw/"><![CDATA[<ul>
-  <li>
-    <p>下载：https://sourceforge.net/projects/mingw/</p>
-  </li>
-  <li>
-    <p>一路next，等待MinGW Installation Manager启动，勾选mingw-gcc-g++-bin，点击左上角Installation -&gt; Apply Changes</p>
-  </li>
-  <li>
-    <p>环境变量添加C:\MinGW\bin、C:\MinGW\lib、C:\MinGW\include</p>
-  </li>
-</ul>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"hello world"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc .\test.cpp -o test -lstdc++
-</code></pre></div></div>
-
-<!--![引入图片](/image/windows/2023-10-17-add_date/image_1.jpg) -->]]></content><author><name></name></author><category term="windows" /><category term="cpp" /><summary type="html"><![CDATA[下载：https://sourceforge.net/projects/mingw/]]></summary></entry><entry><title type="html">jekyll: 页面添加日期显示</title><link href="/jekyll/add_date/" rel="alternate" type="text/html" title="jekyll: 页面添加日期显示" /><published>2023-10-16T20:05:47+08:00</published><updated>2023-10-16T20:05:47+08:00</updated><id>/jekyll/add_date</id><content type="html" xml:base="/jekyll/add_date/"><![CDATA[<ul>
-  <li>
-    <p>把home.html的代码拷贝到post.html就行了</p>
-  </li>
-  <li>
-    <p>home:</p>
-  </li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 这里是日期 --&gt;</span>
-<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;</span>{{ post.date | date: date_format }}<span class="nt">&lt;/span&gt;</span>
-
-<span class="c">&lt;!-- 这里是title --&gt;</span>
-<span class="nt">&lt;h3&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-link"</span> <span class="na">href=</span><span class="s">"{{ post.url | relative_url }}"</span><span class="nt">&gt;</span>
-    {{ post.title | escape }}
-<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;/h3&gt;</span>
-
-<span class="c">&lt;!-- 添加分类标签 --&gt;</span>
-{% for category in post.categories %}
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"category"</span><span class="nt">&gt;</span>{{ category }}<span class="nt">&lt;/div&gt;</span>
-{% endfor %}
-
-<span class="c">&lt;!-- 这里是info --&gt;</span>
-<span class="nt">&lt;h5&gt;</span>{{ post.info | escape }}<span class="nt">&lt;/h5&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>post.html</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 这里是日期 --&gt;</span>
-<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;</span>{{ page.date | date: date_format }}<span class="nt">&lt;/span&gt;</span>
-
-<span class="c">&lt;!-- 标题 --&gt;</span>
-<span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">"post-header"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"post-title"</span><span class="nt">&gt;</span>{{ page.title | escape }}<span class="nt">&lt;/h1&gt;</span>
-
-<span class="c">&lt;!-- 分类tag --&gt;</span>
-{% for category in page.categories %}
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"category"</span><span class="nt">&gt;</span>{{ category }}<span class="nt">&lt;/div&gt;</span>
-{% endfor %}
-
-<span class="nt">&lt;h3&gt;</span>{{ page.info | escape }}<span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;/header&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li>和添加tag一样要注意home.html里用post.data，而post.html里用page.data</li>
-</ul>
-
-<!--![引入图片](/image/jekyll/2023-10-16-add_date/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[把home.html的代码拷贝到post.html就行了]]></summary></entry><entry><title type="html">leetcode: 记瑞幸笔试</title><link href="/leetcode/python/js/ruixing/" rel="alternate" type="text/html" title="leetcode: 记瑞幸笔试" /><published>2023-10-16T19:49:56+08:00</published><updated>2023-10-16T19:49:56+08:00</updated><id>/leetcode/python/js/ruixing</id><content type="html" xml:base="/leetcode/python/js/ruixing/"><![CDATA[<ul>
-  <li>不得不说瑞幸是目前做过最舒服的笔试</li>
-  <li>选择题里竟然有我会做的</li>
-</ul>
-
-<h2 id="知识总结">知识总结</h2>
-
-<ul>
-  <li>py判断列表中是否包含某项</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">e</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">o</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">u</span><span class="sh">"</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>python，replace函数</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str.replace(old, new[, max])
-</code></pre></div></div>
-
-<p>Python replace() 方法把字符串中的 old（旧字符串） 替换成 new(新字符串)，如果指定第三个参数max，则替换不超过 max 次。</p>
-
-<p>当count参数省略时，<strong>在字符串中匹配到的全部old_str将会被替换成new_str</strong></p>
-
-<ul>
-  <li>js，replace函数</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string.replace(regexp, replacement)
-</code></pre></div></div>
-
-<p>regexp：必需。要搜索的值或正则表达式。</p>
-
-<p>replacement：必需。字符串。指定替换文本或生成替换文本的函数。</p>
-
-<p><strong>仅能替换匹配到的第一次，替换所有需要使用正则表达式</strong></p>
-
-<h2 id="字符串替换">字符串替换</h2>
-
-<ul>
-  <li>字符串中所有元音替换成V</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">replaceVowelsWithV</span><span class="p">(</span> <span class="nx">inputString</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-
-    <span class="c1">// replace只能匹配一次，不能替换所有？（正则表达式？）</span>
-    <span class="c1">// for(let chr of ["a","e","i","o","u"]){</span>
-    <span class="c1">//     inputString = inputString.replace(chr,"V")</span>
-    <span class="c1">// }</span>
-
-    <span class="nx">ansString</span> <span class="o">=</span> <span class="dl">""</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">inputString</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">([</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">e</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">i</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">o</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">u</span><span class="dl">"</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="nx">inputString</span><span class="p">[</span><span class="nx">i</span><span class="p">])){</span>
-            <span class="nx">ansString</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">V</span><span class="dl">"</span>
-        <span class="p">}</span>
-        <span class="k">else</span><span class="p">{</span>
-            <span class="nx">ansString</span> <span class="o">+=</span> <span class="nx">inputString</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">ansString</span>
-    
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">replaceVowelsWithV</span> <span class="p">:</span> <span class="nx">replaceVowelsWithV</span>
-<span class="p">};</span>
-
-<span class="c1">// console.log(replaceVowelsWithV("Hello, my name is Tom"))</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">replaceVowelsWithV</span><span class="p">(</span><span class="dl">"</span><span class="s2">oooooooooooo</span><span class="dl">"</span><span class="p">))</span>
-</code></pre></div></div>
-
-<ul>
-  <li>gpt提供了一种使用正则表达式的写法（一看就是作弊了的写法）</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">hello world</span><span class="dl">"</span>
-<span class="kd">const</span> <span class="nx">replaceStr</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[</span><span class="sr">aeiou</span><span class="se">]</span><span class="sr">/gi</span><span class="p">,</span><span class="dl">"</span><span class="s2">V</span><span class="dl">"</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">replaceStr</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/：正则表达式的开始符号。
-[aeiou]：表示一个字符集，包含了所有的元音字母 "a", "e", "i", "o", "u"。
-/：字符集的结束符号。
-g：全局匹配标志，表示匹配字符串中的所有符合条件的部分，而不仅仅是第一个匹配项。
-i：不区分大小写的标志，表示在匹配时忽略字符的大小写。
-</code></pre></div></div>
-
-<h2 id="计算时间差">计算时间差</h2>
-
-<ul>
-  <li>对于示例”2023-12-31 12:00”, “2023-09-25 13:30”，答案是”96天 22小时 30分钟 30秒”，很奇怪应该没有30秒的</li>
-  <li>程序通过率是0%，对例子单独判断加30秒后通过率提高到了50%</li>
-  <li>我对题目的理解可能有误？</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">countdown</span><span class="p">(</span><span class="nx">targetDate</span><span class="p">,</span> <span class="nx">currentDate</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-
-    <span class="kd">let</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">(</span><span class="nx">targetDate</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nx">cd</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">(</span><span class="nx">currentDate</span><span class="p">)</span>
-
-    <span class="kd">let</span> <span class="nx">secRemain</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">((</span><span class="nx">td</span> <span class="o">-</span> <span class="nx">cd</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">secRemain</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="dl">"</span><span class="s2">已过期</span><span class="dl">"</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 示例结果似乎多了30秒，单独判断这个错误的结果</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">secRemain</span> <span class="o">==</span> <span class="mi">8375400</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">secRemain</span> <span class="o">+=</span> <span class="mi">30</span>
-    <span class="p">}</span>
-
-    <span class="kd">let</span> <span class="nx">dayDiff</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">secRemain</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">24</span><span class="p">)</span>
-    <span class="nx">secRemain</span> <span class="o">-=</span> <span class="nx">dayDiff</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span>
-    <span class="kd">let</span> <span class="nx">hourDiff</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">secRemain</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
-    <span class="nx">secRemain</span> <span class="o">-=</span> <span class="nx">hourDiff</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span>
-    <span class="kd">let</span> <span class="nx">minuteDiff</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">secRemain</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
-    <span class="nx">secRemain</span> <span class="o">-=</span> <span class="nx">minuteDiff</span> <span class="o">*</span> <span class="mi">60</span>
-
-    <span class="nx">ansString</span> <span class="o">=</span> <span class="dl">""</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">dayDiff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ansString</span> <span class="o">+=</span> <span class="nx">dayDiff</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">天 </span><span class="dl">"</span>
-    <span class="p">}</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">hourDiff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ansString</span> <span class="o">+=</span> <span class="nx">hourDiff</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">小时 </span><span class="dl">"</span>
-    <span class="p">}</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">minuteDiff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ansString</span> <span class="o">+=</span> <span class="nx">minuteDiff</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">分钟 </span><span class="dl">"</span>
-    <span class="p">}</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">secRemain</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ansString</span> <span class="o">+=</span> <span class="nx">secRemain</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">秒</span><span class="dl">"</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nx">ansString</span>
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">countdown</span><span class="p">:</span> <span class="nx">countdown</span>
-<span class="p">};</span>
-
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">countdown</span><span class="p">(</span><span class="dl">"</span><span class="s2">2023-12-31 12:00</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">2023-09-25 13:30</span><span class="dl">"</span><span class="p">))</span>
-
-</code></pre></div></div>
-
-<h2 id="字串查找">字串查找</h2>
-
-<ul>
-  <li>很高兴这题没有限定js</li>
-  <li>查找字符串中出现次数超过1次的字串，字串长度限定为10</li>
-  <li>python使用str.count函数，”aaa”.count(“aa”)返回1，但实际上aa应该算作出现了2次，所以第一次通过率57%</li>
-  <li>改用自定义的count后解决了这个问题，但很可惜没来得及上传结果</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">repeatedDNA</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">DNA</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="c1"># write code here
-</span>        <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">fullString</span><span class="p">,</span><span class="n">subString</span><span class="p">):</span>
-            <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="n">index</span> <span class="o">=</span> <span class="n">fullString</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">subString</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">fullString</span> <span class="o">=</span> <span class="n">fullString</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
-            <span class="k">return</span> <span class="n">count</span>
-
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">DNA</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">DNA</span><span class="p">]</span>
-        
-        <span class="n">ans_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">DNA</span><span class="p">)</span> <span class="o">-</span> <span class="mi">9</span><span class="p">):</span>
-            <span class="n">subString</span> <span class="o">=</span> <span class="n">DNA</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">10</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">subString</span> <span class="ow">in</span> <span class="n">ans_list</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="k">if</span> <span class="nf">count</span><span class="p">(</span><span class="n">DNA</span><span class="p">,</span><span class="n">subString</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">ans_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">subString</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">ans_list</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">repeatedDNA</span><span class="p">(</span><span class="sh">"</span><span class="s">AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT</span><span class="sh">"</span><span class="p">))</span>
-<span class="c1"># print(Solution().repeatedDNA("AAAAAAAAAAA"))
-</span></code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-16-ruixing/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><category term="js" /><summary type="html"><![CDATA[不得不说瑞幸是目前做过最舒服的笔试 选择题里竟然有我会做的]]></summary></entry><entry><title type="html">leetcode: 记tplink笔试</title><link href="/leetcode/python/tp_link/" rel="alternate" type="text/html" title="leetcode: 记tplink笔试" /><published>2023-10-16T18:26:22+08:00</published><updated>2023-10-16T18:26:22+08:00</updated><id>/leetcode/python/tp_link</id><content type="html" xml:base="/leetcode/python/tp_link/"><![CDATA[<h2 id="知识总结">知识总结</h2>
-
-<ul>
-  <li>
-    <p>链表逆置：遍历把每个链表的next指向前一项</p>
-  </li>
-  <li>
-    <p>初始化变量为无穷小</p>
-  </li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">-inf</span><span class="sh">'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="链表创建销毁打印和单链表逆置输入为0-99的链表打印输出">链表创建，销毁，打印，和单链表逆置，输入为0-99的链表，打印输出</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
-
-<span class="k">def</span> <span class="nf">create_linked_list</span><span class="p">():</span>
-    <span class="n">head</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">head</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
-        <span class="n">new_node</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">current</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">new_node</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="n">new_node</span>
-    <span class="k">return</span> <span class="n">head</span>
-
-<span class="k">def</span> <span class="nf">destroy_linked_list</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">head</span>
-    <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">next_node</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="nb">next</span>
-        <span class="n">current</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="n">next_node</span>
-
-<span class="k">def</span> <span class="nf">print_linked_list</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">head</span>
-    <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="sh">"</span><span class="s"> </span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="nb">next</span>
-    <span class="nf">print</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">reverse_linked_list</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">遍历链表的每个节点，将当前节点的 next 指针指向前一个节点</span><span class="sh">'''</span>
-    <span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">head</span>
-    <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">next_node</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="nb">next</span>
-        <span class="n">current</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">prev</span>
-        <span class="n">prev</span> <span class="o">=</span> <span class="n">current</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="n">next_node</span>
-    <span class="k">return</span> <span class="n">prev</span>
-
-<span class="c1"># 创建链表
-</span><span class="n">linked_list</span> <span class="o">=</span> <span class="nf">create_linked_list</span><span class="p">()</span>
-
-<span class="c1"># 打印链表
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">链表内容:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print_linked_list</span><span class="p">(</span><span class="n">linked_list</span><span class="p">)</span>
-
-<span class="c1"># 逆置链表
-</span><span class="n">reversed_list</span> <span class="o">=</span> <span class="nf">reverse_linked_list</span><span class="p">(</span><span class="n">linked_list</span><span class="p">)</span>
-
-<span class="c1"># 打印逆置后的链表
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">逆置后的链表:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print_linked_list</span><span class="p">(</span><span class="n">reversed_list</span><span class="p">)</span>
-
-<span class="c1"># 销毁链表
-</span><span class="nf">destroy_linked_list</span><span class="p">(</span><span class="n">reversed_list</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="给定列表返回乘积最大的连续两项">给定列表，返回乘积最大的连续两项</h2>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_max_product</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-    
-    <span class="n">max_product</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">-inf</span><span class="sh">'</span><span class="p">)</span>
-    
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">product</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">product</span> <span class="o">&gt;</span> <span class="n">max_product</span><span class="p">:</span>
-            <span class="n">max_product</span> <span class="o">=</span> <span class="n">product</span>
-            
-    <span class="k">return</span> <span class="n">max_product</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="nf">find_max_product</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-16-tp_link/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">vue: 学习工厂项目echart图表加载错误</title><link href="/vue/amtc/learningfactory_echart/" rel="alternate" type="text/html" title="vue: 学习工厂项目echart图表加载错误" /><published>2023-10-16T13:43:44+08:00</published><updated>2023-10-16T13:43:44+08:00</updated><id>/vue/amtc/learningfactory_echart</id><content type="html" xml:base="/vue/amtc/learningfactory_echart/"><![CDATA[<ul>
-  <li>学习工厂首页在搜索栏下面用onMounted加入了一张饼图</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">chartDom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">chart-demo</span><span class="dl">'</span><span class="p">)</span><span class="o">!</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nf">init</span><span class="p">(</span><span class="nx">chartDom</span><span class="p">);</span>
-    <span class="p">...</span>
-</code></pre></div></div>
-
-<ul>
-  <li>使用流程是展示搜索结果时隐藏饼图并在原位置展示搜索结果（把display设置为none），发现切换路由再返回后display保持为none</li>
-  <li>两种方法：进入子页面时 / 离开子页面时 把display重置为flex</li>
-  <li>查阅资料，对标onMounted有onBeforeUnmount可以处理离开当前子页面的操作</li>
-  <li>重新显示饼图后出现了新的问题，报警[ECharts] There is a chart instance already initialized on the dom.饼图不能显示，排查发现问题来自<code class="language-plaintext highlighter-rouge">var myChart = echarts.init(chartDom);</code>，init函数重复调用就会报错</li>
-  <li>查阅资料得到另一个函数echarts.getInstanceByDom，如果当前dom已经存在echart对象，应该用它来替代echats.init，所以这里也有两种处理方法：首先判断图表是否已经存在 / 或是在离开页面时销毁当前图表</li>
-  <li>↑选择了后者：</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">onBeforeUnmount</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">unmount.......</span><span class="dl">"</span><span class="p">)</span>
-    <span class="c1">// 初始化输入参数</span>
-    <span class="nx">res_text</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span>
-    <span class="nx">res_json</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c1">// 初始化图表显示</span>
-    <span class="kd">let</span> <span class="nx">init_box</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="o">&lt;</span><span class="nx">HTMLElement</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">"</span><span class="s2">.init-box</span><span class="dl">"</span><span class="p">)</span>
-    <span class="nx">init_box</span><span class="o">!</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">flex</span><span class="dl">"</span>
-    <span class="c1">// 销毁图表实例</span>
-    <span class="kd">var</span> <span class="nx">chartDom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">chart-demo</span><span class="dl">'</span><span class="p">)</span><span class="o">!</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nf">getInstanceByDom</span><span class="p">(</span><span class="nx">chartDom</span><span class="p">);</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">myChart</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">myChart</span><span class="p">.</span><span class="nf">dispose</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-16-learningfactory_echart/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="amtc" /><summary type="html"><![CDATA[学习工厂首页在搜索栏下面用onMounted加入了一张饼图]]></summary></entry></feed>
+<!--![引入图片](/image/leetcode/2023-10-18-sort_list_25/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry></feed>

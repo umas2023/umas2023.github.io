@@ -1,11 +1,8 @@
-function findMethod(chokoNum,nutList){
-  let nutLength = nutList.length
-  let dp = new Array(n).fill(0)
-  dp[0] = 0
-  dp[1] = 1
-  for(let n=2;n<nutLength;i++){
-      for(let i=0;i<n;i++)
-      dp[n] = dp[i]+dp[n-i]
-  }
-  return dp[netLength]
-}
+
+
+
+let str = 'xx2020-01-01yy';
+let res = str.replace(/(\d{4})-(\d{2})-(\d{2})/,
+  (match, p1, p2, p3) => { return p1 + '年' + p2 + '月' + p3 + '日'; });
+
+console.log(res)

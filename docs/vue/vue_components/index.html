@@ -130,6 +130,30 @@
 <span class="nt">&lt;/button&gt;</span>
 </code></pre></div></div>
 
+<ul>
+  <li>具名插槽</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">"header"</span><span class="nt">&gt;&lt;/slot&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+  <span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;slot&gt;&lt;/slot&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+  <span class="nt">&lt;footer&gt;</span>
+    <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">"footer"</span><span class="nt">&gt;&lt;/slot&gt;</span>
+  <span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;BaseLayout&gt;</span>
+  <span class="nt">&lt;template</span> <span class="na">v-slot:header</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- header 插槽的内容放这里 --&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/BaseLayout&gt;</span>
+</code></pre></div></div>
+
 <h2 id="动态导入文件夹下所有组件">动态导入文件夹下所有组件</h2>
 
 <ul>
