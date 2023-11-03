@@ -38,15 +38,15 @@ cat_list = [
 
 
 # 修改这里：基础分类
-basic_cat = "vue"
+basic_cat = "leetcode"
 # 修改这里：附加分类
-add_cat = ["knowhow"]
+add_cat = ["python"]
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "regular_expression"
+file_name = "lixiang"
 # 修改这里：文章标题
-title = "'%s: 正则表达式'" % basic_cat
+title = "'%s: 理想复活赛笔试'" % basic_cat
 # 修改这里：文章介绍
-info = "'整理一些常用的，以js的replace函数为例'"
+info = "'返回数组第k大，01岛屿连接'"
 # 是否创建图片目录？
 is_img = False
 # is_img = True

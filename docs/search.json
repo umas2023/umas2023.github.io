@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "leetcode: 理想复活赛笔试",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/js/lixiang/",
+      "date"     : "2023-11-03 15:28:17 +0800"
+    } ,
+  
+    {
+      "title"    : "leetcode: 宇量昇复活赛笔试",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/leetcode/python/yuliangsheng/",
+      "date"     : "2023-11-03 15:16:29 +0800"
+    } ,
+  
+    {
       "title"    : "js: 正则表达式",
       "category" : "",
       "tags"     : "",

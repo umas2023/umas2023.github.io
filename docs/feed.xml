@@ -1,4 +1,353 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-10-24T11:41:52+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">js: 正则表达式</title><link href="/js/knowhow/regular_expression/" rel="alternate" type="text/html" title="js: 正则表达式" /><published>2023-10-23T13:18:39+08:00</published><updated>2023-10-23T13:18:39+08:00</updated><id>/js/knowhow/regular_expression</id><content type="html" xml:base="/js/knowhow/regular_expression/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-03T16:16:57+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 理想复活赛笔试</title><link href="/leetcode/python/js/lixiang/" rel="alternate" type="text/html" title="leetcode: 理想复活赛笔试" /><published>2023-11-03T15:28:17+08:00</published><updated>2023-11-03T15:28:17+08:00</updated><id>/leetcode/python/js/lixiang</id><content type="html" xml:base="/leetcode/python/js/lixiang/"><![CDATA[<ul>
+  <li>虽然被捞起来打复活赛，但明显这个部门需要的不是我，选择题基本没有会的，算法两个c的内存调度也没写</li>
+  <li>只记录两道py</li>
+</ul>
+
+<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>最小堆</li>
+  <li>DFS/BFS</li>
+</ul>
+
+<h2 id="返回数组第k大">返回数组第k大</h2>
+
+<ul>
+  <li>提交的代码显然不是考官希望看到的</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findKthLargest</span><span class="p">(</span><span class="n">self</span> <span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">)[</span><span class="o">-</span><span class="n">k</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">findKthLargest</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>这里补充一个之前准备前端面试时候的解法（js），构建一个最小堆</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// 找出数组中第k大的元素，用堆实现</span>
+
+<span class="c1">// 遍历数组 nums 中的每个元素，并将其插入到最小堆中。如果堆的大小超过了 k，则移除堆顶元素，以确保堆的大小不超过 k。</span>
+<span class="c1">//最后，我们返回堆顶元素，即为数组中第 k 大的元素。</span>
+<span class="kd">function</span> <span class="nf">findKthLargest</span><span class="p">(</span><span class="nx">nums</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 创建一个最小堆</span>
+    <span class="kd">const</span> <span class="nx">minHeap</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MinHeap</span><span class="p">();</span>
+    <span class="c1">// 将数组元素插入最小堆</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">minHeap</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+        <span class="c1">// 如果堆的大小超过 k，则移除堆顶元素</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">minHeap</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">minHeap</span><span class="p">.</span><span class="nf">remove</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 返回堆顶元素，即为第 k 大元素</span>
+    <span class="k">return</span> <span class="nx">minHeap</span><span class="p">.</span><span class="nf">peek</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="c1">// 最小堆类定义</span>
+<span class="c1">// 最小堆（Min Heap）是一种二叉堆，它是一种特殊的完全二叉树结构，其中每个父节点的值都小于或等于其子节点的值。换句话说，最小堆中的最小值存储在根节点，并且对于堆中的任意节点，其值都小于或等于其子节点的值。</span>
+<span class="c1">// 索引为 i 的节点的父节点索引为 (i - 1) / 2，左子节点索引为 2 * i + 1，右子节点索引为 2 * i + 2。</span>
+<span class="kd">class</span> <span class="nc">MinHeap</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">heap</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+    <span class="c1">// 获取堆的大小</span>
+    <span class="nf">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 获取堆顶元素</span>
+    <span class="nf">peek</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="c1">// 插入元素到堆中</span>
+    <span class="nf">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nf">heapifyUp</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// 移除堆顶元素</span>
+    <span class="nf">remove</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">const</span> <span class="nx">removedValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="kd">const</span> <span class="nx">lastValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span>
+        <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">lastValue</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nf">heapifyDown</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">removedValue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 将元素上移，保持堆的性质(插入元素时)</span>
+    <span class="nf">heapifyUp</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">parentIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">((</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">parentIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">parentIndex</span><span class="p">]</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
+            <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">parentIndex</span><span class="p">],</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">index</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">parentIndex</span><span class="p">]];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nf">heapifyUp</span><span class="p">(</span><span class="nx">parentIndex</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 将元素下移，保持堆的性质（删除元素时）</span>
+    <span class="nf">heapifyDown</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">leftChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="nx">rightChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kd">let</span> <span class="nx">smallestChildIndex</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">leftChildIndex</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">leftChildIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">smallestChildIndex</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">smallestChildIndex</span> <span class="o">=</span> <span class="nx">leftChildIndex</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">rightChildIndex</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">rightChildIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">smallestChildIndex</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">smallestChildIndex</span> <span class="o">=</span> <span class="nx">rightChildIndex</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">smallestChildIndex</span> <span class="o">!==</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">smallestChildIndex</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">smallestChildIndex</span><span class="p">],</span> <span class="k">this</span><span class="p">.</span><span class="nx">heap</span><span class="p">[</span><span class="nx">index</span><span class="p">]];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nf">heapifyDown</span><span class="p">(</span><span class="nx">smallestChildIndex</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">kthLargest</span> <span class="o">=</span> <span class="nf">findKthLargest</span><span class="p">(</span><span class="nx">nums</span><span class="p">,</span> <span class="nx">k</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">kthLargest</span><span class="p">);</span> <span class="c1">// 输出 6</span>
+
+</code></pre></div></div>
+
+<h2 id="01岛屿连接">01岛屿连接</h2>
+
+<ul>
+  <li>
+    <p>这题前面某一家前端面试时候问到过，但实际用代码实现之后因为超时没能100%</p>
+  </li>
+  <li>思路是首先遍历每一项，通过一个check4p子函数迭代检查当前位置的4个方向</li>
+  <li>为了防止重复遍历，在子函数中计数过的1都改成2（面试时候面试官提到改成0可能会影响后续的遍历，但现在想想好像也没关系，官方题解给的也是0）</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 最大全1区域
+# 求01矩阵中最大的全1连通块的大小
+# [[1,1,1,0],[1,1,0,1],[1,0,0,1],[1,1,0,0]]
+# 通过率60%，超时
+</span>
+
+<span class="c1">#
+# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+#
+#
+# @param grid int整型二维数组
+# @return int整型
+#
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">global</span> <span class="n">cur_size</span>
+        <span class="n">max_size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">cur_size</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">def</span> <span class="nf">check4p</span><span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">):</span>
+            <span class="sh">"""</span><span class="s">迭代检查四个方向</span><span class="sh">"""</span>
+            <span class="k">global</span> <span class="n">cur_size</span>
+
+            <span class="nf">if </span><span class="p">(</span>
+                <span class="p">(</span><span class="n">pos_x</span> <span class="o">&gt;=</span> <span class="nf">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">pos_y</span> <span class="o">&gt;=</span> <span class="nf">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">pos_x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="p">(</span><span class="n">pos_y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">):</span>
+                <span class="k">return</span> 
+            <span class="nf">if </span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">pos_x</span><span class="p">][</span><span class="n">pos_y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">pos_x</span><span class="p">][</span><span class="n">pos_y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">pos_x</span><span class="p">][</span><span class="n">pos_y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">cur_size</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">grid</span><span class="p">[</span><span class="n">pos_x</span><span class="p">][</span><span class="n">pos_y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="nf">check4p</span><span class="p">(</span><span class="n">pos_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">)</span>
+                <span class="nf">check4p</span><span class="p">(</span><span class="n">pos_x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">)</span>
+                <span class="nf">check4p</span><span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="nf">check4p</span><span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="nf">check4p</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                    <span class="n">max_size</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">max_size</span><span class="p">,</span> <span class="n">cur_size</span><span class="p">)</span>
+                    <span class="n">cur_size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">max_size</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">solve</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]))</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>笔试时候比较紧张，写法可能不够优雅（global），贴一个gpt的答案</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_largest_ones_block</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rows</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="n">cols</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">cols</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">row</span> <span class="o">&gt;=</span> <span class="n">rows</span> <span class="ow">or</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">col</span> <span class="o">&gt;=</span> <span class="n">cols</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="ow">or</span> <span class="n">matrix</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="n">visited</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">size</span> <span class="o">+=</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">+=</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">+=</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">+=</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">size</span>
+
+    <span class="n">max_size</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">max_size</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">max_size</span><span class="p">,</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">max_size</span>
+
+
+<span class="c1"># 示例输入
+</span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+
+<span class="c1"># 调用函数计算最大全1连通块的大小
+</span><span class="n">largest_block_size</span> <span class="o">=</span> <span class="nf">find_largest_ones_block</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">最大全1连通块的大小为:</span><span class="sh">"</span><span class="p">,</span> <span class="n">largest_block_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>力扣200：岛屿数量，这题是求连通块的数量，不是最大连通块的大小；https://leetcode.cn/problems/number-of-islands/</li>
+  <li>力扣827：最大人工岛，把一个0变成1之后求最大岛屿面积，是本题的进阶版；https://leetcode.cn/problems/making-a-large-island/</li>
+  <li>
+    <p>力扣695，找到了，是这一题，自解在力扣上是能够通过的，力扣官方题解也并没有提到复杂度更低的算法，可能理想还有其他的解法；https://leetcode.cn/problems/max-area-of-island/</p>
+  </li>
+  <li>补充知识：深度优先搜索（DFS）</li>
+</ul>
+
+<p>DFS（深度优先搜索）是一种用于遍历或搜索图形和树等数据结构的算法。它从一个起始节点开始，沿着路径尽可能深入地探索，直到达到无法继续或者满足特定条件的节点为止，然后回溯并继续探索其他路径。</p>
+
+<ul>
+  <li>深度和广度优先搜索(DFS/BFS)</li>
+</ul>
+
+<p>DFS（深度优先搜索）和BFS（广度优先搜索）是两种常见的图遍历算法，它们在搜索策略和遍历顺序上有所不同。</p>
+
+<p>搜索策略：</p>
+
+<p>DFS：DFS采用深度优先的搜索策略，即从起始节点开始，沿着路径尽可能深入地探索，直到达到无法继续或满足特定条件的节点为止，然后回溯并继续探索其他路径。DFS通过递归或使用栈来实现。
+BFS：BFS采用广度优先的搜索策略，即从起始节点开始，逐层地遍历节点，先访问离起始节点最近的节点，然后依次访问离起始节点逐渐远的节点。BFS使用队列来存储待访问的节点，先进先出的原则确保了按层遍历。</p>
+
+<p>遍历顺序：</p>
+
+<p>DFS：DFS在遍历过程中沿着一个路径尽可能深入，直到达到叶子节点或无法继续探索的节点。因此，DFS的遍历顺序是深度方向上的，先访问最新加入栈的节点。
+BFS：BFS在遍历过程中按层遍历，先访问当前层的节点，然后再访问下一层的节点。因此，BFS的遍历顺序是广度方向上的，先访问离起始节点最近的节点。</p>
+
+<ul>
+  <li>矩阵可能不能很好的区分深度和广度（事实上上面的题目也可以用两种方法（用栈还是队列存储）），用二叉树就很容易理解区别了</li>
+</ul>
+
+<!--![引入图片](/image/leetcode/2023-11-03-lixiang/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><category term="js" /><summary type="html"><![CDATA[虽然被捞起来打复活赛，但明显这个部门需要的不是我，选择题基本没有会的，算法两个c的内存调度也没写 只记录两道py]]></summary></entry><entry><title type="html">leetcode: 宇量昇复活赛笔试</title><link href="/leetcode/python/yuliangsheng/" rel="alternate" type="text/html" title="leetcode: 宇量昇复活赛笔试" /><published>2023-11-03T15:16:29+08:00</published><updated>2023-11-03T15:16:29+08:00</updated><id>/leetcode/python/yuliangsheng</id><content type="html" xml:base="/leetcode/python/yuliangsheng/"><![CDATA[<ul>
+  <li>没想到面试挂了之被另一个hr捞起来打复活赛了</li>
+</ul>
+
+<h2 id="知识总结">知识总结</h2>
+
+<ul>
+  <li>（快乐数）小技巧：py不能直接遍历int数字的每一位，但用str转化为字符串就可以直接用for遍历了</li>
+</ul>
+
+<h2 id="快乐数">快乐数</h2>
+
+<ul>
+  <li>快乐数：每一位的平方相加和，迭代等于1</li>
+  <li>19 -&gt; 82 -&gt; 68 -&gt; 100 -&gt; true</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">happynum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">recordList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span> <span class="nf">iterfunc</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">recordList</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">recordList</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+            <span class="n">next_n</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+                <span class="n">next_n</span> <span class="o">+=</span> <span class="nf">int</span><span class="p">(</span><span class="n">each</span><span class="p">)</span> <span class="o">*</span> <span class="nf">int</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">next_n</span><span class="p">,</span><span class="n">recordList</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nf">iterfunc</span><span class="p">(</span><span class="n">next_n</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nf">iterfunc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">happynum</span><span class="p">(</span><span class="mi">19</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="消消乐">消消乐</h2>
+
+<ul>
+  <li>消消乐，消除字符串相邻相同的字符，迭代</li>
+  <li>bcaac -&gt; bcc -&gt; b</li>
+  <li>
+    <p>自解通过率只有20%</p>
+  </li>
+  <li>思路是先把字符串转为数组，把所有符合条件的项改为True，然后一次性删除，再迭代</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">removeDuplicatesList</span><span class="p">(</span><span class="n">str_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+
+            <span class="c1"># print("start:", str_list)
+</span>
+            <span class="n">same_str</span> <span class="o">=</span> <span class="sh">""</span>
+            <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">)):</span>
+                <span class="n">this_str</span> <span class="o">=</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="n">next_str</span> <span class="o">=</span> <span class="bp">False</span> <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="nf">if </span><span class="p">(</span><span class="n">this_str</span> <span class="o">==</span> <span class="n">next_str</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">this_str</span> <span class="o">==</span> <span class="n">same_str</span><span class="p">):</span>
+                    <span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">same_str</span> <span class="o">=</span> <span class="n">this_str</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">same_str</span> <span class="o">=</span> <span class="sh">""</span>
+
+            <span class="c1"># print(str_list)
+</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">True</span> <span class="ow">in</span> <span class="n">str_list</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">str_list</span>
+            <span class="k">return</span> <span class="nf">removeDuplicatesList</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">str_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="o">==</span> <span class="bp">True</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">removeDuplicatesList</span><span class="p">(</span><span class="n">sl</span><span class="p">))</span>
+
+
+<span class="c1"># print(Solution().removeDuplicates("bcaac") == "b")
+# print(Solution().removeDuplicates("aaaaa") == "")
+# print(Solution().removeDuplicates("bbab") == "ab")
+</span><span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">removeDuplicates</span><span class="p">(</span><span class="sh">"</span><span class="s">bba</span><span class="sh">"</span><span class="p">))</span> 
+
+</code></pre></div></div>
+
+<ul>
+  <li>力扣1047，删除字符串中的所有相邻重复项</li>
+  <li>根据力扣的判题结果显示，aaaaaaaaa输出应该是a而不是空字符串，是我理解错题意了</li>
+  <li>力扣题目中明确提到每次操作删除相邻两个项，也就是说奇数的重复项会留下一项，宇量昇笔试题目描述不清楚，自解直接删除了所有连通的相同项</li>
+</ul>
+
+<h2 id="正则匹配">正则匹配</h2>
+
+<ul>
+  <li>碰到原题了，参见力扣10：https://leetcode.cn/problems/regular-expression-matching/</li>
+  <li>但很离谱的是按照答案提交通过率只有74.29%，应该没有哪里写错</li>
+</ul>
+
+<!--![引入图片](/image/leetcode/2023-11-03-yuliangsheng/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[没想到面试挂了之被另一个hr捞起来打复活赛了]]></summary></entry><entry><title type="html">js: 正则表达式</title><link href="/js/knowhow/regular_expression/" rel="alternate" type="text/html" title="js: 正则表达式" /><published>2023-10-23T13:18:39+08:00</published><updated>2023-10-23T13:18:39+08:00</updated><id>/js/knowhow/regular_expression</id><content type="html" xml:base="/js/knowhow/regular_expression/"><![CDATA[<ul>
   <li>
     <p>头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束</p>
   </li>
@@ -508,83 +857,4 @@ $：匹配输入的结束位置。
 <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">shiftCharacters</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">))</span> <span class="c1">//"ifmmp"</span>
 </code></pre></div></div>
 
-<!--![引入图片](/image/leetcode/2023-10-20-xinye/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[知识总结]]></summary></entry><entry><title type="html">jekyll: 添加图标</title><link href="/jekyll/favicon/" rel="alternate" type="text/html" title="jekyll: 添加图标" /><published>2023-10-18T18:34:02+08:00</published><updated>2023-10-18T18:34:02+08:00</updated><id>/jekyll/favicon</id><content type="html" xml:base="/jekyll/favicon/"><![CDATA[<ul>
-  <li>
-    <p>如题，favicon.ico放根目录就行了</p>
-  </li>
-  <li>起因是在页面f12时发现favicon.ico报404，但默认模板中根本就没有favicon，全文搜索也找不到哪里引用了favicon</li>
-  <li>搞了一个放在根目录下了</li>
-  <li>刚放进去可能不会马上显示出来，多刷新几次就能显示出来（或者重启浏览器，重启电脑）</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/jekyll/2023-10-18-favicon/image_1.jpg) -->]]></content><author><name></name></author><category term="jekyll" /><summary type="html"><![CDATA[如题，favicon.ico放根目录就行了]]></summary></entry><entry><title type="html">leetcode: 广联达</title><link href="/leetcode/python/sort_list_25/" rel="alternate" type="text/html" title="leetcode: 广联达" /><published>2023-10-18T18:31:23+08:00</published><updated>2023-10-18T18:31:23+08:00</updated><id>/leetcode/python/sort_list_25</id><content type="html" xml:base="/leetcode/python/sort_list_25/"><![CDATA[<h2 id="知识总结">知识总结</h2>
-
-<ul>
-  <li>递归</li>
-</ul>
-
-<h2 id="广联达数组排序后一项是前一项的12或者5倍输入第一行是长度和首项第二行是列表">广联达，数组排序，后一项是前一项的1/2或者5倍,输入第一行是长度和首项，第二行是列表</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5 16
-8 20 16 10 4
-</code></pre></div></div>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kn">import</span> <span class="n">sys</span>
-
-<span class="n">input_lines</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="nf">readlines</span><span class="p">()</span>
-<span class="n">line1</span> <span class="o">=</span> <span class="n">input_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">split</span><span class="p">()</span>
-<span class="n">line2</span> <span class="o">=</span> <span class="n">input_lines</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">split</span><span class="p">()</span>
-<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line1</span><span class="p">]</span>
-<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="nf">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line2</span><span class="p">]</span>
-
-<span class="n">length</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">first</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">list2</span><span class="p">[</span><span class="n">list2</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">first</span><span class="p">)]</span>
-<span class="n">ans_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">first</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">check_2</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">num_list</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">检查x/2是否存在</span><span class="sh">'''</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">num</span><span class="o">%</span><span class="mi">2</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">int</span><span class="p">((</span><span class="n">num</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="bp">False</span>
-    
-<span class="k">def</span> <span class="nf">check_5</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">num_list</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">检查x*5是否存在</span><span class="sh">'''</span>
-    <span class="nf">if </span><span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="bp">False</span>
-    
-<span class="k">def</span> <span class="nf">find_next</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">):</span>
-    <span class="sh">'''</span><span class="s">递归检查所有排列</span><span class="sh">'''</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">res_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="c1"># print(ans_list)
-</span>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ans_list</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-        <span class="k">return</span> 
-    
-    <span class="c1"># 除2
-</span>    <span class="k">if</span> <span class="nf">check_2</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">):</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">ans_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">cur</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">res_list</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span><span class="o">+</span><span class="n">res_list</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
-        <span class="nf">find_next</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">)</span>
-    <span class="c1"># 乘5
-</span>    <span class="k">elif</span> <span class="nf">check_5</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">):</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">ans_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">5</span><span class="p">))</span>
-        <span class="n">cur</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">res_list</span> <span class="o">=</span> <span class="n">res_list</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span><span class="o">+</span><span class="n">res_list</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
-        <span class="nf">find_next</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">res_list</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">ans_list</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>
-
-<span class="nf">find_next</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">list2</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-18-sort_list_25/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[知识总结]]></summary></entry></feed>
+<!--![引入图片](/image/leetcode/2023-10-20-xinye/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[知识总结]]></summary></entry></feed>
