@@ -60,6 +60,7 @@
   <hr>
   <ul id="toc" class="toc__list">
 <li class="toc-entry toc-h2"><a href="#组件传参">组件传参</a></li>
+<li class="toc-entry toc-h2"><a href="#补充props中的联合类型ts">补充props中的联合类型(ts)</a></li>
 <li class="toc-entry toc-h2"><a href="#slot">slot</a></li>
 <li class="toc-entry toc-h2"><a href="#动态导入文件夹下所有组件">动态导入文件夹下所有组件</a></li>
 </ul>
@@ -111,6 +112,20 @@
       <span class="c1">// 自定义规则可以在这里添加</span>
     <span class="p">},</span>
   <span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="补充props中的联合类型ts">补充props中的联合类型(ts)</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nf">defineProps</span><span class="p">({</span>
+    <span class="na">label</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+        <span class="na">require</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">content</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">,</span> <span class="nb">Object</span><span class="p">],</span> <span class="c1">// 使用联合类型而不是 String | Object</span>
+        <span class="na">require</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">})</span>
 </code></pre></div></div>
 
 <h2 id="slot">slot</h2>

@@ -105,9 +105,20 @@
 </code></pre></div></div>
 
 <ul>
-  <li>这个方法有可能报错Unknown compiler option ‘allowImportingTsExtensions’.</li>
+  <li>
+    <p>这个方法有可能报错Unknown compiler option ‘allowImportingTsExtensions’.</p>
+  </li>
+  <li>
+    <p>补充，如果js文件放在public中，import AssetsIndex from “/public/db_cloud/db_index.js”报错找不到模块“/public/db_cloud/db_index.js”或其相应的类型声明。ts(2307)，此时添加xxx.d.ts是不能解决问题的，</p>
+  </li>
 </ul>
 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>在Vue项目中，public文件夹是用于存放不需要经过webpack编译处理的静态资源的目录。在这个目录中的文件可以直接通过相对路径进行引用，而无需使用模块导入的方式。
+
+如果你在public文件夹中创建了一个JavaScript文件，并尝试使用import语句导入它，会导致找不到模块的错误。这是因为import语句是用于导入模块的，而public文件夹中的文件并不是模块，因此无法通过这种方式进行导入。
+
+如果你需要在Vue项目中使用/public/db_cloud/db_index.js文件，可以直接在HTML文件中通过&lt;script&gt;标签进行引入，而不需要使用import语句。
+</code></pre></div></div>
 
   </div>
 

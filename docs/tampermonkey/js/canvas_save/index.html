@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang=" en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tampermonkey: docin白嫖下载 | umas’ awesome title</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tampermonkey: docin白嫖下载" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="docin上看到ok的文章之后发现果然需要付费下载 （你都在网页上给我看了还想限制我下载？） F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学" />
+<meta property="og:description" content="docin上看到ok的文章之后发现果然需要付费下载 （你都在网页上给我看了还想限制我下载？） F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学" />
+<link rel="canonical" href="/tampermonkey/js/canvas_save/" />
+<meta property="og:url" content="/tampermonkey/js/canvas_save/" />
+<meta property="og:site_name" content="umas’ awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-28T19:37:21+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tampermonkey: docin白嫖下载" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-11-28T19:37:21+08:00","datePublished":"2023-11-28T19:37:21+08:00","description":"docin上看到ok的文章之后发现果然需要付费下载 （你都在网页上给我看了还想限制我下载？） F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学","headline":"tampermonkey: docin白嫖下载","mainEntityOfPage":{"@type":"WebPage","@id":"/tampermonkey/js/canvas_save/"},"url":"/tampermonkey/js/canvas_save/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
+<body>
+  <!-- 背景图 -->
+  <div class="bg-img"></div><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">umas&#39; awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/categories/">Categories</a><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post">
+
+  <!-- 这里是日期 -->
+  <span class="post-meta">2023-11-28 19:37:21 +0800</span>
+
+  <!-- 标题 -->
+  <header class="post-header">
+    <h1 class="post-title">tampermonkey: docin白嫖下载</h1>
+
+    <!-- 分类tag -->
+    
+    <div class="category">tampermonkey</div>
+    
+    <div class="category">js</div>
+    
+
+    <h3>好的终于把canvas搞明白了</h3>
+  </header>
+
+  <!-- 目录 -->
+  <hr>
+  <ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#canvas下载基本原理">canvas下载基本原理</a></li>
+<li class="toc-entry toc-h2"><a href="#tampermonkey基本框架和主要函数">tampermonkey基本框架和主要函数</a></li>
+<li class="toc-entry toc-h2"><a href="#完整脚本">完整脚本</a></li>
+<li class="toc-entry toc-h2"><a href="#使用说明">使用说明</a></li>
+</ul>
+  <hr>
+
+  <!-- 内容主体 -->
+  <div class="post-content">
+    <ul>
+  <li>docin上看到ok的文章之后发现果然需要付费下载</li>
+  <li>（你都在网页上给我看了还想限制我下载？）</li>
+  <li>F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学</li>
+</ul>
+
+<h2 id="canvas下载基本原理">canvas下载基本原理</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 获取具有 class="hkswf-content2" 的 &lt;div&gt; 元素</span>
+<span class="kd">const</span> <span class="nx">divElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.hkswf-content2</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 在 &lt;div&gt; 元素内查找 &lt;canvas&gt; 元素</span>
+<span class="kd">const</span> <span class="nx">canvasElement</span> <span class="o">=</span> <span class="nx">divElement</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 将画布内容转换为数据 URL</span>
+<span class="kd">const</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvasElement</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>上面的脚本可以直接在console里敲，获取到的dataURL是一个以data:image/png;base64开头的非常长的数据（其实就是图片）</p>
+  </li>
+  <li>
+    <p>另存为test.txt，使用py脚本把它转化为图片</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">base64</span>
+<span class="c1"># 读取文本文件中的数据 URL
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">./test.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data_url</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+<span class="c1"># 确定数据 URL 的格式（例如："data:image/png;base64"）
+</span><span class="nb">format</span><span class="p">,</span> <span class="n">encoded_data</span> <span class="o">=</span> <span class="n">data_url</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">,</span><span class="sh">'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 解码 Base64 编码的数据
+</span><span class="n">decoded_data</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="nf">b64decode</span><span class="p">(</span><span class="n">encoded_data</span><span class="p">)</span>
+<span class="c1"># 提取文件名（可根据需要进行自定义命名）
+</span><span class="n">filename</span> <span class="o">=</span> <span class="sh">"</span><span class="s">image.png</span><span class="sh">"</span>  <span class="c1"># 文件名为 image.png，你可以根据需要修改
+# 以二进制模式写入解码后的数据到本地文件
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">decoded_data</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">图像已保存为</span><span class="sh">"</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>可以看到图片已经被成功下载了，下面把这些步骤集成在一个tampermonkey脚本里</li>
+</ul>
+
+<h2 id="tampermonkey基本框架和主要函数">tampermonkey基本框架和主要函数</h2>
+
+<ul>
+  <li>首先是一个简单的框架，获取页面所有的canvas元素，设计的使用方法是直接在console里敲函数，所以把主函数getAllCanvases挂在window上，这样就可以直接在console里使用这个函数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         获取所有 canvas 对象</span>
+<span class="c1">// @namespace    tampermonkey-example</span>
+<span class="c1">// @version      1.0</span>
+<span class="c1">// @description  获取指定目标网站上的所有 canvas 对象</span>
+<span class="c1">// @match        https://www.docin.com/*</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="c1">// 获取所有 canvas 对象的函数</span>
+    <span class="kd">function</span> <span class="nf">getAllCanvases</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">canvases</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">canvases</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 将 getAllCanvases 函数绑定到 window 对象上</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">getAllCanvases</span> <span class="o">=</span> <span class="nx">getAllCanvases</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">加载用户脚本</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">提供函数：getAllCanvases</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>为了把资源保存到本地，还需要一个保存的函数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 将 canvas 对象的内容保存为文本文件</span>
+<span class="kd">function</span> <span class="nf">saveCanvasToTextFile</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">fileName</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.txt</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Blob</span><span class="p">([</span><span class="nx">dataURL</span><span class="p">],</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span> <span class="p">});</span>
+
+    <span class="c1">// 创建下载链接</span>
+    <span class="kd">var</span> <span class="nx">downloadLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">URL</span><span class="p">.</span><span class="nf">createObjectURL</span><span class="p">(</span><span class="nx">blob</span><span class="p">);</span>
+    <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">fileName</span><span class="p">;</span>
+
+    <span class="c1">// 模拟点击下载链接</span>
+    <span class="nx">downloadLink</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+
+    <span class="c1">// 释放资源</span>
+    <span class="nx">URL</span><span class="p">.</span><span class="nf">revokeObjectURL</span><span class="p">(</span><span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>但实际上直接在js里把资源保存为png更加简单方便</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">saveCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fileName</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.png</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// 创建下载链接</span>
+<span class="kd">var</span> <span class="nx">downloadLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">dataURL</span><span class="p">;</span>
+<span class="nx">downloadLink</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">fileName</span><span class="p">;</span>
+
+<span class="c1">// 模拟点击下载链接</span>
+<span class="nx">downloadLink</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="完整脚本">完整脚本</h2>
+
+<ul>
+  <li>上面的脚本有一个问题，实际上网页中的图片是懒加载的，并且当图片移出可视区域时资源会被回收</li>
+  <li>所以至少要从头到尾滚动一次，在新的canvas出现时读取它并存入一个全局变量中，并且需要一个合理的去重函数</li>
+  <li>（由于 canvas 对象是 JavaScript 中的对象类型，即使两个 canvas 对象的内容相同，它们在内存中也是不同的对象，因此无法直接使用 includes 方法进行准确的去重）</li>
+  <li>如果每个canvas都有独立的id的话就很简单了，直接用canvas.id即可去重，但显然没有；观察网页结构发现canvas的第5级父元素有独立的id，把它作为去重的依据</li>
+  <li>
+    <p>绑定鼠标滚动事件刷新allCanvases列表</p>
+  </li>
+  <li>以下是完整脚本</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         获取docin所有懒加载的 canvas 对象并保存为图像文件</span>
+<span class="c1">// @namespace    tampermonkey-example</span>
+<span class="c1">// @version      1.0</span>
+<span class="c1">// @description  获取指定目标网站上的所有懒加载的 canvas 对象，并将内容保存为以序号命名的图像文件（PNG格式）</span>
+<span class="c1">// @match        https://www.docin.com/*</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">加载用户脚本</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">提供函数：saveAllCanvases</span><span class="dl">"</span><span class="p">);</span>
+
+    <span class="c1">// 存储所有 canvas 对象的全局变量</span>
+    <span class="kd">var</span> <span class="nx">allCanvases</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="c1">// 存储所有 canvas 对象对应的第5级父元素的id的辅助数组</span>
+    <span class="kd">var</span> <span class="nx">parentIds</span> <span class="o">=</span> <span class="p">[];</span>
+
+
+    <span class="c1">// 获取所有 canvas 对象的函数</span>
+    <span class="kd">function</span> <span class="nf">getAllCanvases</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">canvases</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">canvases</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 将 canvas 对象的内容保存为图像文件（PNG格式）</span>
+    <span class="kd">function</span> <span class="nf">saveAllCanvases</span><span class="p">(){</span>
+        <span class="kd">function</span> <span class="nf">saveCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">fileName</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.png</span><span class="dl">'</span><span class="p">;</span>
+
+            <span class="c1">// 创建下载链接</span>
+            <span class="kd">var</span> <span class="nx">downloadLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">dataURL</span><span class="p">;</span>
+            <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">fileName</span><span class="p">;</span>
+
+            <span class="c1">// 模拟点击下载链接</span>
+            <span class="nx">downloadLink</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="nx">allCanvases</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">saveCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">saveAllCanvases</span> <span class="o">=</span> <span class="nx">saveAllCanvases</span>
+
+
+
+
+    <span class="c1">// 初始化，获取当前可见的 canvas 对象并存储在全局变量中</span>
+    <span class="nx">allCanvases</span> <span class="o">=</span> <span class="nf">getAllCanvases</span><span class="p">();</span>
+    <span class="nx">parentIds</span> <span class="o">=</span> <span class="nx">allCanvases</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">getCanvasParentId</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// 手动滚动页面时触发的事件处理函数</span>
+    <span class="kd">function</span> <span class="nf">handleScrollEvent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 延迟一段时间等待页面加载</span>
+        <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// 获取新的 canvas 对象</span>
+            <span class="kd">var</span> <span class="nx">newCanvases</span> <span class="o">=</span> <span class="nf">getAllCanvases</span><span class="p">();</span>
+
+            <span class="c1">// 合并新获取的 canvas 对象并去除重复项</span>
+            <span class="nx">newCanvases</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">newCanvas</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">parentId</span> <span class="o">=</span> <span class="nf">getCanvasParentId</span><span class="p">(</span><span class="nx">newCanvas</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">existingIndex</span> <span class="o">=</span> <span class="nx">parentIds</span><span class="p">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="nx">parentId</span><span class="p">);</span>
+
+                <span class="k">if </span><span class="p">(</span><span class="nx">existingIndex</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">allCanvases</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">newCanvas</span><span class="p">);</span>
+                    <span class="nx">parentIds</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">parentId</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">更新全局变量中的 canvas 对象:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">allCanvases</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">更新辅助数组中的父元素id:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">parentIds</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mi">300</span><span class="p">);</span> <span class="c1">// 可根据需要调整延迟时间</span>
+    <span class="p">}</span>
+
+
+    <span class="c1">// 获取 canvas 父级元素的 id（向上5级，用于去重）</span>
+    <span class="kd">function</span> <span class="nf">getCanvasParentId</span><span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+        <span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">parent</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 监听页面滚动事件</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">scroll</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleScrollEvent</span><span class="p">);</span>
+
+
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<h2 id="使用说明">使用说明</h2>
+
+<ul>
+  <li>添加脚本</li>
+  <li>进入网页后鼠标滚动页面直至所有图片都被加载一次（推荐打开F12终端查看是否成功载入）</li>
+  <li>F12终端调用函数提供函数：saveAllCanvases()</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/tampermonkey/2023-11-28-canvas_save/image_1.jpg) -->
+
+  </div>
+
+</article>
+
+
+<style scoped>
+  div.category {
+    display: inline-block;
+    padding: 2px 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 0.7em;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+</style>
+    </div>
+  </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">umas&#39; awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">umas&#39; awesome title</li><li><a class="u-email" href="mailto:1970313791@qq.com">1970313791@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/umas2022"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">umas2022</span></a></li><li><a href="https://www.twitter.com/%28no_twitter%29"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">(no_twitter)</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>umas&#39; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+<style scoped>
+  /* 背景图片 */
+  div.bg-img {
+    background-image: url("/static/background.svg");
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    background-size: 400px;
+    z-index: -2;
+    opacity: 0.05;
+  }
+</style>
+
+</html>

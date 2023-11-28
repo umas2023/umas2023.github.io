@@ -97,6 +97,16 @@ var state: {    config: {} as { [key: string]: any }   }
 ```
 
 
+- object索引类型定义
+- 元素隐式具有 "any" 类型，因为类型为 "string" 的表达式不能用于索引类型...
+
+```js
+index_json[index].value.push(... // 这里报错
+// 修改后
+index_json[index as keyof typeof index_json]
+```
+
+
 ## 报错及解决
 
 ---

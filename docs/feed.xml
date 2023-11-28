@@ -1,4 +1,493 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-03T16:16:57+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">leetcode: 理想复活赛笔试</title><link href="/leetcode/python/js/lixiang/" rel="alternate" type="text/html" title="leetcode: 理想复活赛笔试" /><published>2023-11-03T15:28:17+08:00</published><updated>2023-11-03T15:28:17+08:00</updated><id>/leetcode/python/js/lixiang</id><content type="html" xml:base="/leetcode/python/js/lixiang/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-28T19:53:59+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">tampermonkey: docin白嫖下载</title><link href="/tampermonkey/js/canvas_save/" rel="alternate" type="text/html" title="tampermonkey: docin白嫖下载" /><published>2023-11-28T19:37:21+08:00</published><updated>2023-11-28T19:37:21+08:00</updated><id>/tampermonkey/js/canvas_save</id><content type="html" xml:base="/tampermonkey/js/canvas_save/"><![CDATA[<ul>
+  <li>docin上看到ok的文章之后发现果然需要付费下载</li>
+  <li>（你都在网页上给我看了还想限制我下载？）</li>
+  <li>F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学</li>
+</ul>
+
+<h2 id="canvas下载基本原理">canvas下载基本原理</h2>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 获取具有 class="hkswf-content2" 的 &lt;div&gt; 元素</span>
+<span class="kd">const</span> <span class="nx">divElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.hkswf-content2</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 在 &lt;div&gt; 元素内查找 &lt;canvas&gt; 元素</span>
+<span class="kd">const</span> <span class="nx">canvasElement</span> <span class="o">=</span> <span class="nx">divElement</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 将画布内容转换为数据 URL</span>
+<span class="kd">const</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvasElement</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>上面的脚本可以直接在console里敲，获取到的dataURL是一个以data:image/png;base64开头的非常长的数据（其实就是图片）</p>
+  </li>
+  <li>
+    <p>另存为test.txt，使用py脚本把它转化为图片</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">base64</span>
+<span class="c1"># 读取文本文件中的数据 URL
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">./test.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data_url</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+<span class="c1"># 确定数据 URL 的格式（例如："data:image/png;base64"）
+</span><span class="nb">format</span><span class="p">,</span> <span class="n">encoded_data</span> <span class="o">=</span> <span class="n">data_url</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">,</span><span class="sh">'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 解码 Base64 编码的数据
+</span><span class="n">decoded_data</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="nf">b64decode</span><span class="p">(</span><span class="n">encoded_data</span><span class="p">)</span>
+<span class="c1"># 提取文件名（可根据需要进行自定义命名）
+</span><span class="n">filename</span> <span class="o">=</span> <span class="sh">"</span><span class="s">image.png</span><span class="sh">"</span>  <span class="c1"># 文件名为 image.png，你可以根据需要修改
+# 以二进制模式写入解码后的数据到本地文件
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">decoded_data</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">图像已保存为</span><span class="sh">"</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>可以看到图片已经被成功下载了，下面把这些步骤集成在一个tampermonkey脚本里</li>
+</ul>
+
+<h2 id="tampermonkey基本框架和主要函数">tampermonkey基本框架和主要函数</h2>
+
+<ul>
+  <li>首先是一个简单的框架，获取页面所有的canvas元素，设计的使用方法是直接在console里敲函数，所以把主函数getAllCanvases挂在window上，这样就可以直接在console里使用这个函数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         获取所有 canvas 对象</span>
+<span class="c1">// @namespace    tampermonkey-example</span>
+<span class="c1">// @version      1.0</span>
+<span class="c1">// @description  获取指定目标网站上的所有 canvas 对象</span>
+<span class="c1">// @match        https://www.docin.com/*</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="c1">// 获取所有 canvas 对象的函数</span>
+    <span class="kd">function</span> <span class="nf">getAllCanvases</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">canvases</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">canvases</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 将 getAllCanvases 函数绑定到 window 对象上</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">getAllCanvases</span> <span class="o">=</span> <span class="nx">getAllCanvases</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">加载用户脚本</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">提供函数：getAllCanvases</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>为了把资源保存到本地，还需要一个保存的函数</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 将 canvas 对象的内容保存为文本文件</span>
+<span class="kd">function</span> <span class="nf">saveCanvasToTextFile</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">fileName</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.txt</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Blob</span><span class="p">([</span><span class="nx">dataURL</span><span class="p">],</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span> <span class="p">});</span>
+
+    <span class="c1">// 创建下载链接</span>
+    <span class="kd">var</span> <span class="nx">downloadLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">URL</span><span class="p">.</span><span class="nf">createObjectURL</span><span class="p">(</span><span class="nx">blob</span><span class="p">);</span>
+    <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">fileName</span><span class="p">;</span>
+
+    <span class="c1">// 模拟点击下载链接</span>
+    <span class="nx">downloadLink</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+
+    <span class="c1">// 释放资源</span>
+    <span class="nx">URL</span><span class="p">.</span><span class="nf">revokeObjectURL</span><span class="p">(</span><span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>但实际上直接在js里把资源保存为png更加简单方便</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">saveCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fileName</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.png</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// 创建下载链接</span>
+<span class="kd">var</span> <span class="nx">downloadLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">dataURL</span><span class="p">;</span>
+<span class="nx">downloadLink</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">fileName</span><span class="p">;</span>
+
+<span class="c1">// 模拟点击下载链接</span>
+<span class="nx">downloadLink</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="完整脚本">完整脚本</h2>
+
+<ul>
+  <li>上面的脚本有一个问题，实际上网页中的图片是懒加载的，并且当图片移出可视区域时资源会被回收</li>
+  <li>所以至少要从头到尾滚动一次，在新的canvas出现时读取它并存入一个全局变量中，并且需要一个合理的去重函数</li>
+  <li>（由于 canvas 对象是 JavaScript 中的对象类型，即使两个 canvas 对象的内容相同，它们在内存中也是不同的对象，因此无法直接使用 includes 方法进行准确的去重）</li>
+  <li>如果每个canvas都有独立的id的话就很简单了，直接用canvas.id即可去重，但显然没有；观察网页结构发现canvas的第5级父元素有独立的id，把它作为去重的依据</li>
+  <li>
+    <p>绑定鼠标滚动事件刷新allCanvases列表</p>
+  </li>
+  <li>以下是完整脚本</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         获取docin所有懒加载的 canvas 对象并保存为图像文件</span>
+<span class="c1">// @namespace    tampermonkey-example</span>
+<span class="c1">// @version      1.0</span>
+<span class="c1">// @description  获取指定目标网站上的所有懒加载的 canvas 对象，并将内容保存为以序号命名的图像文件（PNG格式）</span>
+<span class="c1">// @match        https://www.docin.com/*</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">加载用户脚本</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">提供函数：saveAllCanvases</span><span class="dl">"</span><span class="p">);</span>
+
+    <span class="c1">// 存储所有 canvas 对象的全局变量</span>
+    <span class="kd">var</span> <span class="nx">allCanvases</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="c1">// 存储所有 canvas 对象对应的第5级父元素的id的辅助数组</span>
+    <span class="kd">var</span> <span class="nx">parentIds</span> <span class="o">=</span> <span class="p">[];</span>
+
+
+    <span class="c1">// 获取所有 canvas 对象的函数</span>
+    <span class="kd">function</span> <span class="nf">getAllCanvases</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">canvases</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">canvas</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">canvases</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 将 canvas 对象的内容保存为图像文件（PNG格式）</span>
+    <span class="kd">function</span> <span class="nf">saveAllCanvases</span><span class="p">(){</span>
+        <span class="kd">function</span> <span class="nf">saveCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">dataURL</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nf">toDataURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">fileName</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.png</span><span class="dl">'</span><span class="p">;</span>
+
+            <span class="c1">// 创建下载链接</span>
+            <span class="kd">var</span> <span class="nx">downloadLink</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">dataURL</span><span class="p">;</span>
+            <span class="nx">downloadLink</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">fileName</span><span class="p">;</span>
+
+            <span class="c1">// 模拟点击下载链接</span>
+            <span class="nx">downloadLink</span><span class="p">.</span><span class="nf">click</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="nx">allCanvases</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">saveCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">saveAllCanvases</span> <span class="o">=</span> <span class="nx">saveAllCanvases</span>
+
+
+
+
+    <span class="c1">// 初始化，获取当前可见的 canvas 对象并存储在全局变量中</span>
+    <span class="nx">allCanvases</span> <span class="o">=</span> <span class="nf">getAllCanvases</span><span class="p">();</span>
+    <span class="nx">parentIds</span> <span class="o">=</span> <span class="nx">allCanvases</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">getCanvasParentId</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// 手动滚动页面时触发的事件处理函数</span>
+    <span class="kd">function</span> <span class="nf">handleScrollEvent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 延迟一段时间等待页面加载</span>
+        <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// 获取新的 canvas 对象</span>
+            <span class="kd">var</span> <span class="nx">newCanvases</span> <span class="o">=</span> <span class="nf">getAllCanvases</span><span class="p">();</span>
+
+            <span class="c1">// 合并新获取的 canvas 对象并去除重复项</span>
+            <span class="nx">newCanvases</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">newCanvas</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">parentId</span> <span class="o">=</span> <span class="nf">getCanvasParentId</span><span class="p">(</span><span class="nx">newCanvas</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">existingIndex</span> <span class="o">=</span> <span class="nx">parentIds</span><span class="p">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="nx">parentId</span><span class="p">);</span>
+
+                <span class="k">if </span><span class="p">(</span><span class="nx">existingIndex</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">allCanvases</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">newCanvas</span><span class="p">);</span>
+                    <span class="nx">parentIds</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">parentId</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">更新全局变量中的 canvas 对象:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">allCanvases</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">更新辅助数组中的父元素id:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">parentIds</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mi">300</span><span class="p">);</span> <span class="c1">// 可根据需要调整延迟时间</span>
+    <span class="p">}</span>
+
+
+    <span class="c1">// 获取 canvas 父级元素的 id（向上5级，用于去重）</span>
+    <span class="kd">function</span> <span class="nf">getCanvasParentId</span><span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+        <span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">parent</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 监听页面滚动事件</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">scroll</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleScrollEvent</span><span class="p">);</span>
+
+
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<h2 id="使用说明">使用说明</h2>
+
+<ul>
+  <li>添加脚本</li>
+  <li>进入网页后鼠标滚动页面直至所有图片都被加载一次（推荐打开F12终端查看是否成功载入）</li>
+  <li>F12终端调用函数提供函数：saveAllCanvases()</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/tampermonkey/2023-11-28-canvas_save/image_1.jpg) -->]]></content><author><name></name></author><category term="tampermonkey" /><category term="js" /><summary type="html"><![CDATA[docin上看到ok的文章之后发现果然需要付费下载 （你都在网页上给我看了还想限制我下载？） F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学]]></summary></entry><entry><title type="html">python: 将变量嵌入字符串的几种方法</title><link href="/python/string_format/" rel="alternate" type="text/html" title="python: 将变量嵌入字符串的几种方法" /><published>2023-11-27T14:13:45+08:00</published><updated>2023-11-27T14:13:45+08:00</updated><id>/python/string_format</id><content type="html" xml:base="/python/string_format/"><![CDATA[<ul>
+  <li>百分号法（Percent Formatting）/旧式字符串格式化（Old-style String Formatting）</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">title</span> <span class="o">=</span> <span class="sh">"'</span><span class="s">%s: 将变量嵌入字符串的几种方法</span><span class="sh">'"</span> <span class="o">%</span> <span class="n">basic_cat</span>
+</code></pre></div></div>
+
+<ul>
+  <li>f-strings（格式化字符串字面值）</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">basic_cat</span> <span class="o">=</span> <span class="sh">"</span><span class="s">面试</span><span class="sh">"</span>
+<span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">basic_cat</span><span class="si">}</span><span class="s">: 记某面试手搓promise.all</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>使用字符串的 format 方法</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">basic_cat</span> <span class="o">=</span> <span class="sh">"</span><span class="s">面试</span><span class="sh">"</span>
+<span class="n">message</span> <span class="o">=</span> <span class="sh">"</span><span class="s">{}: 记某面试手搓promise.all</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">basic_cat</span><span class="p">)</span>
+<span class="n">message</span> <span class="o">=</span> <span class="sh">"</span><span class="s">{0}: 记某面试手搓promise.all</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">basic_cat</span><span class="p">)</span>
+<span class="n">message</span> <span class="o">=</span> <span class="sh">"</span><span class="s">{category}: 记某面试手搓promise.all</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">basic_cat</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>好的剩下的我们以后遇到再补充</li>
+</ul>
+
+<!--![引入图片](/image/python/2023-11-27-string_format/image_1.jpg) -->]]></content><author><name></name></author><category term="python" /><summary type="html"><![CDATA[百分号法（Percent Formatting）/旧式字符串格式化（Old-style String Formatting）]]></summary></entry><entry><title type="html">js: 记某面试手搓promise.all</title><link href="/js/promise_all/" rel="alternate" type="text/html" title="js: 记某面试手搓promise.all" /><published>2023-11-27T14:10:53+08:00</published><updated>2023-11-27T14:10:53+08:00</updated><id>/js/promise_all</id><content type="html" xml:base="/js/promise_all/"><![CDATA[<p>Promise.all 是 JavaScript 中的一个方法，它接收一个 Promise 对象的可迭代数组，并返回一个新的 Promise 对象。这个新的 Promise 对象会在数组中的所有 Promise 对象都已成功解析（resolved）时才会解析，否则会在遇到第一个被拒绝（rejected）的 Promise 对象时被拒绝。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="nx">iterable</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>其中，iterable 是一个可迭代对象（如数组或类数组对象），包含了多个 Promise 对象。</p>
+
+<p>使用 Promise.all 可以同时处理多个异步操作，并等待它们全部完成后进行进一步的处理。当所有的 Promise 都成功解析时，Promise.all 返回的 Promise 对象会以一个包含了所有 Promise 解析值的数组进行解析。如果任何一个 Promise 被拒绝，Promise.all 返回的 Promise 对象会立即被拒绝，并带有被拒绝的 Promise 的原因。
+下面是一个使用 Promise.all 的示例：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise 1 resolved</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise 2 resolved</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">const</span> <span class="nx">promise3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise 3 resolved</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1500</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">,</span> <span class="nx">promise3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span> <span class="c1">// ["Promise 1 resolved", "Promise 2 resolved", "Promise 3 resolved"]</span>
+    <span class="c1">// 所有 Promise 都已成功解析</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// 如果有任何一个 Promise 被拒绝</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<p>在上述示例中，Promise.all 接收一个包含了三个 Promise 对象的数组。当这三个 Promise 都成功解析后，.then 部分会被执行，并打印出包含了所有 Promise 解析值的数组。如果有任何一个 Promise 被拒绝，.catch 部分会被执行，并打印出被拒绝的 Promise 的原因。</p>
+
+<p>以下是一个简单的示例，演示如何自己实现 Promise.all 方法：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">myPromiseAll</span><span class="p">(</span><span class="nx">promises</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">let</span> <span class="nx">completedCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// 检查参数是否为可迭代对象</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">iterator</span> <span class="k">in</span> <span class="nx">promises</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">promises must be an iterable</span><span class="dl">'</span><span class="p">));</span>
+<span class="p">}</span>
+    <span class="c1">// 遍历所有 Promise 对象</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">promises</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">promises</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+        <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+          <span class="nx">completedCount</span><span class="o">++</span><span class="p">;</span>
+          <span class="c1">// 当所有 Promise 都已成功解析时，解析返回的 Promise</span>
+          <span class="k">if </span><span class="p">(</span><span class="nx">completedCount</span> <span class="o">===</span> <span class="nx">promises</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+<span class="nf">resolve</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="c1">// 如果有一个 Promise 被拒绝，立即拒绝返回的 Promise</span>
+<span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+<span class="c1">// 示例用法</span>
+<span class="kd">const</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise 1 resolved</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise 2 resolved</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">const</span> <span class="nx">promise3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise 3 resolved</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1500</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nf">myPromiseAll</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">,</span> <span class="nx">promise3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span> <span class="c1">// ["Promise 1 resolved", "Promise 2 resolved", "Promise 3 resolved"]</span>
+    <span class="c1">// 所有 Promise 都已成功解析</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// 如果有任何一个 Promise 被拒绝</span>
+<span class="p">});</span>
+
+</code></pre></div></div>
+
+<!--![引入图片](/image/js/2023-11-27-promise_all/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[Promise.all 是 JavaScript 中的一个方法，它接收一个 Promise 对象的可迭代数组，并返回一个新的 Promise 对象。这个新的 Promise 对象会在数组中的所有 Promise 对象都已成功解析（resolved）时才会解析，否则会在遇到第一个被拒绝（rejected）的 Promise 对象时被拒绝。]]></summary></entry><entry><title type="html">js: 异步优先级</title><link href="/js/async_priority/" rel="alternate" type="text/html" title="js: 异步优先级" /><published>2023-11-27T14:03:54+08:00</published><updated>2023-11-27T14:03:54+08:00</updated><id>/js/async_priority</id><content type="html" xml:base="/js/async_priority/"><![CDATA[<ul>
+  <li>JavaScript中的异步操作具有不同的优先级，这取决于异步操作的类型和调用方式。下面列出了常见的异步操作及其优先级：
+    <ol>
+      <li>宏任务（Macrotasks）：宏任务包括整体代码块（script），setTimeout、setInterval、setImmediate（Node.js环境中），I/O 操作等。宏任务具有较低的优先级，当执行栈为空时才会执行。</li>
+      <li>微任务（Microtasks）：微任务包括Promise、MutationObserver、process.nextTick（Node.js环境中）等。微任务拥有较高的优先级，会在当前宏任务执行结束后、下一个宏任务开始之前执行。</li>
+    </ol>
+  </li>
+  <li>综合来说，JavaScript的异步操作按照以下顺序执行：
+    <ol>
+      <li>执行当前的同步代码，直到遇到第一个宏任务。</li>
+      <li>执行所有微任务队列中的任务，直到微任务队列为空。</li>
+    </ol>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">);</span>
+<span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">2</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nb">Promise</span><span class="p">.</span><span class="nf">resolve</span><span class="p">().</span><span class="nf">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">3</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">4</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// 结果1432</span>
+</code></pre></div></div>
+
+<p>在这个例子中，首先会执行同步代码，并按顺序打印出1和4。然后，setTimeout函数会被调度为一个宏任务，但由于延时为0，所以会被放入宏任务队列中等待执行。接下来，Promise.resolve().then会被调度为一个微任务，并立即执行，打印出3。最后，当所有的同步代码执行完毕后，事件循环会开始执行下一个宏任务，此时会打印出2。</p>
+
+<!--![引入图片](/image/js/2023-11-27-async_priority/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><summary type="html"><![CDATA[JavaScript中的异步操作具有不同的优先级，这取决于异步操作的类型和调用方式。下面列出了常见的异步操作及其优先级： 宏任务（Macrotasks）：宏任务包括整体代码块（script），setTimeout、setInterval、setImmediate（Node.js环境中），I/O 操作等。宏任务具有较低的优先级，当执行栈为空时才会执行。 微任务（Microtasks）：微任务包括Promise、MutationObserver、process.nextTick（Node.js环境中）等。微任务拥有较高的优先级，会在当前宏任务执行结束后、下一个宏任务开始之前执行。 综合来说，JavaScript的异步操作按照以下顺序执行： 执行当前的同步代码，直到遇到第一个宏任务。 执行所有微任务队列中的任务，直到微任务队列为空。]]></summary></entry><entry><title type="html">vue: 拷贝按钮-点击复制文本到剪贴板</title><link href="/vue/js/clipboard/" rel="alternate" type="text/html" title="vue: 拷贝按钮-点击复制文本到剪贴板" /><published>2023-11-27T13:52:27+08:00</published><updated>2023-11-27T13:52:27+08:00</updated><id>/vue/js/clipboard</id><content type="html" xml:base="/vue/js/clipboard/"><![CDATA[<ul>
+  <li>实现方法:document.execCommand(“copy”);</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">textarea</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">textarea</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">textarea</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ccccccccccccccc</span><span class="dl">"</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">textarea</span><span class="p">);</span>
+<span class="nx">textarea</span><span class="p">.</span><span class="nf">select</span><span class="p">();</span>
+<span class="nb">document</span><span class="p">.</span><span class="nf">execCommand</span><span class="p">(</span><span class="dl">"</span><span class="s2">copy</span><span class="dl">"</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nf">removeChild</span><span class="p">(</span><span class="nx">textarea</span><span class="p">);</span>
+<span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">已复制到剪贴板</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>这是以前用过的一个其他方法，也记录一下</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// npm install vue-clipboard3</span>
+
+<span class="k">import</span> <span class="nx">useClipboard</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue-clipboard3</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// 复制到剪贴板</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">toClipboard</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useClipboard</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">copyCode</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">toClipboard</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nx">ElMessage</span><span class="p">.</span><span class="nf">success</span><span class="p">({</span>
+    <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">编码已复制到剪贴板</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-11-27-clipboard/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[实现方法:document.execCommand(“copy”);]]></summary></entry><entry><title type="html">vue: 使用fetch动态获取本地json文件</title><link href="/vue/js/fetch_json/" rel="alternate" type="text/html" title="vue: 使用fetch动态获取本地json文件" /><published>2023-11-27T13:46:29+08:00</published><updated>2023-11-27T13:46:29+08:00</updated><id>/vue/js/fetch_json</id><content type="html" xml:base="/vue/js/fetch_json/"><![CDATA[<ul>
+  <li>一般来说直接在头部import就可以导入json像这样</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">image_list</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@/assets/list/image_list.json</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>但如果需要在函数里动态导入json，可以使用fetch</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">json_url</span> <span class="o">=</span> <span class="nx">xxx</span>
+<span class="nf">fetch</span><span class="p">(</span><span class="nx">json_url</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+    <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">res_text</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">input_id</span><span class="p">.</span><span class="nx">value</span>
+        <span class="nx">res_json</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">data</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">res_json</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Error fetching JSON:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/vue/2023-11-27-fetch_json/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[一般来说直接在头部import就可以导入json像这样]]></summary></entry><entry><title type="html">leetcode: 链表倒数第n项</title><link href="/leetcode/python/list_nth/" rel="alternate" type="text/html" title="leetcode: 链表倒数第n项" /><published>2023-11-27T13:43:42+08:00</published><updated>2023-11-27T13:43:42+08:00</updated><id>/leetcode/python/list_nth</id><content type="html" xml:base="/leetcode/python/list_nth/"><![CDATA[<ul>
+  <li>使用双指针法查找链表的倒数第n项</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="n">self</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
+
+
+<span class="k">def</span> <span class="nf">get_nth_from_end</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># 初始化两个指针
+</span>    <span class="n">slow</span> <span class="o">=</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
+
+    <span class="c1"># 将fast指针向前移动n个节点
+</span>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fast</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>  <span class="c1"># 链表长度小于n，不存在倒数第n项
+</span>        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="p">.</span><span class="nb">next</span>
+
+    <span class="c1"># 同时移动slow和fast指针，直到fast指针到达链表尾部
+</span>    <span class="k">while</span> <span class="n">fast</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="p">.</span><span class="nb">next</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="p">.</span><span class="nb">next</span>
+
+    <span class="k">return</span> <span class="n">slow</span>
+
+
+<span class="c1"># 示例链表: 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5
+</span><span class="n">head</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">head</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">head</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">head</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">head</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nc">ListNode</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 获取倒数第2项
+</span><span class="n">result</span> <span class="o">=</span> <span class="nf">get_nth_from_end</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s">th element from the end is: </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">val</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Invalid input or the list length is less than </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<!--![引入图片](/image/leetcode/2023-11-27-list_nth/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[使用双指针法查找链表的倒数第n项]]></summary></entry><entry><title type="html">leetcode: 理想复活赛笔试</title><link href="/leetcode/python/js/lixiang/" rel="alternate" type="text/html" title="leetcode: 理想复活赛笔试" /><published>2023-11-03T15:28:17+08:00</published><updated>2023-11-03T15:28:17+08:00</updated><id>/leetcode/python/js/lixiang</id><content type="html" xml:base="/leetcode/python/js/lixiang/"><![CDATA[<ul>
   <li>虽然被捞起来打复活赛，但明显这个部门需要的不是我，选择题基本没有会的，算法两个c的内存调度也没写</li>
   <li>只记录两道py</li>
 </ul>
@@ -471,390 +960,4 @@ $：匹配输入的结束位置。
 
 </code></pre></div></div>
 
-<!--![引入图片](/image/vue/2023-10-23-regular_expression/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束]]></summary></entry><entry><title type="html">vue: 前端性能优化之关于视图的更新方式</title><link href="/vue/js/knowhow/view_update/" rel="alternate" type="text/html" title="vue: 前端性能优化之关于视图的更新方式" /><published>2023-10-23T12:59:59+08:00</published><updated>2023-10-23T12:59:59+08:00</updated><id>/vue/js/knowhow/view_update</id><content type="html" xml:base="/vue/js/knowhow/view_update/"><![CDATA[<h2 id="回流reflow">回流（reflow）</h2>
-
-<ul>
-  <li>对 DOM 结构的修改引发 DOM 几何尺寸变化的时候,会发生回流过程。</li>
-</ul>
-
-<p><strong>触发回流的操作：</strong></p>
-
-<ol>
-  <li>DOM 元素的几何属性变化，常见的几何属性有width、height、padding、margin、left、top、border 等等, 这个很好理解。</li>
-  <li>使 DOM 节点发生增减或者移动。</li>
-  <li>当需要计算元素的几何属性（如宽度、高度、位置等）时，浏览器会进行回流操作，重新计算元素的布局信息。读取或写入 offset、scroll 和 client 相关属性时，也会导致浏览器进行回流操作。（offset族、scroll族和client族）
-    - offset：用于获取元素在页面中的位置和尺寸信息，包括 offsetTop、offsetLeft、offsetWidth 和 offsetHeight。
-    - scroll：用于获取或设置元素的滚动信息，包括 scrollTop、scrollLeft、scrollWidth 和 scrollHeight。
-    - client：用于获取或设置元素的可视区域信息，包括 clientTop、clientLeft、clientWidth 和 clientHeight。</li>
-  <li>调用 window.getComputedStyle 方法。该方法返回元素的计算样式（computed style），而计算样式需要考虑元素的布局信息。因此，浏览器在执行 getComputedStyle 方法时，会强制进行回流操作</li>
-</ol>
-
-<h2 id="重绘">重绘</h2>
-
-<ul>
-  <li>
-    <p>元素样式的改变并不影响它在文档流中的位置时触发重绘</p>
-  </li>
-  <li>
-    <p>例如：color、background-color、visibility等</p>
-  </li>
-  <li>
-    <p>重绘不一定导致回流，但回流一定发生了重绘</p>
-  </li>
-</ul>
-
-<h2 id="合成">合成</h2>
-
-<ul>
-  <li>跳过布局和绘制，transform、opacity、filter这些属性就可以实现合成的效果，也就是大家常说的GPU加速</li>
-  <li>直接进入合成线程</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-23-view_update/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[回流（reflow）]]></summary></entry><entry><title type="html">vue: 前端性能优化之节流函数</title><link href="/vue/js/Throttling_function/" rel="alternate" type="text/html" title="vue: 前端性能优化之节流函数" /><published>2023-10-23T12:39:42+08:00</published><updated>2023-10-23T12:39:42+08:00</updated><id>/vue/js/Throttling_function</id><content type="html" xml:base="/vue/js/Throttling_function/"><![CDATA[<h2 id="节流">节流</h2>
-
-<ul>
-  <li>
-    <p>节流函数是一种用于限制函数执行频率的技术，可以有效地控制事件触发频率，减少不必要的函数执行次数，提高前端性能和用户体验。</p>
-  </li>
-  <li>
-    <p>一个例子</p>
-  </li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">throttle</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">timerId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  
-  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">timerId</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-      <span class="kd">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
-      
-      <span class="nx">timerId</span> <span class="o">=</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">func</span><span class="p">.</span><span class="nf">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
-        <span class="nx">timerId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-      <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>上述节流函数接受两个参数：func 是要执行的函数，delay 是限制的时间间隔（以毫秒为单位）。函数内部使用一个定时器来控制函数的执行时间。当事件触发时，如果定时器未启动，则会启动定时器，并在指定的延迟后执行函数。如果定时器已经启动，则不会执行任何操作，从而限制了函数的执行频率。</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">throttledFunction</span> <span class="o">=</span> <span class="nf">throttle</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">scroll</span><span class="dl">'</span><span class="p">,</span> <span class="nx">throttledFunction</span><span class="p">);</span>
-</code></pre></div></div>
-
-<ul>
-  <li>（一些库中提供节流函数，比如lodash、Underscore.js）</li>
-</ul>
-
-<h2 id="防抖">防抖</h2>
-
-<ul>
-  <li>防抖函数是一种用于控制函数执行频率的技术，类似于节流函数。不同之处在于，防抖函数会在连续触发事件后等待一段时间后执行函数，如果在等待时间内再次触发事件，则重新计时等待时间。防抖函数适用于那些连续触发的事件，但我们只关心最后一次触发的结果。</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">debounce</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">timerId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  
-  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
-    
-    <span class="nf">clearTimeout</span><span class="p">(</span><span class="nx">timerId</span><span class="p">);</span>
-    <span class="nx">timerId</span> <span class="o">=</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">func</span><span class="p">.</span><span class="nf">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
-    <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">debouncedFunction</span> <span class="o">=</span> <span class="nf">debounce</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-
-<span class="nx">inputElement</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">,</span> <span class="nx">debouncedFunction</span><span class="p">);</span>
-
-</code></pre></div></div>
-
-<p><strong>防抖函数在以下情况下非常有用：</strong></p>
-
-<ul>
-  <li>
-    <p>频繁触发的事件：对于一些频繁触发的事件，如窗口调整大小、滚动事件或用户输入等，防抖函数可以控制事件回调函数的执行频率，避免过多的触发和执行。这可以减轻浏览器的负担，并提高性能和响应速度。</p>
-  </li>
-  <li>
-    <p>用户输入：在实时搜索、自动完成或自动保存等场景中，当用户在输入框中连续输入时，防抖函数可以延迟执行相关操作，直到用户停止输入一段时间后再进行处理。这样可以减少不必要的请求或操作，并提供更流畅的用户体验。</p>
-  </li>
-  <li>
-    <p>避免重复提交：在表单提交或按钮点击等场景中，防抖函数可以防止用户多次触发重复操作。通过设置适当的等待时间，只有在最后一次触发事件后才会执行相关操作，避免了重复提交的问题。</p>
-  </li>
-  <li>
-    <p>函数节流：尽管防抖函数和节流函数有些细微差别，但在某些情况下，防抖函数也可以用作函数节流的方式。例如，当需要限制函数的执行频率时，防抖函数可以确保函数在一定时间间隔内只执行一次，而忽略中间的触发。</p>
-  </li>
-</ul>
-
-<p><strong>区分</strong></p>
-
-<ul>
-  <li>执行时机：
-    <ul>
-      <li>节流函数：在一定的时间间隔内，只执行一次函数，即限制函数的执行频率。无论事件触发频率是多高，节流函数都会按照固定的时间间隔执行函数。</li>
-      <li>防抖函数：在连续触发事件后，等待一段时间后执行函数，如果在等待时间内再次触发事件，则重新计时等待时间。防抖函数会等待一段时间，确保事件不再触发后才执行函数。</li>
-    </ul>
-  </li>
-  <li>执行结果：
-    <ul>
-      <li>节流函数：在指定的时间间隔内，只执行一次函数，并返回最后一次函数执行的结果。</li>
-      <li>防抖函数：等待一段时间后，只执行一次函数，并返回最后一次函数执行的结果。</li>
-    </ul>
-  </li>
-  <li>应用场景：
-    <ul>
-      <li>节流函数：适用于需要限制函数执行频率的场景，例如监听滚动事件、窗口调整大小事件等。常用于减少事件处理的次数，提高性能。</li>
-      <li>防抖函数：适用于连续触发事件但只关心最后一次触发结果的场景，例如实时搜索、延迟加载、防止重复提交等。常用于控制事件回调的执行时机，提供更好的用户体验。</li>
-    </ul>
-  </li>
-</ul>
-
-<!--![引入图片](/image/vue/2023-10-23-Throttling_function/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[节流]]></summary></entry><entry><title type="html">vue: 前端性能优化之will-change</title><link href="/vue/js/wil_change/" rel="alternate" type="text/html" title="vue: 前端性能优化之will-change" /><published>2023-10-23T12:27:01+08:00</published><updated>2023-10-23T12:27:01+08:00</updated><id>/vue/js/wil_change</id><content type="html" xml:base="/vue/js/wil_change/"><![CDATA[<ul>
-  <li>
-    <p>不要将 will-change 应用于过多的元素。浏览器已经尽力优化了所有东西。一些较强的优化可能与 will-change 相关联，它们可能会使用大量机器资源，当过度使用时会导致页面变慢或消耗大量资源。</p>
-  </li>
-  <li>
-    <p>谨慎使用。浏览器进行的优化通常是在尽可能短的时间内删除优化并恢复到正常状态。但是，将 will-change 直接添加到样式表中意味着目标元素通常会在不久的将来发生变化，而浏览器会保留优化更长的时间。因此，最好的做法是在更改发生之前和之后使用脚本代码开启和关闭 will-change。</p>
-  </li>
-  <li>
-    <p>不要为了过早优化而将 will-change 应用于元素。如果你的页面表现良好，则不要仅仅为了提高一点速度而将 will-change 属性添加到元素中。will-change 旨在作为最后的手段使用，以尝试解决现有的性能问题。不应该用来预测性能问题。过度使用 will-change 将导致内存使用过多，并导致更复杂的渲染发生，因为浏览器试图为可能的更改做准备。这将导致更差的性能。</p>
-  </li>
-  <li>
-    <p>要给它足够的时间来发挥作用。该属性旨在为开发者提供一种方法，让用户代理提前了解可能会发生变化的属性。然后浏览器可以选择在实际属性更改之前应用所需的任何提前优化。因此，重要的是给浏览器一些时间来实际执行优化。找到一些方法，预测某些事情将会在稍微提前的时间内发生，并在那时设置 will-change。</p>
-  </li>
-  <li>
-    <p>请注意。当与创建层叠上下文的属性值一起使用（例如 will-change: opacity）时，will-change 实际上可能会影响元素的视觉外观，因为层叠上下文是提前创建的。</p>
-  </li>
-  <li>
-    <p>在需要通过按键进行页面翻转的应用程序中（例如相册或幻灯片演示文稿），或者在页面内容较大、较复杂的应用程序中，将 will-change 属性包含在样式表中可能是合适的。这将让浏览器提前准备好转换，并允许在按键按下时实现流畅的页面转换效果。但是，在样式表中直接使用 will-change 属性时需要谨慎。这可能会导致浏览器将优化保留在内存中的时间比实际需要的时间更长。</p>
-  </li>
-</ul>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* 关键字值 */</span>
-
-<span class="c">/* 表示没有特别指定哪些属性会变化，浏览器需要自己去猜，然后使用浏览器经常使用的一些常规方法优化。 */</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span> 
-<span class="c">/* 表示开发者希望在不久后改变滚动条的位置或者使之产生动画。 */</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">scroll-position</span><span class="o">;</span>
-<span class="c">/* 表示开发者希望在不久后改变元素内容中的某些东西，或者使它们产生动画。 */</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">contents</span><span class="o">;</span>
-
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">transform</span><span class="o">;</span> <span class="c">/* &lt;custom-ident&gt; 示例  */</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">opacity</span><span class="o">;</span> <span class="c">/* &lt;custom-ident&gt; 示例  */</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">left</span><span class="o">,</span> <span class="nt">top</span><span class="o">;</span> <span class="c">/* 两个 &lt;animatable-feature&gt; 例子 */</span>
-
-<span class="c">/* 全局值 */</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">inherit</span><span class="o">;</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">initial</span><span class="o">;</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">revert</span><span class="o">;</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">revert-layer</span><span class="o">;</span>
-<span class="nt">will-change</span><span class="o">:</span> <span class="nt">unset</span><span class="o">;</span>
-
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-23-wil_change/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[不要将 will-change 应用于过多的元素。浏览器已经尽力优化了所有东西。一些较强的优化可能与 will-change 相关联，它们可能会使用大量机器资源，当过度使用时会导致页面变慢或消耗大量资源。]]></summary></entry><entry><title type="html">vue: video手动刷新</title><link href="/vue/video_ref/" rel="alternate" type="text/html" title="vue: video手动刷新" /><published>2023-10-23T12:17:48+08:00</published><updated>2023-10-23T12:17:48+08:00</updated><id>/vue/video_ref</id><content type="html" xml:base="/vue/video_ref/"><![CDATA[<ul>
-  <li>区别于img可以响应式变化，video 元素的 src 属性的变化不会自动触发页面的刷新或重新加载视频。</li>
-  <li>需要用load函数主动刷新</li>
-</ul>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;video</span> <span class="na">ref=</span><span class="s">"videoPlayer"</span>
-
-<span class="na">if</span> <span class="na">(url_type(props.path) =</span><span class="s">=</span> <span class="err">'</span><span class="na">video</span><span class="err">')</span> <span class="err">{</span>
-    <span class="na">videoPlayer.value.load</span><span class="err">()</span>
-<span class="err">}</span>
-</code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-23-video_ref/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><summary type="html"><![CDATA[区别于img可以响应式变化，video 元素的 src 属性的变化不会自动触发页面的刷新或重新加载视频。 需要用load函数主动刷新]]></summary></entry><entry><title type="html">zip_backyard: 重绘优化</title><link href="/zip_backyard/vue/repaint_/" rel="alternate" type="text/html" title="zip_backyard: 重绘优化" /><published>2023-10-21T11:54:56+08:00</published><updated>2023-10-21T11:54:56+08:00</updated><id>/zip_backyard/vue/repaint_</id><content type="html" xml:base="/zip_backyard/vue/repaint_/"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
-
-<!--![引入图片](/image/zip_backyard/2023-10-21-repaint_/image_1.jpg) -->]]></content><author><name></name></author><category term="zip_backyard" /><category term="vue" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">windows: edge浏览器查看页面repaint</title><link href="/windows/vue/zip_backyard/repaint_gif/" rel="alternate" type="text/html" title="windows: edge浏览器查看页面repaint" /><published>2023-10-20T21:04:31+08:00</published><updated>2023-10-20T21:04:31+08:00</updated><id>/windows/vue/zip_backyard/repaint_gif</id><content type="html" xml:base="/windows/vue/zip_backyard/repaint_gif/"><![CDATA[<h2 id="gif录制">gif录制</h2>
-
-<ul>
-  <li>好用的工具：https://www.screentogif.com/</li>
-</ul>
-
-<h2 id="edge检查页面回流情况">edge检查页面回流情况</h2>
-
-<ul>
-  <li>f12添加rendering，页面里绿色部分是repaint，蓝色是shift（布局位移）</li>
-</ul>
-
-<p><img src="/image/windows/2023-10-20-repaint_gif/image_1.gif" alt="引入图片" /></p>
-
-<ul>
-  <li>可以看到左侧hover时所有元素都在重绘，帧数下降到30</li>
-  <li>后面尝试优化（首先打算用gpu加速的css属性试试（transform））</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>]]></content><author><name></name></author><category term="windows" /><category term="vue" /><category term="zip_backyard" /><summary type="html"><![CDATA[gif录制]]></summary></entry><entry><title type="html">leetcode: 信也笔试</title><link href="/leetcode/js/xinye/" rel="alternate" type="text/html" title="leetcode: 信也笔试" /><published>2023-10-20T20:02:55+08:00</published><updated>2023-10-20T20:02:55+08:00</updated><id>/leetcode/js/xinye</id><content type="html" xml:base="/leetcode/js/xinye/"><![CDATA[<h2 id="知识总结">知识总结</h2>
-
-<ul>
-  <li>js保留两位小数</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ans</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>ascii码相互转换</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ascii</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">.</span><span class="nf">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nx">chr</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nf">fromCharCode</span><span class="p">(</span><span class="nx">ascii</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="计算利息">计算利息</h2>
-
-<ul>
-  <li>触及到知识盲区了</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 等额本金：每月还款 = （本金/贷款月数）+（本金-已还金额）*月利率
-- 输入：120000,0.048,5,"principal"
-- 输出：14640.00
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 等额本息：每月还款 = 本金*月利率*（1+月利率）^ 贷款月数 / [(1+月利率) ^ 贷款月数 -1]
-- 输入：120000,0.048,5,"amortized"
-- 输出：15214.14
-</code></pre></div></div>
-
-<ul>
-  <li>生搬硬套题目公式得到的结果完全不对，gpt给的程序也算不对</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="cm">/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- * 利息计算，保留2位小数
- * @param amount int整型 借款金额
- * @param annualRate float浮点型 年化利率
- * @param years int整型 借款期限
- * @param repaymentType string字符串 还款方式：等额本金（principal）、等额本息（amortized）
- * @return float浮点型
- */</span>
-<span class="kd">function</span> <span class="nf">calculateInterest</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">annualRate</span><span class="p">,</span> <span class="nx">years</span><span class="p">,</span> <span class="nx">repaymentType</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-    <span class="kd">let</span> <span class="nx">ans</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="kd">const</span> <span class="nx">totalMonth</span> <span class="o">=</span> <span class="nx">years</span> <span class="o">*</span> <span class="mi">12</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">month</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">month</span> <span class="o">&lt;=</span> <span class="nx">totalMonth</span><span class="p">;</span> <span class="nx">month</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">repaymentType</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">principal</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">/</span> <span class="nx">totalMonth</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">-</span> <span class="nx">ans</span><span class="p">)</span> <span class="o">*</span> <span class="nx">annualRate</span>
-            <span class="nx">ans</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">ans</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span> <span class="c1">// 两位小数</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">repaymentType</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">amortized</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">ans</span> <span class="o">+=</span> <span class="nx">amount</span> <span class="o">*</span> <span class="nx">annualRate</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nx">annualRate</span><span class="p">)</span> <span class="o">**</span> <span class="nx">totalMonth</span> <span class="o">/</span> <span class="p">[(</span><span class="mi">1</span> <span class="o">+</span> <span class="nx">annualRate</span><span class="p">)</span> <span class="o">**</span> <span class="nx">totalMonth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-            <span class="nx">ans</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">ans</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span> <span class="c1">// 两位小数</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="dl">"</span><span class="s2">error: unexpected repaymentType</span><span class="dl">"</span>
-        <span class="p">}</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">month</span><span class="p">,</span> <span class="nx">ans</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="c1">// return ans.toFixed(2) // 答题系统里没有这个方法</span>
-    <span class="k">return</span> <span class="nx">ans</span><span class="o">-</span><span class="nx">amount</span>
-
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">calculateInterest</span><span class="p">:</span> <span class="nx">calculateInterest</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">calculateInterest</span><span class="p">(</span><span class="mi">120000</span><span class="p">,</span> <span class="mf">0.048</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="dl">"</span><span class="s2">principal</span><span class="dl">"</span><span class="p">))</span>
-<span class="c1">// console.log(calculateInterest(120000, 0.048, 5, "amortized"))</span>
-</code></pre></div></div>
-
-<h2 id="判断回文串">判断回文串</h2>
-
-<ul>
-  <li>忽略大小写、空格、标点</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入："A man, a plan, a canal,            Panama"
-输出：true
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- * 
- * @param input string字符串 
- * @return bool布尔型
- */</span>
-<span class="kd">function</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-
-    <span class="c1">// 转换为基本格式</span>
-    <span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nf">toLowerCase</span><span class="p">()</span>
-    <span class="nx">raw_string</span> <span class="o">=</span> <span class="dl">""</span>
-    <span class="nx">rm_list</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">!</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="p">,</span><span class="dl">'</span><span class="s1">"</span><span class="dl">'</span><span class="p">,</span><span class="dl">"</span><span class="s2">'</span><span class="dl">"</span><span class="p">];</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">letter</span> <span class="k">of</span> <span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">rm_list</span><span class="p">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">raw_string</span> <span class="o">+=</span> <span class="nx">letter</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 判断回文</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">raw_string</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">raw_string</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">raw_string</span><span class="p">[</span><span class="nx">raw_string</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]){</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">raw_string</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">,</span> <span class="nx">raw_string</span><span class="p">[</span><span class="nx">raw_string</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">return</span> <span class="kc">false</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">isPalindrome</span><span class="p">:</span> <span class="nx">isPalindrome</span>
-<span class="p">};</span>
-
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">isPalindrome</span><span class="p">(</span><span class="dl">"</span><span class="s2">A man, a plan, a canal,            Panama</span><span class="dl">"</span><span class="p">))</span>
-</code></pre></div></div>
-
-<ul>
-  <li>rm_list显然是不合理的，第一次只写了一个逗号，通过率是80%，加长rm_list之后勉强100%通过了</li>
-</ul>
-
-<h2 id="字符串ascii1">字符串ascii+1</h2>
-
-<ul>
-  <li>（凯撒密码）</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- * 
- * @param input string字符串 
- * @return string字符串
- */</span>
-<span class="kd">function</span> <span class="nf">shiftCharacters</span><span class="p">(</span> <span class="nx">input</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write code here</span>
-    <span class="kd">let</span> <span class="nx">ans</span> <span class="o">=</span> <span class="dl">""</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">chr</span> <span class="k">of</span> <span class="nx">input</span><span class="p">){</span>
-        <span class="kd">let</span> <span class="nx">ascii</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">.</span><span class="nf">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="nx">ans</span> <span class="o">+=</span> <span class="nb">String</span><span class="p">.</span><span class="nf">fromCharCode</span><span class="p">(</span><span class="nx">ascii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">ans</span>
-<span class="p">}</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">shiftCharacters</span> <span class="p">:</span> <span class="nx">shiftCharacters</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">shiftCharacters</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">))</span> <span class="c1">//"ifmmp"</span>
-</code></pre></div></div>
-
-<!--![引入图片](/image/leetcode/2023-10-20-xinye/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="js" /><summary type="html"><![CDATA[知识总结]]></summary></entry></feed>
+<!--![引入图片](/image/vue/2023-10-23-regular_expression/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束]]></summary></entry></feed>

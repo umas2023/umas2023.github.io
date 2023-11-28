@@ -146,7 +146,14 @@
 <span class="kd">var</span> <span class="nx">state</span><span class="p">:</span> <span class="p">{</span>    <span class="nl">config</span><span class="p">:</span> <span class="p">{}</span> <span class="k">as</span> <span class="p">{</span> <span class="p">[</span><span class="na">key</span><span class="p">:</span> <span class="nx">string</span><span class="p">]:</span> <span class="nx">any</span> <span class="p">}</span>   <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
+  <li>object索引类型定义</li>
+  <li>元素隐式具有 “any” 类型，因为类型为 “string” 的表达式不能用于索引类型…</li>
 </ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">index_json</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">value</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span> <span class="c1">// 这里报错</span>
+<span class="c1">// 修改后</span>
+<span class="nx">index_json</span><span class="p">[</span><span class="nx">index</span> <span class="k">as</span> <span class="nx">keyof</span> <span class="k">typeof</span> <span class="nx">index_json</span><span class="p">]</span>
+</code></pre></div></div>
 
 <h2 id="报错及解决">报错及解决</h2>
 

@@ -64,6 +64,25 @@ module.exports = {
 {% endraw %}
 
 
+## 补充props中的联合类型(ts)
+
+
+{% raw %}
+```js
+const props = defineProps({
+    label: {
+        type: String,
+        require: true
+    },
+    content: {
+        type: [String, Object], // 使用联合类型而不是 String | Object
+        require: true
+    }
+})
+```
+{% endraw %}
+
+
 ## slot
   - 官方：https://cn.vuejs.org/guide/components/slots.html#slots
 		
