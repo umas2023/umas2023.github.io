@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'tampermonkey: docin白嫖下载'
-info: '好的终于把canvas搞明白了'
+info: '终于把canvas搞明白了'
 date: 2023-11-28 19:37:21  +0800
 categories: ['tampermonkey', 'js']
 toc: True
@@ -256,7 +256,7 @@ downloadLink.click();
 
 - 添加脚本
 - 进入网页后鼠标滚动页面直至所有图片都被加载一次（推荐打开F12终端查看是否成功载入）
-- F12终端调用函数提供函数：saveAllCanvases()
+- F12终端调用函```saveAllCanvases()```
 
 
 {% raw %}
