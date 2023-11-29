@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-29T19:03:51+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">tampermonkey: docin白嫖下载</title><link href="/tampermonkey/js/canvas_save/" rel="alternate" type="text/html" title="tampermonkey: docin白嫖下载" /><published>2023-11-28T19:37:21+08:00</published><updated>2023-11-28T19:37:21+08:00</updated><id>/tampermonkey/js/canvas_save</id><content type="html" xml:base="/tampermonkey/js/canvas_save/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-29T19:05:10+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">tampermonkey: docin白嫖下载</title><link href="/tampermonkey/js/canvas_save/" rel="alternate" type="text/html" title="tampermonkey: docin白嫖下载" /><published>2023-11-28T19:37:21+08:00</published><updated>2023-11-28T19:37:21+08:00</updated><id>/tampermonkey/js/canvas_save</id><content type="html" xml:base="/tampermonkey/js/canvas_save/"><![CDATA[<ul>
   <li>docin上看到ok的文章之后发现果然需要付费下载</li>
   <li>（你都在网页上给我看了还想限制我下载？）</li>
-  <li>F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学</li>
+  <li>F12发现果然是放在canvas里的图片，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学</li>
 </ul>
 
 <h2 id="canvas下载基本原理">canvas下载基本原理</h2>
@@ -232,12 +232,12 @@
 <ul>
   <li>添加脚本</li>
   <li>进入网页后鼠标滚动页面直至所有图片都被加载一次（推荐打开F12终端查看是否成功载入）</li>
-  <li>F12终端调用函数提供函数：saveAllCanvases()</li>
+  <li>F12终端调用函<code class="language-plaintext highlighter-rouge">saveAllCanvases()</code></li>
 </ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
-<!--![引入图片](/image/tampermonkey/2023-11-28-canvas_save/image_1.jpg) -->]]></content><author><name></name></author><category term="tampermonkey" /><category term="js" /><summary type="html"><![CDATA[docin上看到ok的文章之后发现果然需要付费下载 （你都在网页上给我看了还想限制我下载？） F12发现果然是放在canvas里的图片了，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学]]></summary></entry><entry><title type="html">python: 将变量嵌入字符串的几种方法</title><link href="/python/string_format/" rel="alternate" type="text/html" title="python: 将变量嵌入字符串的几种方法" /><published>2023-11-27T14:13:45+08:00</published><updated>2023-11-27T14:13:45+08:00</updated><id>/python/string_format</id><content type="html" xml:base="/python/string_format/"><![CDATA[<ul>
+<!--![引入图片](/image/tampermonkey/2023-11-28-canvas_save/image_1.jpg) -->]]></content><author><name></name></author><category term="tampermonkey" /><category term="js" /><summary type="html"><![CDATA[docin上看到ok的文章之后发现果然需要付费下载 （你都在网页上给我看了还想限制我下载？） F12发现果然是放在canvas里的图片，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学]]></summary></entry><entry><title type="html">python: 将变量嵌入字符串的几种方法</title><link href="/python/string_format/" rel="alternate" type="text/html" title="python: 将变量嵌入字符串的几种方法" /><published>2023-11-27T14:13:45+08:00</published><updated>2023-11-27T14:13:45+08:00</updated><id>/python/string_format</id><content type="html" xml:base="/python/string_format/"><![CDATA[<ul>
   <li>百分号法（Percent Formatting）/旧式字符串格式化（Old-style String Formatting）</li>
 </ul>
 
