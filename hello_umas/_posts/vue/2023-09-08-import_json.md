@@ -40,6 +40,9 @@ import assets_json from "/public/config/assets_conf.json"
 {% endraw %}
 
 
+- 或者使用fetch（推荐）
+  - 参见某日的另一篇
+
 {% raw %}
 ```
 ```

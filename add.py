@@ -38,15 +38,15 @@ cat_list = [
 
 
 # 修改这里：基础分类
-basic_cat = "tampermonkey"
+basic_cat = "vue"
 # 修改这里：附加分类，可以为空
 add_cat = ["js"]
 # 修改这里：md文件名，前面会自动拼接上时间
-file_name = "canvas_save"
+file_name = "querySelector_ref"
 # 修改这里：文章标题
-title = "'%s: docin白嫖下载'" % basic_cat
+title = "'%s: ref替代querySelector'" % basic_cat
 # 修改这里：文章介绍
-info = "'好的终于把canvas搞明白了'"
+info = "'如果父组件中渲染了多个子组件，子组件中用querySelector只能选中第一个'"
 # 是否创建图片目录？
 is_img = False
 # is_img = True

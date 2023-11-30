@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>vue: ts环境下导入public目录下的json | umas’ awesome title</title>
+<title>vue: ref替代querySelector | umas’ awesome title</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="vue: ts环境下导入public目录下的json" />
+<meta property="og:title" content="vue: ref替代querySelector" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加&quot;resolveJsonModule&quot;: true,即可" />
-<meta property="og:description" content="一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加&quot;resolveJsonModule&quot;: true,即可" />
-<link rel="canonical" href="/vue/import_json/" />
-<meta property="og:url" content="/vue/import_json/" />
+<meta name="description" content="这样一个场景 子组件CollapseBlock中用querySelector选中div后修改了属性" />
+<meta property="og:description" content="这样一个场景 子组件CollapseBlock中用querySelector选中div后修改了属性" />
+<link rel="canonical" href="/vue/js/querySelector_ref/" />
+<meta property="og:url" content="/vue/js/querySelector_ref/" />
 <meta property="og:site_name" content="umas’ awesome title" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-09-08T19:50:10+08:00" />
+<meta property="article:published_time" content="2023-11-30T14:23:09+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="vue: ts环境下导入public目录下的json" />
+<meta property="twitter:title" content="vue: ref替代querySelector" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-08T19:50:10+08:00","datePublished":"2023-09-08T19:50:10+08:00","description":"一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加&quot;resolveJsonModule&quot;: true,即可","headline":"vue: ts环境下导入public目录下的json","mainEntityOfPage":{"@type":"WebPage","@id":"/vue/import_json/"},"url":"/vue/import_json/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-11-30T14:23:09+08:00","datePublished":"2023-11-30T14:23:09+08:00","description":"这样一个场景 子组件CollapseBlock中用querySelector选中div后修改了属性","headline":"vue: ref替代querySelector","mainEntityOfPage":{"@type":"WebPage","@id":"/vue/js/querySelector_ref/"},"url":"/vue/js/querySelector_ref/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="umas&apos; awesome title" /></head>
 <body>
@@ -42,18 +42,20 @@
       <article class="post">
 
   <!-- 这里是日期 -->
-  <span class="post-meta">2023-09-08 19:50:10 +0800</span>
+  <span class="post-meta">2023-11-30 14:23:09 +0800</span>
 
   <!-- 标题 -->
   <header class="post-header">
-    <h1 class="post-title">vue: ts环境下导入public目录下的json</h1>
+    <h1 class="post-title">vue: ref替代querySelector</h1>
 
     <!-- 分类tag -->
     
     <div class="category">vue</div>
     
+    <div class="category">js</div>
+    
 
-    <h3>记一下</h3>
+    <h3>如果父组件中渲染了多个子组件，子组件中用querySelector只能选中第一个</h3>
   </header>
 
   <!-- 目录 -->
@@ -65,40 +67,39 @@
   <!-- 内容主体 -->
   <div class="post-content">
     <ul>
-  <li>一般在assets或者utils目录下导入json时可以直接用@定义路径，在tsconfig.json中添加<code class="language-plaintext highlighter-rouge">"resolveJsonModule": true,</code>即可</li>
+  <li>这样一个场景</li>
+  <li>子组件CollapseBlock中用querySelector选中div后修改了属性</li>
 </ul>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">assets_json</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@/utils/assets_conf.json</span><span class="dl">"</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"header-arrow"</span> <span class="na">style=</span><span class="s">"margin-left: 5px;"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arrow_element</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#header-arrow</span><span class="dl">"</span><span class="p">)</span> <span class="k">as</span> <span class="nx">HTMLElement</span><span class="p">)</span>
+<span class="nx">arrow_element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">rotate(90deg)</span><span class="dl">"</span>
+<span class="p">...</span>
 </code></pre></div></div>
 
 <ul>
-  <li>如果json在public路径下，直接导入会报错</li>
-  <li>在项目根目录（或者如果已经定义了utils.d.ts的话在utils目录也可以）下新建.d.ts，比如assets_conf.d.ts，写入以下内容</li>
-</ul>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">declare</span> <span class="kr">module</span> <span class="dl">"</span><span class="s2">*.json</span><span class="dl">"</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">value</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
-    <span class="k">export</span> <span class="k">default</span> <span class="nx">value</span><span class="p">;</span>
-  <span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>这时再导入就不会报错了</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">assets_json</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">/public/config/assets_conf.json</span><span class="dl">"</span>
-</code></pre></div></div>
-
-<ul>
-  <li>或者使用fetch（推荐）
-    <ul>
-      <li>参见某日的另一篇</li>
-    </ul>
+  <li>
+    <p>父组件中用v-for循环了多个子组件，发现被修改的属性始终只有循环第一个元素，因为document.querySelector默认在整个dom中查找</p>
+  </li>
+  <li>
+    <p>可以用vue的ref替代</p>
   </li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"header-arrow"</span> <span class="na">ref=</span><span class="s">"arrow_element"</span> <span class="na">style=</span><span class="s">"margin-left: 5px;"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
 
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">arrow_element</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">()</span>
+<span class="nx">arrow_element</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">rotate(90deg)</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>此时对arrow_element的引用是独一无二的</li>
+</ul>
+
+<!--![引入图片](/image/vue/2023-11-30-querySelector_ref/image_1.jpg) -->
 
   </div>
 

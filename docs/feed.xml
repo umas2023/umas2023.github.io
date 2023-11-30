@@ -1,4 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-29T19:05:10+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">tampermonkey: docin白嫖下载</title><link href="/tampermonkey/js/canvas_save/" rel="alternate" type="text/html" title="tampermonkey: docin白嫖下载" /><published>2023-11-28T19:37:21+08:00</published><updated>2023-11-28T19:37:21+08:00</updated><id>/tampermonkey/js/canvas_save</id><content type="html" xml:base="/tampermonkey/js/canvas_save/"><![CDATA[<ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-11-30T19:44:31+08:00</updated><id>/feed.xml</id><title type="html">umas’ awesome title</title><subtitle>umas&apos; awesome description for his new site here. It will appear in his document head meta (for Google search results) and in his feed.xml site description.</subtitle><entry><title type="html">vue: ref替代querySelector</title><link href="/vue/js/querySelector_ref/" rel="alternate" type="text/html" title="vue: ref替代querySelector" /><published>2023-11-30T14:23:09+08:00</published><updated>2023-11-30T14:23:09+08:00</updated><id>/vue/js/querySelector_ref</id><content type="html" xml:base="/vue/js/querySelector_ref/"><![CDATA[<ul>
+  <li>这样一个场景</li>
+  <li>子组件CollapseBlock中用querySelector选中div后修改了属性</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"header-arrow"</span> <span class="na">style=</span><span class="s">"margin-left: 5px;"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arrow_element</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#header-arrow</span><span class="dl">"</span><span class="p">)</span> <span class="k">as</span> <span class="nx">HTMLElement</span><span class="p">)</span>
+<span class="nx">arrow_element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">rotate(90deg)</span><span class="dl">"</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>父组件中用v-for循环了多个子组件，发现被修改的属性始终只有循环第一个元素，因为document.querySelector默认在整个dom中查找</p>
+  </li>
+  <li>
+    <p>可以用vue的ref替代</p>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"header-arrow"</span> <span class="na">ref=</span><span class="s">"arrow_element"</span> <span class="na">style=</span><span class="s">"margin-left: 5px;"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">arrow_element</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">()</span>
+<span class="nx">arrow_element</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">rotate(90deg)</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>此时对arrow_element的引用是独一无二的</li>
+</ul>
+
+<!--![引入图片](/image/vue/2023-11-30-querySelector_ref/image_1.jpg) -->]]></content><author><name></name></author><category term="vue" /><category term="js" /><summary type="html"><![CDATA[这样一个场景 子组件CollapseBlock中用querySelector选中div后修改了属性]]></summary></entry><entry><title type="html">css: height:auto的元素改变高度时适用transition</title><link href="/css/height_transition/" rel="alternate" type="text/html" title="css: height:auto的元素改变高度时适用transition" /><published>2023-11-30T13:12:22+08:00</published><updated>2023-11-30T13:12:22+08:00</updated><id>/css/height_transition</id><content type="html" xml:base="/css/height_transition/"><![CDATA[<ul>
+  <li>下面这个例子里height从auto改变到0时是不能触发transition: 0.5s的过渡动画的</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.block-body</span> <span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span><span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">transition</span><span class="p">:</span> <span class="m">0.5s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">div</span><span class="nc">.block-body.hide</span> <span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>一个小trick，用max-height替代height，设置一个很大的初值像这样：</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="nc">.block-body</span> <span class="p">{</span>
+    <span class="nl">transition</span><span class="p">:</span> <span class="m">0.5s</span><span class="p">;</span>
+    <span class="nl">max-height</span><span class="p">:</span> <span class="m">1000px</span><span class="p">;</span>
+    <span class="nl">overflow-y</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">div</span><span class="nc">.block-body.hide</span> <span class="p">{</span>
+    <span class="nl">max-height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>就可以有过渡动画效果了</li>
+  <li>但有一个小问题，实际上0.5s被分配给1000px~0px的变化过程中，但实际auto~0px会小于1000，页面上变化的视觉效果并不是0.5s，这个小技巧只适用于对动效精度要求不高的场合</li>
+  <li>（不然就用js）</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<!--![引入图片](/image/css/2023-11-30-height_transition/image_1.jpg) -->]]></content><author><name></name></author><category term="css" /><summary type="html"><![CDATA[下面这个例子里height从auto改变到0时是不能触发transition: 0.5s的过渡动画的]]></summary></entry><entry><title type="html">tampermonkey: docin白嫖下载</title><link href="/tampermonkey/js/canvas_save/" rel="alternate" type="text/html" title="tampermonkey: docin白嫖下载" /><published>2023-11-28T19:37:21+08:00</published><updated>2023-11-28T19:37:21+08:00</updated><id>/tampermonkey/js/canvas_save</id><content type="html" xml:base="/tampermonkey/js/canvas_save/"><![CDATA[<ul>
   <li>docin上看到ok的文章之后发现果然需要付费下载</li>
   <li>（你都在网页上给我看了还想限制我下载？）</li>
   <li>F12发现果然是放在canvas里的图片，关于canvas早就想了解一下了，正好今天比较闲，决定找gpt学一学</li>
@@ -739,225 +811,4 @@ BFS：BFS在遍历过程中按层遍历，先访问当前层的节点，然后�
   <li>矩阵可能不能很好的区分深度和广度（事实上上面的题目也可以用两种方法（用栈还是队列存储）），用二叉树就很容易理解区别了</li>
 </ul>
 
-<!--![引入图片](/image/leetcode/2023-11-03-lixiang/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><category term="js" /><summary type="html"><![CDATA[虽然被捞起来打复活赛，但明显这个部门需要的不是我，选择题基本没有会的，算法两个c的内存调度也没写 只记录两道py]]></summary></entry><entry><title type="html">leetcode: 宇量昇复活赛笔试</title><link href="/leetcode/python/yuliangsheng/" rel="alternate" type="text/html" title="leetcode: 宇量昇复活赛笔试" /><published>2023-11-03T15:16:29+08:00</published><updated>2023-11-03T15:16:29+08:00</updated><id>/leetcode/python/yuliangsheng</id><content type="html" xml:base="/leetcode/python/yuliangsheng/"><![CDATA[<ul>
-  <li>没想到面试挂了之被另一个hr捞起来打复活赛了</li>
-</ul>
-
-<h2 id="知识总结">知识总结</h2>
-
-<ul>
-  <li>（快乐数）小技巧：py不能直接遍历int数字的每一位，但用str转化为字符串就可以直接用for遍历了</li>
-</ul>
-
-<h2 id="快乐数">快乐数</h2>
-
-<ul>
-  <li>快乐数：每一位的平方相加和，迭代等于1</li>
-  <li>19 -&gt; 82 -&gt; 68 -&gt; 100 -&gt; true</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">happynum</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="n">recordList</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">def</span> <span class="nf">iterfunc</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">True</span>
-            <span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">recordList</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-            <span class="n">recordList</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-            <span class="n">next_n</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nf">str</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-                <span class="n">next_n</span> <span class="o">+=</span> <span class="nf">int</span><span class="p">(</span><span class="n">each</span><span class="p">)</span> <span class="o">*</span> <span class="nf">int</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">next_n</span><span class="p">,</span><span class="n">recordList</span><span class="p">)</span>
-            <span class="k">return</span> <span class="nf">iterfunc</span><span class="p">(</span><span class="n">next_n</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="nf">iterfunc</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-
-<span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">happynum</span><span class="p">(</span><span class="mi">19</span><span class="p">))</span>
-</code></pre></div></div>
-
-<h2 id="消消乐">消消乐</h2>
-
-<ul>
-  <li>消消乐，消除字符串相邻相同的字符，迭代</li>
-  <li>bcaac -&gt; bcc -&gt; b</li>
-  <li>
-    <p>自解通过率只有20%</p>
-  </li>
-  <li>思路是先把字符串转为数组，把所有符合条件的项改为True，然后一次性删除，再迭代</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">sl</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">removeDuplicatesList</span><span class="p">(</span><span class="n">str_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-
-            <span class="c1"># print("start:", str_list)
-</span>
-            <span class="n">same_str</span> <span class="o">=</span> <span class="sh">""</span>
-            <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">)):</span>
-                <span class="n">this_str</span> <span class="o">=</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-                <span class="n">next_str</span> <span class="o">=</span> <span class="bp">False</span> <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">str_list</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-                <span class="nf">if </span><span class="p">(</span><span class="n">this_str</span> <span class="o">==</span> <span class="n">next_str</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">this_str</span> <span class="o">==</span> <span class="n">same_str</span><span class="p">):</span>
-                    <span class="n">str_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-                    <span class="n">same_str</span> <span class="o">=</span> <span class="n">this_str</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">same_str</span> <span class="o">=</span> <span class="sh">""</span>
-
-            <span class="c1"># print(str_list)
-</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">True</span> <span class="ow">in</span> <span class="n">str_list</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">str_list</span>
-            <span class="k">return</span> <span class="nf">removeDuplicatesList</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">str_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span> <span class="o">==</span> <span class="bp">True</span><span class="p">])</span>
-
-        <span class="k">return</span> <span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">removeDuplicatesList</span><span class="p">(</span><span class="n">sl</span><span class="p">))</span>
-
-
-<span class="c1"># print(Solution().removeDuplicates("bcaac") == "b")
-# print(Solution().removeDuplicates("aaaaa") == "")
-# print(Solution().removeDuplicates("bbab") == "ab")
-</span><span class="nf">print</span><span class="p">(</span><span class="nc">Solution</span><span class="p">().</span><span class="nf">removeDuplicates</span><span class="p">(</span><span class="sh">"</span><span class="s">bba</span><span class="sh">"</span><span class="p">))</span> 
-
-</code></pre></div></div>
-
-<ul>
-  <li>力扣1047，删除字符串中的所有相邻重复项</li>
-  <li>根据力扣的判题结果显示，aaaaaaaaa输出应该是a而不是空字符串，是我理解错题意了</li>
-  <li>力扣题目中明确提到每次操作删除相邻两个项，也就是说奇数的重复项会留下一项，宇量昇笔试题目描述不清楚，自解直接删除了所有连通的相同项</li>
-</ul>
-
-<h2 id="正则匹配">正则匹配</h2>
-
-<ul>
-  <li>碰到原题了，参见力扣10：https://leetcode.cn/problems/regular-expression-matching/</li>
-  <li>但很离谱的是按照答案提交通过率只有74.29%，应该没有哪里写错</li>
-</ul>
-
-<!--![引入图片](/image/leetcode/2023-11-03-yuliangsheng/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><summary type="html"><![CDATA[没想到面试挂了之被另一个hr捞起来打复活赛了]]></summary></entry><entry><title type="html">js: 正则表达式</title><link href="/js/knowhow/regular_expression/" rel="alternate" type="text/html" title="js: 正则表达式" /><published>2023-10-23T13:18:39+08:00</published><updated>2023-10-23T13:18:39+08:00</updated><id>/js/knowhow/regular_expression</id><content type="html" xml:base="/js/knowhow/regular_expression/"><![CDATA[<ul>
-  <li>
-    <p>头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束</p>
-  </li>
-  <li>
-    <p>常用的特殊字符转义序列</p>
-  </li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\w：匹配包括字母、数字和下划线的任何单词字符（相当于 [a-zA-Z0-9_]）。
-
-\W：匹配任何非单词字符（相当于 [^a-zA-Z0-9_]）。
-
-\b：匹配单词边界，即单词和非单词字符之间的位置。
-
-\B：匹配非单词边界。
-
-\d：匹配任何数字字符（相当于 [0-9]）。
-
-\D：匹配任何非数字字符（相当于 [^0-9]）。
-
-\s：匹配任何空白字符，包括空格、制表符、换行符等。
-
-\S：匹配任何非空白字符。
-
-\t：匹配制表符。
-
-\n：匹配换行符。
-
-\r：匹配回车符。
-
-.：匹配除换行符外的任何字符。
-</code></pre></div></div>
-
-<ul>
-  <li>斜杠后可以添加修饰符，可以叠加，常用如下</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g 匹配全部
-使用示例：/abc/g
-描述：返回所有匹配项，比如abc_abc_abc_abc
-
-i 修饰符（不区分大小写）：
-使用示例：/abc/i
-描述：使正则表达式匹配时不区分大小写。
-
-m 修饰符（多行匹配）：
-使用示例：/abc/m
-描述：使正则表达式匹配多行文本。
-
-s 修饰符（单行匹配）：
-使用示例：/abc/s
-描述：使 . 元字符匹配包括换行符在内的任意字符。
-
-u 修饰符（Unicode 匹配）：
-使用示例：/abc/u
-描述：启用 Unicode 匹配模式，用于处理 Unicode 字符。
-
-y 修饰符（粘附匹配）：
-使用示例：/abc/y
-描述：执行粘附匹配，从目标字符串的当前位置开始匹配。
-</code></pre></div></div>
-
-<ul>
-  <li>常用符号</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[]：方括号用于定义一个字符类，表示在该位置可以匹配方括号内列举的任意一个字符。
-    例如，正则表达式 /[aeiou]/ 可以匹配任何一个元音字母
-[^]：在字符类的开始位置使用 ^ 表示否定，表示匹配除列举字符之外的任意字符。
-    例如，正则表达式 /[^0-9]/ 可以匹配任何非数字字符。
-+：符号，它表示匹配前面的模式的一个或多个连续出现。
-*：表示匹配零个或多个
-.：匹配除换行符 \n 之外的任意单个字符。
-    例如，正则表达式 /a.b/ 可以匹配 "aab"、"acb"、"a@b" 等字符串
-?：匹配前面的模式零次或一次（可选匹配）
-    例如，正则表达式 /colou?r/ 可以匹配 "color" 或 "colour" 字符串
-()：创建捕获组，用于分组和提取匹配的子字符串。
-    例如，正则表达式 /(ab)+/ 可以匹配 "ab"、"abab"、"ababab" 等字符串，并且捕获组可以提取出匹配的子字符串。
-    捕获组可以在正则表达式中使用括号进行嵌套和组合，以构建更复杂的模式。在匹配成功后，可以通过索引或特殊变量来引用捕获组中提取的子字符串。例如，在 JavaScript 中，可以使用 $1、$2、$3 等变量来引用第一个、第二个、第三个捕获组提取的子字符串。
-{}：大括号 {} 用于指定匹配的重复次数
-    例如，\d{4} 匹配恰好四位数字
-    {n,}：匹配前面的模式至少出现 n 次，例如，\d{2,} 匹配至少两位数字
-    {n,m}：匹配前面的模式出现 n 到 m 次，例如，\d{2,4} 匹配两位到四位数字
-</code></pre></div></div>
-
-<ul>
-  <li>一个例子</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 匹配电子邮件格式</span>
-<span class="kd">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">example@example.com</span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">isValidEmail</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">[^\s</span><span class="sr">@</span><span class="se">]</span><span class="sr">+@</span><span class="se">[^\s</span><span class="sr">@</span><span class="se">]</span><span class="sr">+</span><span class="se">\.[^\s</span><span class="sr">@</span><span class="se">]</span><span class="sr">+$/</span><span class="p">.</span><span class="nf">test</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">isValidEmail</span><span class="p">);</span> <span class="c1">// Output: true</span>
-
-<span class="c1">// .test() 是 JavaScript 正则表达式对象的一个方法。它用于测试一个字符串是否与正则表达式匹配。</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^：匹配输入的开始位置。
-[^\s@]+：匹配一个或多个非空白字符和非 @ 字符的字符。
-@：匹配 @ 字符。
-[^\s@]+：匹配一个或多个非空白字符和非 @ 字符的字符。
-\.：匹配 . 字符。需要使用 \ 进行转义，因为 . 在正则表达式中是一个特殊字符，表示匹配任意字符。
-[^\s@]+：匹配一个或多个非空白字符和非 @ 字符的字符。
-$：匹配输入的结束位置。
-</code></pre></div></div>
-
-<ul>
-  <li>另一个例子，把xx2020-01-01yy改成xx2020年01月01日</li>
-</ul>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xx2020-01-01yy</span><span class="dl">'</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">(\d{4})</span><span class="sr">-</span><span class="se">(\d{2})</span><span class="sr">-</span><span class="se">(\d{2})</span><span class="sr">/</span><span class="p">,</span>
-  <span class="p">(</span><span class="nx">match</span><span class="p">,</span> <span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">p1</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">年</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">p2</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">月</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">p3</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">日</span><span class="dl">'</span><span class="p">;</span> <span class="p">});</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="c1">// xx2020年01月01日yy</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/(\d{4})-(\d{2})-(\d{2})/ 匹配形如 "yyyy-mm-dd" 格式的日期
-
-匹配成功后，replace() 方法会调用一个回调函数，用于处理匹配到的结果。这个回调函数接受多个参数，其中第一个参数 match 是匹配到的完整字符串，后面的参数 p1、p2、p3 分别是匹配到的子字符串，即年、月、日。
-
-</code></pre></div></div>
-
-<!--![引入图片](/image/vue/2023-10-23-regular_expression/image_1.jpg) -->]]></content><author><name></name></author><category term="js" /><category term="knowhow" /><summary type="html"><![CDATA[头尾两个斜杠 // 通常用于包裹正则表达式的模式，用来标识正则表达式的开始和结束]]></summary></entry></feed>
+<!--![引入图片](/image/leetcode/2023-11-03-lixiang/image_1.jpg) -->]]></content><author><name></name></author><category term="leetcode" /><category term="python" /><category term="js" /><summary type="html"><![CDATA[虽然被捞起来打复活赛，但明显这个部门需要的不是我，选择题基本没有会的，算法两个c的内存调度也没写 只记录两道py]]></summary></entry></feed>
